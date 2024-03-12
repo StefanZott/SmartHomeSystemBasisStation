@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ZOTT-IT - Info</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <link rel="stylesheet" href="./css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="./css/service.css" type="text/css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+</head>
+
+<body>
+    <header class="px-0 bg-white border sticky-top navbar-light">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img class="me-3" src="/img/Logo.png" width="auto" height="24px" alt="TGE Logo"> HomeSystem
+                </a>
+              <button id="header-menu-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="info">Info</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Einstellungen
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="led">LED</a></li>
+                      <li><a class="dropdown-item" href="wlan">WLAN</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="info">INFO</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <template>
+        <div class="col-12 text-center mt-4"><div class="spinner-border text-primary"></div></div>
+        <div class="col-12 text-center mb-4">Loading...</div>
+    </template>
+
+    <main class="d-flex overflow-auto w-100 h-100 justify-content-center align-items-center">
+        <div id="content" class="d-flex flex-fill w-100 h-100 justify-content-center align-items-center">
+                
+        </div>
+    </main>
+
+    <footer class="border">
+        <div class="form-inline d-flex justify-content-between">
+            <div class="form-text text-left">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <small class="text-muted FWversion">v00.00.00</small>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-text text-right">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <small class="text-muted">&#169; 2023 <a href="https://www.xing.com/profile/Stefan_Zott4/web_profiles?expandNeffi=true" target="_blank">ZOTT-IT</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/common.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script>
+        function loadingScreen() {
+            let temp = document.getElementsByTagName("template")[0];
+            let clon = temp.content.cloneNode(true);
+            document.getElementById("content").appendChild(clon)
+        }
+
+        window.addEventListener("load", function () {
+            loadingScreen();
+            getInfos();
+            getTemplate();
+        })
+    </script>
+</body>
+
+</html>

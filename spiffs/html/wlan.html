@@ -1,0 +1,248 @@
+<div class="d-flex flex-column w-100 h-100">
+
+    <div id="connection_info" class="d-flex border-bottom border-danger pb-2 m-2 align-items-center justify-content-center">
+        <label class="me-1" for="">Verbindungsstatus</label>
+        <input id="connection_info_input" class="p-1" type="text" placeholder="Verbindung getrennt" disabled>
+    </div>
+
+    <div id="loading_spinner" class="justify-content-center" style="display: none;">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div id="ssid" class="align-items-center flex-column" style="display: none;">
+        <div class="input-group mb-3 w-75">
+            <label class="input-group-text p-1 w-25" for="selectSsid">SSID</label>
+            <select class="form-select" id="selectSsid">
+              <option selected>Auswählen...</option>
+            </select>
+        </div>
+    
+        <div class="input-group input-group mb-3 w-75">
+            <span class="input-group-text p-1 w-25" id="passwordGroup">Password</span>
+            <input type="text" id="password" class="form-control" aria-label="Sizing example input" aria-describedby="passwordGroup">
+        </div>
+
+        <button type="button" id="connectWithSSID" class="btn btn-outline-danger">Verbinden</button>
+    </div>
+
+    <div id="wlan_info_container" class="flex-column flex-fill px-2" style="display: none;">
+
+    </div>
+</div>
+<script>
+    async function getSsidList() {
+        let response, ssidList;
+        var select = document.getElementById("selectSsid");
+        
+        try {
+            response = await fetch("/getSsidList");
+            ssidList = await response.text()
+            ssidList = ssidList.split(',');
+            for (let index = 0; index < ssidList.length; index++) {
+                if (ssidList[index] !== "") {
+                    let option = document.createElement("option");
+                    option.text = ssidList[index];
+                    select.add(option, index);   
+                }
+            }
+        } catch( err ) {
+            document.getElementById("product_name").textContent = "---";
+        }
+    }
+
+    async function sendNewSSID() {
+        let data = document.getElementById("selectSsid").value + "," + document.getElementById("password").value
+        let ssid = document.querySelector("#selectSsid");
+
+        let resp = await fetch("/newSSID", {
+            method: "POST", // or 'PUT'
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: data,
+        });
+        resp = await resp.text();
+        resp = JSON.parse(resp)
+        console.log(resp)
+        if (resp !== "") {
+            document.getElementById("connection_info_input").placeholder = "Verbunden";
+            document.getElementById("ssid").classList.remove("d-flex");
+            document.getElementById("ssid").classList.add("d-none");
+
+            console.log("JSON len: ", Object.keys(resp).length);
+            for (let index = 0; index < Object.keys(resp).length; index++) {
+                let newDiv = document.createElement("div");
+                newDiv.style.height = "6%";
+                newDiv.classList.add("d-flex", "flex-row", "justify-content-around", "border", "border-danger", "mt-2")
+
+                let divLabel = document.createElement("div");
+                divLabel.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-secondary");
+
+                let newLabel = document.createElement("label");
+                newLabel.innerText = Object.keys(resp)[index];
+                divLabel.append(newLabel);
+                newDiv.append(divLabel);
+
+                let divValue = document.createElement("div");
+                divValue.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-light")
+
+                let newValue = document.createElement("span");
+                newValue.innerText = resp[Object.keys(resp)[index]];
+                divValue.append(newValue);
+                newDiv.append(divValue);
+
+                document.getElementById("wlan_info_container").append(newDiv);
+            }
+
+            let disconnectSsidBtn = document.createElement("button");
+            disconnectSsidBtn.id = "disconnectSsidBtn";
+            disconnectSsidBtn.innerText = "Verbindung trennen";
+            disconnectSsidBtn.classList.add("w-100", "border", "border-danger", "mt-2");
+            disconnectSsidBtn.style.height = "6%";
+            document.getElementById("wlan_info_container").append(disconnectSsidBtn);
+        } else {
+
+        }
+    }
+
+    async function disconnectWithWIFI() {
+        let resp = await fetch("/disconnectWIFI", {
+            method: "GET", // or 'PUT'
+            headers: {
+                "Content-Type": "text/plain"
+            }
+        });
+        resp = await resp.text();
+
+        if(resp === "disconnected") {
+            document.getElementById("connection_info_input").placeholder = "Warten auf Antwort...";
+
+            document.getElementById("wlan_info_container").classList.remove("d-flex");
+            document.getElementById("wlan_info_container").classList.add("d-none");
+
+            document.getElementById("connection_info").classList.remove("d-flex");
+            document.getElementById("connection_info").classList.add("d-none");
+
+            document.getElementById("ssid").classList.remove("d-flex");
+            document.getElementById("ssid").classList.add("d-none");
+
+            document.getElementById("loading_spinner").classList.remove("d-none");
+            document.getElementById("loading_spinner").classList.add("d-flex");
+
+            // TODO: Wenn die Trennug der Vebindung erfolgreich war, dann soll ein grüner Container mit entsprechenden Text angezeigt werden
+        } else {
+            // TODO: Wenn die Trennug der Vebindung nicht erfolgreich war, dann soll ein roter Container mit entsprechenden Text angezeigt werden.
+        }
+    }
+
+    async function getConnectionInfo() {
+        let resp = await fetch("/getConnectionInfo", {
+            method: "GET", // or 'PUT'
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        resp = await resp.text();
+        console.log(resp);
+        resp = JSON.parse(resp);
+        for (let index = 0; index < Object.keys(resp).length; index++) {
+            let newDiv = document.createElement("div");
+            newDiv.style.height = "6%";
+            newDiv.classList.add("d-flex", "flex-row", "justify-content-around", "border", "border-danger", "mt-2")
+
+            let divLabel = document.createElement("div");
+            divLabel.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-secondary");
+
+            let newLabel = document.createElement("label");
+            newLabel.innerText = Object.keys(resp)[index];
+            divLabel.append(newLabel);
+            newDiv.append(divLabel);
+
+            let divValue = document.createElement("div");
+            divValue.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-light")
+
+            let newValue = document.createElement("span");
+            newValue.innerText = resp[Object.keys(resp)[index]];
+            divValue.append(newValue);
+            newDiv.append(divValue);
+
+            document.getElementById("wlan_info_container").append(newDiv);
+        }
+    }
+
+    async function getWifiState() {
+        try {
+            response = await fetch("/getWifiState");
+            response = await response.text();
+            console.log(response)
+
+            switch (response) {
+                case "0": // ACCESS_POINT
+                    document.getElementById("connection_info_input").placeholder = "Verbindung getrennt";
+                    getSsidList();
+
+                    document.getElementById("loading_spinner").style.display = "none";
+                    document.getElementById("wlan_info_container").style.display = "none";
+                    document.getElementById("ssid").style.display = "flex";
+                    break;
+
+                case "1": // STATION_CONNECTING
+                    document.getElementById("connection_info_input").placeholder = "verbinden...";
+
+                    document.getElementById("wlan_info_container").style.display = "none";
+                    document.getElementById("ssid").style.display = "none";  
+                    document.getElementById("loading_spinner").style.display = "flex";                  
+                    break;
+
+                case "2": // STATION_CONNECTED
+                    document.getElementById("connection_info_input").placeholder = "Verbunden";
+                    getConnectionInfo();
+                    
+                    document.getElementById("ssid").style.display = "none";  
+                    document.getElementById("loading_spinner").style.display = "none"; 
+                    document.getElementById("wlan_info_container").style.display = "flex";
+                    break;
+
+                case "3": // STATION_INDICATE_SCAN
+                    
+                    break;
+
+                case "4": // STATION_SCANNING
+                    document.getElementById("connection_info_input").placeholder = "Suchen...";
+                    
+                    document.getElementById("wlan_info_container").style.display = "none";
+                    document.getElementById("ssid").style.display = "none";  
+                    document.getElementById("loading_spinner").style.display = "flex"; 
+                    break;
+
+                case "5": // STATION_STOP
+                    document.getElementById("connection_info_input").placeholder = "Verbindung wird getrennt...";
+                    
+                    document.getElementById("wlan_info_container").style.display = "none";
+                    document.getElementById("ssid").style.display = "none";  
+                    document.getElementById("loading_spinner").style.display = "flex"; 
+                    break;
+            
+                default:
+                    break;
+            }
+        } catch( err ) {
+            document.getElementById("product_name").textContent = "---";
+        }
+    }
+
+    document.getElementById("connectWithSSID").addEventListener("click", function(e) {
+        // e.preventDefault();
+        sendNewSSID();
+    });
+
+    // document.getElementById("disconnectSsidBtn").addEventListener("click", function(e) {
+        // e.preventDefault();
+    //     disconnectWithWIFI();
+    //     getWifiState();
+    // });
+
+    getWifiState();
+</script>

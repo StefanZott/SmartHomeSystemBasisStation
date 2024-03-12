@@ -1,0 +1,37 @@
+<div id="info_container" class="d-flex flex-column h-100 w-100">
+
+</div>
+<script>
+    fetch("/getInfos", {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    }).then((response) => response.json())
+    .then(json => {
+        console.log("JSON len: ", Object.keys(json).length);
+        for (let index = 0; index < Object.keys(json).length; index++) {
+                let newDiv = document.createElement("div");
+                newDiv.style.height = "6%";
+                newDiv.classList.add("d-flex", "flex-row", "justify-content-around", "border", "border-danger", "mt-2")
+
+                let divLabel = document.createElement("div");
+                divLabel.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-secondary");
+
+                let newLabel = document.createElement("label");
+                newLabel.innerText = Object.keys(json)[index];
+                divLabel.append(newLabel);
+                newDiv.append(divLabel);
+
+                let divValue = document.createElement("div");
+                divValue.classList.add("d-flex", "w-50", "align-items-center", "justify-content-center", "bg-light")
+
+                let newValue = document.createElement("span");
+                newValue.innerText = json[Object.keys(json)[index]];
+                divValue.append(newValue);
+                newDiv.append(divValue);
+
+                document.getElementById("info_container").append(newDiv);
+            }
+    })
+</script>

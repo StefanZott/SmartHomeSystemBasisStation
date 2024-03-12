@@ -1,0 +1,103 @@
+<div class="d-flex flex-fill flex-column w-100">
+    <div class="d-flex justify-content-center mb-3" id="blueLedContainer">
+        <div id="blueLedLabel" class="d-flex align-items-center w-25">
+            <span>Blaue LED</span>
+        </div>
+        <div id="blueLedSwitch" class="d-flex">
+            <input type="radio" class="btn-check" name="blueLed" id="blueLedOn" autocomplete="off" >
+            <label class="btn btn-outline-success me-2" for="blueLedOn">AN</label>
+
+            <input type="radio" class="btn-check" name="blueLed" id="blueLedOff" autocomplete="off" checked>
+            <label class="btn btn-outline-danger" for="blueLedOff">AUS</label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-3" id="yellowLedContainer">
+        <div id="yellowLedLabel" class="d-flex align-items-center w-25">
+            <span>Gelbe LED</span>
+        </div>
+        <div id="yellowLedSwitch" class="d-flex">
+            <input type="radio" class="btn-check" name="yellowLed" id="yellowLedOn" autocomplete="off" >
+            <label class="btn btn-outline-success me-2" for="yellowLedOn">AN</label>
+
+            <input type="radio" class="btn-check" name="yellowLed" id="yellowLedOff" autocomplete="off" checked>
+            <label class="btn btn-outline-danger" for="yellowLedOff">AUS</label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-3" id="greenLedContainer">
+        <div id="greenLedLabel" class="d-flex  align-items-center w-25">
+            <span>Grüne LED</span>
+        </div>
+        <div id="greenLedSwitch" class="d-flex">
+            <input type="radio" class="btn-check" name="greenLed" id="greenLedOn" autocomplete="off" >
+            <label class="btn btn-outline-success me-2" for="greenLedOn">AN</label>
+
+            <input type="radio" class="btn-check" name="greenLed" id="greenLedOff" autocomplete="off" checked>
+            <label class="btn btn-outline-danger" for="greenLedOff">AUS</label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-3" id="redLedContainer">
+        <div id="redLedLabel" class="d-flex align-items-center w-25">
+            <span>Rote LED</span>
+        </div>
+        <div id="redLedSwitch" class="d-flex">
+            <input type="radio" class="btn-check" name="redLed" id="redLedOn" autocomplete="off" >
+            <label class="btn btn-outline-success me-2" for="redLedOn">AN</label>
+
+            <input type="radio" class="btn-check" name="redLed" id="redLedOff" autocomplete="off" checked>
+            <label class="btn btn-outline-danger" for="redLedOff">AUS</label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button id="ledTest" type="button" class="btn btn-outline-dark">LED test</button>
+    </div>
+</div>
+<script>
+    async function exexuteSingleTest(data) {
+        // fetch('/ledSingleTest', {
+        //     Method: 'POST',
+        //     Body: data,
+        //     Cache: 'default'
+        // })
+
+        const req = new XMLHttpRequest();
+        req.open("POST", "/ledSingleTest");
+        req.send(data);
+    }
+
+    document.getElementById("ledTest").addEventListener("click", async function(event) {
+        // event.defaultPrevented();
+        fetch("/ledTest");
+    })
+
+    document.getElementById("blueLedOn").addEventListener("click", async function(event) {
+        exexuteSingleTest("0,4096,3")
+    })
+
+    document.getElementById("blueLedOff").addEventListener("click", async function(event) {
+        exexuteSingleTest("0,0,3")
+    })
+
+    document.getElementById("yellowLedOn").addEventListener("click", async function(event) {
+        exexuteSingleTest("1,4096,3")
+    })
+
+    document.getElementById("yellowLedOff").addEventListener("click", async function(event) {
+        exexuteSingleTest("1,0,3")
+    })
+
+    document.getElementById("greenLedOn").addEventListener("click", async function(event) {
+        exexuteSingleTest("2,4096,3")
+    })
+
+    document.getElementById("greenLedOff").addEventListener("click", async function(event) {
+        exexuteSingleTest("2,0,3")
+    })
+
+    document.getElementById("redLedOn").addEventListener("click", async function(event) {
+        exexuteSingleTest("3,4096,3")
+    })
+
+    document.getElementById("redLedOff").addEventListener("click", async function(event) {
+        exexuteSingleTest("3,0,3")
+    })
+</script>

@@ -1,0 +1,68 @@
+body, html {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#connectWithSSID {
+    height: 100%;
+    width: 75%;
+}
+
+#parameterContent {
+    height: 93%;
+    overflow: auto;
+}
+
+.prsUiHeight {
+    height: 640px;
+}
+
+.prgWidth {
+    width: 295px;
+}
+
+.prgHeight {
+    height: 415px;
+}
+
+.prgDisplayHigh {
+    height: 75px;
+}
+
+#prgDisplayLineOne, #prgDisplayLineTwo {
+    font-size: 5vmax;
+}
+
+.h-7 {
+    height: 7% !important;
+}
+
+.h-18 {
+    height: 18% !important;
+}
+
+.prsButton {
+    background-color: #eeeeee;
+    width: 100%;
+    height: 50px;
+    border: none;
+    font-size: 12px;
+}
+
+.prgButton {
+    background-color: #eeeeee;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.prgButtonHigh {
+    height: 73px;
+}
