@@ -767,18 +767,6 @@
 		(uuid "455b9c44-7168-469d-a3b1-92fb5ebb8e13")
 	)
 	(junction
-		(at 115.57 114.3)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "799ccc75-7502-4403-aaed-5a1769cfe9e4")
-	)
-	(junction
-		(at 59.69 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9f7bae41-543f-45fa-b377-063305375266")
-	)
-	(junction
 		(at 101.6 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -786,23 +774,13 @@
 	)
 	(wire
 		(pts
-			(xy 101.6 114.3) (xy 115.57 114.3)
+			(xy 101.6 114.3) (xy 121.92 114.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "09053bb1-9afd-466b-b9b9-b5f8e54cb9cc")
-	)
-	(wire
-		(pts
-			(xy 59.69 100.33) (xy 59.69 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "23a03c6b-a6c5-4eb3-a01c-22b5233b45b0")
 	)
 	(wire
 		(pts
@@ -816,7 +794,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 100.33) (xy 64.77 100.33)
+			(xy 52.07 100.33) (xy 64.77 100.33)
 		)
 		(stroke
 			(width 0)
@@ -846,23 +824,13 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 100.33) (xy 59.69 100.33)
+			(xy 166.37 106.68) (xy 166.37 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "5c8bfab2-8631-4e24-b995-7cbc55824767")
-	)
-	(wire
-		(pts
-			(xy 115.57 114.3) (xy 115.57 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6798f95b-00da-4b0b-b105-8fec4098227a")
+		(uuid "5173b00a-4f0b-4945-bd45-4c5cd4ca5c11")
 	)
 	(wire
 		(pts
@@ -896,16 +864,6 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 114.3) (xy 115.57 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3d18a65-b169-422f-8236-4cc40c9aece5")
-	)
-	(wire
-		(pts
 			(xy 101.6 114.3) (xy 101.6 124.46)
 		)
 		(stroke
@@ -913,16 +871,6 @@
 			(type default)
 		)
 		(uuid "baa2251d-5ed5-4cfd-87d7-66c0ff1213c8")
-	)
-	(wire
-		(pts
-			(xy 166.37 100.33) (xy 175.26 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be6d6c3a-a575-4d09-bec6-7a6f29b3dfa2")
 	)
 	(wire
 		(pts
@@ -936,7 +884,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 100.33) (xy 158.75 100.33)
+			(xy 149.86 100.33) (xy 166.37 100.33)
 		)
 		(stroke
 			(width 0)
@@ -946,13 +894,13 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 116.84) (xy 59.69 114.3)
+			(xy 166.37 114.3) (xy 166.37 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d9d5df98-ef31-495b-877d-68a40000b3b5")
+		(uuid "d3d16857-d89b-43ce-b125-07924b7dd6c1")
 	)
 	(global_label "EN"
 		(shape output)
@@ -972,28 +920,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "RST - EN"
-		(shape input)
-		(at 115.57 118.11 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "300697ee-522d-407f-98ce-9ff88ab8032a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 115.57 130.5294 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -1157,140 +1083,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 59.69 116.84 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3719f44d-cb62-4a14-9157-044228d67dff")
-		(property "Reference" "#PWR03"
-			(at 59.69 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 59.69 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 59.69 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 59.69 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 59.69 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4090d49e-d8a6-461b-b3cf-66f933968b6b")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1/95bbc6e9-cea3-48d2-a467-ede743e61415"
-					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 59.69 110.49 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "60d3795c-3407-4cb8-9a8b-9fb7a12cbfa7")
-		(property "Reference" "C1"
-			(at 67.31 109.601 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "4700µF"
-			(at 64.77 109.601 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "CUSTOM_Footprint:CAPAE530X565N"
-			(at 60.6552 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.de/c/passive-components/capacitors/aluminum-electrolytic-capacitors/aluminum-electrolytic-capacitors-smd/?capacitance=4700%20uF&m=Wurth%20Elektronik"
-			(at 59.69 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 59.69 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "eec40a2d-bb31-4c9a-bc16-8854745f6002")
-		)
-		(pin "2"
-			(uuid "a3e7a6dd-f943-48cf-8e05-ea8f784f5909")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1/95bbc6e9-cea3-48d2-a467-ede743e61415"
-					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VCC")
 		(at 39.37 100.33 90)
 		(unit 1)
@@ -1359,7 +1151,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 162.56 100.33 90)
+		(at 166.37 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1368,15 +1160,15 @@
 		(fields_autoplaced yes)
 		(uuid "6838fc39-8c74-47d5-8b56-85620568a9fb")
 		(property "Reference" "C4"
-			(at 161.671 92.71 90)
+			(at 173.99 109.601 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "100µF"
-			(at 161.671 95.25 90)
+		(property "Value" "100nF"
+			(at 171.45 109.601 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1384,7 +1176,7 @@
 			)
 		)
 		(property "Footprint" "CUSTOM_Footprint:CAPAE1030X1050N"
-			(at 166.37 99.3648 0)
+			(at 167.3352 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1393,7 +1185,7 @@
 			)
 		)
 		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.we-online.com/components/products/datasheet/865060343005.pdf"
-			(at 162.56 100.33 0)
+			(at 166.37 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1402,7 +1194,7 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
-			(at 162.56 100.33 0)
+			(at 166.37 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1687,7 +1479,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 175.26 100.33 90)
+		(at 166.37 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1696,7 +1488,7 @@
 		(fields_autoplaced yes)
 		(uuid "ddd60ec6-1312-4790-9457-533b90ca174c")
 		(property "Reference" "#PWR013"
-			(at 181.61 100.33 0)
+			(at 166.37 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1705,7 +1497,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 180.34 100.33 0)
+			(at 166.37 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1713,7 +1505,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 100.33 0)
+			(at 166.37 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1722,7 +1514,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 175.26 100.33 0)
+			(at 166.37 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1731,7 +1523,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 175.26 100.33 0)
+			(at 166.37 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)

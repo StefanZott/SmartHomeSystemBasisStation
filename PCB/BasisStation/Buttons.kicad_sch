@@ -571,138 +571,12 @@
 				)
 			)
 		)
-		(symbol "power:VCC"
-			(power)
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "VCC"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"VCC\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "VCC_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "VCC_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 	)
 	(junction
 		(at 86.36 120.65)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "590ba36f-d27f-48e7-b6f0-c9a8d0ea34b8")
-	)
-	(junction
-		(at 109.22 120.65)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6555728a-b543-413f-8422-8b630fed437a")
 	)
 	(junction
 		(at 105.41 120.65)
@@ -715,6 +589,16 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "de31a097-b750-4f19-817f-bac13a281dac")
+	)
+	(wire
+		(pts
+			(xy 105.41 120.65) (xy 116.84 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00cf9373-2cbe-4da5-b0c5-fdc4c4c33763")
 	)
 	(wire
 		(pts
@@ -735,16 +619,6 @@
 			(type default)
 		)
 		(uuid "1b4aa943-7bea-4845-b54a-71ae223c3572")
-	)
-	(wire
-		(pts
-			(xy 109.22 105.41) (xy 109.22 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "25e82431-8409-4236-8c74-eda171b3a9d3")
 	)
 	(wire
 		(pts
@@ -788,13 +662,13 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 120.65) (xy 111.76 120.65)
+			(xy 124.46 120.65) (xy 134.62 120.65)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7429179b-ccf7-43c8-b345-1b1db33ce9ba")
+		(uuid "703d3059-ab72-4340-9a9a-0743c7afcf6a")
 	)
 	(wire
 		(pts
@@ -828,16 +702,6 @@
 	)
 	(wire
 		(pts
-			(xy 105.41 120.65) (xy 109.22 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c41f3726-f5d0-4969-8bc7-357fe4813a58")
-	)
-	(wire
-		(pts
 			(xy 105.41 124.46) (xy 105.41 120.65)
 		)
 		(stroke
@@ -845,16 +709,6 @@
 			(type default)
 		)
 		(uuid "da3f58a8-90d5-4f17-89f4-d61091b8b81a")
-	)
-	(wire
-		(pts
-			(xy 109.22 115.57) (xy 109.22 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc99ae7b-cb1f-4f5e-8290-73d83f9940cd")
 	)
 	(wire
 		(pts
@@ -881,7 +735,7 @@
 	)
 	(global_label "RST - EN"
 		(shape output)
-		(at 111.76 120.65 0)
+		(at 134.62 120.65 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -891,7 +745,7 @@
 		)
 		(uuid "3b071691-3138-4a7e-b998-376e2c538519")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.1794 120.65 0)
+			(at 147.0394 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -973,8 +827,8 @@
 	(symbol
 		(lib_name "R_2")
 		(lib_id "Device:R")
-		(at 109.22 111.76 0)
-		(mirror y)
+		(at 120.65 120.65 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -982,7 +836,7 @@
 		(dnp no)
 		(uuid "85fd3a6c-4faf-49ca-88ab-185a376f0d5f")
 		(property "Reference" "R5"
-			(at 106.426 111.76 90)
+			(at 120.65 117.856 90)
 			(do_not_autoplace yes)
 			(effects
 				(font
@@ -992,7 +846,7 @@
 			)
 		)
 		(property "Value" "22k"
-			(at 109.22 110.236 90)
+			(at 122.174 120.65 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1001,7 +855,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_Power_L60.0mm_W14.0mm_P66.04mm"
-			(at 110.998 111.76 90)
+			(at 120.65 122.428 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1010,7 +864,7 @@
 			)
 		)
 		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.mouser.de/datasheet/2/418/3/NG_CS_1309350_PASSIVE_COMPONENT_0807-1235468.pdf"
-			(at 109.22 111.76 0)
+			(at 120.65 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1019,7 +873,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 109.22 111.76 0)
+			(at 120.65 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1177,73 +1031,6 @@
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1/3a7cd9fc-3eb4-4108-a75f-b08dbde2a6f7"
 					(reference "SW2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 109.22 105.41 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d3697043-b108-4cda-8487-1ca084b12af9")
-		(property "Reference" "#PWR019"
-			(at 109.22 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 109.2199 101.6 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 109.22 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 109.22 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 109.22 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b66f657-58f3-4162-ac3f-b7d2f19f1c14")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1/3a7cd9fc-3eb4-4108-a75f-b08dbde2a6f7"
-					(reference "#PWR019")
 					(unit 1)
 				)
 			)
