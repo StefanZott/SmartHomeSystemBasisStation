@@ -2256,6 +2256,7 @@
 		)
 		(property "Value" "100nF"
 			(at 133.35 65.1509 0)
+			(show_name yes)
 			(effects
 				(font
 					(size 1.27 1.27)

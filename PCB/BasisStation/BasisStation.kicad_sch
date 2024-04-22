@@ -2623,15 +2623,12 @@
 				)
 			)
 		)
-		(symbol "TSR_1-2433E:TSR_1-2433E"
-			(pin_names
-				(offset 1.016)
-			)
+		(symbol "TSR1-2433:TSR1-2433"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "PS"
-				(at -10.16 7.62 0)
+				(at 21.59 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2639,167 +2636,118 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "TSR_1-2433E"
-				(at -10.16 -7.62 0)
+			(property "Value" "TSR1-2433"
+				(at 21.59 5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
+					(justify left top)
 				)
 			)
-			(property "Footprint" "TSR_1-2433E:CONV_TSR_1-2433E"
+			(property "Footprint" "TSR12433"
+				(at 21.59 -94.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.tracopower.com/sites/default/files/products/datasheets/tsr1_datasheet.pdf"
+				(at 21.59 -194.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "Non-Isolated DC/DC Converters"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Datasheet" ""
-				(at 0 0 0)
+			(property "Height" "10.6"
+				(at 21.59 -394.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Description" ""
-				(at 0 0 0)
+			(property "Manufacturer_Name" "Traco Power"
+				(at 21.59 -494.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "MF" "Traco Power"
-				(at 0 0 0)
+			(property "Manufacturer_Part_Number" "TSR1-2433"
+				(at 21.59 -594.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "10.2mm"
-				(at 0 0 0)
+			(property "Mouser Part Number" ""
+				(at 21.59 -694.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Package" "NON STANDARD-3 Traco Power"
-				(at 0 0 0)
+			(property "Mouser Price/Stock" ""
+				(at 21.59 -794.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Price" "None"
-				(at 0 0 0)
+			(property "Arrow Part Number" ""
+				(at 21.59 -894.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Check_prices" "https://www.snapeda.com/parts/TSR%201-2433E/Traco+Power/view-part/?ref=eda"
-				(at 0 0 0)
+			(property "Arrow Price/Stock" ""
+				(at 21.59 -994.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "STANDARD" "Manufacturer Recommendations"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "PARTREV" "May 25, 2020"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/TSR%201-2433E/Traco+Power/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "TSR 1-2433E"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "\n1 Amp POL converter, industrial, wide input range, pos.-pos. circuit, cost efficient, LM78 compatible, SIP-3\n"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MANUFACTURER" "Traco Power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "TSR_1-2433E_0_0"
+			(symbol "TSR1-2433_1_1"
 				(rectangle
-					(start -10.16 -5.08)
-					(end 10.16 5.08)
+					(start 5.08 2.54)
+					(end 20.32 -7.62)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -2808,56 +2756,56 @@
 						(type background)
 					)
 				)
-				(pin input line
-					(at -15.24 2.54 0)
+				(pin passive line
+					(at 0 0 0)
 					(length 5.08)
 					(name "+VIN"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin power_in line
-					(at 15.24 -2.54 180)
+				(pin passive line
+					(at 0 -2.54 0)
 					(length 5.08)
 					(name "GND"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "2"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin output line
-					(at 15.24 2.54 180)
+				(pin passive line
+					(at 0 -5.08 0)
 					(length 5.08)
 					(name "+VOUT"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "3"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -3275,16 +3223,6 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 45.72) (xy 69.85 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "098fcc37-a50e-4547-acdf-50cb387c3918")
-	)
-	(wire
-		(pts
 			(xy 50.8 190.5) (xy 58.42 190.5)
 		)
 		(stroke
@@ -3375,7 +3313,7 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 40.64) (xy 39.37 40.64)
+			(xy 35.56 40.64) (xy 52.07 40.64)
 		)
 		(stroke
 			(width 0)
@@ -3645,6 +3583,16 @@
 	)
 	(wire
 		(pts
+			(xy 54.61 39.37) (xy 54.61 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71e4769b-caf0-4ff8-b550-b768bdf0cc80")
+	)
+	(wire
+		(pts
 			(xy 25.4 187.96) (xy 25.4 115.57)
 		)
 		(stroke
@@ -3722,6 +3670,16 @@
 			(type default)
 		)
 		(uuid "864ca9dc-f6e7-4919-9452-fbbae337c851")
+	)
+	(wire
+		(pts
+			(xy 57.15 40.64) (xy 73.66 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "873fdee2-a776-4027-b4be-37098518e805")
 	)
 	(wire
 		(pts
@@ -3955,6 +3913,16 @@
 	)
 	(wire
 		(pts
+			(xy 52.07 40.64) (xy 52.07 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b77d09e7-3d33-4b5f-9301-01ea96b37e2f")
+	)
+	(wire
+		(pts
 			(xy 17.78 80.01) (xy 24.13 80.01)
 		)
 		(stroke
@@ -3992,6 +3960,16 @@
 			(type default)
 		)
 		(uuid "c34196ff-8417-4e2d-92aa-509eeed920e5")
+	)
+	(wire
+		(pts
+			(xy 57.15 40.64) (xy 57.15 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3dd973c-18e0-4cb0-887c-cc77e34b2287")
 	)
 	(wire
 		(pts
@@ -4105,16 +4083,6 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 40.64) (xy 73.66 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ed05e1ba-b215-469a-8909-cac5db6b7ec3")
-	)
-	(wire
-		(pts
 			(xy 20.32 120.65) (xy 20.32 193.04)
 		)
 		(stroke
@@ -4182,6 +4150,19 @@
 		)
 		(uuid "8a524f2c-8214-4552-9635-e55315de74e7")
 	)
+	(text "POWER BUTTON"
+		(exclude_from_sim no)
+		(at 29.972 30.988 0)
+		(effects
+			(font
+				(face "Arial")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "a1311708-64f0-4180-a2f1-334f5a45da57")
+	)
 	(label "27"
 		(at 181.61 74.93 0)
 		(fields_autoplaced yes)
@@ -4224,7 +4205,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "03152a59-a4ce-4cbd-a07b-11cb2289c173")
-		(property "Reference" "R7"
+		(property "Reference" "R2"
 			(at 170.18 127.508 90)
 			(effects
 				(font
@@ -4240,7 +4221,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 170.18 131.318 90)
 			(effects
 				(font
@@ -4249,7 +4230,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.reichelt.de/widerstand-metallschicht-220-ohm-0207-0-6-w-1--metall-220-p11627.html"
+		(property "Datasheet" "https://www.mouser.de/ProductDetail/TE-Connectivity-Neohm/EP1WSS220RJ?qs=sGAEpiMZZMtTURnxoZnJAPKHF1kdu5MnP5iTuxGfnL1sTv7cuOMZ%2Fw%3D%3D"
 			(at 170.18 129.54 0)
 			(effects
 				(font
@@ -4276,7 +4257,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "R7")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -4358,7 +4339,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0fc2c711-dd76-45fd-ac04-a31a2bec3cef")
-		(property "Reference" "R8"
+		(property "Reference" "R3"
 			(at 170.18 133.858 90)
 			(effects
 				(font
@@ -4374,7 +4355,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 170.18 137.668 90)
 			(effects
 				(font
@@ -4383,7 +4364,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.reichelt.de/widerstand-metallschicht-220-ohm-0207-0-6-w-1--metall-220-p11627.html"
+		(property "Datasheet" "https://www.mouser.de/ProductDetail/TE-Connectivity-Neohm/EP1WSS220RJ?qs=sGAEpiMZZMtTURnxoZnJAPKHF1kdu5MnP5iTuxGfnL1sTv7cuOMZ%2Fw%3D%3D"
 			(at 170.18 135.89 0)
 			(effects
 				(font
@@ -4410,7 +4391,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "R8")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -4693,7 +4674,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "23229f4e-e3de-4df7-ab2d-1a6aa762f22b")
-		(property "Reference" "C10"
+		(property "Reference" "C6"
 			(at 74.93 199.7709 0)
 			(effects
 				(font
@@ -4747,7 +4728,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "C10")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -4755,7 +4736,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 69.85 48.26 0)
+		(at 54.61 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4764,7 +4745,7 @@
 		(fields_autoplaced yes)
 		(uuid "2bea24b6-ee17-45ee-900b-a93716cb84e8")
 		(property "Reference" "#PWR021"
-			(at 69.85 54.61 0)
+			(at 54.61 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4773,7 +4754,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 69.85 53.34 0)
+			(at 54.61 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4781,7 +4762,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 69.85 48.26 0)
+			(at 54.61 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4790,7 +4771,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 69.85 48.26 0)
+			(at 54.61 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4799,7 +4780,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 69.85 48.26 0)
+			(at 54.61 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4986,7 +4967,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.we-online.com/components/products/datasheet/471001264143.pdf"
+		(property "Datasheet" "https://www.we-online.com/components/products/datasheet/471001264143.pdf"
 			(at 30.48 40.64 0)
 			(effects
 				(font
@@ -5247,198 +5228,6 @@
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
 					(reference "#PWR033")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "TSR_1-2433E:TSR_1-2433E")
-		(at 54.61 43.18 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "57324781-c840-4416-a3db-29f96e872fa3")
-		(property "Reference" "PS2"
-			(at 54.61 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TSR_1-2433E"
-			(at 54.61 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Template:CONV_TSR_1-2433E"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.reichelt.de/dc-dc-wandler-tsr-1-1-w-3-3-v-1000-ma-sil-to-220-tsr-1-2433-p116849.html?search=tsr1"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Traco Power"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "10.2mm"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "NON STANDARD-3 Traco Power"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/TSR%201-2433E/Traco+Power/view-part/?ref=eda"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" "May 25, 2020"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/TSR%201-2433E/Traco+Power/view-part/?ref=snap"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "TSR 1-2433E"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "\n1 Amp POL converter, industrial, wide input range, pos.-pos. circuit, cost efficient, LM78 compatible, SIP-3\n"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Traco Power"
-			(at 54.61 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bca35dc4-9f49-486d-a133-037bddebd2e6")
-		)
-		(pin "3"
-			(uuid "5074efc8-abef-43d7-a363-4a6c948bf686")
-		)
-		(pin "2"
-			(uuid "49f4bd62-8d95-4c3a-a2a6-a60e2bb049ef")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "PS2")
 					(unit 1)
 				)
 			)
@@ -6056,6 +5845,160 @@
 		)
 	)
 	(symbol
+		(lib_id "TSR1-2433:TSR1-2433")
+		(at 52.07 39.37 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9fa947e5-f98b-4cd1-b959-ea48050712b3")
+		(property "Reference" "PS1"
+			(at 60.96 25.3999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "TSR1-2433"
+			(at 60.96 27.9399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "TSR1-2433:TSR12433"
+			(at 146.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.tracopower.com/sites/default/files/products/datasheets/tsr1_datasheet.pdf"
+			(at 246.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Non-Isolated DC/DC Converters"
+			(at 52.07 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "10.6"
+			(at 446.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Traco Power"
+			(at 546.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "TSR1-2433"
+			(at 646.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "495-TSR-1-2433"
+			(at 746.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "5,14€"
+			(at 846.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Part Number" ""
+			(at 946.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Price/Stock" ""
+			(at 1046.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "E:\\Projekte\\SmartHomeSystemBasisStation\\PCB\\TSR1-2433\\TSR1-2433.lib"
+			(at 52.07 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "006ed31d-bbb4-433c-abfe-d2189ae77975")
+		)
+		(pin "1"
+			(uuid "7a58e934-9bcc-425d-8499-1bfae1e904ee")
+		)
+		(pin "3"
+			(uuid "cd5b5ef1-4dfc-4102-9f79-1afe5cd5ebe7")
+		)
+		(instances
+			(project "BasisStation"
+				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
+					(reference "PS1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED")
 		(at 179.07 142.24 180)
 		(unit 1)
@@ -6135,7 +6078,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a327d068-673c-45fc-9425-7fc0d6e6ddf0")
-		(property "Reference" "R10"
+		(property "Reference" "R5"
 			(at 44.45 77.216 90)
 			(do_not_autoplace yes)
 			(effects
@@ -6154,7 +6097,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L60.0mm_W14.0mm_P66.04mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0922_L20.0mm_D9.0mm_P25.40mm_Horizontal"
 			(at 44.45 81.788 90)
 			(effects
 				(font
@@ -6190,7 +6133,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "R10")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -6337,7 +6280,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "acb75c68-a397-4d60-8e78-ed808fafbe6b")
-		(property "Reference" "C8"
+		(property "Reference" "C5"
 			(at 27.94 87.63 90)
 			(effects
 				(font
@@ -6391,7 +6334,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "C8")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -6676,7 +6619,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c94793ff-4463-407f-9de4-52de69eca89e")
-		(property "Reference" "R6"
+		(property "Reference" "R1"
 			(at 170.18 121.158 90)
 			(effects
 				(font
@@ -6692,7 +6635,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 170.18 124.968 90)
 			(effects
 				(font
@@ -6701,7 +6644,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.reichelt.de/widerstand-metallschicht-220-ohm-0207-0-6-w-1--metall-220-p11627.html"
+		(property "Datasheet" "https://www.mouser.de/ProductDetail/TE-Connectivity-Neohm/EP1WSS220RJ?qs=sGAEpiMZZMtTURnxoZnJAPKHF1kdu5MnP5iTuxGfnL1sTv7cuOMZ%2Fw%3D%3D"
 			(at 170.18 123.19 0)
 			(effects
 				(font
@@ -6728,7 +6671,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "R6")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -6743,7 +6686,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c9d0cafa-7a07-4524-afbe-6baf261fc188")
-		(property "Reference" "R9"
+		(property "Reference" "R4"
 			(at 170.18 140.208 90)
 			(effects
 				(font
@@ -6759,7 +6702,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 170.18 144.018 90)
 			(effects
 				(font
@@ -6768,7 +6711,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.reichelt.de/widerstand-metallschicht-220-ohm-0207-0-6-w-1--metall-220-p11627.html"
+		(property "Datasheet" "https://www.mouser.de/ProductDetail/TE-Connectivity-Neohm/EP1WSS220RJ?qs=sGAEpiMZZMtTURnxoZnJAPKHF1kdu5MnP5iTuxGfnL1sTv7cuOMZ%2Fw%3D%3D"
 			(at 170.18 142.24 0)
 			(effects
 				(font
@@ -6795,7 +6738,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "R9")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -7135,158 +7078,6 @@
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
 					(reference "#PWR022")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(sheet
-		(at -406.4 321.31)
-		(size 95.25 134.62)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "3a7cd9fc-3eb4-4108-a75f-b08dbde2a6f7")
-		(property "Sheetname" "Buttons"
-			(at -406.4 320.5984 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Buttons.kicad_sch"
-			(at -406.4 456.5146 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(page "5")
-				)
-			)
-		)
-	)
-	(sheet
-		(at -176.53 157.48)
-		(size 95.25 139.7)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "6d90e7ce-b85d-468c-8eb2-ad8262deb626")
-		(property "Sheetname" "JTAG-PROG"
-			(at -176.53 156.7684 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "JTAG-PROG.kicad_sch"
-			(at -176.53 297.7646 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
-		(at -406.4 157.48)
-		(size 95.25 139.7)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "7735901b-03d7-4cd4-b9cf-211ac861c8b5")
-		(property "Sheetname" "LED"
-			(at -406.4 156.7684 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "led.kicad_sch"
-			(at -406.4 297.7646 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at -293.37 157.48)
-		(size 99.06 139.7)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "95bbc6e9-cea3-48d2-a467-ede743e61415")
-		(property "Sheetname" "Power"
-			(at -293.37 156.7684 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Power.kicad_sch"
-			(at -293.37 297.7646 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(page "3")
 				)
 			)
 		)

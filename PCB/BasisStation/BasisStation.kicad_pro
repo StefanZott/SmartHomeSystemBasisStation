@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 0.0,
+          "height": 1.58,
+          "width": 3.06
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -698,22 +698,6 @@
     [
       "cc03a18a-a128-4e00-a998-441923eeacd1",
       "Stammblatt"
-    ],
-    [
-      "7735901b-03d7-4cd4-b9cf-211ac861c8b5",
-      "LED"
-    ],
-    [
-      "95bbc6e9-cea3-48d2-a467-ede743e61415",
-      "Power"
-    ],
-    [
-      "6d90e7ce-b85d-468c-8eb2-ad8262deb626",
-      "JTAG-PROG"
-    ],
-    [
-      "3a7cd9fc-3eb4-4108-a75f-b08dbde2a6f7",
-      "Buttons"
     ]
   ],
   "text_variables": {}
