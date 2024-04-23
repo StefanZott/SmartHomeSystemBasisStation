@@ -1,7 +1,7 @@
 {
   "board": {
     "active_layer": 0,
-    "active_layer_preset": "All Layers",
+    "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [],
     "hidden_nets": [],
@@ -81,12 +81,24 @@
     "files": [
       {
         "name": "BasisStation.kicad_pcb",
-        "open": false,
+        "open": true,
         "window": {
           "display": 2,
           "maximized": false,
-          "pos_x": 1915,
-          "pos_y": 1,
+          "pos_x": -9,
+          "pos_y": 7,
+          "size_x": 1934,
+          "size_y": 1047
+        }
+      },
+      {
+        "name": "BasisStation.kicad_sch",
+        "open": true,
+        "window": {
+          "display": 2,
+          "maximized": false,
+          "pos_x": 1911,
+          "pos_y": 5,
           "size_x": 1934,
           "size_y": 1047
         }
