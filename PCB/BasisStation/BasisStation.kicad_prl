@@ -78,19 +78,6 @@
     "version": 3
   },
   "project": {
-    "files": [
-      {
-        "name": "BasisStation.kicad_pcb",
-        "open": false,
-        "window": {
-          "display": 2,
-          "maximized": false,
-          "pos_x": 1915,
-          "pos_y": 1,
-          "size_x": 1934,
-          "size_y": 1047
-        }
-      }
-    ]
+    "files": []
   }
 }

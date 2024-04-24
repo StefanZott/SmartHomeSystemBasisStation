@@ -3343,7 +3343,7 @@
 	)
 	(wire
 		(pts
-			(xy 26.67 276.86) (xy 26.67 279.4)
+			(xy 27.94 274.32) (xy 27.94 276.86)
 		)
 		(stroke
 			(width 0)
@@ -3403,7 +3403,7 @@
 	)
 	(wire
 		(pts
-			(xy 36.83 276.86) (xy 36.83 279.4)
+			(xy 38.1 274.32) (xy 38.1 276.86)
 		)
 		(stroke
 			(width 0)
@@ -3473,7 +3473,7 @@
 	)
 	(wire
 		(pts
-			(xy 16.51 276.86) (xy 16.51 279.4)
+			(xy 17.78 274.32) (xy 17.78 276.86)
 		)
 		(stroke
 			(width 0)
@@ -4162,17 +4162,6 @@
 			)
 		)
 		(uuid "a1311708-64f0-4180-a2f1-334f5a45da57")
-	)
-	(label "27"
-		(at 181.61 74.93 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "15c90e51-9b9b-465c-97da-1b958d7c11ca")
 	)
 	(label "EN"
 		(at 160.02 69.85 0)
@@ -5235,7 +5224,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 36.83 276.86 0)
+		(at 38.1 274.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5244,7 +5233,7 @@
 		(fields_autoplaced yes)
 		(uuid "5a5a8e76-9233-4229-934a-1bf221a48e53")
 		(property "Reference" "#FLG02"
-			(at 36.83 274.955 0)
+			(at 38.1 272.415 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5253,7 +5242,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 36.83 271.78 0)
+			(at 38.1 269.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5261,7 +5250,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 36.83 276.86 0)
+			(at 38.1 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5270,7 +5259,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 36.83 276.86 0)
+			(at 38.1 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5279,7 +5268,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 36.83 276.86 0)
+			(at 38.1 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5373,76 +5362,6 @@
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
 					(reference "X3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 73.66 63.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "80b01529-63b9-48ff-82c8-2aa0e6bd88df")
-		(property "Reference" "C1"
-			(at 77.47 61.3409 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100µF"
-			(at 77.47 63.8809 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "CUSTOM_Footprint:CAPAE1030X1050N"
-			(at 74.6252 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.we-online.com/components/products/datasheet/865060343005.pdf"
-			(at 73.66 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 73.66 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0bd3ad75-ddab-4e22-8409-68a6f47ad10a")
-		)
-		(pin "1"
-			(uuid "c77bf24f-51cf-44bd-9c61-8121950a043d")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6141,7 +6060,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 26.67 276.86 0)
+		(at 27.94 274.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6150,7 +6069,7 @@
 		(fields_autoplaced yes)
 		(uuid "a4270fe1-158d-4173-9440-9dcba6ef70a0")
 		(property "Reference" "#FLG03"
-			(at 26.67 274.955 0)
+			(at 27.94 272.415 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6159,7 +6078,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 26.67 271.78 0)
+			(at 27.94 269.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6167,7 +6086,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 26.67 276.86 0)
+			(at 27.94 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6176,7 +6095,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 26.67 276.86 0)
+			(at 27.94 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6185,7 +6104,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 26.67 276.86 0)
+			(at 27.94 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6342,7 +6261,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 26.67 279.4 180)
+		(at 27.94 276.86 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6351,7 +6270,7 @@
 		(fields_autoplaced yes)
 		(uuid "af49a11d-4a4c-4f91-9c87-55bc22d01591")
 		(property "Reference" "#PWR017"
-			(at 26.67 275.59 0)
+			(at 27.94 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6360,7 +6279,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 26.67 284.48 0)
+			(at 27.94 281.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6368,7 +6287,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 26.67 279.4 0)
+			(at 27.94 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6377,7 +6296,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 26.67 279.4 0)
+			(at 27.94 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6386,7 +6305,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 26.67 279.4 0)
+			(at 27.94 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6746,7 +6665,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 36.83 279.4 0)
+		(at 38.1 276.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6755,7 +6674,7 @@
 		(fields_autoplaced yes)
 		(uuid "d09da1cd-2ab4-4a11-bb46-ee19c37bb0e2")
 		(property "Reference" "#PWR016"
-			(at 36.83 285.75 0)
+			(at 38.1 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6764,7 +6683,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 36.83 284.48 0)
+			(at 38.1 281.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6772,7 +6691,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 36.83 279.4 0)
+			(at 38.1 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6781,7 +6700,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 36.83 279.4 0)
+			(at 38.1 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6790,7 +6709,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 36.83 279.4 0)
+			(at 38.1 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6886,7 +6805,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 16.51 279.4 180)
+		(at 17.78 276.86 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6895,7 +6814,7 @@
 		(fields_autoplaced yes)
 		(uuid "d5736a8e-a941-4ea4-8282-b84aa0ce9030")
 		(property "Reference" "#PWR015"
-			(at 16.51 275.59 0)
+			(at 17.78 273.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6904,7 +6823,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 16.51 284.48 0)
+			(at 17.78 281.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6912,7 +6831,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 16.51 279.4 0)
+			(at 17.78 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6921,7 +6840,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 16.51 279.4 0)
+			(at 17.78 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6930,7 +6849,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 16.51 279.4 0)
+			(at 17.78 276.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6952,7 +6871,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 16.51 276.86 0)
+		(at 17.78 274.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6961,7 +6880,7 @@
 		(fields_autoplaced yes)
 		(uuid "e9ff82be-1cc1-4f12-81fe-6aaced60eb1e")
 		(property "Reference" "#FLG01"
-			(at 16.51 274.955 0)
+			(at 17.78 272.415 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6970,7 +6889,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 16.51 271.78 0)
+			(at 17.78 269.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6978,7 +6897,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 16.51 276.86 0)
+			(at 17.78 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6987,7 +6906,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 16.51 276.86 0)
+			(at 17.78 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6996,7 +6915,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 16.51 276.86 0)
+			(at 17.78 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
