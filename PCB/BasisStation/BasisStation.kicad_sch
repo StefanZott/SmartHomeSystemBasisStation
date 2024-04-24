@@ -3174,6 +3174,12 @@
 		(uuid "65a09ff3-d752-41c0-a165-ac3acc305370")
 	)
 	(junction
+		(at 181.61 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "827f5a40-728b-4a2e-b861-4ee68d7e1e15")
+	)
+	(junction
 		(at 71.12 193.04)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3493,6 +3499,16 @@
 	)
 	(wire
 		(pts
+			(xy 189.23 50.8) (xy 190.5 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f9206bd-7270-4c4d-a260-936e83353e1d")
+	)
+	(wire
+		(pts
 			(xy 36.83 83.82) (xy 36.83 80.01)
 		)
 		(stroke
@@ -3693,6 +3709,16 @@
 	)
 	(wire
 		(pts
+			(xy 181.61 50.8) (xy 181.61 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8983f589-2d85-452d-af9d-4dd507299d74")
+	)
+	(wire
+		(pts
 			(xy 185.42 142.24) (xy 185.42 146.05)
 		)
 		(stroke
@@ -3713,7 +3739,7 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 69.85) (xy 181.61 27.94)
+			(xy 181.61 69.85) (xy 181.61 50.8)
 		)
 		(stroke
 			(width 0)
@@ -4319,6 +4345,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 190.5 50.8 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0da7e46e-f5c8-4272-adf9-d3eefcfa667d")
+		(property "Reference" "#PWR01"
+			(at 196.85 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 195.58 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 190.5 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 190.5 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb1423e9-cd48-4dc1-8770-7aa764393898")
+		)
+		(instances
+			(project "BasisStation"
+				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "R_1")
 		(lib_id "Device:R")
 		(at 170.18 135.89 90)
@@ -4545,7 +4637,7 @@
 				)
 			)
 		)
-		(property "Footprint" "CUSTOM_Footprint:CAPAE1030X1050N"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 119.38 39.6748 0)
 			(effects
 				(font
@@ -4681,7 +4773,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "CUSTOM_Footprint:CAPAE1030X1050N"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 72.0852 205.74 0)
 			(effects
 				(font
@@ -4931,7 +5023,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "344e4dcc-e7d0-40cd-b11d-33d6440eb38a")
-		(property "Reference" "SW3"
+		(property "Reference" "SW1"
 			(at 30.48 34.29 0)
 			(effects
 				(font
@@ -4983,7 +5075,7 @@
 		(instances
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
-					(reference "SW3")
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -5362,6 +5454,76 @@
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
 					(reference "X3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 73.66 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "80b01529-63b9-48ff-82c8-2aa0e6bd88df")
+		(property "Reference" "C1"
+			(at 77.47 61.3409 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100µF"
+			(at 77.47 63.8809 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+			(at 74.6252 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.we-online.com/components/products/datasheet/865060343005.pdf"
+			(at 73.66 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 73.66 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "0bd3ad75-ddab-4e22-8409-68a6f47ad10a")
+		)
+		(pin "1"
+			(uuid "c77bf24f-51cf-44bd-9c61-8121950a043d")
+		)
+		(instances
+			(project "BasisStation"
+				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6185,6 +6347,74 @@
 			(project "BasisStation"
 				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
 					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 185.42 50.8 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ac07ba3d-49e8-4064-8d01-8ce6896bbd49")
+		(property "Reference" "C3"
+			(at 184.531 43.18 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 184.531 45.72 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+			(at 189.23 49.8348 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.we-online.com/components/products/datasheet/865060343005.pdf"
+			(at 185.42 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 185.42 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "811da8c9-60cd-4631-be90-37eaa1544a51")
+		)
+		(pin "1"
+			(uuid "29fb19c4-929e-4cf6-a6d2-476f356c7201")
+		)
+		(instances
+			(project "BasisStation"
+				(path "/cc03a18a-a128-4e00-a998-441923eeacd1"
+					(reference "C3")
 					(unit 1)
 				)
 			)
