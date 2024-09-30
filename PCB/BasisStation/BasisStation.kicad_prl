@@ -81,11 +81,23 @@
     "files": [
       {
         "name": "BasisStation.kicad_sch",
-        "open": true,
+        "open": false,
         "window": {
           "display": 2,
           "maximized": false,
           "pos_x": -7,
+          "pos_y": 0,
+          "size_x": 1934,
+          "size_y": 1047
+        }
+      },
+      {
+        "name": "BasisStation.kicad_pcb",
+        "open": false,
+        "window": {
+          "display": 2,
+          "maximized": false,
+          "pos_x": 1913,
           "pos_y": 0,
           "size_x": 1934,
           "size_y": 1047
