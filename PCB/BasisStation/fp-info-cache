@@ -1,4 +1,4 @@
-23150669585940070
+23130127340457824
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -2526,69 +2526,6 @@ speaker CUI
 0
 2
 2
-CUSTOM_Footprint
-CAPAE530X565N
-
-
-0
-2
-2
-CUSTOM_Footprint
-CAPAE1030X1050N
-
-
-0
-2
-2
-CUSTOM_Footprint
-CONV_TSR_1-2433E
-
-
-0
-3
-3
-CUSTOM_Footprint
-LED-RED-3MM-ROUND
-WL-TMRC THT LED mono-color round colorlens,Size: 3 mm,
-
-0
-2
-2
-CUSTOM_Footprint
-WUE_CONNECTOR_SHDR10W64P254_2X5_2036X885X925P
-61201021621
-Connector
-0
-10
-10
-CUSTOM_Footprint
-WUE_SW_471001264143_0_75-1_25_
-Panel Thickness is 0,75-1,25
-
-0
-2
-2
-CUSTOM_Footprint
-WUE_SW_471001264143_1_25-2_00_
-The panel Thickness is 1,25-2,00
-
-0
-2
-2
-CUSTOM_Footprint
-WUE_SW_471001264143_2_00-3_00_
-The Panel Thickness is 2,00-3,00
-
-0
-2
-2
-CUSTOM_Footprint
-XCVR_ESP32-S3-WROOM-1-N16R8
-
-
-0
-61
-61
 Calibration_Scale
 Gauge_10mm_Type1_CopperTop
 Gauge, Massstab, 10mm, CopperTop, Type 1,
@@ -88920,27 +88857,6 @@ Logo WEEE
 0
 0
 0
-TSR1-2433
-TSR12433
-TSR1-2433-3
-Power Supply
-0
-3
-3
-Template
-CONV_TSR_1-2433E
-
-
-0
-3
-3
-Template
-XCVR_ESP32-S3-WROOM-1-N16R8
-
-
-0
-61
-61
 TerminalBlock
 TerminalBlock_Altech_AK300-2_P5.00mm
 Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf

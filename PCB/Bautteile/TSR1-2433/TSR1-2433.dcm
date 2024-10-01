@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP TSR1-2433
-D Non-Isolated DC/DC Converters
-K
-F https://www.tracopower.com/sites/default/files/products/datasheets/tsr1_datasheet.pdf
-$ENDCMP
-#
-#End Doc Library

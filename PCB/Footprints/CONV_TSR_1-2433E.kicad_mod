@@ -1,5 +1,5 @@
 
-(footprint CONV_TSR_1-2433E (layer F.Cu) (tedit 66072F36)
+(footprint CONV_TSR_1-2433E (layer F.Cu) (tedit 66FC5FF3)
   (descr "")
   (fp_text reference REF** (at -2.375 -4.915 0) (layer F.SilkS)
     (effects (font (size 1.0 1.0) (thickness 0.15)))

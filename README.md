@@ -33,3 +33,11 @@ Below is short explanation of remaining files in the project folder.
 ```
 Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
 They are not used or needed when building with CMake and idf.py.
+
+# Hardware
+
+## Stückliste
+| Stück | Name | Preis | Link |
+| :---: | :---: | :---: | :--- |
+| 1 | ESP32-S3-WROOM-1 | [3,63 €](https://www.mouser.de/ProductDetail/Espressif-Systems/ESP32-S3-WROOM-1-N16R8?qs=sGAEpiMZZMu3sxpa5v1qrkR%2F6t0IkXq81YLrKdmkb4Q%3D) | [Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf)   [Footprint](https://github.com/espressif/kicad-libraries/blob/main/footprints/Espressif.pretty/ESP32-S3-WROOM-1.kicad_mod) [Symbol](https://github.com/espressif/kicad-libraries/tree/main/symbols) [3D-Models](https://github.com/espressif/kicad-libraries/tree/main/3dmodels/espressif.3dshapes)
+| 1 | TSR 1-2433E | [3,31 €](https://www.reichelt.com/dk/en/shop/product/dc_dc_converter_tsr_1e_1_a_6-36_3_3_vdc_sil-3-288646?PROVID=2788&gad_source=1&gclid=Cj0KCQjwu-63BhC9ARIsAMMTLXQah1hD_9dkKNU3fR1BPLRpt7zMLCJ1lF65J9EvhKjII7mxAZm5eI4aAiu6EALw_wcB) | [Datasheet](https://cdn-reichelt.de/documents/datenblatt/C700/TSR1-2433E_DB_EN.pdf) [Footprint Symbol](https://www.snapeda.com/parts/TSR%201-2433E/Traco%20Power/view-part/?welcome=home&ref=search&t=tsr1-2433) [3D-Models](https://www.snapeda.com/parts/TSR%201-2433E/Traco%20Power/view-part/?welcome=home&ref=search&t=tsr1-2433)
