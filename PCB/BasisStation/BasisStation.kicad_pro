@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 0.9,
+          "height": 1.408,
+          "width": 1.408
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -614,6 +614,54 @@
           "group_by": false,
           "label": "Beschreibung",
           "name": "Description",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "HEIGHT",
+          "name": "HEIGHT",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "ARROW_PRICE-STOCK",
+          "name": "ARROW_PRICE-STOCK",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER_NAME",
+          "name": "MANUFACTURER_NAME",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER_PART_NUMBER",
+          "name": "MANUFACTURER_PART_NUMBER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "ARROW_PART_NUMBER",
+          "name": "ARROW_PART_NUMBER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MOUSER_PART_NUMBER",
+          "name": "MOUSER_PART_NUMBER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MOUSER_PRICE-STOCK",
+          "name": "MOUSER_PRICE-STOCK",
           "show": false
         }
       ],

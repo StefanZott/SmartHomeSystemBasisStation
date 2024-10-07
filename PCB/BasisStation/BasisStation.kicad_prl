@@ -78,6 +78,19 @@
     "version": 3
   },
   "project": {
-    "files": []
+    "files": [
+      {
+        "name": "BasisStation.kicad_sch",
+        "open": false,
+        "window": {
+          "display": 2,
+          "maximized": false,
+          "pos_x": -7,
+          "pos_y": 0,
+          "size_x": 1934,
+          "size_y": 1047
+        }
+      }
+    ]
   }
 }
