@@ -6764,7 +6764,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Footprints:61200621621"
 			(at 226.06 63.5 0)
 			(effects
 				(font
