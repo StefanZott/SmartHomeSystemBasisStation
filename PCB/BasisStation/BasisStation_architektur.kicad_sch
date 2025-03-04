@@ -2,7 +2,7 @@
 	(version 20231120)
 	(generator "eeschema")
 	(generator_version "8.0")
-	(uuid "498c7092-55c1-4229-9f4b-13c6a8e7da47")
+	(uuid "3c4abfe4-3a4d-4b91-9919-0251dcd7b77f")
 	(paper "A4")
 	(title_block
 		(title "Architektur")
@@ -11,9 +11,9 @@
 	)
 	(lib_symbols)
 	(image
-		(at 134.62 95.25)
+		(at 149.86 92.71)
 		(scale 2.72729)
-		(uuid "275477f0-6938-443b-af63-0006a8931a56")
+		(uuid "0b7e9690-d8a2-4780-b0af-7a0a03b88238")
 		(data "iVBORw0KGgoAAAANSUhEUgAAAvkAAAKfCAYAAAD0Edc/AAAAAXNSR0IArs4c6QAAZBN0RVh0bXhm"
 			"aWxlACUzQ214ZmlsZSUyMGhvc3QlM0QlMjJhcHAuZGlhZ3JhbXMubmV0JTIyJTIwYWdlbnQlM0Ql"
 			"MjJNb3ppbGxhJTJGNS4wJTIwKFdpbmRvd3MlMjBOVCUyMDEwLjAlM0IlMjBXaW42NCUzQiUyMHg2"
@@ -1267,87 +1267,6 @@
 			"KyPncOHhN0Tk1TR9k60PEo8ZIq43OzOzd0ks1u5QLNa4NBbLynSckrqO82mW4+QUlpaapzc7s3dJ"
 			"SazdoUOxxqWlsazMTKekbl3n06wsJ6ewMLJ6415mZmb3jsVK2sVihxrHYqVZjpNZ4jh1P3WcrJzS"
 			"0kKTvPT7tcB4EIAABCJN4P8DBqXgT1Qnn3UAAAAASUVORK5CYII="
-		)
-	)
-	(sheet
-		(at 302.26 0)
-		(size 295.91 210.82)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "1af2eb5e-14cd-443f-ae96-dbfda52b298f")
-		(property "Sheetname" "Layout"
-			(at 302.26 -0.7116 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "BasisStation_Layout.kicad_sch"
-			(at 302.26 211.4046 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47"
-					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 1.27 224.79)
-		(size 295.91 152.4)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "1c58143b-a7ac-41ca-9e87-95c7289c5970")
-		(property "Sheetname" "Debugging"
-			(at 1.27 224.0784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "BasisStation_Debugging.kicad_sch"
-			(at 1.27 377.7746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47"
-					(page "3")
-				)
-			)
-		)
-	)
-	(sheet_instances
-		(path "/"
-			(page "1")
 		)
 	)
 )

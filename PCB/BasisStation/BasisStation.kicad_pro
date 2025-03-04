@@ -698,7 +698,15 @@
     "meta": {
       "version": 1
     },
-    "net_format_name": "",
+    "net_format_name": "KiCad",
+    "ngspice": {
+      "fix_include_paths": true,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 4,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "../",
     "spice_current_sheet_as_root": false,
@@ -714,6 +722,14 @@
     [
       "498c7092-55c1-4229-9f4b-13c6a8e7da47",
       "Stammblatt"
+    ],
+    [
+      "1af2eb5e-14cd-443f-ae96-dbfda52b298f",
+      "Layout"
+    ],
+    [
+      "1c58143b-a7ac-41ca-9e87-95c7289c5970",
+      "Debugging"
     ]
   ],
   "text_variables": {}
