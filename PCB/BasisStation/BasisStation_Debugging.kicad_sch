@@ -3428,6 +3428,16 @@
 		)
 		(uuid "052a8536-b461-45ca-bfea-6efaa9ea629c")
 	)
+	(label "+3V3"
+		(at 148.59 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ef716dfc-fdc4-4af5-89f6-4b3f65a9ecdf")
+	)
 	(global_label "U0TXD"
 		(shape output)
 		(at 208.28 38.1 0)
