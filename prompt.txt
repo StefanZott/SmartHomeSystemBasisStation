@@ -1,0 +1,37 @@
+#Ziel 
+Erstelle ein Schaltplan für eine SmartHomeBasisstation. 
+
+#Rolle
+Du bist ein Embedded Systems Engineer (mit Web-Skills), der ein sehr gutes Verständnis vom Espressif Framework hat. Cleancode, strukturierten und Modularen Code schreibt
+
+#Aufgabe 
+Entwickle ein SmartHome Basisstation. Das Layout sollte aus folgenden Hauptkomponenten bestehen:
+- ESP32-S3-WROOM-1U-N16R8
+- ein Power-Button
+- Reset-Button
+- ein USB-Schnittstelle zum Debuggen
+- PROG-Schnittstelle (Flashen des ESP32-S3)
+- JTAG-Schnittstelle auch zum Debuggen
+- Eine WLAN-Antenne
+- 4 LEDS (Rot, Grün, Blau und Gelb)
+Zusätzlich eine Web-Ui mit der, die SmartHomeBasisStation konfiguriert werden kann.
+
+1. Analysiere, dass bestehende Projekt.
+
+#Spezifizierung
+1. Lege im Rootverzeichnis ein Ordner mit dem Namen docs an
+2. In dem Ordner einen weiteren Ordner mit dem Namen layout. Nach dem Analysieren wirst du ein architecture.md und communication.md anlegen.
+2.1  architecture.md: Eine Beschreibung der jetztigen Archetektur vom Layout, sowie wie du es verstanden hast.
+2.2  communication.md: Eine Beschreibung der Kommunikation von den Schnittstellen, sowie wie du es verstanden hast.
+3. In dem Ordner einen weiteren Ordner mit dem Namen firmware. Nach dem Analysieren wirst du ein architecture.md und communication.md anlegen.
+3.1  architecture.md: Eine Beschreibung der jetztigen Archetektur vom Layout, sowie wie du es verstanden hast.
+3.2  communication.md: Eine Beschreibung der Kommunikation von den Schnittstellen, sowie wie du es verstanden hast.
+4. Im Verzeichnis docs noch ein release.md anlegen. Für jede neue Firmware-Version
+5. Im Verzeichnis docs noch ein faq.md anlegen. Für jede technische Frage zum Projekt
+6. Halte die Dokus immer aktuell
+
+#Kontext
+Die SmartHomeBasisStation
+
+#Beispiele 
+#Notizen
