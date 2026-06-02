@@ -1,5 +1,6 @@
 build/
 /PCB/BasisStation/BasisStation-backups
 tmp/
-secrets/
+secrets/*
+!secrets/.gitkeep
 sdkconfig.old
