@@ -1384,7 +1384,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "7bf98164-8a04-4d32-bdca-c1e74823074d")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/6120XX21621_61201021621.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/6120XX21621_61201021621.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -1719,7 +1719,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "fed8ce12-5a2a-47b2-a8b7-7d0e3c6031a5")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WL-TMRC_3MM.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRC_3MM.step"
 			(offset
 				(xyz 0 0 5)
 			)
@@ -2903,7 +2903,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "41a47eea-796b-4078-aaf6-433e5452df71")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WCAP-FTXX_P10.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -3135,7 +3135,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "ee3eab39-83f5-446d-a2c1-57107b0bbc9c")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WL-TMRW_3MM.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRW_3MM.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -3717,7 +3717,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "66418076-fc36-4d09-9bf8-38070f903506")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WCAP-FTXX_P10.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -4416,7 +4416,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "a1e5fb77-d6df-4014-9002-94685597b928")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WCAP-FTXX_P10.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -5219,7 +5219,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "b185545a-0bf8-4567-accc-511776abc4ac")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/TSR 1-2433E--3DModel-STEP-418109.STEP"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/TSR 1-2433E--3DModel-STEP-418109.STEP"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -5971,7 +5971,7 @@
 			(pintype "passive")
 			(uuid "1fd0f6dd-0c6c-473d-b0c3-43c015b1bf8f")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/ESP32-S3-WROOM-1U.STEP"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/ESP32-S3-WROOM-1U.STEP"
 			(offset
 				(xyz -9 -9.8 0)
 			)
@@ -6203,7 +6203,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "9ba9c573-11cb-4ec9-b10a-c65b565056f3")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WL-TMRW_3MM.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRW_3MM.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -6786,7 +6786,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "29270bc7-0e52-48f2-a4f9-20462f9dcea3")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/6120XX21621_61200621621.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/6120XX21621_61200621621.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -7007,7 +7007,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "ca4193e7-d836-4b0f-a688-bd9bb03badb4")
 		)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/PCB/3D-Model/WL-TMRC_3MM.step"
+		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRC_3MM.step"
 			(offset
 				(xyz 0 0 5)
 			)

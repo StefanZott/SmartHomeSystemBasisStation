@@ -10,7 +10,7 @@ SmartHome-Basisstation auf Basis des **ESP32-S3** mit eigener Platine, ESP-IDF-F
 |------|--------|
 | `main/` | Firmware (ESP-IDF), Einstieg `main.c` |
 | `spiffs/` | Web-UI (HTML, CSS, JS) → SPIFFS-Image |
-| `PCB/` | KiCad-Schaltplan und Layout der Basisstation |
+| `pcb/` | KiCad-Schaltplan und Layout der Basisstation |
 | `docs/` | Projektdokumentation und Anwenderdoku |
 
 Stückliste und Pinout: [docs/project/hardware.md](docs/project/hardware.md)
@@ -19,7 +19,7 @@ Stückliste und Pinout: [docs/project/hardware.md](docs/project/hardware.md)
 
 - **Firmware:** [ESP-IDF](https://docs.espressif.com/projects/esp-idf/) für ESP32-S3, Build über `idf.py`
 - **IDE:** VS Code mit ESP-IDF-Erweiterung; optional Dev Container (`.devcontainer/`)
-- **Hardware:** KiCad 8/9 — Projekt unter `PCB/BasisStation/`
+- **Hardware:** KiCad 8/9 — Projekt unter `pcb/BasisStation/`
 
 ## Deep Dive
 

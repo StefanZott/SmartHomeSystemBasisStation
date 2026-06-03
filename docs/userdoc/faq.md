@@ -12,7 +12,7 @@ In `AGENTS.md` im Repository-Root.
 
 ## Wo liegt die Hardware?
 
-KiCad-Projekt unter `PCB/BasisStation/`. Details: [hardware.md](../project/hardware.md). Stückliste: `README.md` (Abschnitt Hardware).
+KiCad-Projekt unter `pcb/BasisStation/`. Details: [hardware.md](../project/hardware.md). Stückliste: `README.md` (Abschnitt Hardware).
 
 ## Wo liegt die Firmware?
 

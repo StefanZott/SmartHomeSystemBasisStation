@@ -1,5 +1,5 @@
 build/
-/PCB/BasisStation/BasisStation-backups
+/pcb/BasisStation/BasisStation-backups
 tmp/
 secrets/*
 !secrets/.gitkeep

@@ -17,7 +17,7 @@ confidential: true
 | Geräteart | Embedded Gateway / Konfigurations-Basisstation |
 | MCU | ESP32-S3-WROOM-1U-N16R8 |
 | Firmware | ESP-IDF, Version `0.00.001` |
-| Hardware | KiCad-Projekt `PCB/BasisStation/` |
+| Hardware | KiCad-Projekt `pcb/BasisStation/` |
 
 ## Kurzbeschreibung
 

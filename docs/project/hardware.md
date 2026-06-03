@@ -34,12 +34,12 @@ Ausführliche Stückliste mit Links: `README.md` (Abschnitt Hardware) — bei Ä
 
 | Bereich | Pfad / Artefakt |
 |--------|------------------|
-| Hauptprojekt | `PCB/BasisStation/BasisStation.kicad_pro` |
+| Hauptprojekt | `pcb/BasisStation/BasisStation.kicad_pro` |
 | Schaltpläne | u. a. `BasisStation.kicad_sch`, `BasisStation_Layout.kicad_sch`, `BasisStation_Debugging.kicad_sch`, `BasisStation_architektur.kicad_sch` |
 | Leiterplatte | `BasisStation.kicad_pcb` |
-| Symbole / Footprints | `PCB/Symbol/`, `PCB/Footprints/` |
-| Bauteilbibliothek MCU | `PCB/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
-| Architektur-Diagramm (extern) | `PCB/architektur_basisStation.drawio` |
+| Symbole / Footprints | `pcb/Symbol/`, `pcb/Footprints/` |
+| Bauteilbibliothek MCU | `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
+| Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware
 
