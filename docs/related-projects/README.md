@@ -8,4 +8,8 @@ type: placeholder
 
 Schnittstellenverträge zu anderen Projekten (gemäß AGENTS.md §7).
 
-Noch keine Dokumente angelegt — siehe Task 0018 (`related-projects-doku`).
+| Datei | Thema |
+|-------|--------|
+| [project-scope.md](project-scope.md) | Produktscope, Entscheidung NRT/UART, dokumentierte Schnittstellen |
+
+Weitere Dateien (z. B. Cloud-Backend) folgen bei Bedarf.
