@@ -213,9 +213,9 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 | [project/architecture.md](docs/project/architecture.md) | Tech Stack (ESP-IDF), Verzeichnisstruktur, Module, Deployment |
 | [project/security.md](docs/project/security.md) | Sicherheitskonzept, Berechtigungen, Risk Assessment (Gerät, Update, Kommunikation) |
 | [project/hardware.md](docs/project/hardware.md) | Basisstation-Hardware (KiCad), Pinout, ESP-PROG / JTAG |
-| [project/memory_map.md](docs/project/memory_map.md) | Flash-Partitionen, OTA/Update falls zutreffend |
+| [project/memory_map.md](docs/project/memory_map.md) | Flash-Partitionen (`partitions.csv`), SPIFFS, kein OTA |
 | [project/communication.md](docs/project/communication.md) | WLAN, HTTP/Web-UI, SPIFFS-Konfiguration, Ethernet (Ziel) |
-| [project/struktur-anpassung-agents.md](docs/project/struktur-anpassung-agents.md) | Migrationsplan: Projektstruktur an AGENTS.md anpassen |
+| [project/struktur-anpassung-agents.md](docs/project/struktur-anpassung-agents.md) | Migrationsplan und Gap-Analyse (SHBS-1) |
 
 ### Verzahnte Projekte (`docs/related-projects/`)
 
@@ -227,10 +227,10 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 
 | Datei | Thema |
 | ----- | ----- |
-| [userdoc/factsheet.md](docs/userdoc/factsheet.md) | Internes Datenblatt (VERTRAULICH) |
+| [userdoc/factsheet.md](docs/userdoc/factsheet.md) | Internes Datenblatt (**VERTRAULICH / INTERN**) |
 | [userdoc/releases.md](docs/userdoc/releases.md) | Changelog |
-| [userdoc/faq.md](docs/userdoc/faq.md) | Optional: häufige Fragen zur SmartHome-Basisstation |
-| [userdoc/proweb.md](docs/userdoc/proweb.md) | Optional: Produktwebsite-Vorlage DE/EN |
+| [userdoc/faq.md](docs/userdoc/faq.md) | Häufige Fragen zur SmartHome-Basisstation |
+| _(optional)_ `proweb.md` | Produktwebsite-Vorlage DE/EN — noch nicht angelegt (Task 0020) |
 
 ## Pro-Prompt-Workflow (projektspezifisch)
 

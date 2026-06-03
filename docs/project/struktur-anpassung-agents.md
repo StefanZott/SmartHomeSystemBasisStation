@@ -275,7 +275,7 @@ Ab AGENTS.md projektspezifisch verbindlich:
 - [ ] `security.md`, `memory_map.md`, `factsheet.md` neu schreiben
 - [ ] `README.md` gemäß §8 neu fassen
 - [x] Alte Ordner `docs/firmware/`, `docs/layout/` entfernen
-- [ ] Index-Tabellen in `AGENTS.md` aktualisieren
+- [x] Index-Tabellen in `AGENTS.md` aktualisieren
 
 ### Phase C — Tooling & Qualität
 
