@@ -79,7 +79,7 @@ tmp/
 | — | `docs/project/dev-claude-loop.md` | **Neu anlegen** oder Referenz aus AGENTS.md entfernen |
 | — | `docs/userdoc/git_guidelines.pdf` | **Bereitstellen** oder Link in AGENTS.md anpassen |
 
-**Nach Migration löschen:** `docs/firmware/`, `docs/layout/` (leere Ordner entfernen).
+**Nach Migration gelöscht (Task 0009):** `docs/firmware/`, `docs/layout/` — Ordner existieren nicht mehr.
 
 ---
 
@@ -274,7 +274,7 @@ Ab AGENTS.md projektspezifisch verbindlich:
 - [ ] YAML-Frontmatter in alle Markdown-Dateien
 - [ ] `security.md`, `memory_map.md`, `factsheet.md` neu schreiben
 - [ ] `README.md` gemäß §8 neu fassen
-- [ ] Alte Ordner `docs/firmware/`, `docs/layout/` entfernen
+- [x] Alte Ordner `docs/firmware/`, `docs/layout/` entfernen
 - [ ] Index-Tabellen in `AGENTS.md` aktualisieren
 
 ### Phase C — Tooling & Qualität
