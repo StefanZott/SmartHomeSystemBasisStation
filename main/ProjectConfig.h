@@ -1,13 +1,13 @@
 /**
- * 
+ *
  * ProjectConfig.h
- * 
+ *
  * Created on: 31.12.2023
- * Autor: Stefan Zott
- * 
- * Beschreibung:
- * In dieser Header File sollen alle Allgemeine Konfigurationen aufgeführt werden.
-*/
+ * Author: Stefan Zott
+ *
+ * Description:
+ * Project-wide configuration switches and compile-time options.
+ */
 
 #ifndef PROJECTCONFIG_H_
 #define PROJECTCONFIG_H_

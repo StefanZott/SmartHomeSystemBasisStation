@@ -1,12 +1,12 @@
 /*
- * FILEMANAGMENT.h
+ * FileManagement.h
  *
  *  Created on: 22.09.2022
  *      Author: Stefan Zott
  */
 
-#ifndef FILEMANAGMENT_H_
-#define FILEMANAGMENT_H_
+#ifndef FILEMANAGEMENT_H_
+#define FILEMANAGEMENT_H_
 
 #include <string.h>
 #include <stdbool.h>
@@ -16,4 +16,4 @@ bool file_isExisting(char* path);
 char* file_getContent(char* path);
 void file_writeContentInFile(char* path, cJSON* tcfg);
 
-#endif /* FILEMANAGMENT_H_ */
+#endif /* FILEMANAGEMENT_H_ */

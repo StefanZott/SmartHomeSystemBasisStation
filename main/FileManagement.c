@@ -1,23 +1,23 @@
 /*
- * PrkHandler.c
+ * FileManagement.c
  *
- *  Created on:         23.08.2023
- *      Author:         zott
+ *  Created on: 23.08.2023
+ *      Author: zott
  *
- *      Project:        S2207
+ *      Project: SmartHomeSystemBasisStation
  *
  *      Description:
- *          -
+ *          SPIFFS file helpers (existence check, read, JSON write).
  */
 /***************************includes **********************************/
-#include "FileManagment.h"
+#include "FileManagement.h"
 
 #include <stdio.h>
 #include <esp_log.h>
 
 /**************************** private Variable ********************************/
 static FILE *file;
-static const char* TAG = "FileManagment";
+static const char* TAG = "FileManagement";
 char fileBuffer[25000];
 
 /**************************** public Functions ********************************/
@@ -25,7 +25,7 @@ bool file_isExisting(char* path) {
     file = fopen(path, "r");
     if (file == NULL) {
         ESP_LOGE(TAG,"File is not existing. Create a new File!");
-        fopen(path, "w+"); // Die Datei wird unter /build/app/ angelegt
+        fopen(path, "w+"); // File is created under the SPIFFS mount path
         fclose(file);
         return false;
     }

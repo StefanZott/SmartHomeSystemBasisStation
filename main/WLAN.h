@@ -15,7 +15,7 @@
 #define SCAN_LIST_SIZE              10
 #define AP_ESP_WIFI_PASS            "telegaertner"
 #define AP_ESP_WIFI_CHANNEL         1
-#define AP_MAX_STA_CONN             2     // Ganz bewusste Beschränkung, damit nicht mehrere gleichzeitig auf Konfigurationsseite zugreifen
+#define AP_MAX_STA_CONN             2     // Deliberate limit: only one client should use the setup page at a time
 
 typedef enum
 {

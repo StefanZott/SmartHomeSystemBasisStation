@@ -202,17 +202,17 @@ void ledControlTask( void *pvParameters ) {
     // Set the LEDC peripheral configuration
     ledInit();
 
-    // TODO: Viel redudanter Code. Sehr oft rufe ich die Funktionen ledc_set_duty() und ledc_update_duty() auf. Gibt es nicht eine bessere Lösung?
+    // TODO: redundant code — ledc_set_duty() and ledc_update_duty() are repeated often; refactor candidate
     while (1) {
         saveSettings();
         
         if(xQueueReceive( xLedStateQueue, (void *) &tempMessage, BLINK_FREQ / portTICK_PERIOD_MS ) == pdTRUE ) {
             ESP_LOGI(TAG, "New tempMessage info. LED = %d, State = %d, Mode = %d", tempMessage.led, tempMessage.state, tempMessage.mode);
         } else {
-            if (tempMessage.mode == NORMAL) { // Ändert die ausgewählte LED dauerhaft, bis sie erneut geändert wird.
+            if (tempMessage.mode == NORMAL) { // Apply selected LED until changed again
                 ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, tempMessage.led, tempMessage.state));
                 ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, tempMessage.led));
-            } else if (tempMessage.mode == TEST) { // Führt einen Test aller LEDs durch. Aber es muss sicher gestellt werden, dass nach dem TEST die LEDs wieder auf den Ausgangspunkt zurück gesetzt werden
+            } else if (tempMessage.mode == TEST) { // Cycle all LEDs; restore previous state after TEST
                 for (size_t i = 0; i < LED_MAX; i++) {
                     ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, i, ON));
                     ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, i));

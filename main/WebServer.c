@@ -497,7 +497,7 @@ static esp_err_t getConnectionInfoHandler(httpd_req_t *req) {
             cJSON_AddStringToObject(tempObject, "Netmask", cJSON_GetObjectItem(config, "Netmask")->valuestring);
             cJSON_AddStringToObject(tempObject, "Gateway", cJSON_GetObjectItem(config, "Gateway")->valuestring);
 
-            // TODO: MAC-Adresse wäre noch schön
+            // TODO: include MAC address in connection info
             break;
         }
     }

@@ -4,8 +4,8 @@
 *   Created on: 28.12.2023
 *   Author: Stefan Zott
 *   
-*   Beschreibung:
-*   Dieser Task ist für die Konfiguration und Steuerung der LEDs verantwortlich
+*   Description:
+*   Configuration and control of the status LEDs.
 */
 
 #ifndef LED_H_

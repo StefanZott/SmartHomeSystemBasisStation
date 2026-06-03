@@ -19,7 +19,7 @@
 
 #include "WLAN.h"
 #include "cJSON.h"
-#include "FileManagment.h"
+#include "FileManagement.h"
 #include "LED.h"
 
 /* The event group allows multiple bits for each event, but we only care about two events:
@@ -34,7 +34,7 @@
 #define EXAMPLE_MAX_STA_CONN                CONFIG_ESP_MAX_STA_CONN_AP
 #define AP_ESP_WIFI_PASS                    "telegaertner"
 #define AP_ESP_WIFI_CHANNEL                 1
-#define AP_MAX_STA_CONN                     2     // Ganz bewusste Beschränkung, damit nicht mehrere gleichzeitig auf Konfigurationsseite zugreifen
+#define AP_MAX_STA_CONN                     2     // Deliberate limit: only one client should use the setup page at a time
 
 /* STA Configuration */
 #define EXAMPLE_ESP_WIFI_STA_SSID           CONFIG_ESP_WIFI_REMOTE_AP_SSID
@@ -64,12 +64,11 @@
 static const wifi_scan_time_t wifiScanTime = {
       { 0, 0 },            // wifi_active_scan_time_t active { min, max }, default 0 = 120 ms
       320                  // uint32_t passive
-};                         // Zeiten in ms
+};                         // Times in milliseconds
 /*
- * Strukturen für AP mit eigener IP-Adresse. Es soll das Nuller-Netz statt dem Vierer-Netz sein.
- * Entnahme aus esp_netif/include/esp_netif_types.h
- * Verzicht auf const bei esp_netif_inherent_ap_config wegen Warnung bei Verwendung als Funktionsparameter.
- * Dann opfere ich halt die 34 Byte im RAM, so knapp ist es nicht.
+ * AP structures with a custom IP address (192.168.0.0/24 instead of 192.168.4.0/24).
+ * Derived from esp_netif/include/esp_netif_types.h
+ * esp_netif_inherent_ap_config is non-const to avoid a compiler warning when passed as a parameter.
  */
 static const esp_netif_ip_info_t esp_netif_soft_ap_ip = {
    .ip = { .addr = ESP_IP4TOADDR( 192, 168, 0, 1) },
@@ -99,7 +98,7 @@ wifi_config_t wifi_ap_config = {
 
 wifi_config_t wifi_sta_config = {
     .sta = {
-        // Array Initialisierung mit Nullen, Zuweisung erfolgt nach Eingabe auf Web-Seite oder Einlesen aus Datei
+        // Zero-initialised array; values are set from the web UI or configuration file
         // .ssid = EXAMPLE_ESP_WIFI_STA_SSID,
         // .password = EXAMPLE_ESP_WIFI_STA_PASSWD,
         .scan_method = WIFI_ALL_CHANNEL_SCAN,
@@ -161,7 +160,7 @@ static void scan() {
 }
 
 static int readLineFromConfigFile( char *buf, char *str ) {
-   // Maximalauslegung 63 Nutzzeichen Passwort + '\n' + '\0'
+   // Max length: 63 password chars + '\n' + '\0'
    char *pos;
 
    pos = strchr( buf, '\n' );
@@ -236,7 +235,7 @@ static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_
     } else if( event_id == WIFI_EVENT_STA_CONNECTED ) {
         wifi_ap_record_t ap_info = {'\0'};
         wifiState = STATION_CONNECTED;
-        if( writeToConfigFileFlag == true ) {          // In diesem Fall keine Semaphore notwendig
+        if( writeToConfigFileFlag == true ) {          // No semaphore required in this path
             writeToConfigFileFlag = false;
             cJSON_SetValuestring(cJSON_GetObjectItem(config, "SSID"), (char*) wifi_sta_config.sta.ssid);
             cJSON_SetValuestring(cJSON_GetObjectItem(config, "Password"), (char*) wifi_sta_config.sta.password);
@@ -275,22 +274,22 @@ void wifi_init_sta_and_softap(void) {
    esp_netif_create_default_wifi_sta();                                   // 1.3 Create / init WiFi  (default WiFi station)
 
    // esp_netif_create_default_wifi_ap();
-   esp_netif_create_wifi( WIFI_IF_AP, &esp_netif_inherent_ap_config );  // 1.3 Create / init WiFi  (default WiFi access point) TR: Modifizierte IP-Adresse
-   esp_wifi_set_default_wifi_ap_handlers();                             // Dieser Aufruf zusätzlich notwendig, ist dagegen in esp_netif_create_default_wifi_ap() integriert
+   esp_netif_create_wifi( WIFI_IF_AP, &esp_netif_inherent_ap_config );  // Custom AP IP (not the ESP-IDF default)
+   esp_wifi_set_default_wifi_ap_handlers();                             // Required here; included in esp_netif_create_default_wifi_ap()
 
    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_init(&cfg));
 
    /*
-    * Bei UXGA crop 800 x 800 px trat somit kein Übertragungsfehler mehr auf.
-    * Bei UXGA 1600 x 1200 px überwiegend OK, aber nicht vollständig.
-    * Der Ansatz ist richtig, dass der Wifi-Task der Störenfried ist.
+    * With UXGA crop 800 x 800 px no transfer errors occurred.
+    * With UXGA 1600 x 1200 px mostly OK but not fully reliable.
+    * Wi-Fi task power-save tuning was the right approach.
     */
     // ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_ps( WIFI_PS_NONE ));
 
     esp_event_handler_instance_t instance_any_id;
     esp_event_handler_instance_t instance_got_ip;
-    // TR: &-Operator für server notwendig, da Zuweisung ansonsten nach außen nicht sichtbar!
+    // Address-of operator required so the handler instance is visible outside this block
     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL, &instance_any_id));
     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL, &instance_got_ip));
 
@@ -299,7 +298,7 @@ void wifi_init_sta_and_softap(void) {
     if (strlen(AP_ESP_WIFI_PASS) == 0) {
         wifi_ap_config.ap.authmode = WIFI_AUTH_OPEN;
     }
-    wifiScanConfig.scan_time = wifiScanTime;              // Die restlichen Elemente der Struktur sind NULL bzw. 0
+    wifiScanConfig.scan_time = wifiScanTime;              // Remaining struct fields are zero / NULL
 
     if (strlen(cJSON_GetObjectItem(config, "SSID")->valuestring) == 0) {
         wifiState = STATION_SCANNING;
@@ -339,7 +338,7 @@ void wifi_init_sta_and_softap(void) {
     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_sta_config));
     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_get_mac( ESP_IF_WIFI_STA, mac ));
     sprintf( macString, "%02x:%02x:%02x:%02x:%02x:%02x", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5] );
-    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_start());                          // 3.1 Start WiFi, der Rest läuft event-gesteuert, siehe weiter Funktion event_handler()
+    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_start());                          // Start Wi-Fi; further steps are event-driven in event_handler()
     ESP_LOGI(TAG,"wifi_init_sta_and_softap finished.");
 
     /* Waiting until either the connection is established (WIFI_CONNECTED_BIT) or connection failed for the maximum
@@ -356,9 +355,8 @@ void wifi_init_sta_and_softap(void) {
         ESP_LOGI(TAG,"UNEXPECTED EVENT");
     }
 
-   /* TR: Die unregister-Funktionen waren aus dem ursprünglichen Beispiel noch drin.
-    * Dann funktioniert aber kein disconnect-handling.
-    * Ich lasse sie nur zu Demostrationszwecken noch stehen.
+   /* Unregister calls from the original example were removed: disconnect handling breaks if they run.
+    * Left commented for reference only.
     *
     * The event will not be processed after unregister
     * ESP_ERROR_CHECK(esp_event_handler_instance_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, instance_got_ip));
@@ -377,13 +375,13 @@ void wifiControlTask( void *pvParameters ) {
         if( xQueueReceive( xWifiConfigQueue, (void *) &message, portMAX_DELAY ) == pdTRUE ){
 
             if( message.state == START_STATION ) {
-                vTaskDelay(1000 / portTICK_PERIOD_MS);       // Ansonsten manchmal Anzeige im Browser "Fehler: Verbindung unterbrochen"
+                vTaskDelay(1000 / portTICK_PERIOD_MS);       // Avoid browser "connection interrupted" message
 
                 if( wifiState == ACCESS_POINT ) {
                     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_stop());                // stop soft-AP
                     ESP_LOGI(TAG, "SSID = %s, Passwort = %s", message.ssid, message.password);
 
-                    wifiState = STATION_CONNECTING;        // Ganz wichtig jetzt Zuweisung hier, da Abfrage beim WIFI_EVENT_STA_START
+                    wifiState = STATION_CONNECTING;        // Must be set here; checked in WIFI_EVENT_STA_START
                     copyWifiCredentials( &message );
 
                     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_mode(WIFI_MODE_STA));
@@ -391,8 +389,8 @@ void wifiControlTask( void *pvParameters ) {
                     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_start());               // start station
                 }
                 else if( message.flag == true && ( strcmp( (char *)wifi_sta_config.sta.ssid, message.ssid ) || strcmp( (char *)wifi_sta_config.sta.password, message.password ) ))
-                {                                   // station-mode, nur wenn sich Zugangsdaten geändert haben, aber nicht bei Einstellungen wiederherstellen
-                    esp_wifi_disconnect();        // weiter im DISCONNECT-event, dann mit anderem WLAN verbinden
+                {                                   // Station mode: reconnect only when credentials changed (not on settings restore)
+                    esp_wifi_disconnect();        // Continues in DISCONNECT event, then connects to the new network
                     copyWifiCredentials( &message );
                 }
             } else if( message.state == START_AP ) {

@@ -12,12 +12,12 @@ unsigned long ulTotalRunTime;
 char taskName[25];
 
 
-void executeTaskCotrol( void *pvParameters ) {
+void executeTaskControl( void *pvParameters ) {
 
     while (1) {
-        uxArraySize = uxTaskGetNumberOfTasks(); // Die aktuelle Anzahl von Task 
+        uxArraySize = uxTaskGetNumberOfTasks(); // Current number of tasks
 
-        pxTaskStatusArray = pvPortMalloc( uxArraySize * sizeof( TaskStatus_t ) ); // Für die ganen Tasks im Heap ein Speicherbereich festlegen
+        pxTaskStatusArray = pvPortMalloc( uxArraySize * sizeof( TaskStatus_t ) ); // Heap block for all task status entries
 
         if( pxTaskStatusArray != NULL )
         {
@@ -67,7 +67,7 @@ void executeTaskCotrol( void *pvParameters ) {
                 printf("%-10d", uxTaskGetStackHighWaterMark(currentTask));
                 printf("%-5d\n", pxTaskStatusArray[ x - 1 ].xCoreID);
                 
-                memset(&taskName, 0x00, sizeof(taskName)); // Um sicher zu gehen, dass in dem Speicherbereich keine Bytes übrig sind vom letzten speichern.
+                memset(&taskName, 0x00, sizeof(taskName)); // Clear buffer before reuse
             }
             printf("\n");
 

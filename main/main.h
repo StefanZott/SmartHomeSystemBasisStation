@@ -11,10 +11,10 @@
 #include "driver/gpio.h"
 #include "cJSON.h"
 
-#define MAX_CRED_LEN       32       // WLAN ssid und password max. 31 Zeichen + Stringendezeichen
+#define MAX_CRED_LEN       32       // WLAN SSID and password: max. 31 chars + null terminator
 
-#define PRO_CPU             0       // TR: explizit für die erste CPU
-#define APP_CPU             1       // folglich repräsentiert dies die zweite CPU, Anlehnung an Namensgebung der API-Dok.
+#define PRO_CPU             0       // Explicit assignment to the first CPU core
+#define APP_CPU             1       // Second CPU core; naming follows the ESP-IDF API
 
 typedef enum ledModi {
    LED_EIN,
