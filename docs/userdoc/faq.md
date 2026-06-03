@@ -1,3 +1,8 @@
+---
+status: active
+last_updated: 2026-06-02
+---
+
 # FAQ
 
 ## Wo finde ich die Projektziele und Agent-Regeln?
@@ -6,16 +11,16 @@ In `AGENTS.md` im Repository-Root.
 
 ## Wo liegt die Hardware?
 
-KiCad-Projekt unter `PCB/BasisStation/`. Stückliste und Links: `README.md` (Abschnitt Hardware).
+KiCad-Projekt unter `PCB/BasisStation/`. Details: [hardware.md](../project/hardware.md). Stückliste: `README.md` (Abschnitt Hardware).
 
 ## Wo liegt die Firmware?
 
-Verzeichnis `main/` — Einstieg `main.c`.
+Verzeichnis `main/` — Einstieg `main.c`. Architektur: [architecture.md](../project/architecture.md).
 
 ## Wo ist die Web-Konfiguration?
 
 - Dateien unter `spiffs/` (HTML, CSS, JS).
-- Laufzeit: HTTP-Server bedient SPIFFS unter `/spiffs`; Details zu URIs: `docs/firmware/communication.md`.
+- Laufzeit: HTTP-Server bedient SPIFFS unter `/spiffs`; Details zu URIs: [communication.md](../project/communication.md).
 
 ## Unterstützt die Firmware Ethernet?
 

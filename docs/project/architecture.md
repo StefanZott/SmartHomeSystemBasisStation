@@ -1,0 +1,135 @@
+---
+status: active
+last_updated: 2026-06-02
+---
+
+# Architektur — SmartHomeSystemBasisStation
+
+ESP-IDF-Firmware auf **ESP32-S3**, KiCad-Hardware und SPIFFS-Web-UI für die Konfiguration der SmartHome-Basisstation.
+
+## Systemüberblick
+
+```text
+Stromversorgung              Rechenkern / Peripherie
+─────────────────            ─────────────────────────────────────────
+
+  [DC/DC, z. B. TSR 1-2433E
+   auf 3,3 V] ──────────────► ESP32-S3-WROOM-1U-N16R8
+                                      │
+  [Power- / Reset-Taster] ────────────┤
+                                      ├──► [4 LEDs, RGBY]
+  [USB]  ─────────────────────────────┤
+  [PROG] ─────────────────────────────┤
+  [JTAG] ─────────────────────────────┤
+                                      ├──► [WLAN-Antenne am Modul 1U]
+                                      │
+                                      └──► [Ethernet]  (Ziel; siehe [hardware.md](hardware.md))
+```
+
+Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [communication.md](communication.md).
+
+## Verzeichnisstruktur (Repository)
+
+| Pfad | Rolle |
+|------|--------|
+| `main/` | ESP-IDF-Firmware (Ausnahme: statt `embedded/` laut AGENTS.md) |
+| `spiffs/` | Web-Assets (HTML, CSS, JS) → SPIFFS-Image |
+| `PCB/` | KiCad-Projekt Basisstation |
+| `docs/project/` | Technische Projektdokumentation |
+| `docs/userdoc/` | Anwenderdokumentation |
+| `partitions.csv` | Flash-Partitionen (App, SPIFFS, NVS) |
+| `version` | Zentrale Versionsnummer (`X.XX.XXX`), Sync mit CMake und sdkconfig |
+
+## Firmware — Laufzeitdiagramm
+
+Startsequenz in `app_main`, persistente Konfiguration und Tasks. **Nur Standard-Markdown:** Diagramm als Text im Code-Block (kein Mermaid).
+
+```text
+app_main – Startsequenz (von oben nach unten)
+──────────────────────────────────────────────
+  NVS Flash
+       |
+       v
+  esp_netif + Default Event Loop
+       |
+       v
+  SPIFFS (/spiffs)
+       |
+       v
+  startWebServer
+       |-------------------------> WebServer.c --> FileManagment.c
+       |                                                    |
+       v                                                    v
+  xTaskCreatePinnedToCore (3 Tasks)              configuration.json
+       |
+       +-- ledControlTask -----> LED.c
+       +-- executeTaskCotrol --> TaskControl.c
+       +-- wifiControlTask ---> WLAN.c --> FileManagment.c --> configuration.json
+       |
+       v
+  configuration.json laden oder anlegen
+       |
+       v
+  wifi_init_sta_and_softap()
+```
+
+Die Schreibweisen **executeTaskCotrol** und **FileManagment** entsprechen den tatsächlichen Bezeichnern im Quellcode.
+
+## Build & Metadaten
+
+- Root: `CMakeLists.txt` — `PROJECT_VER` aus `version` (aktuell **0.00.001**), `project(SmartHomeSystemBasisStation)`.
+- UI/Laufzeit: `sdkconfig` — `CONFIG_APP_PROJECT_VER` (identisch zu `version`).
+- Komponente: `main/CMakeLists.txt` — Quellen und eingebettete SPIFFS-Assets (HTML/CSS/JS/Icons).
+
+Versions-Sync: siehe [struktur-anpassung-agents.md](struktur-anpassung-agents.md) §6.
+
+## Deployment
+
+Voraussetzung: [ESP-IDF](https://docs.espressif.com/projects/esp-idf/) für **ESP32-S3**.
+
+```text
+idf.py set-target esp32s3
+idf.py build
+idf.py flash monitor
+```
+
+Partitionierung und SPIFFS: `partitions.csv`, `sdkconfig`.
+
+## Startablauf (`main/main.c`)
+
+1. **NVS** initialisieren (ggf. Erase bei Versions-/Seitenkonflikt).
+2. **Netzwerk-Stack:** `esp_netif_init()`, Default-Event-Loop.
+3. **Synchronisation:** Mutex und Binary-Semaphore für LED-Logik.
+4. **SPIFFS** unter `/spiffs` mounten (`initSpiffs`).
+5. **HTTP-Server** starten (`startWebServer("/spiffs")`).
+6. **FreeRTOS-Tasks** (Core-Zuordnung über `PRO_CPU` / `APP_CPU` in `main.h`):
+   - `ledControlTask` — LED-Steuerung
+   - `executeTaskCotrol` — TaskControl
+   - `wifiControlTask` — WLAN
+7. **WLAN-Konfiguration:** Datei `/spiffs/configuration.json` anlegen oder laden, danach `wifi_init_sta_and_softap()`.
+
+## Module (Überblick)
+
+| Modul | Rolle |
+|-------|--------|
+| `main.c` | Einstieg, SPIFFS, Task-Start, Config-Bootstrap |
+| `WLAN.c` / `WLAN.h` | Station + SoftAP, Scan, Persistenz in `configuration.json` |
+| `WebServer.c` / `WebServer.h` | `esp_http_server`, statische Inhalte + REST-ähnliche URIs |
+| `LED.c` / `LED.h` | LED-Modi (`LED_MODE_T` in `main.h`) |
+| `TaskControl.c` / `TaskControl.h` | Steuerlogik (siehe Quellcode) |
+| `FileManagment.c` | Dateizugriff auf SPIFFS (Existenz, Lesen, JSON schreiben) |
+| `cJSON` | JSON für Konfiguration |
+| `ProjectConfig.h` | Projektweite Schalter (derzeit u. a. `TaskListOutput`) |
+
+## Globale Symbole (Auszug)
+
+- `productName` / `FW_Version` in `main.c` (aktuell u. a. `"DoorLine Skill"`, `"V0.0.1"` — Abgleich mit Produktname Basisstation bei Bedarf).
+- `config` (`cJSON*`) — WLAN-Konfiguration im RAM, synchron mit Datei.
+
+## Bekannte Code-Stelle (Review-Hinweis)
+
+In `main.c` wird nach `file_isExisting(wifiConfigFile)` zwischen `cJSON_IsNull(config)` und einem `else`-Zweig verzweigt. **Review empfohlen:** Logik und gewünschtes Verhalten bei fehlender/ungültiger Datei explizit festlegen.
+
+## Ethernet
+
+Laut Projektziel vorgesehen; in der analysierten Firmware **nicht** implementiert (keine `ETH_`-Nutzung in `main/`). Hardware-Stand: [hardware.md](hardware.md).

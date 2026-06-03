@@ -1,4 +1,13 @@
-# Firmware — Kommunikation
+---
+status: active
+last_updated: 2026-06-02
+---
+
+# Kommunikation — SmartHomeSystemBasisStation
+
+Logische Schnittstellen (WLAN, HTTP, SPIFFS) und Verweis auf physische Anbindung.
+
+Physische Schnittstellen (USB, PROG, JTAG, Ethernet): [hardware.md](hardware.md).
 
 ## Persistente Konfiguration (SPIFFS)
 
@@ -33,7 +42,12 @@ Für verbindliche Methoden (GET vs. POST) und Request-Bodies die Implementierung
 ## Web-Assets
 
 - Laufzeit: primär aus SPIFFS-Pfad `/spiffs` (vgl. `startWebServer`).
+- Quell-Assets: Verzeichnis `spiffs/` im Repository.
 - Zusätzlich: `EMBED_FILES` in `main/CMakeLists.txt` für eingebettete Ressourcen.
+
+## Serielle Konsole / Flash
+
+Typisch über USB-UART bzw. JTAG-Adapter — ESP-IDF-Standardfluss (`idf.py flash monitor`). Siehe [architecture.md](architecture.md) (Deployment).
 
 ## Abgrenzung
 
