@@ -40,6 +40,7 @@ Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [commu
 | `docs/userdoc/` | Anwenderdokumentation |
 | `partitions.csv` | Flash-Partitionen (App, SPIFFS, NVS) |
 | `version` | Zentrale Versionsnummer (`X.XX.XXX`), Sync mit CMake und sdkconfig |
+| `tests/` | Unity-Tests (ESP-IDF, `idf.py -T tests`) — siehe unten |
 
 ## Firmware — Laufzeitdiagramm
 
@@ -95,6 +96,18 @@ idf.py flash monitor
 ```
 
 Partitionierung und SPIFFS: `partitions.csv`, `sdkconfig`.
+
+## Testing
+
+Unity-Tests unter `tests/` (Smoke-Tests, eigenständige Test-Komponente ohne `main/`).
+
+```text
+idf.py set-target esp32s3
+idf.py -T tests build
+idf.py -T tests flash monitor
+```
+
+Details: [tests/README.md](../../tests/README.md).
 
 ## Startablauf (`main/main.c`)
 
