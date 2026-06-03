@@ -203,7 +203,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 
 | Datei | Thema |
 | ----- | ----- |
-| [general/README.md](docs/general/README.md) | Platzhalter; Einbindung aus Unternehmens-Repo (siehe Task 0019) |
+| [general/README.md](docs/general/README.md) | Read-only-Hinweis und Einbindung aus Unternehmens-Repo (Task 0019) |
 | _(weitere Dateien)_ | Nach Einbindung von `docs/general/`: unternehmensweite Prozess-Doku, falls relevant |
 
 ### Projekt (`docs/project/`) — Aktiv pflegen
@@ -221,7 +221,8 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 
 | Datei | Thema |
 | ----- | ----- |
-| [related-projects/README.md](docs/related-projects/README.md) | Platzhalter; Schnittstellenverträge (siehe Task 0018) |
+| [related-projects/README.md](docs/related-projects/README.md) | Index verzahnter Projekte |
+| [related-projects/project-scope.md](docs/related-projects/project-scope.md) | Produktscope, keine NRT-UART-Schnittstelle |
 
 ### Anwenderdokumentation (`docs/userdoc/`)
 
@@ -231,7 +232,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 | [userdoc/releases.md](docs/userdoc/releases.md) | Changelog |
 | [userdoc/faq.md](docs/userdoc/faq.md) | Häufige Fragen zur SmartHome-Basisstation |
 | [userdoc/git_guidelines.md](docs/userdoc/git_guidelines.md) | Git-Workflow, Commits, Branching (Projekt) |
-| _(optional)_ `proweb.md` | Produktwebsite-Vorlage DE/EN — noch nicht angelegt (Task 0020) |
+| [userdoc/proweb.md](docs/userdoc/proweb.md) | Produktwebsite-Vorlage DE/EN (Draft) |
 
 ## Pro-Prompt-Workflow (projektspezifisch)
 

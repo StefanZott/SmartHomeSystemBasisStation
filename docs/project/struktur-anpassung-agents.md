@@ -27,7 +27,7 @@ Das Projekt ist ein **ESP32-S3 Embedded-Projekt** (ESP-IDF) mit KiCad-Hardware u
 | Pflichtordner `secrets/` | Fehlt | Lokale Keys (gitignored) | Mittel |
 | Pflichtordner `tmp/` | Fehlt | Scratchpad + `tmp/tasks/{open,done}/` | Mittel |
 | Firmware-Code | `main/` (ESP-IDF-Standard) | Optional `embedded/` | Niedrig (Ausnahme) |
-| Hardware | `PCB/` (Großschreibung) | Kleingeschriebene Ordner | Mittel |
+| Hardware | ~~`PCB/`~~ → `pcb/` | Kleingeschriebene Ordner | Erledigt (Task 0015) |
 | Web-Assets | `spiffs/` | Kein Standardname; in Architektur dokumentieren | Niedrig |
 | Code-Sprache | Deutsch in Kommentaren (`ProjectConfig.h`) | British English (en-GB) | Mittel |
 | Linting | Keine `.clang-format` / `.clang-tidy` | Pflicht für C/C++ | Mittel |
@@ -59,7 +59,7 @@ tmp/
 |-------------|--------|------------|
 | `main/` | **Beibehalten** | ESP-IDF erwartet die Komponente `main/` am Root. Ein Move nach `embedded/` würde den Build-Standard brechen. In `docs/project/architecture.md` als **bewusste Abweichung** dokumentieren. |
 | `spiffs/` | **Beibehalten** (vorerst) | Web-Assets für SPIFFS; in Architektur-Doku als Frontend-Asset-Pfad beschreiben. Optional später `frontend/` nur bei Migration zu separatem Build (React/TS). |
-| `PCB/` | **Umbenennen → `pcb/`** | AGENTS.md verlangt kleingeschriebene Ordner. KiCad-Pfade in Doku und ggf. relative Pfade prüfen. Alternativ: Ausnahme in Architektur-Doku festhalten, wenn Umbenennung zu aufwändig. |
+| `pcb/` | **Erledigt** (Task 0015) | Umbenennung von `PCB/`; KiCad-Pfade und Doku aktualisiert. |
 | `.devcontainer/` | Beibehalten | Nicht in AGENTS.md definiert; in Toolchain-Abschnitt der README erwähnen. |
 | `.vscode/` | Beibehalten | IDE-Konfiguration; nicht committen wenn teamintern anders gewünscht. |
 
@@ -186,7 +186,7 @@ Aktueller Inhalt:
 
 ```text
 build/
-/PCB/BasisStation/BasisStation-backups
+/pcb/BasisStation/BasisStation-backups
 AGENTS.md
 ```
 
@@ -209,7 +209,7 @@ AGENTS.md
 **Empfehlung für ESP-IDF:**
 
 - Framework: **Unity** (in ESP-IDF enthalten) oder **CppUTest**
-- Erste Kandidaten: JSON-Parsing (`cJSON`), Konfigurations-Lese-/Schreiblogik (`FileManagment.c`), reine Hilfsfunktionen ohne Hardware
+- Erste Kandidaten: JSON-Parsing (`cJSON`), Konfigurations-Lese-/Schreiblogik (`FileManagement.c`), reine Hilfsfunktionen ohne Hardware
 - CI: Build + `idf.py test` oder separates Host-Test-Target
 
 ### 8.2 Linting / Formatting
@@ -229,8 +229,8 @@ Bekannte Abweichungen:
 | Datei | Problem |
 |-------|---------|
 | `ProjectConfig.h` | Deutsche Kommentare |
-| `FileManagment.c/h` | Tippfehler „Managment" (bestehend; Umbenennung = Breaking Change, separat planen) |
-| `TaskControl.c` | `executeTaskCotrol` (Tippfehler „Cotrol") |
+| `FileManagement.c/h` | SPIFFS file access (renamed from `FileManagment`, Task 0017) |
+| `TaskControl.c` | `executeTaskControl` (renamed from `executeTaskCotrol`, Task 0017) |
 | Diverse `.c/.h` | Prüfen auf deutsche Kommentare und US-Englisch |
 
 **Strategie:** Neue Dateien/Kommentare sofort en-GB; bestehende schrittweise bei Touching-Changes korrigieren.
@@ -282,16 +282,16 @@ Ab AGENTS.md projektspezifisch verbindlich:
 - [x] ~~`.clang-format` / `.clang-tidy` einführen~~ — übersprungen (Task 0011)
 - [x] `tests/` Grundgerüst + mindestens ein Smoke-Test
 - [x] ~~`dev-claude-loop.md` oder Build-/Dev-Doku~~ — entfällt (Task 0013, Bediener)
-- [ ] ~~`git_guidelines.pdf` bereitstellen oder Referenz anpassen~~ — `git_guidelines.md` erweitert (Task 0014, Review offen)
+- [x] ~~`git_guidelines.pdf` bereitstellen oder Referenz anpassen~~ — `git_guidelines.md` (Task 0014)
 
 ### Phase D — Optional / später
 
-- [ ] `PCB/` → `pcb/` umbenennen
-- [ ] Code-Kommentare en-GB migrieren
-- [ ] Tippfehler in Bezeichnern (`FileManagment`, `executeTaskCotrol`) refactoren
-- [ ] `docs/related-projects/` mit NRT-/Cloud-Schnittstellen
-- [ ] `docs/general/` aus Unternehmens-Repo einbinden
-- [ ] `proweb.md` für Marketing
+- [x] `PCB/` → `pcb/` umbenennen (Task 0015)
+- [x] Code-Kommentare en-GB migrieren (Task 0016)
+- [x] Tippfehler in Bezeichnern (`FileManagement`, `executeTaskControl`) refactoren (Task 0017)
+- [x] `docs/related-projects/` — Scope-Doku (Task 0018)
+- [x] `docs/general/` — Einbindungs-README (Task 0019)
+- [x] `proweb.md` für Marketing (Task 0020)
 
 ---
 
@@ -314,8 +314,8 @@ Diese Punkte sollten in `docs/project/architecture.md` festgehalten werden, dami
 Vor Umsetzung klären:
 
 1. **Projektbezeichnung:** SmartHome-Basisstation, WEM, oder anderer Produktname in Doku/AGENTS.md?
-2. **NRT-Schnittstelle:** Ist UART/Protokoll zum NRT 1 XT Teil dieses Projekts? Falls ja → `docs/related-projects/` und `communication.md` erweitern.
-3. **PCB-Umbenennung:** `PCB/` → `pcb/` jetzt oder Ausnahme dokumentieren?
+2. **NRT-Schnittstelle:** **Nicht im Scope** — dokumentiert in [project-scope.md](../related-projects/project-scope.md) (Task 0018).
+3. **PCB-Umbenennung:** Erledigt — `pcb/` (Task 0015, 2026-06-02).
 4. **JIRA-Projekt-ID:** **SHBS-1** — bündelt die gesamte Migration (Phasen A–D, Tasks 0001–0020). ~~z. B. `S2207-xxx` für Struktur-Migration-Ticket?~~
 5. **git_guidelines.pdf:** Ersetzt durch `docs/userdoc/git_guidelines.md` (Task 0014).
 6. **Dev-Loop-Doku:** **Entfällt** — Build/Deployment/Tests in `architecture.md` und `tests/README.md`; kein `dev-claude-loop.md`.
@@ -334,7 +334,7 @@ SmartHomeSystemBasisStation/
 ├── partitions.csv
 ├── main/                    # ESP-IDF Firmware (Ausnahme: statt embedded/)
 ├── spiffs/                  # Web-Assets → SPIFFS
-├── pcb/                     # KiCad (Zielname; aktuell PCB/)
+├── pcb/                     # KiCad
 ├── docs/
 │   ├── general/
 │   ├── related-projects/
