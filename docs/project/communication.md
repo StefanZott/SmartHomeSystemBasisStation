@@ -8,6 +8,8 @@ type: project-doc
 
 Logische Schnittstellen (WLAN, HTTP, SPIFFS) und Verweis auf physische Anbindung.
 
+Verzahnte Projekte / Produktscope: [project-scope.md](../related-projects/project-scope.md).
+
 Physische Schnittstellen (USB, PROG, JTAG, Ethernet): [hardware.md](hardware.md).
 
 ## Persistente Konfiguration (SPIFFS)
@@ -16,7 +18,7 @@ Physische Schnittstellen (USB, PROG, JTAG, Ethernet): [hardware.md](hardware.md)
 |------|--------|
 | `/spiffs/configuration.json` | WLAN: SSID, Passwort, Kanal, RSSI, Auth-Modus, IP, Netmask, Gateway (Felder als JSON; siehe `main.c` / `WLAN.c`) |
 
-Schreibzugriff erfolgt über `file_writeContentInFile()` (`FileManagment`).
+Schreibzugriff erfolgt über `file_writeContentInFile()` (`FileManagement`).
 
 ## WLAN
 

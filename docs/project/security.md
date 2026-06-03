@@ -51,7 +51,7 @@ Verwandte Dokumente: [communication.md](communication.md), [memory_map.md](memor
 ### SPIFFS (`/spiffs/configuration.json`)
 
 - Enthält u. a. SSID, Passwort, IP-Parameter als **Klartext-JSON**.
-- Schreibzugriff über Firmware (`FileManagment.c`); lesbar über HTTP-Handler.
+- Schreibzugriff über Firmware (`FileManagement.c`); lesbar über HTTP-Handler.
 - Keine Datei-Verschlüsselung auf Application-Ebene.
 
 ### NVS

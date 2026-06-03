@@ -35,7 +35,7 @@ Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [commu
 |------|--------|
 | `main/` | ESP-IDF-Firmware (Ausnahme: statt `embedded/` laut AGENTS.md) |
 | `spiffs/` | Web-Assets (HTML, CSS, JS) → SPIFFS-Image |
-| `PCB/` | KiCad-Projekt Basisstation |
+| `pcb/` | KiCad-Projekt Basisstation |
 | `docs/project/` | Technische Projektdokumentation |
 | `docs/userdoc/` | Anwenderdokumentation |
 | `partitions.csv` | Flash-Partitionen (App, SPIFFS, NVS) |
@@ -59,14 +59,14 @@ app_main – Startsequenz (von oben nach unten)
        |
        v
   startWebServer
-       |-------------------------> WebServer.c --> FileManagment.c
+       |-------------------------> WebServer.c --> FileManagement.c
        |                                                    |
        v                                                    v
   xTaskCreatePinnedToCore (3 Tasks)              configuration.json
        |
        +-- ledControlTask -----> LED.c
-       +-- executeTaskCotrol --> TaskControl.c
-       +-- wifiControlTask ---> WLAN.c --> FileManagment.c --> configuration.json
+       +-- executeTaskControl --> TaskControl.c
+       +-- wifiControlTask ---> WLAN.c --> FileManagement.c --> configuration.json
        |
        v
   configuration.json laden oder anlegen
@@ -74,8 +74,6 @@ app_main – Startsequenz (von oben nach unten)
        v
   wifi_init_sta_and_softap()
 ```
-
-Die Schreibweisen **executeTaskCotrol** und **FileManagment** entsprechen den tatsächlichen Bezeichnern im Quellcode.
 
 ## Build & Metadaten
 
@@ -118,7 +116,7 @@ Details: [tests/README.md](../../tests/README.md).
 5. **HTTP-Server** starten (`startWebServer("/spiffs")`).
 6. **FreeRTOS-Tasks** (Core-Zuordnung über `PRO_CPU` / `APP_CPU` in `main.h`):
    - `ledControlTask` — LED-Steuerung
-   - `executeTaskCotrol` — TaskControl
+   - `executeTaskControl` — TaskControl
    - `wifiControlTask` — WLAN
 7. **WLAN-Konfiguration:** Datei `/spiffs/configuration.json` anlegen oder laden, danach `wifi_init_sta_and_softap()`.
 
@@ -131,7 +129,7 @@ Details: [tests/README.md](../../tests/README.md).
 | `WebServer.c` / `WebServer.h` | `esp_http_server`, statische Inhalte + REST-ähnliche URIs |
 | `LED.c` / `LED.h` | LED-Modi (`LED_MODE_T` in `main.h`) |
 | `TaskControl.c` / `TaskControl.h` | Steuerlogik (siehe Quellcode) |
-| `FileManagment.c` | Dateizugriff auf SPIFFS (Existenz, Lesen, JSON schreiben) |
+| `FileManagement.c` | Dateizugriff auf SPIFFS (Existenz, Lesen, JSON schreiben) |
 | `cJSON` | JSON für Konfiguration |
 | `ProjectConfig.h` | Projektweite Schalter (derzeit u. a. `TaskListOutput`) |
 

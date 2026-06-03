@@ -12,7 +12,7 @@
 #include "LED.h"
 #include "WLAN.h"
 #include "WebServer.h"
-#include "FileManagment.h"
+#include "FileManagement.h"
 
 SemaphoreHandle_t xLedMutex;
 SemaphoreHandle_t xLedSemaphore;
@@ -78,7 +78,7 @@ void app_main(void) {
     startWebServer("/spiffs");
 
     xTaskCreatePinnedToCore( ledControlTask, "ledControlTask", 4096, NULL, 1, NULL, PRO_CPU );
-    xTaskCreatePinnedToCore( executeTaskCotrol, "TaskControl", 2048, NULL, 1, NULL, PRO_CPU );
+    xTaskCreatePinnedToCore( executeTaskControl, "TaskControl", 2048, NULL, 1, NULL, PRO_CPU );
     xTaskCreatePinnedToCore( wifiControlTask, "wifiControlTask", 8192, NULL, 1, NULL, APP_CPU );
 
     if(file_isExisting(wifiConfigFile)) {
