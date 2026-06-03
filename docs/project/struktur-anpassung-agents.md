@@ -76,8 +76,8 @@ tmp/
 | — | `docs/project/security.md` | **Neu anlegen** (Pflicht) |
 | — | `docs/project/memory_map.md` | **Neu anlegen** aus `partitions.csv` + `sdkconfig` |
 | — | `docs/userdoc/factsheet.md` | **Neu anlegen** (Pflicht, VERTRAULICH) |
-| — | `docs/project/dev-claude-loop.md` | **Neu anlegen** oder Referenz aus AGENTS.md entfernen |
-| — | `docs/userdoc/git_guidelines.pdf` | **Bereitstellen** oder Link in AGENTS.md anpassen |
+| — | ~~`docs/project/dev-claude-loop.md`~~ | Entfällt (Task 0013); Build/Tests in `architecture.md` |
+| — | ~~`docs/userdoc/git_guidelines.pdf`~~ | Ersetzt durch [git_guidelines.md](../userdoc/git_guidelines.md) (Task 0014) |
 
 **Nach Migration gelöscht (Task 0009):** `docs/firmware/`, `docs/layout/` — Ordner existieren nicht mehr.
 
@@ -279,10 +279,10 @@ Ab AGENTS.md projektspezifisch verbindlich:
 
 ### Phase C — Tooling & Qualität
 
-- [ ] `.clang-format` / `.clang-tidy` einführen
-- [ ] `tests/` Grundgerüst + mindestens ein Smoke-Test
-- [ ] `dev-claude-loop.md` oder Build-/Dev-Doku anlegen
-- [ ] `git_guidelines.pdf` bereitstellen oder Referenz anpassen
+- [x] ~~`.clang-format` / `.clang-tidy` einführen~~ — übersprungen (Task 0011)
+- [x] `tests/` Grundgerüst + mindestens ein Smoke-Test
+- [x] ~~`dev-claude-loop.md` oder Build-/Dev-Doku~~ — entfällt (Task 0013, Bediener)
+- [ ] ~~`git_guidelines.pdf` bereitstellen oder Referenz anpassen~~ — `git_guidelines.md` erweitert (Task 0014, Review offen)
 
 ### Phase D — Optional / später
 
@@ -317,8 +317,8 @@ Vor Umsetzung klären:
 2. **NRT-Schnittstelle:** Ist UART/Protokoll zum NRT 1 XT Teil dieses Projekts? Falls ja → `docs/related-projects/` und `communication.md` erweitern.
 3. **PCB-Umbenennung:** `PCB/` → `pcb/` jetzt oder Ausnahme dokumentieren?
 4. **JIRA-Projekt-ID:** **SHBS-1** — bündelt die gesamte Migration (Phasen A–D, Tasks 0001–0020). ~~z. B. `S2207-xxx` für Struktur-Migration-Ticket?~~
-5. **git_guidelines.pdf:** Aus Unternehmens-Doku kopieren oder AGENTS.md-Referenz entfernen?
-6. **Dev-Loop-Doku:** `dev-claude-loop.md` neu schreiben oder aus anderem Projekt übernehmen?
+5. **git_guidelines.pdf:** Ersetzt durch `docs/userdoc/git_guidelines.md` (Task 0014).
+6. **Dev-Loop-Doku:** **Entfällt** — Build/Deployment/Tests in `architecture.md` und `tests/README.md`; kein `dev-claude-loop.md`.
 
 ---
 

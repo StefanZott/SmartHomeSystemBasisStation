@@ -43,4 +43,15 @@ Ausführliche Anleitung, Partitionierung und Voraussetzungen:
 
 → [docs/project/architecture.md#deployment](docs/project/architecture.md#deployment)
 
+## Release & Tags
+
+Aktuelle Firmware-Version: siehe Datei [`version`](version) (Format `X.XX.XXX`, derzeit `0.00.001`).
+
+| Tag (Beispiel) | Bedeutung |
+|----------------|-----------|
+| `v0.00.001` | Veröffentlichte bzw. testbare Firmware-Version |
+| `release` | Marker für den aktuellen Release-Stand im Repository |
+
+Kundenspezifische Builds: `v0.00.005-kundexyz`. Details: [docs/userdoc/git_guidelines.md](docs/userdoc/git_guidelines.md).
+
 Agenten-Regeln und Workflow: [AGENTS.md](AGENTS.md)

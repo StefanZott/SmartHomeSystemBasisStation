@@ -230,6 +230,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 | [userdoc/factsheet.md](docs/userdoc/factsheet.md) | Internes Datenblatt (**VERTRAULICH / INTERN**) |
 | [userdoc/releases.md](docs/userdoc/releases.md) | Changelog |
 | [userdoc/faq.md](docs/userdoc/faq.md) | Häufige Fragen zur SmartHome-Basisstation |
+| [userdoc/git_guidelines.md](docs/userdoc/git_guidelines.md) | Git-Workflow, Commits, Branching (Projekt) |
 | _(optional)_ `proweb.md` | Produktwebsite-Vorlage DE/EN — noch nicht angelegt (Task 0020) |
 
 ## Pro-Prompt-Workflow (projektspezifisch)
@@ -293,7 +294,7 @@ Für jeden Task aus `tmp/tasks/open/`:
 - **Release Notes:** Einträge in `docs/userdoc/releases.md` werden nur erzeugt, wenn eine Versionserhöhung stattgefunden hat.
 - **Lokale Git-Aktionen:** Ergänzung zu §9 — Nach ausdrücklicher Freigabe durch den Bediener darf der Agent lokale Git-Aktionen ausführen (Commits, Branches erstellen, Merges, Cherry-Picks etc.). Ohne Freigabe bleibt das Verbot aus §9 bestehen. Push auf Remote-Repositories führt ausschließlich der Bediener außerhalb von Claude Code durch.
 - **JIRA-Ticket-Verknüpfung:** Ergänzung zu §6 — jeder Commit referenziert genau ein JIRA-Ticket. Ein Ticket bündelt **ein Problem** und kann mehrere atomare Commits enthalten (ein Task = ein Commit). Die Ticket-ID steht als Scope im Conventional-Commit-Titel: `vX.YY.ZZZ <type>(<JIRA-ID>): <Beschreibung>`. Tickets werden vom Bediener in JIRA angelegt; der Agent liefert beim Start einen Entwurf mit Titel + Problembeschreibung und beim Abschluss (alle Tasks done) einen Entwurf für einen Lösungs-Kommentar, den der Bediener in JIRA einfügt. Wenn ausnahmsweise kein Ticket sinnvoll ist (z. B. trivialer Tippfehler in Doku), holt der Agent dafür eine ausdrückliche Freigabe ein.
-- **Git-Richtlinien:** Ergänzend zu §6 gelten die unternehmensweiten Git-Vorgaben. Zentrale Punkte:
+- **Git-Richtlinien:** Ergänzend zu §6 gelten die unternehmensweiten Git-Vorgaben; projektspezifische Zusammenfassung: [git_guidelines.md](docs/userdoc/git_guidelines.md). Zentrale Punkte:
   - **Branching:** `main` = Arbeitszweig, `release/x.y` = Pflege veröffentlichter Versionen, `fix/<name>` = Bugfixes über mehrere Branches, `feature/<name>` = neue Funktionalitäten. Feature-Branches werden nach Fertigstellung auf `main` gemergt.
   - **Commits:** Atomar (ein Bugfix/Feature = ein Commit). WIP-Commits sind erlaubt, müssen in der Commit-Nachricht mit `(WIP)` markiert werden.
   - **Tagging:** Jede herausgegebene Version wird getaggt (`v1.00.001`). Kundenspezifisch: `v1.00.005-kundexyz`.
