@@ -18,7 +18,7 @@ type: userdoc
 - Root: `version` = **0.00.001** (Format `X.XX.XXX`).
 - CMake: `PROJECT_VER` = **0.00.001** (`CMakeLists.txt`).
 - UI/sdkconfig: `CONFIG_APP_PROJECT_VER` = **0.00.001**.
-- Legacy in `main.c`: `FW_Version` = **V0.0.1** (Abgleich bei Firmware-Task optional).
+- HTTP `/FWversion`: ESP-IDF `app_desc->version` (aus `CONFIG_APP_PROJECT_VER`, synchron zu `version`).
 
 ## Build (kurz)
 
@@ -34,6 +34,5 @@ Partitionierung und SPIFFS: siehe `partitions.csv` und [architecture.md](../proj
 
 ## Nächste Schritte (kein Release)
 
-- README vom ESP-IDF-Beispieltext auf dieses Projekt zuschneiden.
-- Produktname (`productName`) und Versionsstrings abstimmen.
 - Ethernet: Hardware-Freigabe und Firmware-Erweiterung dokumentieren, sobald umgesetzt.
+- Marketing: `proweb.md` Docshare-Links ergänzen.

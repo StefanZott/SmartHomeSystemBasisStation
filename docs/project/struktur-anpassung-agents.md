@@ -176,7 +176,7 @@ Die globale Vorlage (§1–§11) ist weitgehend übernommen. Der **projektspezif
 
 Versions-Inkrement nur bei ESP32-Quellcode-Änderung und nach Bediener-Freigabe (projektspezifische Abweichung in AGENTS.md).
 
-**Hinweis:** `main.c` enthält noch `FW_Version = "V0.0.1"` — Abgleich mit `app_desc->version` / sdkconfig bei Firmware-Task optional.
+**Hinweis:** Legacy `FW_Version` in `main.c` entfernt (SHBS-2); UI-Version über `app_desc->version` / `CONFIG_APP_PROJECT_VER`.
 
 ---
 

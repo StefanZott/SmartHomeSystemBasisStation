@@ -3,4 +3,5 @@ build/
 tmp/
 secrets/*
 !secrets/.gitkeep
+!secrets/README.md
 sdkconfig.old
