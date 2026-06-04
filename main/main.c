@@ -17,8 +17,7 @@
 SemaphoreHandle_t xLedMutex;
 SemaphoreHandle_t xLedSemaphore;
 
-const char *productName = "DoorLine Skill";
-const char *FW_Version = "V0.0.1";
+const char *productName = "SmartHome Basis";
 cJSON* config;
 
 static int ret;
