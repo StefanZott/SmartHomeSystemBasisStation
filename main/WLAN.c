@@ -379,7 +379,7 @@ void wifiControlTask( void *pvParameters ) {
 
                 if( wifiState == ACCESS_POINT ) {
                     ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_stop());                // stop soft-AP
-                    ESP_LOGI(TAG, "SSID = %s, Passwort = %s", message.ssid, message.password);
+                    ESP_LOGI(TAG, "SSID = %s, password = %s", message.ssid, message.password);
 
                     wifiState = STATION_CONNECTING;        // Must be set here; checked in WIFI_EVENT_STA_START
                     copyWifiCredentials( &message );
@@ -401,7 +401,7 @@ void wifiControlTask( void *pvParameters ) {
                 ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_start());               // start AP
             }
         } else {
-            ESP_LOGI(TAG,"Fehler beim Empfangen der Daten");
+            ESP_LOGI(TAG, "Failed to receive queue message");
         }
     }
     vTaskDelete(NULL);

@@ -322,7 +322,7 @@ static esp_err_t newSsidHandler(httpd_req_t *req) {
     if (xQueueSend(xWifiConfigQueue, (void *) &message, 500 / portTICK_PERIOD_MS) == pdTRUE) {
         printf("EVENT: WebServer -> Erfolgreich gesendet an die Queue\n");
     } else {
-        printf("EVENT: WebServer -> Fehler beim senden an die Queue\n");
+        printf("EVENT: WebServer -> Failed to send to queue\n");
     }
 
     return ESP_OK;
@@ -414,7 +414,7 @@ static esp_err_t ledSingleTestHandler(httpd_req_t *req) {
     if (xQueueSend(xLedStateQueue, (void *) &message, 500 / portTICK_PERIOD_MS) == pdTRUE) {
         printf("EVENT: WebServer -> Erfolgreich gesendet an die Queue\n");
     } else {
-        printf("EVENT: WebServer -> Fehler beim senden an die Queue\n");
+        printf("EVENT: WebServer -> Failed to send to queue\n");
     }
 
     return ESP_OK;
@@ -448,7 +448,7 @@ static esp_err_t disconnectWIFIHandler(httpd_req_t *req) {
     if (xQueueSend(xWifiConfigQueue, (void *) &message, 500 / portTICK_PERIOD_MS) == pdTRUE) {
         printf("EVENT: WebServer -> Erfolgreich gesendet an die Queue\n");
     } else {
-        printf("EVENT: WebServer -> Fehler beim senden an die Queue\n");
+        printf("EVENT: WebServer -> Failed to send to queue\n");
     }
     
     httpd_resp_send(req, "disconnected", strlen("disconnected"));

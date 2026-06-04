@@ -16,15 +16,15 @@
 #define PRO_CPU             0       // Explicit assignment to the first CPU core
 #define APP_CPU             1       // Second CPU core; naming follows the ESP-IDF API
 
-typedef enum ledModi {
-   LED_EIN,
-   LED_SCHWELLE,
-   LED_AUS
-} LED_MODE_T;
+typedef enum led_mode {
+   LED_ON,
+   LED_THRESHOLD,
+   LED_OFF
+} led_mode_t;
 
 extern SemaphoreHandle_t xLedMutex;
 extern SemaphoreHandle_t xLedSemaphore;
-extern const char *FW_Version, *productName;
+extern const char *productName;
 extern cJSON* config;
 
 #endif /* MAIN_H_ */
