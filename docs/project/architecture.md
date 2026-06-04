@@ -107,6 +107,10 @@ idf.py -T tests flash monitor
 
 Details: [tests/README.md](../../tests/README.md).
 
+## Code style (C/C++)
+
+Formatting and static analysis: `.clang-format` and `.clang-tidy` in the project root (`main/`, excluding vendored `cJSON`).
+
 ## Startablauf (`main/main.c`)
 
 1. **NVS** initialisieren (ggf. Erase bei Versions-/Seitenkonflikt).
@@ -127,7 +131,7 @@ Details: [tests/README.md](../../tests/README.md).
 | `main.c` | Einstieg, SPIFFS, Task-Start, Config-Bootstrap |
 | `WLAN.c` / `WLAN.h` | Station + SoftAP, Scan, Persistenz in `configuration.json` |
 | `WebServer.c` / `WebServer.h` | `esp_http_server`, statische Inhalte + REST-ähnliche URIs |
-| `LED.c` / `LED.h` | LED-Modi (`LED_MODE_T` in `main.h`) |
+| `LED.c` / `LED.h` | LED modes (`led_mode_t` in `main.h`) |
 | `TaskControl.c` / `TaskControl.h` | Steuerlogik (siehe Quellcode) |
 | `FileManagement.c` | Dateizugriff auf SPIFFS (Existenz, Lesen, JSON schreiben) |
 | `cJSON` | JSON für Konfiguration |
@@ -135,7 +139,7 @@ Details: [tests/README.md](../../tests/README.md).
 
 ## Globale Symbole (Auszug)
 
-- `productName` / `FW_Version` in `main.c` (aktuell u. a. `"DoorLine Skill"`, `"V0.0.1"` — Abgleich mit Produktname Basisstation bei Bedarf).
+- `productName` in `main.c` (SoftAP SSID, z. B. `"SmartHome Basis"`). HTTP `/FWversion` liefert `app_desc->version` aus `CONFIG_APP_PROJECT_VER` / `version`.
 - `config` (`cJSON*`) — WLAN-Konfiguration im RAM, synchron mit Datei.
 
 ## Bekannte Code-Stelle (Review-Hinweis)
