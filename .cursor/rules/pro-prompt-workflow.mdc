@@ -1,0 +1,19 @@
+---
+description: Pro-Prompt-Workflow bei Code-, Konfigurations- oder Doku-Änderungen
+alwaysApply: true
+---
+
+# Workflow-Reminder
+
+Wenn der aktuelle Prompt Code, Konfiguration oder Doku ändert, beachte den AGENTS.md Pro-Prompt-Workflow:
+
+1. AGENTS.md + relevante Doku lesen
+2. Bestehenden Code analysieren
+3. Aufgabe verstehen (ggf. Rückfrage)
+4. JIRA-Ticket-Entwurf (Titel + Problembeschreibung) an Bediener; Bediener legt Ticket an und nennt ID; pro Aufgabe ein Ticket, nicht pro Sub-Task
+5. Lösungsplan vorlegen und Freigabe abwarten
+6. Plan in atomare Tasks unter `tmp/tasks/open/` zerlegen, jeder Task mit `jira:`-ID im Frontmatter
+7. Pro Task: implementieren → validieren (Build/Tests) → Doku pflegen → nach `tmp/tasks/done/` verschieben → Commit-Vorschlag an Bediener (Conventional Commit, deutsch, Format `vX.YY.ZZZ <type>(JIRA-ID): Beschreibung`)
+8. Am Prompt-Ende: Version inkrementieren (`sdkconfig` + ggf. `version`-Datei, nur bei ESP32-Code-Änderung und nach Bestätigung), Release-Notes pflegen, JIRA-Abschlusskommentar-Entwurf liefern
+
+Bei trivialen Einzelfragen oder reinen Lese-Anfragen kann der Flow verkürzt werden — aber bei Code- oder nicht-trivialen Doku-Änderungen keine direkten Edits ohne Freigabe.
