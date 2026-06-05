@@ -36,7 +36,7 @@ Kompakte Basisstation zur Anbindung und Konfiguration von Smart-Home-Komponenten
 - **Versorgung:** DC/DC auf 3,3 V (z. B. TSR 1-2433E im Schaltplan).
 - **Konnektivität:** WLAN (Antenne am 1U-Modul); **Ethernet geplant**, noch nicht in Firmware.
 - **Konfigurationsspeicher:** SPIFFS (`configuration.json`).
-- **Flash:** 4 MB, Custom-Partitionstabelle (App + SPIFFS).
+- **Flash:** 16 MB (`CONFIG_ESPTOOLPY_FLASHSIZE_16MB`), Custom-Partitionstabelle (App + SPIFFS).
 - **Web-UI:** Statische Seiten unter `spiffs/` (Bootstrap, WLAN-, LED-, Info-Seiten).
 
 ## Vorteile / Nutzen

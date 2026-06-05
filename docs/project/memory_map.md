@@ -6,9 +6,9 @@ type: project-doc
 
 # Speicher-Layout (Memory Map)
 
-Flash-Partitionierung der SmartHome-Basisstation (ESP32-S3, **4 MB** Flash gemäß `sdkconfig`).
+Flash-Partitionierung der SmartHome-Basisstation (ESP32-S3, **16 MB** Flash gemäß `sdkconfig`).
 
-Quellen: `partitions.csv`, `sdkconfig` (`CONFIG_PARTITION_TABLE_*`, `CONFIG_ESPTOOLPY_FLASHSIZE_4MB`).
+Quellen: `partitions.csv`, `sdkconfig` (`CONFIG_PARTITION_TABLE_*`, `CONFIG_ESPTOOLPY_FLASHSIZE_16MB`).
 
 ## Standard-Bereiche (ESP-IDF)
 
@@ -18,10 +18,10 @@ Quellen: `partitions.csv`, `sdkconfig` (`CONFIG_PARTITION_TABLE_*`, `CONFIG_ESPT
 | Partitionstabelle | `0x8000` | 4 KiB | `CONFIG_PARTITION_TABLE_OFFSET` |
 | NVS | `0x9000` | 24 KiB (`0x6000`) | `partitions.csv` |
 | PHY Init | `0xF000` | 4 KiB (`0x1000`) | Kalibrierungsdaten WiFi/BT |
-| Factory App | `0x10000` | ~2,38 MiB (`0x262000`, 4-KiB-ausgerichtet) | Firmware-Binary |
-| SPIFFS (storage) | `0x272000` | 960 KiB (`0xF0000`) | Web-Assets, `configuration.json` |
+| Factory App | `0x10000` | ~2,39 MiB (`0x263000`, 4-KiB-ausgerichtet, aufgerundet von `0x2625A0`) | Firmware-Binary |
+| SPIFFS (storage) | `0x273000` | 960 KiB (`0xF0000`) | Web-Assets, `configuration.json` |
 
-Ende der belegten Partitionen: `0x362000` — verbleibender Flash bis `0x400000` (4 MiB) ungenutzt.
+Ende der belegten Partitionen: `0x363000` — verbleibender Flash bis `0x1000000` (16 MiB) ungenutzt.
 
 ## Partitionstabelle (`partitions.csv`)
 
@@ -29,7 +29,7 @@ Ende der belegten Partitionen: `0x362000` — verbleibender Flash bis `0x400000`
 # Name,   Type, SubType, Offset,  Size, Flags
 nvs,      data, nvs,     0x9000,  0x6000,
 phy_init, data, phy,     0xf000,  0x1000,
-factory,  app,  factory, 0x10000, 0x262000,
+factory,  app,  factory, 0x10000, 0x263000,
 storage,  data, spiffs,  ,        0xF0000,
 ```
 
@@ -40,7 +40,9 @@ storage,  data, spiffs,  ,        0xF0000,
 | `factory` | app | factory | Haupt-Firmware (`idf.py build`) |
 | `storage` | data | spiffs | SPIFFS-Partition, Mount `/spiffs` |
 
-**Hinweis:** Offset von `storage` leer in CSV → ESP-IDF legt Partition direkt nach `factory` an (`0x272000`). App-Partitionen müssen auf `0x1000` ausgerichtet sein (ESP-IDF 5.5+).
+**Hinweis:** Offset von `storage` leer in CSV → ESP-IDF legt Partition direkt nach `factory` an (`0x273000`). App-Partitionen müssen auf `0x1000` ausgerichtet sein (ESP-IDF 5.5+); `0x2625A0` ist ungültig → **`0x263000`** (Aufrundung).
+
+**Wichtig:** `CONFIG_PARTITION_TABLE_CUSTOM=y` und `CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"` — bei `set-target esp32s3` prüfen, sonst wird nur die Standard-Factory-Partition ohne SPIFFS genutzt.
 
 ## Laufzeit-Mapping Firmware
 

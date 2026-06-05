@@ -117,7 +117,7 @@ Formatting and static analysis: `.clang-format` and `.clang-tidy` in the project
 2. **Netzwerk-Stack:** `esp_netif_init()`, Default-Event-Loop.
 3. **Synchronisation:** Mutex und Binary-Semaphore für LED-Logik.
 4. **SPIFFS** unter `/spiffs` mounten (`initSpiffs`).
-5. **HTTP-Server** starten (`startWebServer("/spiffs")`).
+5. **HTTP-Server** starten (`startWebServer("/spiffs", &http_server)` → `esp_err_t`).
 6. **FreeRTOS-Tasks** (Core-Zuordnung über `PRO_CPU` / `APP_CPU` in `main.h`):
    - `ledControlTask` — LED-Steuerung
    - `executeTaskControl` — TaskControl

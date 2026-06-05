@@ -53,7 +53,7 @@ Die KiCad-Hardware und ESP-IDF-Firmware sind im Repository dokumentiert und erwe
 | Merkmal | Angabe |
 |---------|--------|
 | MCU | ESP32-S3-WROOM-1U-N16R8 |
-| Flash | 4 MB (Custom-Partitionstabelle) |
+| Flash | 16 MB (Custom-Partitionstabelle) |
 | Konnektivität | WLAN (802.11 b/g/n); Ethernet geplant |
 | Firmware | ESP-IDF, Version siehe `version` |
 | Gehäuse / Zubehör | Produktabhängig — siehe Stückliste KiCad |
@@ -106,7 +106,7 @@ KiCad hardware and ESP-IDF firmware are documented in the repository and ready f
 | Feature | Value |
 |---------|--------|
 | MCU | ESP32-S3-WROOM-1U-N16R8 |
-| Flash | 4 MB (custom partition table) |
+| Flash | 16 MB (custom partition table) |
 | Connectivity | Wi-Fi (802.11 b/g/n); Ethernet planned |
 | Firmware | ESP-IDF, version see `version` file |
 | Enclosure / accessories | Product-specific — see KiCad BOM |
