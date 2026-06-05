@@ -16,7 +16,7 @@
 
 
 // ---------------------------------OUTPUT---------------------------------
-// TaskControl
+// TaskControl — set to 1 to print FreeRTOS task list (requires CONFIG_FREERTOS_USE_TRACE_FACILITY in sdkconfig)
 #define TaskListOutput  0
 
 #endif // PROJECTCONFIG_H_

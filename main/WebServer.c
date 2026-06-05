@@ -3,7 +3,6 @@
 #include "esp_vfs.h"
 #include <sys/param.h>
 #include <esp_app_desc.h>
-#include "esp_ota_ops.h"
 #include <esp_log.h>
 #include "esp_wifi.h"
 #include "lwip/inet.h"
@@ -36,7 +35,7 @@ struct file_server_data {
     char scratch[SCRATCH_BUFSIZE];
 };
 
-static esp_app_desc_t *app_desc;
+static const esp_app_desc_t *app_desc;
 static char responseStr[500];
 static httpd_handle_t server = NULL;
 static const char* TAG = "Webserver";
@@ -529,14 +528,19 @@ static esp_err_t deviceHtmlHandler(httpd_req_t *req) {
     return ESP_OK;
 }
 
-httpd_handle_t startWebServer(const char *base_path) {
+esp_err_t startWebServer(const char *base_path, httpd_handle_t *out_handle) {
     static struct file_server_data *server_data = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.lru_purge_enable = true;
     config.uri_match_fn = httpd_uri_match_wildcard;
     config.max_uri_handlers = 51;
 
-    app_desc = esp_ota_get_app_description();
+    if (out_handle == NULL) {
+        return ESP_ERR_INVALID_ARG;
+    }
+    *out_handle = NULL;
+
+    app_desc = esp_app_get_description();
 
     if (!base_path || strcmp(base_path, "/spiffs") != 0) {
 		printf("EVENT: WebServer -> File server presently supports only '/spiffs' as base path\n");
@@ -557,7 +561,8 @@ httpd_handle_t startWebServer(const char *base_path) {
 
     // Start the httpd server
     printf("EVENT: WebServer -> Starting server on port: '%d'\n", config.server_port);
-    if (httpd_start(&server, &config) == ESP_OK) {
+    esp_err_t err = httpd_start(&server, &config);
+    if (err == ESP_OK) {
         // Set URI handlers
         printf("EVENT: WebServer -> Registering URI handlers\n");
         httpd_uri_t deviceHandler = {
@@ -762,9 +767,10 @@ httpd_handle_t startWebServer(const char *base_path) {
 			.user_ctx  = server_data
 		};
 		httpd_register_uri_handler(server, &reqGet);
-        return server;
+        *out_handle = server;
+        return ESP_OK;
     }
 
     printf("EVENT: WebServer -> Error starting server!\n");
-    return NULL;
+    return err;
 }

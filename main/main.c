@@ -6,6 +6,7 @@
 #include "freertos/semphr.h"
 #include "esp_event.h"
 #include "esp_spiffs.h"
+#include "esp_log.h"
 
 #include "main.h"
 #include "TaskControl.h"
@@ -58,6 +59,8 @@ static esp_err_t initSpiffs(void) {
     return ESP_OK;
 }
 
+static const char *TAG = "main";
+
 void app_main(void) {
     //Initialize NVS
     esp_err_t ret = nvs_flash_init();
@@ -74,7 +77,12 @@ void app_main(void) {
     xLedSemaphore = xSemaphoreCreateBinary();
 
     initSpiffs();
-    startWebServer("/spiffs");
+
+    httpd_handle_t http_server = NULL;
+    ret = startWebServer("/spiffs", &http_server);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to start web server: %s", esp_err_to_name(ret));
+    }
 
     xTaskCreatePinnedToCore( ledControlTask, "ledControlTask", 4096, NULL, 1, NULL, PRO_CPU );
     xTaskCreatePinnedToCore( executeTaskControl, "TaskControl", 2048, NULL, 1, NULL, PRO_CPU );

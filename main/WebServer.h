@@ -8,6 +8,7 @@
 #ifndef WEBSERVER_H_
 #define WEBSERVER_H_
 
+#include "esp_err.h"
 #include "esp_http_server.h"
 
 #define HTTP_200_HDR "200 OK"
@@ -25,6 +26,6 @@
 #define HTTP_CONTENT_TYPE_JSON "application/json"
 #define HTTP_CONTENT_TYPE_PNG "image/png"
 
-httpd_handle_t startWebServer(const char *base_path);
+esp_err_t startWebServer(const char *base_path, httpd_handle_t *out_handle);
 
 #endif // WEBSERVER_H_

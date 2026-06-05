@@ -15,6 +15,7 @@ char taskName[25];
 void executeTaskControl( void *pvParameters ) {
 
     while (1) {
+#if TaskListOutput
         uxArraySize = uxTaskGetNumberOfTasks(); // Current number of tasks
 
         pxTaskStatusArray = pvPortMalloc( uxArraySize * sizeof( TaskStatus_t ) ); // Heap block for all task status entries
@@ -26,7 +27,6 @@ void executeTaskControl( void *pvParameters ) {
 
             /* For each populated position in the pxTaskStatusArray array,
             format the raw data as human readable ASCII data. */
-#if TaskListOutput
             printf("****************************************************\n");
             printf("%-7s%-20s%-10s%-5s%-10s%-5s\n", "Task", "Name", "State", "Prio", "Stack", "Core"); 
             printf("****************************************************\n");
@@ -71,11 +71,10 @@ void executeTaskControl( void *pvParameters ) {
             }
             printf("\n");
 
-#endif // TaskListOutput
-
             /* The array is no longer needed, free the memory it consumes. */
             vPortFree( pxTaskStatusArray );
         }
+#endif // TaskListOutput
         vTaskDelay(1500 / portTICK_PERIOD_MS);
     }
 }
