@@ -65,4 +65,4 @@ Kompakte Basisstation zur Anbindung und Konfiguration von Smart-Home-Komponenten
 
 ## Status
 
-Entwicklungsstand — **keine Produktions-Freigabe**. SoftAP-SSID über `productName` (`SmartHome Basis`); Versionsanzeige über ESP-IDF-Projektversion.
+Entwicklungsstand — **keine Produktions-Freigabe**. SoftAP-SSID über `productName` (`SmartHome-Basisstation`); Versionsanzeige über ESP-IDF-Projektversion.

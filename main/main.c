@@ -18,7 +18,7 @@
 SemaphoreHandle_t xLedMutex;
 SemaphoreHandle_t xLedSemaphore;
 
-const char *productName = "SmartHome Basis";
+const char *productName = "SmartHome-Basisstation";
 cJSON* config;
 
 static int ret;

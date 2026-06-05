@@ -139,7 +139,7 @@ Formatting and static analysis: `.clang-format` and `.clang-tidy` in the project
 
 ## Globale Symbole (Auszug)
 
-- `productName` in `main.c` (SoftAP SSID, z. B. `"SmartHome Basis"`). HTTP `/FWversion` liefert `app_desc->version` aus `CONFIG_APP_PROJECT_VER` / `version`.
+- `productName` in `main.c` (SoftAP SSID: `"SmartHome-Basisstation"`). `CONFIG_LWIP_LOCAL_HOSTNAME` in `sdkconfig` identisch. HTTP `/FWversion` liefert `app_desc->version` aus `CONFIG_APP_PROJECT_VER` / `version`.
 - `config` (`cJSON*`) — WLAN-Konfiguration im RAM, synchron mit Datei.
 
 ## Bekannte Code-Stelle (Review-Hinweis)
