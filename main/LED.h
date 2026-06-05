@@ -19,10 +19,10 @@
 #define LED_RED                 LEDC_CHANNEL_3
 #define LED_MAX                 4
 
-#define LED_GPIO_BLUE           GPIO_NUM_23
-#define LED_GPIO_YELLOW         GPIO_NUM_22
-#define LED_GPIO_GREEN          GPIO_NUM_19
-#define LED_GPIO_RED            GPIO_NUM_18
+#define LED_GPIO_BLUE           GPIO_NUM_46
+#define LED_GPIO_YELLOW         GPIO_NUM_3
+#define LED_GPIO_GREEN          GPIO_NUM_45
+#define LED_GPIO_RED            GPIO_NUM_21
 
 #define ON                      (4096) // Set duty to 50%. (2 ** 13) * 50% = 4096
 #define OFF                     (0) // Set duty to 0%. (2 ** 13) * 0% = 0
