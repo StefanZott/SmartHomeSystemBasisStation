@@ -3,7 +3,7 @@
   "hooks": {
     "sessionStart": [
       {
-        "command": "node .cursor/hooks/workflow-reminder.js"
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .cursor/hooks/workflow-reminder.ps1"
       }
     ]
   }
