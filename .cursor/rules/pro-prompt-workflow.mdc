@@ -8,7 +8,7 @@ alwaysApply: true
 Wenn der aktuelle Prompt Code, Konfiguration oder Doku ändert, beachte den AGENTS.md Pro-Prompt-Workflow:
 
 1. AGENTS.md + relevante Doku lesen
-2. Bestehenden Code analysieren
+2. Bestehenden Code analysieren; umfangreiche Ergebnisse in `tmp/report/` ablegen
 3. Aufgabe verstehen (ggf. Rückfrage)
 4. JIRA-Ticket-Entwurf (Titel + Problembeschreibung) an Bediener; Bediener legt Ticket an und nennt ID; pro Aufgabe ein Ticket, nicht pro Sub-Task
 5. Lösungsplan vorlegen und Freigabe abwarten

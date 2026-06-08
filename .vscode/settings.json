@@ -1,19 +1,29 @@
 {
-    "C_Cpp.intelliSenseEngine": "default",
-    "idf.adapterTargetName": "esp32",
-    "idf.customExtraPaths": "c:\\Users\\stefa\\.espressif\\tools\\xtensa-esp-elf-gdb\\12.1_20231023\\xtensa-esp-elf-gdb\\bin;c:\\Users\\stefa\\.espressif\\tools\\riscv32-esp-elf-gdb\\12.1_20231023\\riscv32-esp-elf-gdb\\bin;c:\\Users\\stefa\\.espressif\\tools\\xtensa-esp-elf\\esp-13.2.0_20230928\\xtensa-esp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\riscv32-esp-elf\\esp-13.2.0_20230928\\riscv32-esp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\esp32ulp-elf\\2.35_20220830\\esp32ulp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\cmake\\3.24.0\\bin;c:\\Users\\stefa\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230921\\openocd-esp32\\bin;c:\\Users\\stefa\\.espressif\\tools\\ninja\\1.11.1;c:\\Users\\stefa\\.espressif\\tools\\idf-exe\\1.0.3;c:\\Users\\stefa\\.espressif\\tools\\ccache\\4.8\\ccache-4.8-windows-x86_64;c:\\Users\\stefa\\.espressif\\tools\\dfu-util\\0.11\\dfu-util-0.11-win64;c:\\Users\\stefa\\.espressif\\tools\\esp-rom-elfs\\20230320",
-    "idf.customExtraVars": {
-        "OPENOCD_SCRIPTS": "c:\\Users\\stefa\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230921/openocd-esp32/share/openocd/scripts",
-        "IDF_CCACHE_ENABLE": "1",
-        "ESP_ROM_ELF_DIR": "c:\\Users\\stefa\\.espressif\\tools\\esp-rom-elfs\\20230320/"
-    },
-    "idf.espIdfPathWin": "E:\\esp\\v5.2.1\\esp-idf",
-    "idf.openOcdConfigs": [
-        "interface/ftdi/esp32_devkitj_v1.cfg",
-        "target/esp32.cfg"
-    ],
-    "idf.portWin": "COM3",
-    "idf.pythonBinPathWin": "c:\\Users\\stefa\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
-    "idf.toolsPathWin": "c:\\Users\\stefa\\.espressif",
-    "idf.pythonInstallPath": "C:\\Users\\stefa\\.espressif\\tools\\idf-python\\3.11.2\\python.exe"
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.autocomplete": "disabled",
+  "C_Cpp.errorSquiggles": "disabled",
+  "idf.adapterTargetName": "esp32",
+  "idf.customExtraPaths": "c:\\Users\\stefa\\.espressif\\tools\\xtensa-esp-elf-gdb\\12.1_20231023\\xtensa-esp-elf-gdb\\bin;c:\\Users\\stefa\\.espressif\\tools\\riscv32-esp-elf-gdb\\12.1_20231023\\riscv32-esp-elf-gdb\\bin;c:\\Users\\stefa\\.espressif\\tools\\xtensa-esp-elf\\esp-13.2.0_20230928\\xtensa-esp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\riscv32-esp-elf\\esp-13.2.0_20230928\\riscv32-esp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\esp32ulp-elf\\2.35_20220830\\esp32ulp-elf\\bin;c:\\Users\\stefa\\.espressif\\tools\\cmake\\3.24.0\\bin;c:\\Users\\stefa\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230921\\openocd-esp32\\bin;c:\\Users\\stefa\\.espressif\\tools\\ninja\\1.11.1;c:\\Users\\stefa\\.espressif\\tools\\idf-exe\\1.0.3;c:\\Users\\stefa\\.espressif\\tools\\ccache\\4.8\\ccache-4.8-windows-x86_64;c:\\Users\\stefa\\.espressif\\tools\\dfu-util\\0.11\\dfu-util-0.11-win64;c:\\Users\\stefa\\.espressif\\tools\\esp-rom-elfs\\20230320",
+  "idf.customExtraVars": {
+    "OPENOCD_SCRIPTS": "c:\\Users\\stefa\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230921/openocd-esp32/share/openocd/scripts",
+    "IDF_CCACHE_ENABLE": "1",
+    "ESP_ROM_ELF_DIR": "c:\\Users\\stefa\\.espressif\\tools\\esp-rom-elfs\\20230320/",
+    "IDF_TARGET": "esp32s3"
+  },
+  "idf.espIdfPathWin": "E:\\esp\\.espressif\\v5.5.2\\esp-idf",
+  "idf.openOcdConfigs": [
+    "interface/ftdi/esp32_devkitj_v1.cfg",
+    "target/esp32.cfg"
+  ],
+  "idf.portWin": "COM3",
+  "idf.pythonBinPathWin": "c:\\Users\\stefa\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
+  "idf.toolsPathWin": "c:\\Users\\stefa\\.espressif",
+  "idf.pythonInstallPath": "C:\\Users\\stefa\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.currentSetup": "E:\\esp\\.espressif\\v5.5.2\\esp-idf",
+  "clangd.path": "C:\\Espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\Projekte\\SmartHomeSystemBasisStation\\build"
+  ]
 }

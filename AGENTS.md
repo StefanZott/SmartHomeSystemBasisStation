@@ -23,7 +23,7 @@ Das Projekt nutzt eine strikte, kleingeschriebene Ordnerstruktur mit einheitlich
 - `docs/`: Gesamte Projektdokumentation (siehe Dokumentationsrichtlinien).
 - `tests/`: Automatisierte Test-Suites für alle Komponenten.
 - `secrets/`: Lokale, ignorierte Dateien für Passwörter/Keys (niemals in Commits aufnehmen!).
-- `tmp/`: Scratchpad/Sandbox für temporäre Dateien, generierte Logs oder Skripte des KI-Agenten (wird via `.gitignore` ignoriert).
+- `tmp/`: Scratchpad/Sandbox für temporäre Dateien, generierte Logs oder Skripte des KI-Agenten (wird via `.gitignore` ignoriert). Unterordner: `tmp/tasks/` (Arbeitsaufträge), `tmp/report/` (Analysen, siehe §12).
 
 **Optional (projektabhängig, einheitlich benannt):**
 
@@ -133,7 +133,7 @@ Bei Bedarf fragt der Agent den Bediener, die entsprechende Massnahme durchzufüh
 
 ## 10. Agenten-Workflow & Pflege (Boy Scout Rule)
 
-- **Keine Memories anlegen!** Wir verzichten bewusst auf das Memory-System. Alles Projektwissen gehört in die Dokumentation unter `docs/` — versioniert, für alle sichtbar, und immer aktuell. Der Agent arbeitet aktiv mit den Markdown-Dateien im Projekt und liest diese bei Bedarf.
+- **Keine Memories anlegen!** Wir verzichten bewusst auf das Memory-System. Analysen und Untersuchungsergebnisse gehören nach `tmp/report/` (§12); dauerhaftes, abgestimmtes Projektwissen nach `docs/` — versioniert, für alle sichtbar, und immer aktuell. Der Agent arbeitet aktiv mit den Markdown-Dateien im Projekt und liest diese bei Bedarf.
 - **Validierung:** Nach Code-Änderungen die vorhandene Testsuite ausführen. Neue Funktionalität möglichst durch Tests absichern bevor sie als fertig gilt.
 - **Versionierung:** Bei jedem Prompt der Code ändert den Patch-Level (letztes Element) in `version` inkrementieren — einmal pro Prompt, nicht mehrfach. Zusätzlich `CONFIG_APP_PROJECT_VER` in `sdkconfig` (Zeile ~293) synchron halten — sonst zeigt die UI die alte Version.
 - **Release Notes pflegen:** Änderungen in `docs/userdoc/releases.md` dokumentieren. Neue Version als H2-Abschnitt mit Datum, gruppiert nach Kategorie (Feature, Fix, Sicherheit, Dokumentation).
@@ -169,10 +169,59 @@ created: YYYY-MM-DD
 requirement: F03.5 # Optional: Referenz auf Anforderungs-ID aus requirements.md
 ```
 
+## 12. Agent-Report-System (`tmp/report/`)
+
+Analysen, Reviews und Untersuchungsergebnisse des KI-Agenten werden als Markdown-Dateien unter `tmp/report/` abgelegt — nicht im Chat allein, nicht direkt in `docs/`.
+
+### Verzeichnisstruktur
+
+```
+tmp/
+├── tasks/
+│   ├── open/
+│   └── done/
+└── report/         # Analysen und Untersuchungsergebnisse (Markdown)
+```
+
+### Wann `tmp/report/` statt `docs/`?
+
+| Ziel | Ablage |
+| ---- | ------ |
+| Code-Review, Gap-Analyse, Recherche, Architektur-Skizze, Debug-Untersuchung | `tmp/report/` |
+| Abgestimmtes, dauerhaftes Projektwissen (Architektur, Security, Hardware) | `docs/` |
+
+Erkenntnisse aus Reports, die dauerhaft relevant sind, fließen nach Freigabe in die passende Datei unter `docs/project/` ein — der Report bleibt als Nachvollziehbarkeit erhalten.
+
+### Report-Datei-Format
+
+**Dateiname:** `YYYY-MM-DD_kurztitel.md` (Datum + aussagekräftiger Kurztitel in Kebab-Case)
+
+**Sprache:** Deutsch (wie Doku unter `docs/`).
+
+**Aufbau:**
+
+```markdown
+---
+type: analysis          # analysis | code-review | investigation | gap-analysis | architecture
+created: YYYY-MM-DD
+jira: PROJ-1234         # optional
+status: draft           # draft | final
+---
+
+# Titel der Analyse
+
+## Ausgangslage
+## Ergebnis / Befunde
+## Empfehlungen
+## Nächste Schritte
+```
+
+Bei jeder umfangreichen Analyse (mehr als eine kurze Chat-Antwort): Report anlegen oder bestehenden Report in `tmp/report/` ergänzen.
+
 # Projektspezifisch: SmartHomeSystemBasisStation
 
 > Ab hier folgen Regeln und Kontext die spezifisch für dieses Projekt gelten.
-> Die Abschnitte darüber (§1–§11) sind generisch und gelten unternehmensweit.
+> Die Abschnitte darüber (§1–§12) sind generisch und gelten unternehmensweit.
 
 ## 🎯 Ziel des Projekts
 
@@ -240,13 +289,14 @@ Jeder Prompt, der Code oder Doku ändert, durchläuft folgende Phasen. Phasen d�
 
 **1. AGENTS.md einlesen**
 
-- Globale Regeln (§1–§11) und projektspezifischen Teil erneut prüfen.
+- Globale Regeln (§1–§12) und projektspezifischen Teil erneut prüfen.
 - Projektdokumentation-Index oben beachten: nur die Doku-Dateien lesen, die zum Thema passen.
 
 **2. Bestehenden Code analysieren**
 
 - Relevante Quellen unter `main/`, `src/` etc. sichten.
 - Bezogene Doku unter `docs/project/` lesen, bevor Annahmen getroffen werden.
+- Umfangreiche Analyse-Ergebnisse in `tmp/report/` als Markdown ablegen (§12).
 
 **3. Aufgabe verstehen**
 
