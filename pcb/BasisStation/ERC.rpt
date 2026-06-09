@@ -1,0 +1,101 @@
+ERC-Bericht (2026-06-09T10:15:58+0200, UTF8-kodiert)
+
+***** Schaltplan /
+[lib_symbol_mismatch]: Symbol "USB_B_Micro" stimmt nicht mit Kopie in Bibliothek "Connector" überein
+    ; warning
+    @(2200 mils, 3450 mils): Symbol J1 [USB_B_Micro]
+[footprint_link_issues]: Footprint "Diodes_UDFN-10_1.0x2.5mm_P0.5mm" nicht in Bibliothek "Package_DFN_QFN" gefunden.
+    ; warning
+    @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
+[lib_symbol_mismatch]: Symbol "D3V3XA4B10LP" stimmt nicht mit Kopie in Bibliothek "Power_Protection" überein
+    ; warning
+    @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(1250 mils, 1000 mils): Symbol PS2 [TSR_1-2433E]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "TSR_1-2433E"
+    ; warning
+    @(1250 mils, 1000 mils): Symbol PS2 [TSR_1-2433E]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-PT5H_6.3X5.2"
+    ; warning
+    @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "1543-650-149"
+    ; warning
+    @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+    ; warning
+    @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(1850 mils, 3850 mils): Symbol J5 [Conn_02x05_Odd_Even]
+[unconnected_wire_endpoint]: Unverbundenes Verbindungsende
+    ; warning
+    @(3350 mils, 2100 mils): Horizontale Verbindung, Länge 400 mils
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+    ; warning
+    @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(5450 mils, 3800 mils): Symbol U6 [ESP32-S3-WROOM-1U-N16R8]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(8900 mils, 2500 mils): Symbol J6 [Conn_02x03_Odd_Even]
+[unconnected_wire_endpoint]: Unverbundenes Verbindungsende
+    ; warning
+    @(9450 mils, 900 mils): Horizontale Verbindung, Länge 350 mils
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+    ; warning
+    @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
+[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WL-TMRC_3MM"
+    ; warning
+    @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(10000 mils, 3800 mils): Symbol D9 [LED]
+[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
+    ; warning
+    @(10000 mils, 3800 mils): Symbol D9 [LED]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(10000 mils, 4200 mils): Symbol D10 [LED]
+[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
+    ; warning
+    @(10000 mils, 4200 mils): Symbol D10 [LED]
+[footprint_link_issues]: Die aktuelle Konfiguration enthält nicht die Footprint-Bibliothek "Footprints".
+    ; warning
+    @(10000 mils, 4600 mils): Symbol D8 [LED]
+[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
+    ; warning
+    @(10000 mils, 4600 mils): Symbol D8 [LED]
+
+***** Schaltplan /Layout/
+[pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
+    ; warning
+    @(2250 mils, 2400 mils): Symbol S2 Pin 1 [1, Bidirectional, Line]
+    @(2200 mils, 3850 mils): Symbol J1 Pin 5 [GND, Power output, Line]
+[multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
+    ; warning
+    @(10250 mils, 1800 mils): Symbol #PWR042 Pin 1 [Power input, Line]
+    @(5450 mils, 5400 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
+
+***** Schaltplan /Debugging/
+
+ ** ERC-Meldungen: 30  Fehler 0  Warnungen 30

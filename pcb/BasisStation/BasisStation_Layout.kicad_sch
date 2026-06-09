@@ -1205,7 +1205,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Espressif:ESP32-S3-WROOM-1"
+		(symbol "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U-N16R8"
 			(pin_names
 				(offset 1.016)
 			)
@@ -1221,7 +1221,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "ESP32-S3-WROOM-1"
+			(property "Value" "ESP32-S3-WROOM-1U-N16R8"
 				(at -43.18 40.64 0)
 				(effects
 					(font
@@ -1230,7 +1230,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "PCM_Espressif:ESP32-S3-WROOM-1"
+			(property "Footprint" "Footprints:ESP32-S3-WROOM-1U"
 				(at 2.54 -48.26 0)
 				(effects
 					(font
@@ -1248,7 +1248,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "2.4 GHz WiFi (802.11 b/g/n) and Bluetooth ® 5 (LE) module Built around ESP32S3 series of SoCs, Xtensa ® dualcore 32bit LX7 microprocessor Flash up to 16 MB, PSRAM up to 8 MB 36 GPIOs, rich set of peripherals Onboard PCB antenna"
+			(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1257,8 +1257,58 @@
 					(hide yes)
 				)
 			)
-			(symbol "ESP32-S3-WROOM-1_0_0"
-				(text "ESP32-S3-WROOM-1"
+			(property "Height" "3.35"
+				(at 29.21 -394.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "356-ESP32S3WM1UN16R8"
+				(at 29.21 -494.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Espressif-Systems/ESP32-S3-WROOM-1U-N16R8?qs=Li%252BoUPsLEns6V0Pr5KRJtw%3D%3D"
+				(at 29.21 -594.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Espressif Systems"
+				(at 29.21 -694.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "ESP32-S3-WROOM-1U-N16R8"
+				(at 29.21 -794.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(symbol "ESP32-S3-WROOM-1U-N16R8_0_0"
+				(text "ESP32-S3-WROOM-1U-N16R8"
 					(at -20.32 0 0)
 					(effects
 						(font
@@ -1482,7 +1532,7 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at 0 -40.64 90)
 					(length 2.54)
 					(hide yes)
@@ -1501,11 +1551,11 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at 0 -40.64 90)
 					(length 2.54)
 					(hide yes)
-					(name "GND"
+					(name "EPAD"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2007,7 +2057,7 @@
 					)
 				)
 			)
-			(symbol "ESP32-S3-WROOM-1_0_1"
+			(symbol "ESP32-S3-WROOM-1U-N16R8_0_1"
 				(rectangle
 					(start -43.18 38.1)
 					(end 43.18 -38.1)
@@ -3753,6 +3803,10 @@
 		(uuid "31983ed0-1832-4ee9-ac05-c9e4ca601244")
 	)
 	(no_connect
+		(at 92.71 127)
+		(uuid "3a23bf28-b03d-47a9-887f-680819c64ef8")
+	)
+	(no_connect
 		(at 184.15 88.9)
 		(uuid "3a482024-d666-4665-8a88-ff009f7ffce1")
 	)
@@ -3761,12 +3815,12 @@
 		(uuid "3b38871a-03e9-46c6-be7a-d3044d76e91e")
 	)
 	(no_connect
-		(at 184.15 78.74)
-		(uuid "4dc549bf-9e5b-4454-8852-c82bf1dbe5ff")
+		(at 92.71 132.08)
+		(uuid "4b328199-39fd-48ed-aa87-12d579073eb5")
 	)
 	(no_connect
-		(at 92.71 127)
-		(uuid "710c283d-bcd5-4bc6-96ea-55b8bc7d2461")
+		(at 184.15 78.74)
+		(uuid "4dc549bf-9e5b-4454-8852-c82bf1dbe5ff")
 	)
 	(no_connect
 		(at 184.15 86.36)
@@ -3783,14 +3837,6 @@
 	(no_connect
 		(at 184.15 96.52)
 		(uuid "817485f6-5768-46d4-bd6d-29b1a242a11a")
-	)
-	(no_connect
-		(at 92.71 132.08)
-		(uuid "9137419d-f33e-4148-b711-c426f9f4f8bd")
-	)
-	(no_connect
-		(at 92.71 129.54)
-		(uuid "940a8e39-49ad-42c8-b646-684aac219832")
 	)
 	(no_connect
 		(at 184.15 129.54)
@@ -3831,6 +3877,10 @@
 	(no_connect
 		(at 92.71 71.12)
 		(uuid "fb185dd0-cb26-4e60-aeb2-a5fb8590895f")
+	)
+	(no_connect
+		(at 92.71 129.54)
+		(uuid "fdcda3e6-312f-4bcf-b11f-3d954946fb00")
 	)
 	(wire
 		(pts
@@ -4074,16 +4124,6 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 137.16) (xy 138.43 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37c42eb2-716e-4a26-84fe-710b0baadb71")
-	)
-	(wire
-		(pts
 			(xy 101.6 22.86) (xy 138.43 22.86)
 		)
 		(stroke
@@ -4301,6 +4341,16 @@
 			(type default)
 		)
 		(uuid "71ef8e26-f5a3-4bb7-9218-672c780c2efb")
+	)
+	(wire
+		(pts
+			(xy 138.43 137.16) (xy 138.43 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72a0a33f-85de-4ee4-9694-18e2911ba9e3")
 	)
 	(wire
 		(pts
@@ -7505,7 +7555,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Espressif:ESP32-S3-WROOM-1")
+		(lib_id "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U-N16R8")
 		(at 138.43 96.52 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7515,7 +7565,7 @@
 		(fields_autoplaced yes)
 		(uuid "cba8cb1b-a351-4115-8c61-64d8fed7e18b")
 		(property "Reference" "U6"
-			(at 140.6241 53.34 0)
+			(at 140.5733 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7523,8 +7573,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "ESP32-S3-WROOM-1"
-			(at 140.6241 55.88 0)
+		(property "Value" "ESP32-S3-WROOM-1U-N16R8"
+			(at 140.5733 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7532,7 +7582,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Footprints:ESP32-S3-WROOM-1U"
+		(property "Footprint" "RF_Module:ESP32-S3-WROOM-1U"
 			(at 140.97 144.78 0)
 			(effects
 				(font
@@ -7550,12 +7600,62 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "2.4 GHz WiFi (802.11 b/g/n) and Bluetooth ® 5 (LE) module Built around ESP32S3 series of SoCs, Xtensa ® dualcore 32bit LX7 microprocessor Flash up to 16 MB, PSRAM up to 8 MB 36 GPIOs, rich set of peripherals Onboard PCB antenna"
+		(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector"
 			(at 138.43 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Height" "3.35"
+			(at 167.64 491.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "356-ESP32S3WM1UN16R8"
+			(at 167.64 591.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Espressif-Systems/ESP32-S3-WROOM-1U-N16R8?qs=Li%252BoUPsLEns6V0Pr5KRJtw%3D%3D"
+			(at 167.64 691.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Espressif Systems"
+			(at 167.64 791.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "ESP32-S3-WROOM-1U-N16R8"
+			(at 167.64 891.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
 				(hide yes)
 			)
 		)
@@ -8385,7 +8485,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 138.43 143.51 0)
+		(at 138.43 142.24 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8394,7 +8494,7 @@
 		(fields_autoplaced yes)
 		(uuid "fa3ede61-ff44-4f71-87de-469ebd4fb598")
 		(property "Reference" "#PWR037"
-			(at 138.43 149.86 0)
+			(at 138.43 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8403,7 +8503,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 138.43 148.59 0)
+			(at 138.43 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8411,7 +8511,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 138.43 143.51 0)
+			(at 138.43 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8420,7 +8520,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 138.43 143.51 0)
+			(at 138.43 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8429,7 +8529,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 138.43 143.51 0)
+			(at 138.43 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)

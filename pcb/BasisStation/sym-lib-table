@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ESP32-S3-WROOM-1U-N16R8")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/ESP32-S3-WROOM-1U-N16R8/ESP32-S3-WROOM-1U-N16R8.kicad_sym")(options "")(descr "MCU module ESP32-S3-WROOM-1U-N16R8 (Espressif pin layout)"))
+  (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/Espressif.kicad_sym")(options "")(descr "Espressif modules"))
+)
