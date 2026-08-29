@@ -805,6 +805,10 @@
     [
       "1c58143b-a7ac-41ca-9e87-95c7289c5970",
       "Debugging"
+    ],
+    [
+      "5fd3b213-b7bb-4f0b-b520-d744bf60efa7",
+      "Stromversorgung"
     ]
   ],
   "text_variables": {}

@@ -1,0 +1,249 @@
+Hinweis: Verarbeite Symbol "C7:Footprints:WCAP-FTXX_P10L13W7H13".
+Hinweis: Verarbeite Symbol "R14:Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal".
+Hinweis: Verarbeite Symbol "C8:Footprints:WCAP-PT5H_6.3X5.2_DXL_".
+Hinweis: Verarbeite Symbol "Q3:Package_TO_SOT_THT:TO-92_Inline".
+Hinweis: Verarbeite Symbol "C10:Footprints:WCAP-FTXX_P10L13W7H13".
+Hinweis: Verarbeite Symbol "R9:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal".
+Hinweis: Verarbeite Symbol "C12:Footprints:WCAP-FTXX_P10L13W7H13".
+Hinweis: Verarbeite Symbol "R13:Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal".
+Hinweis: Verarbeite Symbol "D7:Footprints:WL-TMRC_3MM".
+Hinweis: Verarbeite Symbol "R15:Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal".
+Hinweis: Verarbeite Symbol "D8:Footprints:WL-TMRW_3MM".
+Hinweis: Verarbeite Symbol "Q4:Package_TO_SOT_THT:TO-92_Inline".
+Hinweis: Verarbeite Symbol "D9:Footprints:WL-TMRW_3MM".
+Hinweis: Verarbeite Symbol "Q2:Package_TO_SOT_THT:TO-92_Inline".
+Hinweis: Verarbeite Symbol "D10:Footprints:WL-TMRC_3MM".
+Hinweis: Warnungen insgesamt: 6, Fehler insgesamt: 14.
+Hinweis: Verarbeite Symbol "J1:".
+Hinweis: Verarbeite Symbol "U6:RF_Module:ESP32-S3-WROOM-1U".
+Hinweis: Verarbeite Symbol "J5:Footprints:61201021621".
+Hinweis: Verarbeite Symbol "U1:Package_DFN_QFN:Diodes_UDFN-10_1.0x2.5mm_P0.5mm".
+Hinweis: Verarbeite Symbol "J6:Footprints:61200621621".
+Hinweis: Verarbeite Symbol "S2:Footprints:1543650149".
+Hinweis: Verarbeite Symbol "PS2:Footprints:CONV_TSR_1-2433E".
+Hinweis: Verarbeite Symbol "R16:Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal".
+Hinweis: Verarbeite Symbol "Q1:Package_TO_SOT_THT:TO-92_Inline".
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO17/U1TXD/ADC2_CH6-Pad10) hinzufügen.
+U6 Pin 10 nach unconnected-(U6-GPIO17/U1TXD/ADC2_CH6-Pad10) verbunden.
+U6 Pin 41 nach GND verbunden.
+
+
+U6 Pin 27 nach Net-(J6-Pin_6) verbunden.
+Q1 hinzugefügt (Footprint "Package_TO_SOT_THT:TO-92_Inline").
+Referenzbezeichner REF** in Q1 geändert.
+Wert Q1 von TO-92_Inline in BC337 geändert.
+Symbolverknüpfung Q1 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/00e1f3f3-9df0-4d49-a562-436a6dc0b17f aktualisiert.
+Q1 Felder aktualisiert.
+Schaltplanblatt Q1 auf /Layout/ aktualisiert.
+Blattname von Q1 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+Q1 Footprint-Filter auf "TO?92*" aktualisiert.
+Netz Net-(Q1-C) hinzufügen.
+Q1 Pin 1 nach Net-(Q1-C) verbunden.
+Netz Net-(Q1-B) hinzufügen.
+Q1 Pin 2 nach Net-(Q1-B) verbunden.
+Q1 Pin 3 nach GND verbunden.
+Q2 hinzugefügt (Footprint "Package_TO_SOT_THT:TO-92_Inline").
+Referenzbezeichner REF** in Q2 geändert.
+Wert Q2 von TO-92_Inline in BC337 geändert.
+Symbolverknüpfung Q2 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/f7c03835-7933-4b83-8900-3a6badd2b378 aktualisiert.
+Q2 Felder aktualisiert.
+Schaltplanblatt Q2 auf /Layout/ aktualisiert.
+Blattname von Q2 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+Q2 Footprint-Filter auf "TO?92*" aktualisiert.
+Netz Net-(Q2-C) hinzufügen.
+Q2 Pin 1 nach Net-(Q2-C) verbunden.
+Netz Net-(Q2-B) hinzufügen.
+Q2 Pin 2 nach Net-(Q2-B) verbunden.
+Q2 Pin 3 nach GND verbunden.
+Q3 hinzugefügt (Footprint "Package_TO_SOT_THT:TO-92_Inline").
+Referenzbezeichner REF** in Q3 geändert.
+Wert Q3 von TO-92_Inline in BC337 geändert.
+Symbolverknüpfung Q3 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/95fbb236-f3b2-4123-b873-da14beb142b3 aktualisiert.
+Q3 Felder aktualisiert.
+Schaltplanblatt Q3 auf /Layout/ aktualisiert.
+Blattname von Q3 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+Q3 Footprint-Filter auf "TO?92*" aktualisiert.
+Netz Net-(Q3-B) hinzufügen.
+Q3 Pin 2 nach Net-(Q3-B) verbunden.
+Netz Net-(Q3-C) hinzufügen.
+Q3 Pin 1 nach Net-(Q3-C) verbunden.
+Q3 Pin 3 nach GND verbunden.
+Q4 hinzugefügt (Footprint "Package_TO_SOT_THT:TO-92_Inline").
+Referenzbezeichner REF** in Q4 geändert.
+Wert Q4 von TO-92_Inline in BC337 geändert.
+Symbolverknüpfung Q4 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/43f00cfc-d2fa-4c42-ba18-caed72e1b079 aktualisiert.
+Q4 Felder aktualisiert.
+Schaltplanblatt Q4 auf /Layout/ aktualisiert.
+Blattname von Q4 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+Q4 Footprint-Filter auf "TO?92*" aktualisiert.
+Netz Net-(Q4-C) hinzufügen.
+Q4 Pin 1 nach Net-(Q4-C) verbunden.
+Q4 Pin 3 nach GND verbunden.
+Netz Net-(Q4-B) hinzufügen.
+Q4 Pin 2 nach Net-(Q4-B) verbunden.
+R9 hinzugefügt (Footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal").
+Referenzbezeichner REF** in R9 geändert.
+Wert R9 von R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal in 10k geändert.
+Symbolverknüpfung R9 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/594c7cff-649e-480c-8fff-8c4501dd826f aktualisiert.
+R9 Felder aktualisiert.
+Schaltplanblatt R9 auf /Layout/ aktualisiert.
+Blattname von R9 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+R9 Footprint-Filter auf "R_*" aktualisiert.
+Netz /Layout/EN hinzufügen.
+R9 Pin 2 nach /Layout/EN verbunden.
+Netz /Layout/+3V3 hinzufügen.
+R9 Pin 1 nach /Layout/+3V3 verbunden.
+R13 hinzugefügt (Footprint "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal").
+Referenzbezeichner REF** in R13 geändert.
+Wert R13 von R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal in 220 geändert.
+Symbolverknüpfung R13 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/560c6048-3130-4305-8d39-62dd6e8ed475 aktualisiert.
+R13 Felder aktualisiert.
+Schaltplanblatt R13 auf /Layout/ aktualisiert.
+Blattname von R13 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+R13 Footprint-Filter auf "R_*" aktualisiert.
+Netz Net-(D7-Pad2) hinzufügen.
+R13 Pin 2 nach Net-(D7-Pad2) verbunden.
+R13 Pin 1 nach Net-(Q4-C) verbunden.
+R14 hinzugefügt (Footprint "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal").
+Referenzbezeichner REF** in R14 geändert.
+Wert R14 von R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal in 220 geändert.
+Symbolverknüpfung R14 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/3756c516-14ba-4347-a875-c3cac85a911f aktualisiert.
+R14 Felder aktualisiert.
+Schaltplanblatt R14 auf /Layout/ aktualisiert.
+Blattname von R14 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+R14 Footprint-Filter auf "R_*" aktualisiert.
+R14 Pin 2 nach Net-(Q1-C) verbunden.
+Netz Net-(D8-K) hinzufügen.
+R14 Pin 1 nach Net-(D8-K) verbunden.
+R15 hinzugefügt (Footprint "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal").
+Referenzbezeichner REF** in R15 geändert.
+Wert R15 von R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal in 220 geändert.
+Symbolverknüpfung R15 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/4b5fabe3-1211-4631-bf9a-b74b5a2819dd aktualisiert.
+R15 Felder aktualisiert.
+Schaltplanblatt R15 auf /Layout/ aktualisiert.
+Blattname von R15 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+R15 Footprint-Filter auf "R_*" aktualisiert.
+R15 Pin 1 nach Net-(Q3-C) verbunden.
+Netz Net-(D9-K) hinzufügen.
+R15 Pin 2 nach Net-(D9-K) verbunden.
+R16 hinzugefügt (Footprint "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal").
+Referenzbezeichner REF** in R16 geändert.
+Wert R16 von R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal in 220 geändert.
+Symbolverknüpfung R16 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/fb8fc801-3bef-405d-a28f-c7780e94491d aktualisiert.
+R16 Felder aktualisiert.
+Schaltplanblatt R16 auf /Layout/ aktualisiert.
+Blattname von R16 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+R16 Footprint-Filter auf "R_*" aktualisiert.
+R16 Pin 1 nach Net-(Q2-C) verbunden.
+Netz Net-(D10-K) hinzufügen.
+R16 Pin 2 nach Net-(D10-K) verbunden.
+U6 hinzugefügt (Footprint "RF_Module:ESP32-S3-WROOM-1U").
+Referenzbezeichner REF** in U6 geändert.
+Symbolverknüpfung U6 von  nach /1af2eb5e-14cd-443f-ae96-dbfda52b298f/cba8cb1b-a351-4115-8c61-64d8fed7e18b aktualisiert.
+U6 Felder aktualisiert.
+Schaltplanblatt U6 auf /Layout/ aktualisiert.
+Blattname von U6 auf "BasisStation_Layout.kicad_sch" aktualisiert.
+U6 Pin 41 nach GND verbunden.
+Netz USB- hinzufügen.
+U6 Pin 13 nach USB- verbunden.
+U6 Pin 16 nach Net-(Q1-B) verbunden.
+Netz Net-(J5-Pin_6) hinzufügen.
+U6 Pin 33 nach Net-(J5-Pin_6) verbunden.
+Netz unconnected-(U6-GPIO9/TOUCH9/ADC1_CH8/FSPIHD/SUBSPIHD-Pad17) hinzufügen.
+U6 Pin 17 nach unconnected-(U6-GPIO9/TOUCH9/ADC1_CH8/FSPIHD/SUBSPIHD-Pad17) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO4/TOUCH4/ADC1_CH3-Pad4) hinzufügen.
+U6 Pin 4 nach unconnected-(U6-GPIO4/TOUCH4/ADC1_CH3-Pad4) verbunden.
+Netz unconnected-(U6-SPIIO7/GPIO36/FSPICLK/SUBSPICLK-Pad29) hinzufügen.
+U6 Pin 29 nach unconnected-(U6-SPIIO7/GPIO36/FSPICLK/SUBSPICLK-Pad29) verbunden.
+Netz unconnected-(U6-GPIO11/TOUCH11/ADC2_CH0/FSPID/FSPIIO5/SUBSPID-Pad19) hinzufügen.
+U6 Pin 19 nach unconnected-(U6-GPIO11/TOUCH11/ADC2_CH0/FSPID/FSPIIO5/SUBSPID-Pad19) verbunden.
+Netz unconnected-(U6-SPIDQS/GPIO37/FSPIQ/SUBSPIQ-Pad30) hinzufügen.
+U6 Pin 30 nach unconnected-(U6-SPIDQS/GPIO37/FSPIQ/SUBSPIQ-Pad30) verbunden.
+Netz unconnected-(U6-GPIO18/U1RXD/ADC2_CH7/CLK_OUT3-Pad11) hinzufügen.
+U6 Pin 11 nach unconnected-(U6-GPIO18/U1RXD/ADC2_CH7/CLK_OUT3-Pad11) verbunden.
+Netz Net-(J6-Pin_3) hinzufügen.
+U6 Pin 37 nach Net-(J6-Pin_3) verbunden.
+Netz unconnected-(U6-GPIO15/U0RTS/ADC2_CH4/XTAL_32K_P-Pad8) hinzufügen.
+U6 Pin 8 nach unconnected-(U6-GPIO15/U0RTS/ADC2_CH4/XTAL_32K_P-Pad8) verbunden.
+Netz unconnected-(U6-GPIO5/TOUCH5/ADC1_CH4-Pad5) hinzufügen.
+U6 Pin 5 nach unconnected-(U6-GPIO5/TOUCH5/ADC1_CH4-Pad5) verbunden.
+Netz Net-(J5-Pin_8) hinzufügen.
+U6 Pin 34 nach Net-(J5-Pin_8) verbunden.
+U6 Pin 26 nach Net-(Q2-B) verbunden.
+Netz Net-(J5-Pin_2) hinzufügen.
+U6 Pin 35 nach Net-(J5-Pin_2) verbunden.
+Netz Net-(J6-Pin_5) hinzufügen.
+U6 Pin 36 nach Net-(J6-Pin_5) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO48/SPICLK_N/SUBSPICLK_N_DIFF-Pad25) hinzufügen.
+U6 Pin 25 nach unconnected-(U6-GPIO48/SPICLK_N/SUBSPICLK_N_DIFF-Pad25) verbunden.
+Netz unconnected-(U6-GPIO6/TOUCH6/ADC1_CH5-Pad6) hinzufügen.
+U6 Pin 6 nach unconnected-(U6-GPIO6/TOUCH6/ADC1_CH5-Pad6) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-SPIIO6/GPIO35/FSPID/SUBSPID-Pad28) hinzufügen.
+U6 Pin 28 nach unconnected-(U6-SPIIO6/GPIO35/FSPID/SUBSPID-Pad28) verbunden.
+U6 Pin 41 nach GND verbunden.
+U6 Pin 3 nach /Layout/EN verbunden.
+U6 Pin 1 nach GND verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO7/TOUCH7/ADC1_CH6-Pad7) hinzufügen.
+U6 Pin 7 nach unconnected-(U6-GPIO7/TOUCH7/ADC1_CH6-Pad7) verbunden.
+U6 Pin 40 nach GND verbunden.
+Netz unconnected-(U6-GPIO1/TOUCH1/ADC1_CH0-Pad39) hinzufügen.
+U6 Pin 39 nach unconnected-(U6-GPIO1/TOUCH1/ADC1_CH0-Pad39) verbunden.
+Netz unconnected-(U6-GPIO16/U0CTS/ADC2_CH5/XTAL_32K_N-Pad9) hinzufügen.
+U6 Pin 9 nach unconnected-(U6-GPIO16/U0CTS/ADC2_CH5/XTAL_32K_N-Pad9) verbunden.
+Netz unconnected-(U6-GPIO2/TOUCH2/ADC1_CH1-Pad38) hinzufügen.
+U6 Pin 38 nach unconnected-(U6-GPIO2/TOUCH2/ADC1_CH1-Pad38) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO8/TOUCH8/ADC1_CH7/SUBSPICS1-Pad12) hinzufügen.
+U6 Pin 12 nach unconnected-(U6-GPIO8/TOUCH8/ADC1_CH7/SUBSPICS1-Pad12) verbunden.
+Netz USB+ hinzufügen.
+U6 Pin 14 nach USB+ verbunden.
+Netz unconnected-(U6-GPIO47/SPICLK_P/SUBSPICLK_P_DIFF-Pad24) hinzufügen.
+U6 Pin 24 nach unconnected-(U6-GPIO47/SPICLK_P/SUBSPICLK_P_DIFF-Pad24) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz Net-(J6-Pin_6) hinzufügen.
+U6 Pin 23 nach Net-(Q3-B) verbunden.
+Netz unconnected-(U6-GPIO38/FSPIWP/SUBSPIWP-Pad31) hinzufügen.
+U6 Pin 31 nach unconnected-(U6-GPIO38/FSPIWP/SUBSPIWP-Pad31) verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz Net-(J5-Pin_4) hinzufügen.
+U6 Pin 32 nach Net-(J5-Pin_4) verbunden.
+Netz unconnected-(U6-GPIO10/TOUCH10/ADC1_CH9/FSPICS0/FSPIIO4/SUBSPICS0-Pad18) hinzufügen.
+U6 Pin 18 nach unconnected-(U6-GPIO10/TOUCH10/ADC1_CH9/FSPICS0/FSPIIO4/SUBSPICS0-Pad18) verbunden.
+Netz unconnected-(U6-GPIO13/TOUCH13/ADC2_CH2/FSPIQ/FSPIIO7/SUBSPIQ-Pad21) hinzufügen.
+U6 Pin 21 nach unconnected-(U6-GPIO13/TOUCH13/ADC2_CH2/FSPIQ/FSPIIO7/SUBSPIQ-Pad21) verbunden.
+U6 Pin 2 nach /Layout/+3V3 verbunden.
+U6 Pin 15 nach Net-(Q4-B) verbunden.
+U6 Pin 41 nach GND verbunden.
+U6 Pin 41 nach GND verbunden.
+Netz unconnected-(U6-GPIO14/TOUCH14/ADC2_CH3/FSPIWP/FSPIDQS/SUBSPIWP-Pad22) hinzufügen.
+U6 Pin 22 nach unconnected-(U6-GPIO14/TOUCH14/ADC2_CH3/FSPIWP/FSPIDQS/SUBSPIWP-Pad22) verbunden.
+Netz unconnected-(U6-GPIO12/TOUCH12/ADC2_CH1/FSPICLK/FSPIIO6/SUBSPICLK-Pad20) hinzufügen.
+U6 Pin 20 nach unconnected-(U6-GPIO12/TOUCH12/ADC2_CH1/FSPICLK/FSPIIO6/SUBSPICLK-Pad20) verbunden.
+Warnung: Via mit unbekannten Netz (Net-(J1-Pin_2)) verbunden.
+Warnung: Via mit unbekannten Netz (Net-(J1-Pin_2)) verbunden.
+Warnung: Via mit unbekannten Netz (Net-(J2-Pin_6)) verbunden.
+Warnung: Via mit unbekannten Netz (Net-(J2-Pin_6)) verbunden.
+Warnung: Via mit unbekannten Netz (EN) verbunden.
+Warnung: Via mit unbekannten Netz (EN) verbunden.
+Fehler: Kann C7 nicht hinzufügen (Footprint "Footprints:WCAP-FTXX_P10L13W7H13" nicht gefunden).
+Fehler: Kann C8 nicht hinzufügen (Footprint "Footprints:WCAP-PT5H_6.3X5.2_DXL_" nicht gefunden).
+Fehler: Kann C10 nicht hinzufügen (Footprint "Footprints:WCAP-FTXX_P10L13W7H13" nicht gefunden).
+Fehler: Kann C12 nicht hinzufügen (Footprint "Footprints:WCAP-FTXX_P10L13W7H13" nicht gefunden).
+Fehler: Kann D7 nicht hinzufügen (Footprint "Footprints:WL-TMRC_3MM" nicht gefunden).
+Fehler: Kann D8 nicht hinzufügen (Footprint "Footprints:WL-TMRW_3MM" nicht gefunden).
+Fehler: Kann D9 nicht hinzufügen (Footprint "Footprints:WL-TMRW_3MM" nicht gefunden).
+Fehler: Kann S2 nicht hinzufügen (Footprint "Footprints:1543650149" nicht gefunden).
+Fehler: Kann D10 nicht hinzufügen (Footprint "Footprints:WL-TMRC_3MM" nicht gefunden).
+Fehler: Kann J5 nicht hinzufügen (Footprint "Footprints:61201021621" nicht gefunden).
+Fehler: Kann U1 nicht hinzufügen (Footprint "Package_DFN_QFN:Diodes_UDFN-10_1.0x2.5mm_P0.5mm" nicht gefunden).
+Fehler: Kann J1 nicht hinzufügen (kein Footprint zugewiesen).
+Fehler: Kann PS2 nicht hinzufügen (Footprint "Footprints:CONV_TSR_1-2433E" nicht gefunden).
+Fehler: Kann J6 nicht hinzufügen (Footprint "Footprints:61200621621" nicht gefunden).
+
+
+Hinweis: Warnungen insgesamt: 6, Fehler insgesamt: 14.

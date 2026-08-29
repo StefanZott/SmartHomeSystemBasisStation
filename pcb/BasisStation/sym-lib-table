@@ -3,4 +3,5 @@
   (lib (name "ESP32-S3-WROOM-1U-N16R8")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/ESP32-S3-WROOM-1U-N16R8/ESP32-S3-WROOM-1U-N16R8.kicad_sym")(options "")(descr "MCU module ESP32-S3-WROOM-1U-N16R8 (Espressif pin layout)"))
   (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/Espressif.kicad_sym")(options "")(descr "Espressif modules"))
   (lib (name "mechanical")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/Mechanical/mechanical.kicad_sym")(options "")(descr "Mechanical BOM-only parts (antenna, pigtail)"))
+  (lib (name "power")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/Power/power.kicad_sym")(options "")(descr "Power input USB-C and buck converter (SHBS-4)"))
 )

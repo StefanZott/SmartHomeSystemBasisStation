@@ -262,6 +262,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 | [project/architecture.md](docs/project/architecture.md) | Tech Stack (ESP-IDF), Verzeichnisstruktur, Module, Deployment |
 | [project/security.md](docs/project/security.md) | Sicherheitskonzept, Berechtigungen, Risk Assessment (Gerät, Update, Kommunikation) |
 | [project/hardware.md](docs/project/hardware.md) | Basisstation-Hardware (KiCad), Pinout, ESP-PROG / JTAG |
+| [project/power_supply.md](docs/project/power_supply.md) | USB-C 5 V → Buck 3,3 V (SHBS-4), BOM, Verdrahtung |
 | [project/memory_map.md](docs/project/memory_map.md) | Flash-Partitionen (`partitions.csv`), SPIFFS, kein OTA |
 | [project/communication.md](docs/project/communication.md) | WLAN, HTTP/Web-UI, SPIFFS-Konfiguration, Ethernet (Ziel) |
 | [project/struktur-anpassung-agents.md](docs/project/struktur-anpassung-agents.md) | Migrationsplan und Gap-Analyse (SHBS-1) |

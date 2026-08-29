@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-12
+last_updated: 2026-06-08
 type: project-doc
 ---
 
@@ -70,6 +70,12 @@ Mouser-Referenzen (Schaltplan-Felder): CAB.6061 (`742-CAB.6061`), GW.20.5150 (`7
 
 Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail`, `WLAN_Antenna`).
 
+## Stromversorgung (SHBS-4)
+
+Primäre Versorgung: **USB-C 5 V → MP2359 Buck → 3,3 V**. PS2/+12V entfernt.
+
+Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[power_supply.md](power_supply.md)**.
+
 ## Repository-Ist-Stand (KiCad)
 
 | Bereich | Pfad / Artefakt |
@@ -80,6 +86,7 @@ Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail
 | Symbole / Footprints | `pcb/Symbol/`, `pcb/Footprints/` |
 | Bauteilbibliothek MCU | `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
+| Power (USB-C, Buck) | `pcb/Bauteile/Power/power.kicad_sym` (J_PWR, PS1) |
 | Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware
