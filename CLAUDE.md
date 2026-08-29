@@ -138,7 +138,7 @@ Bei Bedarf fragt der Agent den Bediener, die entsprechende Massnahme durchzufüh
 - **Versionierung:** Bei jedem Prompt der Code ändert den Patch-Level (letztes Element) in `version` inkrementieren — einmal pro Prompt, nicht mehrfach. Zusätzlich `CONFIG_APP_PROJECT_VER` in `sdkconfig` (Zeile ~293) synchron halten — sonst zeigt die UI die alte Version.
 - **Release Notes pflegen:** Änderungen in `docs/userdoc/releases.md` dokumentieren. Neue Version als H2-Abschnitt mit Datum, gruppiert nach Kategorie (Feature, Fix, Sicherheit, Dokumentation).
 - **Dokumentation aktuell halten:** Wenn du Code änderst, überprüfe die zugehörige Dokumentation in `docs/project/` und aktualisiere sie sofort.
-- **Datei-Index pflegen:** Jede neue Markdown-Datei muss in der Projektdokumentation-Tabelle unten in dieser AGENTS.md verlinkt werden. Keine isolierten Dateien.
+- **Datei-Index pflegen:** Jede neue Markdown-Datei muss in der Projektdokumentation-Tabelle unten in dieser CLAUDE.md verlinkt werden. Keine isolierten Dateien.
 - **Kein Code-Friedhof:** Kopiere keine großen Code-Fragmente in die Doku. Beschreibe das _Warum_ und verlinke auf den entsprechenden _Code_.
 
 ## 11. Agent-Task-System (`tmp/tasks/`)
@@ -288,7 +288,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 
 Jeder Prompt, der Code oder Doku ändert, durchläuft folgende Phasen. Phasen dürfen übersprungen werden, wenn sie nicht zutreffen — aber nie stillschweigend.
 
-**1. AGENTS.md einlesen**
+**1. CLAUDE.md einlesen**
 
 - Globale Regeln (§1–§12) und projektspezifischen Teil erneut prüfen.
 - Projektdokumentation-Index oben beachten: nur die Doku-Dateien lesen, die zum Thema passen.
@@ -330,7 +330,7 @@ Für jeden Task aus `tmp/tasks/open/`:
 
 1. Task implementieren.
 2. Validierung gemäß §10: Build (`idf.py build`) und vorhandene Tests ausführen.
-3. Doku-Pflege gemäß §10 (Boy Scout Rule, Datei-Index, kein Code-Friedhof): zugehörige `docs/project/*.md` aktualisieren, neue Markdown-Dateien im Index dieser AGENTS.md eintragen.
+3. Doku-Pflege gemäß §10 (Boy Scout Rule, Datei-Index, kein Code-Friedhof): zugehörige `docs/project/*.md` aktualisieren, neue Markdown-Dateien im Index dieser CLAUDE.md eintragen.
 4. Task nach `tmp/tasks/done/` verschieben, `status: done`.
 5. Commit-Vorschlag an Bediener vorlegen (Conventional Commit gemäß §6, deutsch, mit Versionspräfix und JIRA-ID als Scope, Format: `v1.04.058 fix(PROJ-1234): Beschreibung`); nach Freigabe lokal committen. Ein Task = ein atomarer Commit; ein Ticket kann mehrere Tasks/Commits bündeln, alle referenzieren dieselbe JIRA-ID. Liegt keine JIRA-ID vor: Agent fordert sie ein, kein Commit ohne ID.
 

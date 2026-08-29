@@ -5,3 +5,4 @@ secrets/*
 !secrets/.gitkeep
 !secrets/README.md
 sdkconfig.old
+.claude/settings.local.json

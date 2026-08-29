@@ -54,4 +54,4 @@ Aktuelle Firmware-Version: siehe Datei [`version`](version) (Format `X.XX.XXX`, 
 
 Kundenspezifische Builds: `v0.00.005-kundexyz`. Details: [docs/userdoc/git_guidelines.md](docs/userdoc/git_guidelines.md).
 
-Agenten-Regeln und Workflow: [AGENTS.md](AGENTS.md)
+Agenten-Regeln und Workflow: [CLAUDE.md](CLAUDE.md)

@@ -8,7 +8,7 @@ type: userdoc
 
 ## Wo finde ich die Projektziele und Agent-Regeln?
 
-In `AGENTS.md` im Repository-Root.
+In `CLAUDE.md` im Repository-Root.
 
 ## Wo liegt die Hardware?
 
@@ -25,7 +25,7 @@ Verzeichnis `main/` — Einstieg `main.c`. Architektur: [architecture.md](../pro
 
 ## Unterstützt die Firmware Ethernet?
 
-Laut Projektkontext (`AGENTS.md`) ist Ethernet ein Ziel. In der bisher analysierten Firmware gibt es **keine** Ethernet-Implementierung in `main/`.
+Laut Projektkontext (`CLAUDE.md`) ist Ethernet ein Ziel. In der bisher analysierten Firmware gibt es **keine** Ethernet-Implementierung in `main/`.
 
 ## Welche WLAN-Konfigurationsdatei wird genutzt?
 
@@ -33,4 +33,4 @@ Laut Projektkontext (`AGENTS.md`) ist Ethernet ein Ziel. In der bisher analysier
 
 ## Widerspricht die README der Ziel-Hardware?
 
-Die README enthält noch Text vom ESP-IDF-Beispielprojekt und eine BOM mit teils gemischten Modulreferenzen. Bei Arbeit an Hardware/README: auf **ESP32-S3-WROOM-1U-N16R8** laut `AGENTS.md` abstimmen.
+Die README enthält noch Text vom ESP-IDF-Beispielprojekt und eine BOM mit teils gemischten Modulreferenzen. Bei Arbeit an Hardware/README: auf **ESP32-S3-WROOM-1U-N16R8** laut `CLAUDE.md` abstimmen.

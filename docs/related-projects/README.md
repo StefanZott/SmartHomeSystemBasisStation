@@ -6,7 +6,7 @@ type: placeholder
 
 # Verzahnte Projekte
 
-Schnittstellenverträge zu anderen Projekten (gemäß AGENTS.md §7).
+Schnittstellenverträge zu anderen Projekten (gemäß CLAUDE.md §7).
 
 | Datei | Thema |
 |-------|--------|

@@ -33,7 +33,7 @@ Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [commu
 
 | Pfad | Rolle |
 |------|--------|
-| `main/` | ESP-IDF-Firmware (Ausnahme: statt `embedded/` laut AGENTS.md) |
+| `main/` | ESP-IDF-Firmware (Ausnahme: statt `embedded/` laut CLAUDE.md) |
 | `spiffs/` | Web-Assets (HTML, CSS, JS) → SPIFFS-Image |
 | `pcb/` | KiCad-Projekt Basisstation |
 | `docs/project/` | Technische Projektdokumentation |

@@ -6,7 +6,7 @@ type: userdoc
 
 # Git-Richtlinien — SmartHomeSystemBasisStation
 
-Projektspezifische Git-Vorgaben für Entwickler und KI-Agenten. Ergänzt die globalen Regeln in `AGENTS.md` §6 und die unternehmensweiten Vorgaben (intern ggf. als PDF bei Zott-IT/TGE).
+Projektspezifische Git-Vorgaben für Entwickler und KI-Agenten. Ergänzt die globalen Regeln in `CLAUDE.md` §6 und die unternehmensweiten Vorgaben (intern ggf. als PDF bei Zott-IT/TGE).
 
 ## Commit-Nachrichten
 
@@ -106,7 +106,7 @@ Analog zu komplexen Bugfixes für **neue Funktionalität**:
 | **Firmware-Version** | Inkrement nur bei ESP32-Quellcode + Bediener-Freigabe |
 | **Release Notes** | Nur bei Versionserhöhung: [releases.md](releases.md) |
 | **Push** | Nur durch Bediener — Agent committet lokal nach Freigabe |
-| **Agent-Commits** | Siehe `AGENTS.md` §9 und Pro-Prompt-Workflow |
+| **Agent-Commits** | Siehe `CLAUDE.md` §9 und Pro-Prompt-Workflow |
 
 ## Pull / Review
 
@@ -115,6 +115,6 @@ Analog zu komplexen Bugfixes für **neue Funktionalität**:
 
 ## Referenzen
 
-- [AGENTS.md](../../AGENTS.md) — globale und projektspezifische Agenten-Regeln
+- [CLAUDE.md](../../CLAUDE.md) — globale und projektspezifische Agenten-Regeln
 - [releases.md](releases.md) — Changelog
 - [README.md](../../README.md) — aktuelle Release-/Versions-Tags

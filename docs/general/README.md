@@ -6,7 +6,7 @@ type: placeholder
 
 # Allgemeine Unternehmensdokumentation
 
-Dieses Verzeichnis ist für **read-only** Inhalte aus dem globalen Unternehmens-Repo vorgesehen (`docs/general/` gemäß AGENTS.md).
+Dieses Verzeichnis ist für **read-only** Inhalte aus dem globalen Unternehmens-Repo vorgesehen (`docs/general/` gemäß CLAUDE.md).
 
 ## Regeln für Agenten und Entwickler
 
@@ -30,4 +30,4 @@ Dieses Verzeichnis ist für **read-only** Inhalte aus dem globalen Unternehmens-
 - Qualitäts- und Review-Vorgaben
 - Produktübergreifende Sicherheitsrichtlinien
 
-Nach Einbindung die Tabelle in `AGENTS.md` (Abschnitt Projektdokumentation) ergänzen.
+Nach Einbindung die Tabelle in `CLAUDE.md` (Abschnitt Projektdokumentation) ergänzen.

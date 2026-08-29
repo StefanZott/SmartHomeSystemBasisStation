@@ -48,7 +48,7 @@ Kompakte Basisstation zur Anbindung und Konfiguration von Smart-Home-Komponenten
 
 ## Alleinstellungsmerkmale (intern)
 
-- Hardware + Firmware + UI als **ein Repository** dokumentiert (AGENTS.md-Struktur).
+- Hardware + Firmware + UI als **ein Repository** dokumentiert (CLAUDE.md-Struktur).
 - Zielplattform **ESP32-S3 1U** mit externer Antenne — geeignet für Gehäuse mit Funk außerhalb Metallgehäuse.
 - Vorbereitet auf **Ethernet-Erweiterung** (Hardware-Roadmap).
 

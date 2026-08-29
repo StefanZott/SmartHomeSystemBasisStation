@@ -8,7 +8,7 @@ type: userdoc
 
 ## Initial-Dokumentation (Workflow)
 
-- Angelegt: Ordnerstruktur `docs/` gemäß `AGENTS.md`.
+- Angelegt: Ordnerstruktur `docs/` gemäß `CLAUDE.md`.
 - Inhalt: Ist-Analyse Stand Repository, keine Produktions-Freigabe.
 - Initial-Workflow (Analyse, Verständnis, Dokumentation) durchlaufen am **2026-04-06**: Architekturdiagramme in `docs/project/architecture.md` und `docs/project/hardware.md`.
 - **2026-06-02:** Doku-Migration nach `docs/project/` und `docs/userdoc/` (Task 0005, SHBS-1).

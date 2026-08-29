@@ -8,6 +8,7 @@ ARG USER_GID=$USER_UID
 RUN apt-get update \
   && apt install -y -q \
   cmake \
+  curl \
   git \
   hwdata \
   libglib2.0-0 \
@@ -15,6 +16,12 @@ RUN apt-get update \
   libpixman-1-0 \
   linux-tools-virtual \
   && rm -rf /var/lib/apt/lists/*
+
+# Node.js (required by the Claude Code CLI) + Claude Code itself
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y -q nodejs \
+  && rm -rf /var/lib/apt/lists/* \
+  && npm install -g @anthropic-ai/claude-code
 
 RUN update-alternatives --install /usr/local/bin/usbip usbip `ls /usr/lib/linux-tools/*/usbip | tail -n1` 20
 
