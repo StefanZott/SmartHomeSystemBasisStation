@@ -93,11 +93,11 @@ Bis der Buck verdrahtet ist, meldet ERC: **`+3V3` ohne Quelle** — erwartbar.
 
 | Ref | Funktion | Teil / Wert | KiCad-Symbol | Footprint (Vorschlag) |
 |-----|----------|-------------|--------------|----------------------|
-| **J_PWR** | USB-C Buchse | Amphenol **12401548E4#2A** | `power:USB_C_Receptacle_Power` | `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A` |
+| **J_PWR** | USB-C Buchse | Amphenol **12401548E4#2A** | `shbs_power:USB_C_Receptacle_Power` | `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A` |
 | **F1** | Überstrom | Polyfuse **1,1 A** | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
 | **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS) | `Device:D` | `Diode_SMD:D_SMA` |
 | **D11** | Flyback | **SS34** (Schottky) | `Device:D` | `Diode_SMD:D_SMA` |
-| **PS1** | Buck | **MP2359DJ-LF-Z** | `power:MP2359DJ` | `Footprints:MP2359DJ` |
+| **PS1** | Buck | **MP2359DJ-LF-Z** | `shbs_power:MP2359DJ` | `Footprints:MP2359DJ` |
 | **L1** | Induktivität | **4,7 µH** (empf.) oder 10 µH | `Device:L` | `Inductor_SMD:L_5.7x5.7` oder `L_Bourns_SRN6045TA` |
 | **C13** | VIN bulk | **10 µF / 16 V** X5R | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
 | **C14** | VOUT bulk | **22 µF** | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
@@ -202,10 +202,16 @@ Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **P
 | MP2359-Footprint | `pcb/Footprints/MP2359DJ.kicad_mod` |
 | Schaltplan (Layout) | `pcb/BasisStation/BasisStation_Layout.kicad_sch` |
 | Leiterplatte | `pcb/BasisStation/BasisStation.kicad_pcb` |
-| `sym-lib-table` | Eintrag **`power`** |
+| `sym-lib-table` | Eintrag **`shbs_power`** |
 | `fp-lib-table` | `${KIPRJMOD}/../Footprints` |
 
-Symbole in KiCad: **Platzieren → Symbol** → Bibliothek **`power`** oder Standard **`Device:*`**.
+Symbole in KiCad: **Platzieren → Symbol** → Bibliothek **`shbs_power`** oder Standard **`Device:*`**.
+
+> **Bibliotheksname:** Der Projekteintrag hiess ursprünglich `power` und
+> verdeckte damit die gleichnamige KiCad-Standardbibliothek — `power:GND`,
+> `power:PWR_FLAG` und `power:+3V3` waren dadurch projektweit nicht auflösbar
+> (28 ERC-Warnungen). Seit SHBS-4 heisst der Projekteintrag **`shbs_power`**;
+> der Nickname `power` bleibt der KiCad-Standardbibliothek vorbehalten.
 
 ---
 
