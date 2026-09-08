@@ -4,4 +4,8 @@
   (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/Espressif.kicad_sym")(options "")(descr "Espressif modules"))
   (lib (name "mechanical")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/Mechanical/mechanical.kicad_sym")(options "")(descr "Mechanical BOM-only parts (antenna, pigtail)"))
   (lib (name "shbs_power")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/Power/power.kicad_sym")(options "")(descr "Power input USB-C and buck converter (SHBS-4)"))
+  (lib (name "WCAP-FTXX_P10")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/WCAP-FTXX_P10.kicad_sym")(options "")(descr "Wuerth WCAP-FTXX film capacitor, 10 mm pitch (C7, C10, C12)"))
+  (lib (name "WCAP-PT5H_6.3X5.2")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/WCAP-PT5H_6.3X5.2.kicad_sym")(options "")(descr "Wuerth WCAP-PT5H polymer capacitor 6.3 x 5.2 mm (C8)"))
+  (lib (name "WL-TMRC_3MM")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/WL-TMRC_3MM.kicad_sym")(options "")(descr "Wuerth WL-TMRC 3 mm through-hole LED (D7)"))
+  (lib (name "1543-650-149")(type "KiCad")(uri "${KIPRJMOD}/../Symbol/1543-650-149.kicad_sym")(options "")(descr "Push button SPST, round plunger, through-hole (S2)"))
 )
