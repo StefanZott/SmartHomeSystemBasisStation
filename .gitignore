@@ -6,3 +6,9 @@ secrets/*
 !secrets/README.md
 sdkconfig.old
 .claude/settings.local.json
+
+# KiCad temporary files (lock, autosave, backups)
+*.lck
+_autosave-*
+\#auto_saved_files\#
+*-backups/
