@@ -7,7 +7,7 @@
     (property "Value" "WL-TMRC_3MM" (id 1) (at -1.652 -3.436 0)
       (effects (font (size 1.27 1.27)) (justify bottom))
     )
-    (property "Footprint" "WL-TMRC_3MM:WL-TMRC_3MM" (id 2) (at 0 0 0)
+    (property "Footprint" "Footprints:WL-TMRC_3MM" (id 2) (at 0 0 0)
       (effects (font (size 1.27 1.27)) (justify bottom) hide)
     )
     (property "MF" "Wurth Electronics" (id 4) (at 0 0 0)
