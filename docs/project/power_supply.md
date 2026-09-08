@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-08
+last_updated: 2026-09-08
 type: project-doc
 jira: SHBS-4
 ---
@@ -79,13 +79,77 @@ USB-Netzteil / Kabel (5 V)
 | Symbole/Footprints (`power.kicad_sym`, `pcb/Footprints/`) | erledigt |
 | `sym-lib-table`, `fp-lib-table` | erledigt |
 | PS2 / +12V aus Schaltplan und PCB entfernt | erledigt |
-| Power-Block im Schaltplan (`BasisStation_Layout.kicad_sch`) | **in Arbeit** (manuell in KiCad) |
+| Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet; Ausgangszweig noch fehlerhaft (siehe unten) |
 | PCB-Platzierung/Routing | offen |
-| ERC/DRC ohne Fehler | offen |
+| ERC/DRC ohne Fehler | offen (Stand 2026-09-08: 4 Fehler, 4 Warnungen) |
 
 **Hinweis:** Automatisches Einfügen per Skript (2026-06-08) hat KiCad zum Absturz geführt (defekte `lib_symbols`). Power-Teile **nur über die KiCad-GUI** eintragen.
 
-Bis der Buck verdrahtet ist, meldet ERC: **`+3V3` ohne Quelle** — erwartbar.
+---
+
+## Ist-Stand Schaltplan (Stand 2026-09-08)
+
+ERC-Verlauf an diesem Tag: **53 → 11 Meldungen**. Bereinigt wurden die
+Symbolbibliotheks-Auflösung, die `+3V3`-Netzverbindung und zwei
+Verdrahtungsfehler (Commits `da60c97`, `1c1b027`, `0268e9a`, `217546d`).
+
+### Offen: Buck-Ausgangszweig weicht von der Soll-Kette ab
+
+Die aus der Schaltplangeometrie rekonstruierte Netzliste weicht von der
+oben dokumentierten Power-Kette ab. **Das aktuelle Netz `+3V3` ist
+tatsächlich der Schaltknoten `SW`**:
+
+| Knoten | Ist | Soll |
+| ------ | --- | ---- |
+| SW | `PS1.6`, **`PS1.1 (BST)`**, `L1.1`, **`C14.1`**, **`C15.2`**, **`R17.1`**, **`+3V3`** | `PS1.6`, `L1.1`, `D11` Kathode, `C15` |
+| BST | — (liegt auf SW) | `PS1.1`, `C15` |
+| hinter `L1` | `L1.2`, `D11` **Anode** | `C14.1`, `R17.1`, `+3V3` |
+| GND | `D11` **Kathode**, `C14.2`, `C15.1`, `PS1.2` | `D11` Anode, `C14.2`, `PS1.2` |
+
+Daraus folgen vier Punkte:
+
+1. **`D11` verpolt und am falschen Knoten** — Anode am Ausgang, Kathode an
+   GND. In dieser Lage liegt die Schottky-Diode in Durchlassrichtung vom
+   Ausgang nach GND und würde die Ausgangsspannung kurzschliessen.
+   Soll: Kathode an `SW`, Anode an GND (siehe [Flyback-Diode D11](#flyback-diode-d11)).
+2. **`C15` (Bootstrap) liegt gegen GND** statt zwischen `BST` und `SW`.
+3. **`BST` direkt auf `SW`** — ohne Bootstrap-Kondensator kann der MP2359
+   sein High-Side-Gate nicht treiben.
+4. **`C14` und `R17` hängen am Schaltknoten** statt am geglätteten Ausgang.
+   Die Regelung würde auf `SW` regeln, die Ausgangsglättung fehlt.
+
+Die vier verbleibenden ERC-Fehler (`power_pin_not_driven` an `U6.2`,
+`PS1.5`, `J_PWR1.A4`, `#PWR100`) hängen an diesem Punkt und an den noch
+fehlenden PWR_FLAGs. **Korrektur in der KiCad-GUI durchführen**, nicht per
+Skript (siehe Hinweis oben).
+
+### PWR_FLAG — zwei am Eingang nötig
+
+`F1` trennt zwei Netze, die beide ausschliesslich `power_in`-Pins
+enthalten (`J_PWR1.A4/A9` vor der Sicherung, `PS1.5` dahinter). KiCad
+verfolgt Leistung nicht durch passive Bauteile, deshalb braucht **jedes**
+dieser Netze ein eigenes PWR_FLAG — zusammen mit dem am Ausgang also drei.
+
+### Symbol- und Footprint-Bibliotheken
+
+- Der Projekteintrag in `sym-lib-table` heisst seit SHBS-4 **`shbs_power`**
+  (vorher `power`, was die KiCad-Standardbibliothek verdeckte).
+- `WCAP-FTXX_P10`, `WCAP-PT5H_6.3X5.2`, `WL-TMRC_3MM` und `1543-650-149`
+  sind ergänzt; ihre Symbole verweisen jetzt auf die Footprint-Bibliothek
+  **`Footprints`** statt auf gleichnamige, nicht existierende Bibliotheken.
+- **Wichtig:** Nach Änderungen an `sym-lib-table` oder an den
+  `.kicad_sym`-Dateien das Projekt in KiCad **schliessen und neu öffnen**.
+  Ein „Symbole aus Bibliothek aktualisieren" mit noch im Speicher
+  gehaltenem Altstand überschreibt sonst korrekte Instanz-Referenzen.
+
+### Weitere offene Punkte
+
+- Zwei Drahtstummel ohne Anschluss: (85,09 / 53,34) → (95,25 / 53,34) am
+  EN-Netz und (240,03 / 22,86) → (248,92 / 22,86) am 3,3-V-Netz. Beide
+  bestehen seit vor dem USB-C-Umbau; Löschen ändert die Netzliste nicht.
+- `BasisStation.net` stammt vom 2026-06-09 und enthält noch `PS2`/`+12V`;
+  das PCB ist älter als der Schaltplan. Beides nach der Topologie-Korrektur
+  neu erzeugen.
 
 ---
 
