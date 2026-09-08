@@ -960,7 +960,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:MP2359DJ"
+		(symbol "shbs_power:MP2359DJ"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1157,7 +1157,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:USB_C_Receptacle_Power"
+		(symbol "shbs_power:USB_C_Receptacle_Power"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2374,7 +2374,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:USB_C_Receptacle_Power")
+		(lib_id "shbs_power:USB_C_Receptacle_Power")
 		(at 246.38 83.82 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3309,7 +3309,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:MP2359DJ")
+		(lib_id "shbs_power:MP2359DJ")
 		(at 148.59 86.36 0)
 		(unit 1)
 		(exclude_from_sim no)

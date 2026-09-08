@@ -1,8 +1,8 @@
-FROM espressif/idf
+FROM espressif/idf:v5.5.2
 
 ARG DEBIAN_FRONTEND=nointeractive
 ARG CONTAINER_USER=esp
-ARG USER_UID=1000
+ARG USER_UID=1001
 ARG USER_GID=$USER_UID
 
 RUN apt-get update \
@@ -44,6 +44,13 @@ ENV PATH=/opt/qemu/bin:${PATH}
 RUN groupadd --gid $USER_GID $CONTAINER_USER \
   && adduser --uid $USER_UID --gid $USER_GID --disabled-password --gecos "" ${CONTAINER_USER} \
   && usermod -a -G root $CONTAINER_USER && usermod -a -G dialout $CONTAINER_USER
+
+# Stable alias for the IDF Python virtualenv - its directory name carries the IDF and
+# Python versions, so pin-bumps would otherwise break idf.pythonBinPath in devcontainer.json
+RUN set -eux; \
+  env_dir="$(find /opt/esp/python_env -mindepth 1 -maxdepth 1 -type d -name 'idf*_env' | head -n1)"; \
+  test -n "$env_dir"; \
+  ln -sfn "$env_dir" /opt/esp/python_env/current
 
 RUN chmod -R 775 /opt/esp/python_env/
 

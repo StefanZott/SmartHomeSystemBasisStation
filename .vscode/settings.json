@@ -19,7 +19,7 @@
   "idf.pythonBinPathWin": "c:\\Users\\stefa\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
   "idf.toolsPathWin": "c:\\Users\\stefa\\.espressif",
   "idf.pythonInstallPath": "C:\\Users\\stefa\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
-  "idf.currentSetup": "E:\\esp\\.espressif\\v5.5.2\\esp-idf",
+  "idf.currentSetup": "/opt/esp/idf",
   "clangd.path": "C:\\Espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
   "clangd.arguments": [
     "--background-index",

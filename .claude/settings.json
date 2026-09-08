@@ -10,5 +10,13 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "mcp__atlassian__addCommentToJiraIssue",
+      "mcp__atlassian__createJiraIssue",
+      "mcp__atlassian__editJiraIssue",
+      "mcp__atlassian__transitionJiraIssue"
+    ]
   }
 }

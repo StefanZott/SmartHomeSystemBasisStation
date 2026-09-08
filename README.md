@@ -17,7 +17,7 @@ Stückliste und Pinout: [docs/project/hardware.md](docs/project/hardware.md)
 
 ## Toolchain
 
-- **Firmware:** [ESP-IDF](https://docs.espressif.com/projects/esp-idf/) für ESP32-S3, Build über `idf.py`
+- **Firmware:** [ESP-IDF](https://docs.espressif.com/projects/esp-idf/) **v5.5.2** für ESP32-S3, Build über `idf.py`
 - **IDE:** VS Code mit ESP-IDF-Erweiterung; optional Dev Container (`.devcontainer/`)
 - **Hardware:** KiCad 8/9 — Projekt unter `pcb/BasisStation/`
 

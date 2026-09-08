@@ -1,93 +1,45 @@
-ERC-Bericht (2026-06-17T22:49:07+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-06T23:22:02+0200, UTF8-kodiert)
 
 ***** Schaltplan /
-[unannotated]: Element nicht annotiert: J_PWR?
-    ; error
-    @(9700 mils, 3300 mils): Symbol J_PWR [USB_C_Receptacle_Power]
 [lib_symbol_mismatch]: Symbol "USB_B_Micro" stimmt nicht mit Kopie in Bibliothek "Connector" überein
     ; warning
     @(2200 mils, 3450 mils): Symbol J1 [USB_B_Micro]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(2150 mils, 4100 mils): Symbol #PWR01 [GND]
 [footprint_link_issues]: Footprint "Diodes_UDFN-10_1.0x2.5mm_P0.5mm" nicht in Bibliothek "Package_DFN_QFN" gefunden.
     ; warning
     @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
 [lib_symbol_mismatch]: Symbol "D3V3XA4B10LP" stimmt nicht mit Kopie in Bibliothek "Power_Protection" überein
     ; warning
     @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(3600 mils, 4950 mils): Symbol #PWR02 [GND]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
     @(2600 mils, 900 mils): Horizontale Verbindung, Länge 1400 mils
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-PT5H_6.3X5.2"
     ; warning
     @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(2600 mils, 1400 mils): Symbol #PWR035 [GND]
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "1543-650-149"
     ; warning
     @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(1900 mils, 2850 mils): Symbol #PWR032 [GND]
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
     ; warning
     @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(1400 mils, 3750 mils): Symbol #PWR027 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(1400 mils, 3850 mils): Symbol #PWR028 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(1400 mils, 3950 mils): Symbol #PWR029 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(1400 mils, 4050 mils): Symbol #PWR030 [GND]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
     @(3350 mils, 2100 mils): Horizontale Verbindung, Länge 400 mils
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
     ; warning
     @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(6250 mils, 1650 mils): Symbol #PWR038 [GND]
 [lib_symbol_mismatch]: Symbol "WLAN_Pigtail" stimmt nicht mit Kopie in Bibliothek "mechanical" überein
     ; warning
     @(4250 mils, 5700 mils): Symbol ANT1 [WLAN_Pigtail]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(5450 mils, 5600 mils): Symbol #PWR037 [GND]
 [lib_symbol_mismatch]: Symbol "WLAN_Antenna" stimmt nicht mit Kopie in Bibliothek "mechanical" überein
     ; warning
     @(6650 mils, 5650 mils): Symbol ANT2 [WLAN_Antenna]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(8400 mils, 3550 mils): Symbol #PWR06 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(8750 mils, 4100 mils): Symbol #PWR05 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(9400 mils, 2500 mils): Symbol #PWR040 [GND]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
     @(9450 mils, 900 mils): Horizontale Verbindung, Länge 350 mils
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
     ; warning
     @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(9150 mils, 4650 mils): Symbol #PWR04 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(10250 mils, 1800 mils): Symbol #PWR042 [GND]
 [lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WL-TMRC_3MM"
     ; warning
     @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
@@ -97,51 +49,12 @@ ERC-Bericht (2026-06-17T22:49:07+0200, UTF8-kodiert)
 [lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
     ; warning
     @(10000 mils, 4200 mils): Symbol D10 [LED]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(9450 mils, 5400 mils): Symbol #PWR03 [GND]
 [lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
     ; warning
     @(10000 mils, 4600 mils): Symbol D8 [LED]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(4400 mils, 4150 mils): Symbol #PWR017 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(6600 mils, 2500 mils): Symbol #PWR09 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(6450 mils, 3500 mils): Symbol #PWR012 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(7200 mils, 2500 mils): Symbol #PWR014 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(5800 mils, 4950 mils): Symbol #PWR011 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(8050 mils, 4450 mils): Symbol #PWR013 [GND]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
     @(6800 mils, 5450 mils): Horizontale Verbindung, Länge 700 mils
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(7750 mils, 5100 mils): Symbol #PWR010 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(8650 mils, 4150 mils): Symbol #PWR015 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(9100 mils, 4150 mils): Symbol #PWR016 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(10550 mils, 3100 mils): Symbol #PWR07 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(10550 mils, 3200 mils): Symbol #PWR08 [GND]
-[lib_symbol_issues]: Symbol "GND" nicht in Bibliothek "power" gefunden
-    ; warning
-    @(10550 mils, 3300 mils): Symbol #PWR018 [GND]
 
 ***** Schaltplan /Layout/
 [pin_not_connected]: Pin nicht verbunden
@@ -167,6 +80,6 @@ ERC-Bericht (2026-06-17T22:49:07+0200, UTF8-kodiert)
     @(6250 mils, 3300 mils): Symbol PS1 Pin 5 [VIN, Power input, Line]
 [power_pin_not_driven]: Input-Power-Pin wird von keinem Output-Power-Pin angesteuert
     ; error
-    @(9300 mils, 3100 mils): Symbol J_PWR Pin A4 [VBUS, Power input, Line]
+    @(9300 mils, 3100 mils): Symbol J_PWR1 Pin A4 [VBUS, Power input, Line]
 
- ** ERC-Meldungen: 53  Fehler 5  Warnungen 48
+ ** ERC-Meldungen: 24  Fehler 4  Warnungen 20
