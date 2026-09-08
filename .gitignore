@@ -1,6 +1,5 @@
 build/
 /pcb/BasisStation/BasisStation-backups
-tmp/
 secrets/*
 !secrets/.gitkeep
 !secrets/README.md
