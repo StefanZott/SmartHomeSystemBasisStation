@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-08
+last_updated: 2026-09-15
 type: project-doc
 jira: SHBS-4
 ---
@@ -80,8 +80,10 @@ USB-Netzteil / Kabel (5 V)
 | `sym-lib-table`, `fp-lib-table` | erledigt |
 | PS2 / +12V aus Schaltplan und PCB entfernt | erledigt |
 | Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet; Ausgangszweig noch fehlerhaft (siehe unten) |
+| PWR_FLAG an VBUS, VIN und Ausgang | eingefügt 2026-09-15 (`#FLG01`–`#FLG03`) |
+| `+3V3`-Symbol auf der U6-Schiene (`#PWR103`) | eingefügt 2026-09-15 |
 | PCB-Platzierung/Routing | offen |
-| ERC/DRC ohne Fehler | offen (Stand 2026-09-08: 4 Fehler, 4 Warnungen) |
+| ERC/DRC ohne Fehler | offen (Lauf 2026-09-15 21:43: **1 Fehler**, 9 Warnungen — einziger Fehler ist der Topologiefehler) |
 
 **Hinweis:** Automatisches Einfügen per Skript (2026-06-08) hat KiCad zum Absturz geführt (defekte `lib_symbols`). Power-Teile **nur über die KiCad-GUI** eintragen.
 
@@ -118,25 +120,146 @@ Daraus folgen vier Punkte:
 4. **`C14` und `R17` hängen am Schaltknoten** statt am geglätteten Ausgang.
    Die Regelung würde auf `SW` regeln, die Ausgangsglättung fehlt.
 
-Die vier verbleibenden ERC-Fehler (`power_pin_not_driven` an `U6.2`,
-`PS1.5`, `J_PWR1.A4`, `#PWR100`) hängen an diesem Punkt und an den noch
-fehlenden PWR_FLAGs. **Korrektur in der KiCad-GUI durchführen**, nicht per
+Die vier ERC-Fehler des Laufs vom 2026-09-08 (`power_pin_not_driven` an
+`U6.2`, `PS1.5`, `J_PWR1.A4`, `#PWR100`) hängen an diesem Punkt und an den
+damals fehlenden PWR_FLAGs — letztere sind seit 2026-09-15 gesetzt (siehe
+unten). **Korrektur der Topologie in der KiCad-GUI durchführen**, nicht per
 Skript (siehe Hinweis oben).
 
-### PWR_FLAG — zwei am Eingang nötig
+### PWR_FLAG — drei Stück, eingefügt 2026-09-15
 
 `F1` trennt zwei Netze, die beide ausschliesslich `power_in`-Pins
 enthalten (`J_PWR1.A4/A9` vor der Sicherung, `PS1.5` dahinter). KiCad
 verfolgt Leistung nicht durch passive Bauteile, deshalb braucht **jedes**
 dieser Netze ein eigenes PWR_FLAG — zusammen mit dem am Ausgang also drei.
+Dasselbe gilt für den Ausgang: `L1` ist passiv, der 3,3-V-Rail hat also
+gar keinen Power-Output-Pin.
+
+| Ref | Netz | Anschlusspunkt (mm) |
+| --- | ---- | ------------------- |
+| `#FLG01` | VBUS **vor** `F1` (`J_PWR1.A4/B4`) | Stich ab (226,06 / 78,74) |
+| `#FLG02` | VIN **hinter** `F1` (`PS1.5`, `D12`, `C13`) | Stich ab (190,5 / 83,82) |
+| `#FLG03` | Buck-Ausgang, am selben Draht wie `#PWR100` (`+3V3`) | Stich ab (181,61 / 138,43) |
+
+Vor dem Einfügen enthielt das Projekt **keine einzige** platzierte
+PWR_FLAG — `BasisStation_Layout.kicad_sch` führt das Symbol nur in seinem
+`lib_symbols`-Block, ohne Instanz.
+
+> **Achtung:** `#FLG03` hängt an dem Draht, der aktuell das Label `+3V3`
+> trägt — und dieser Knoten ist wegen des oben beschriebenen
+> Topologiefehlers tatsächlich noch `SW`. Nach der Korrektur des
+> Ausgangszweigs prüfen, dass `#FLG03` weiterhin **hinter** `L1` liegt.
+
+### ERC-Lauf 2026-09-15 — verbleibende Befunde
+
+Der Lauf um 21:39 bestätigt `#FLG01` und `#FLG02`: die Fehler
+`power_pin_not_driven` an `J_PWR1.A4 [VBUS]` und `PS1.5 [VIN]` sind weg.
+Zwei Fehler blieben, beide mit eigener Ursache.
+
+#### `U6.2 [3V3]` — Versorgungsschiene ohne Netznamen
+
+Das Netz an `U6` Pin 2 (138,43 / 55,88) umfasst 15 Drähte mit `C8.1`,
+`C10.1`, `C12.1`, `R9.1`, `J6.2` und `U6.2` — und trug **weder Label noch
+Power-Symbol**. Es war damit ein eigenes, unbenanntes Netz und konnte
+grundsätzlich nicht vom Buck gespeist werden.
+
+Der B1-Fix hatte `#PWR101` (270,51 / 77,47) und `#PWR102` (34,29 / 92,71)
+auf zwei **andere** 3,3-V-Inseln des Layout-Blatts gesetzt, nicht auf die
+Schiene von U6. *Behoben 2026-09-15:* `#PWR103` (`power:+3V3`) am zuvor
+offenen Drahtende (248,92 / 22,86); damit entfällt zugleich die Warnung
+`unconnected_wire_endpoint` an diesem Stummel.
+
+> Dieser Drahtstummel darf jetzt **nicht** mehr gelöscht werden — er trägt
+> das Power-Symbol der Schiene (siehe „Weitere offene Punkte").
+
+#### `pin_to_pin` PS1.6 `SW` ↔ `#FLG03` — Symptom des Topologiefehlers
+
+`PS1` Pin 6 (`SW`, Typ *Output*) und `#FLG03` (*Power output*) liegen auf
+einem Netz. Das ist kein Fehler der PWR_FLAG-Platzierung, sondern die
+ERC-sichtbare Bestätigung des oben beschriebenen Topologiefehlers: der
+Draht mit dem `+3V3`-Label **ist** elektrisch der Schaltknoten `SW`.
+`#FLG03` bleibt bewusst stehen; der Fehler entfällt mit der Korrektur des
+Ausgangszweigs. Die vollständige Ist/Soll-Verdrahtung mit Schritt-für-Schritt-
+Anleitung steht im Report
+[2026-09-15_shbs-4-buck-ausgangszweig.md](../../tmp/report/2026-09-15_shbs-4-buck-ausgangszweig.md).
+
+#### Warnungen — Regression aus dem Merge `d7a21e2`
+
+42 der 46 Warnungen gehen auf die Bibliothekskonfiguration zurück, nicht
+auf den Schaltplan:
+
+| Ursache | Anzahl |
+| ------- | ------ |
+| `power:GND` nicht auflösbar | 28 |
+| `power:+3V3` / `power:PWR_FLAG` nicht auflösbar | 6 |
+| Bibliothek `shbs_power` unbekannt (`PS1`, `J_PWR1`) | 2 |
+| `WCAP-FTXX_P10`, `WCAP-PT5H_6.3X5.2`, `WL-TMRC_3MM`, `1543-650-149` nicht registriert | 6 |
+
+Der Merge `d7a21e2` („Merge branch 'main' of …") hat **B9 rückgängig
+gemacht**: in `sym-lib-table` stand wieder `(name "power")` statt
+`shbs_power` — eine einzelne Zeile, von der Gegenseite überschrieben.
+Damit verdeckte die Projektbibliothek erneut die KiCad-Standardbibliothek.
+*Behoben 2026-09-15:* Nickname zurückgesetzt und die vier bis dahin nie
+registrierten Bibliotheken aus `pcb/Symbol/` ergänzt.
+
+> **Lehre für Merges:** `sym-lib-table` ist eine einzeilige Konfiguration
+> pro Bibliothek und wird von Merges leicht still überschrieben. Nach jedem
+> Merge, der `pcb/` berührt, prüfen: `grep shbs_power pcb/BasisStation/sym-lib-table`.
+
+### ERC-Lauf 2026-09-15, 21:43 — Bestätigung
+
+Nach B10 und B11: **48 → 10 Meldungen, 2 → 1 Fehler, 46 → 9 Warnungen.**
+
+| Befund | Status |
+| ------ | ------ |
+| `U6.2 [3V3]` nicht angesteuert | **weg** (`#PWR103`) |
+| `unconnected_wire_endpoint` am 3,3-V-Stummel | **weg** (`#PWR103` sitzt darauf) |
+| 42 Bibliotheks-Warnungen | **weg** (`shbs_power` + vier registrierte Bibliotheken) |
+| `pin_to_pin` PS1.6 `SW` ↔ `#FLG03` | **bleibt** — einziger Fehler, siehe Topologie oben |
+
+Die neun verbleibenden Warnungen sind alle unkritisch und liegen ausserhalb
+der Power-Kette:
+
+- **6× `lib_symbol_mismatch`** (C7, C8, C10, C12, S2, D7). Neu sichtbar,
+  weil die Bibliotheken jetzt überhaupt auflösen. Verglichen wurde der
+  eingebettete Cache gegen `pcb/Symbol/WCAP-FTXX_P10.kicad_sym`: **Pinzahl
+  und Pintypen identisch**, Abweichung nur in den Metadatenfeldern — KiCad 9
+  legt im Schaltplan leere `Footprint`- und `Datasheet`-Felder an und
+  verschiebt das SnapEDA-Feld `Description` nach `Description_1`. Rein
+  kosmetisch, ohne Wirkung auf Netzliste oder BOM.
+- **1× `unconnected_wire_endpoint`** am EN-Netz-Stummel (85,09 / 53,34) —
+  bekannt, siehe „Weitere offene Punkte".
+- **1× `pin_to_pin`** S2.1 (Bidirectional) ↔ J1.5 (GND, Power output) und
+  **1× `multiple_net_names`** GND/EPAD an U6 — beide bestehen seit vor dem
+  USB-C-Umbau.
+
+> **`lib_symbol_mismatch` nicht vorschnell mit „Symbole aus Bibliothek
+> aktualisieren" auflösen.** Genau diese Funktion hat schon einmal korrekte
+> Instanz-Referenzen überschrieben (siehe Hinweis unten). Die Warnungen sind
+> harmlos; falls sie stören, die SnapEDA-Symbole sauber neu importieren.
+
+### Fehlende Footprint-Zuweisungen (blockiert den PCB-Abgleich)
+
+Geprüft am 2026-09-15 über alle Blätter: acht Bauteile hatten **kein**
+Footprint-Feld. Ohne Zuweisung übernimmt der PCB-Abgleich (F8) sie nicht.
+
+| Ref | Blatt | Anmerkung |
+| --- | ----- | --------- |
+| `F1`, `R17`, `R18`, `R19`, `R20` | Stromversorgung | **zugewiesen 2026-09-15** gemäss Stückliste oben |
+| `J1` | Debugging | wird in SHBS-6 auf USB-C umgestellt |
+| `ANT1`, `ANT2` | Layout | BOM-only (Antenne/Pigtail), bewusst ohne Footprint |
 
 ### Symbol- und Footprint-Bibliotheken
 
 - Der Projekteintrag in `sym-lib-table` heisst seit SHBS-4 **`shbs_power`**
-  (vorher `power`, was die KiCad-Standardbibliothek verdeckte).
-- `WCAP-FTXX_P10`, `WCAP-PT5H_6.3X5.2`, `WL-TMRC_3MM` und `1543-650-149`
-  sind ergänzt; ihre Symbole verweisen jetzt auf die Footprint-Bibliothek
-  **`Footprints`** statt auf gleichnamige, nicht existierende Bibliotheken.
+  (vorher `power`, was die KiCad-Standardbibliothek verdeckte). Am
+  2026-09-15 durch den Merge `d7a21e2` kurzzeitig auf `power` zurückgefallen
+  und wieder korrigiert.
+- Die Symbole von `WCAP-FTXX_P10`, `WCAP-PT5H_6.3X5.2`, `WL-TMRC_3MM` und
+  `1543-650-149` verweisen auf die Footprint-Bibliothek **`Footprints`**
+  statt auf gleichnamige, nicht existierende Bibliotheken. Als
+  **Symbol**bibliotheken waren sie bis 2026-09-15 nicht in `sym-lib-table`
+  eingetragen (6 ERC-Warnungen) — jetzt ergänzt, Pfad `${KIPRJMOD}/../Symbol/`.
 - **Wichtig:** Nach Änderungen an `sym-lib-table` oder an den
   `.kicad_sym`-Dateien das Projekt in KiCad **schliessen und neu öffnen**.
   Ein „Symbole aus Bibliothek aktualisieren" mit noch im Speicher
@@ -144,9 +267,10 @@ dieser Netze ein eigenes PWR_FLAG — zusammen mit dem am Ausgang also drei.
 
 ### Weitere offene Punkte
 
-- Zwei Drahtstummel ohne Anschluss: (85,09 / 53,34) → (95,25 / 53,34) am
-  EN-Netz und (240,03 / 22,86) → (248,92 / 22,86) am 3,3-V-Netz. Beide
-  bestehen seit vor dem USB-C-Umbau; Löschen ändert die Netzliste nicht.
+- Drahtstummel (85,09 / 53,34) → (95,25 / 53,34) am EN-Netz: ohne Anschluss,
+  besteht seit vor dem USB-C-Umbau; Löschen ändert die Netzliste nicht.
+- Der zweite Stummel (240,03 / 22,86) → (248,92 / 22,86) am 3,3-V-Netz trägt
+  seit 2026-09-15 das Power-Symbol `#PWR103` und **muss bleiben**.
 - `BasisStation.net` stammt vom 2026-06-09 und enthält noch `PS2`/`+12V`;
   das PCB ist älter als der Schaltplan. Beides nach der Topologie-Korrektur
   neu erzeugen.
@@ -301,12 +425,16 @@ Symbole in KiCad: **Platzieren → Symbol** → Bibliothek **`shbs_power`** oder
 
 ## Nächste Schritte (Checkliste)
 
-1. [ ] Alle Power-Bauteile in `BasisStation_Layout.kicad_sch` platzieren und verdrahten
-2. [ ] **F8** — PCB aus Schaltplan aktualisieren
-3. [ ] VBUS/GND-Pads J_PWR vollständig routen
-4. [ ] Buck-Bauteile dicht an PS1 layouten ( kurze Wege VIN, SW, GND )
-5. [ ] ERC / DRC prüfen
-6. [ ] BOM exportieren
+1. [ ] **Ausgangszweig korrigieren** (D11-Polung, C15 als Bootstrap, C14/R17 hinter L1) — siehe oben
+2. [ ] ERC erneut laufen lassen; nach Punkt 1 muss der letzte Fehler (`pin_to_pin` PS1.6/`#FLG03`) entfallen
+3. [x] Footprints für `F1`, `R17`–`R20` zuweisen — erledigt 2026-09-15
+4. [ ] Netzliste `BasisStation.net` neu exportieren (aktuell vom 2026-06-09, enthält noch `PS2`/`+12V`)
+5. [ ] Alle Power-Bauteile in `BasisStation_Layout.kicad_sch` platzieren und verdrahten
+6. [ ] **F8** — PCB aus Schaltplan aktualisieren
+7. [ ] VBUS/GND-Pads J_PWR vollständig routen
+8. [ ] Buck-Bauteile dicht an PS1 layouten ( kurze Wege VIN, SW, GND )
+9. [ ] DRC prüfen
+10. [ ] BOM exportieren
 
 ---
 
