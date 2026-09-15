@@ -1,68 +1,29 @@
-ERC-Bericht (2026-09-06T23:22:02+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-15T21:47:15+0200, UTF8-kodiert)
 
 ***** Schaltplan /
-[lib_symbol_mismatch]: Symbol "USB_B_Micro" stimmt nicht mit Kopie in Bibliothek "Connector" überein
-    ; warning
-    @(2200 mils, 3450 mils): Symbol J1 [USB_B_Micro]
-[footprint_link_issues]: Footprint "Diodes_UDFN-10_1.0x2.5mm_P0.5mm" nicht in Bibliothek "Package_DFN_QFN" gefunden.
-    ; warning
-    @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
-[lib_symbol_mismatch]: Symbol "D3V3XA4B10LP" stimmt nicht mit Kopie in Bibliothek "Power_Protection" überein
-    ; warning
-    @(3600 mils, 4300 mils): Symbol U1 [D3V3XA4B10LP]
-[unconnected_wire_endpoint]: Unverbundenes Verbindungsende
-    ; warning
-    @(2600 mils, 900 mils): Horizontale Verbindung, Länge 1400 mils
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-PT5H_6.3X5.2"
+[lib_symbol_mismatch]: Symbol "WCAP-PT5H_6.3X5.2" stimmt nicht mit Kopie in Bibliothek "WCAP-PT5H_6.3X5.2" überein
     ; warning
     @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "1543-650-149"
+[lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
     ; warning
     @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+[lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
     @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
     @(3350 mils, 2100 mils): Horizontale Verbindung, Länge 400 mils
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+[lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
     @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
-[lib_symbol_mismatch]: Symbol "WLAN_Pigtail" stimmt nicht mit Kopie in Bibliothek "mechanical" überein
-    ; warning
-    @(4250 mils, 5700 mils): Symbol ANT1 [WLAN_Pigtail]
-[lib_symbol_mismatch]: Symbol "WLAN_Antenna" stimmt nicht mit Kopie in Bibliothek "mechanical" überein
-    ; warning
-    @(6650 mils, 5650 mils): Symbol ANT2 [WLAN_Antenna]
-[unconnected_wire_endpoint]: Unverbundenes Verbindungsende
-    ; warning
-    @(9450 mils, 900 mils): Horizontale Verbindung, Länge 350 mils
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WCAP-FTXX_P10"
+[lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
     @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
-[lib_symbol_issues]: Die aktuelle Konfiguration enthält nicht die Symbolbibliothek "WL-TMRC_3MM"
+[lib_symbol_mismatch]: Symbol "WL-TMRC_3MM" stimmt nicht mit Kopie in Bibliothek "WL-TMRC_3MM" überein
     ; warning
     @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
-[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
-    ; warning
-    @(10000 mils, 3800 mils): Symbol D9 [LED]
-[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
-    ; warning
-    @(10000 mils, 4200 mils): Symbol D10 [LED]
-[lib_symbol_mismatch]: Symbol "LED" stimmt nicht mit Kopie in Bibliothek "Device" überein
-    ; warning
-    @(10000 mils, 4600 mils): Symbol D8 [LED]
-[unconnected_wire_endpoint]: Unverbundenes Verbindungsende
-    ; warning
-    @(6800 mils, 5450 mils): Horizontale Verbindung, Länge 700 mils
 
 ***** Schaltplan /Layout/
-[pin_not_connected]: Pin nicht verbunden
-    ; error
-    @(2600 mils, 1000 mils): Symbol C8 Pin 1 [Passive, Line]
-[power_pin_not_driven]: Input-Power-Pin wird von keinem Output-Power-Pin angesteuert
-    ; error
-    @(5450 mils, 2200 mils): Symbol U6 Pin 2 [3V3, Power input, Line]
 [pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
     ; warning
     @(2250 mils, 2400 mils): Symbol S2 Pin 1 [1, Bidirectional, Line]
@@ -75,11 +36,9 @@ ERC-Bericht (2026-09-06T23:22:02+0200, UTF8-kodiert)
 ***** Schaltplan /Debugging/
 
 ***** Schaltplan /Stromversorgung/
-[power_pin_not_driven]: Input-Power-Pin wird von keinem Output-Power-Pin angesteuert
+[pin_to_pin]: Pins vom Typ Output und Power output sind verbunden
     ; error
-    @(6250 mils, 3300 mils): Symbol PS1 Pin 5 [VIN, Power input, Line]
-[power_pin_not_driven]: Input-Power-Pin wird von keinem Output-Power-Pin angesteuert
-    ; error
-    @(9300 mils, 3100 mils): Symbol J_PWR1 Pin A4 [VBUS, Power input, Line]
+    @(6250 mils, 3400 mils): Symbol PS1 Pin 6 [SW, Output, Line]
+    @(7150 mils, 5650 mils): Symbol #FLG03 Pin 1 [Power output, Line]
 
- ** ERC-Meldungen: 24  Fehler 4  Warnungen 20
+ ** ERC-Meldungen: 10  Fehler 1  Warnungen 9
