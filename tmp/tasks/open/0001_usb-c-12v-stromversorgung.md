@@ -35,14 +35,14 @@ Die bisherige virtuelle **+12-V-Versorgung** (`power:+12V`-Labels → PS2) wird 
 
 1. USB-C-Receptacle (power-only) + Buck 5→3,3 V auswählen; Symbol/Footprint ins Projekt aufnehmen.
 2. ~~Entscheidung 5 V/PD/12 V~~ — **erledigt: Option C** (siehe Report `tmp/report/2026-06-12_shbs-4-usb-c-power-analyse.md`).
-3. Schaltplan anpassen: J_PWR USB-C, CC-Rd, Schutz (Polyfuse, TVS), Buck; ~~PS2 und +12V-Labels entfernen~~ **erledigt**; `+3V3` an Buck-Ausgang — **offen** (manuell in KiCad).
+3. ~~Schaltplan anpassen: J_PWR USB-C, CC-Rd, Schutz (Polyfuse, TVS), Buck; PS2 und +12V-Labels entfernen; `+3V3` an Buck-Ausgang~~ — **erledigt 2026-09-15, ERC 0 Fehler**.
 4. PCB-Layout: USB-C + Buck platzieren und routen; ~~PS2-Footprint entfernen~~ **erledigt**.
-5. ERC/DRC und Netlist-Export ohne Fehler.
+5. ERC ~~und Netlist-Export~~ ohne Fehler — **ERC erledigt** (0 Fehler), **Netzliste exportiert und verifiziert**; **DRC offen** (hängt an Aufgabe 4).
 
 ## Akzeptanzkriterien
 
 - [x] USB-C-Eingang im Schaltplan als primäre Stromversorgung (5 V VBUS).
-- [ ] Buck liefert **3,3 V** an bestehendes `+3V3`-Netz (ehem. PS2-Ausgang) — **blockiert durch B1**.
+- [x] Buck liefert **3,3 V** an bestehendes `+3V3`-Netz (ehem. PS2-Ausgang) — erledigt 2026-09-15 (B1, B11, B12); in der Netzliste führen `L1.1` und `U6.2` dasselbe Netz `+3V3`.
 - [x] PS2 und `+12V`-Netzlabels entfernt; keine verwaisten Power-Symbole.
 - [x] BOM aktualisiert (USB-C, Buck, CC-Widerstände, Schutz); Strom ≥ 1 A @ 3,3 V.
 - [x] `docs/project/power_supply.md` angelegt; Kurzverweis in `hardware.md`
@@ -134,6 +134,13 @@ Der Anstieg der Warnungen um 21:39 war keine Verschlechterung des Schaltplans, s
 Die neun verbleibenden Warnungen sind unkritisch und liegen ausserhalb der Power-Kette: 6× `lib_symbol_mismatch` (nur Metadatenfelder, Pinzahl und -typen identisch), 1× Drahtstummel am EN-Netz, 1× `pin_to_pin` S2/J1, 1× `multiple_net_names` GND/EPAD. Details in [power_supply.md](../../../docs/project/power_supply.md).
 
 Der fünfte ERC-Fehler (`J_PWR?` unannotiert) ist bereits erledigt — `ERC.rpt` ist von 20:49, der Schaltplan von 21:46 desselben Tages.
+
+## Restumfang (Stand 2026-09-15)
+
+Schaltplanseitig ist der Task abgeschlossen. Offen bleiben nur noch:
+
+- **Aufgabe 4 — PCB-Layout.** `BasisStation.kicad_pcb` hat den Stand von vor dem USB-C-Umbau; `J_PWR1`, `PS1`, `F1`, `D11`, `D12`, `L1`, `C13`–`C15` und `R17`–`R20` sind dort noch nicht platziert. Bewusst zurückgestellt, bis SHBS-6 (`J1` auf USB-C) durch ist — sonst muss die Netzliste zweimal ins PCB übernommen werden.
+- **Aufgabe 5 — DRC.** Hängt an Aufgabe 4.
 
 ## Fortschritt
 
