@@ -142,6 +142,20 @@ Schaltplanseitig ist der Task abgeschlossen. Offen bleiben nur noch:
 - **Aufgabe 4 — PCB-Layout.** `BasisStation.kicad_pcb` hat den Stand von vor dem USB-C-Umbau; `J_PWR1`, `PS1`, `F1`, `D11`, `D12`, `L1`, `C13`–`C15` und `R17`–`R20` sind dort noch nicht platziert. Bewusst zurückgestellt, bis SHBS-6 (`J1` auf USB-C) durch ist — sonst muss die Netzliste zweimal ins PCB übernommen werden.
 - **Aufgabe 5 — DRC.** Hängt an Aufgabe 4.
 
+### B14 — `J_PWR1` nutzt nur die Hälfte der VBUS- und GND-Kontakte
+
+Aufgefallen bei der Analyse zu SHBS-6 (2026-09-15). Der Footprint
+`USB_C_Receptacle_Amphenol_12401548E4-2A.kicad_mod` hat 30 Pads, darunter die
+vollständige A- **und** B-Reihe. Das Symbol `shbs_power:USB_C_Receptacle_Power`
+bildet aber nur `A4`/`A9` (VBUS), `A5`/`B5` (CC), `A1`/`B1` (GND) und `S1` ab.
+Die Pads `B4`/`B9` (VBUS) und `A12`/`B12` (GND) bekommen dadurch kein Netz.
+
+Bei 3 A über zwei statt vier Kontakte je Richtung ist das grenzwertig.
+**Beim Routing alle VBUS- und GND-Pads aufs jeweilige Netz legen** —
+`power_supply.md` weist bereits darauf hin. Sauberer wäre, das Symbol um
+diese Pins zu erweitern; dann erledigt der Netzlisten-Import das von selbst.
+Betrifft nur das Layout, nicht den Schaltplan — deshalb kein ERC-Befund.
+
 ## Fortschritt
 
 - 2026-09-15 (6): **Netzliste exportiert und verifiziert.** `BasisStation.net` neu erzeugt: keine `PS2`-, `+12V`- oder `TSR`-Reste mehr; `+3V3` führt `L1.1` und `U6.2` im selben Netz — die zuvor getrennten Inseln sind verschmolzen. `BST` (`PS1.1`, `C15.1`), `SW` (`PS1.6`, `C15.2`, `D11.1`, `L1.2`) und `FB` stimmen. 59 Netze, 36 Bauteile. Fortschrittskommentar auf SHBS-4 hinterlegt (Jira-Kommentar 11069). **Restumfang: nur noch PCB-Layout und DRC** — zurückgestellt bis SHBS-6.
