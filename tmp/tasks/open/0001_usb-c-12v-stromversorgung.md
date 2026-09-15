@@ -113,7 +113,7 @@ Danach: Netzliste neu exportieren (`BasisStation.net` ist vom 2026-06-09 und ent
       *Umgesetzt:* Nickname zurückgesetzt, vier Bibliotheken mit Pfad `${KIPRJMOD}/../Symbol/` ergänzt.
 - [x] **B11 — U6-Versorgungsschiene ohne Netznamen.** *(behoben 2026-09-15)* Das Netz an `U6` Pin 2 (`C8.1`, `C10.1`, `C12.1`, `R9.1`, `J6.2`, `U6.2`, 15 Drähte) trug weder Label noch Power-Symbol. Der B1-Fix hatte `#PWR101`/`#PWR102` auf zwei **andere** 3,3-V-Inseln gesetzt — deshalb blieb `power_pin_not_driven` an `U6.2` trotz B1 und B3 bestehen.
       *Umgesetzt:* `#PWR103` (`power:+3V3`) am offenen Drahtende (248,92 / 22,86); löst zugleich eine `unconnected_wire_endpoint`-Warnung. Dieser Stummel darf nicht mehr gelöscht werden.
-- [ ] **B12 — Topologiefehler im Buck-Ausgangszweig** — **einziger verbleibender ERC-Fehler** (bereits in [power_supply.md](../../../docs/project/power_supply.md) dokumentiert). ERC macht ihn seit 2026-09-15 als `pin_to_pin` sichtbar: `PS1.6 [SW, Output]` und `#FLG03 [Power output]` auf einem Netz — der Draht mit dem `+3V3`-Label ist elektrisch der Schaltknoten `SW`.
+- [x] **B12 — Topologiefehler im Buck-Ausgangszweig** *(behoben 2026-09-15, ERC 0 Fehler)* (bereits in [power_supply.md](../../../docs/project/power_supply.md) dokumentiert). ERC macht ihn seit 2026-09-15 als `pin_to_pin` sichtbar: `PS1.6 [SW, Output]` und `#FLG03 [Power output]` auf einem Netz — der Draht mit dem `+3V3`-Label ist elektrisch der Schaltknoten `SW`.
       *Fix:* Vollständige Ist/Soll-Verdrahtung mit Schritt-für-Schritt-Anleitung im Report [2026-09-15_shbs-4-buck-ausgangszweig.md](../../report/2026-09-15_shbs-4-buck-ausgangszweig.md). **In der KiCad-GUI**, nicht per Skript. Danach prüfen, dass `#FLG03` hinter `L1` liegt.
 
 - [x] **B13 — Acht Bauteile ohne Footprint-Zuweisung.** *(erledigt 2026-09-15)* Geprüft 2026-09-15 über alle Blätter: `F1`, `R17`–`R20` (Stromversorgung), `J1` (Debugging, wird in SHBS-6 ersetzt), `ANT1`/`ANT2` (Layout, BOM-only und bewusst leer). Ohne Zuweisung übernimmt der PCB-Abgleich (F8) die Power-Bauteile nicht.
@@ -126,7 +126,8 @@ Danach: Netzliste neu exportieren (`BasisStation.net` ist vom 2026-06-09 und ent
 | 2026-06-17 20:49 (vor B9) | 53 | 5 | 48 |
 | 2026-09-06 23:22 (nach B9) | 24 | 4 | 20 |
 | 2026-09-15 21:39 (nach B3, B1, C8) | 48 | 2 | 46 |
-| 2026-09-15 21:43 (nach B10, B11) | **10** | **1** | **9** |
+| 2026-09-15 21:43 (nach B10, B11) | 10 | 1 | 9 |
+| 2026-09-15 22:27 (nach B12) | **9** | **0** | **9** |
 
 Der Anstieg der Warnungen um 21:39 war keine Verschlechterung des Schaltplans, sondern die Bibliotheks-Regression B10 — mit deren Behebung fielen 42 Warnungen weg.
 
@@ -136,6 +137,7 @@ Der fünfte ERC-Fehler (`J_PWR?` unannotiert) ist bereits erledigt — `ERC.rpt`
 
 ## Fortschritt
 
+- 2026-09-15 (5): **B12 behoben — ERC 0 Fehler.** Der Ausgangszweig wurde in der KiCad-GUI korrigiert (D11 senkrecht auf die SW-Schiene mit Kathode oben, C15 als Bootstrap zwischen BST und SW, C14/R17 hinter L1). Netzprüfung aus der Datei: alle fünf Zielnetze (`SW`, `BST`, `+3V3`, `GND`, `FB`) exakt wie geplant, kein unverbundener Pin. Verbleibende 9 Warnungen sind unkritisch und liegen ausserhalb der Power-Kette. **Nächster Schritt:** Netzliste `BasisStation.net` neu exportieren, PCB nachziehen (F8), platzieren, DRC.
 - 2026-09-15 (4): ERC-Lauf 21:47 inhaltlich identisch zum Lauf 21:43 (10 Meldungen, 1 Fehler, 9 Warnungen) — an den Schaltplänen wurde zwischen beiden Läufen nichts geändert. **B13 erledigt** (Footprints für `F1`, `R17`–`R20`). Für **B12** liegt jetzt die vollständige Ist/Soll-Verdrahtung als Report vor: [2026-09-15_shbs-4-buck-ausgangszweig.md](../../report/2026-09-15_shbs-4-buck-ausgangszweig.md). **Nächster Schritt:** B12 in der GUI, dann Netzliste und PCB.
 - 2026-09-15 (3): **B10 und B11 per ERC bestätigt.** Lauf 21:43 gegen 21:39: Meldungen 48 → 10, Fehler 2 → 1, Warnungen 46 → 9. `U6.2 [3V3]` und die Stummel-Warnung am 3,3-V-Netz sind weg, die 42 Bibliotheks-Warnungen ebenfalls. **Einziger verbleibender Fehler ist B12** (Topologie Buck-Ausgang). Neu aufgenommen: **B13** (fehlende Footprints, blockiert den PCB-Abgleich). **Nächster Schritt:** B12 in der KiCad-GUI, dann B13, dann Netzliste und PCB.
 - 2026-09-15 (2): **B3 per ERC bestätigt** — Fehler an `J_PWR1.A4 [VBUS]` und `PS1.5 [VIN]` entfallen, Fehler gesamt 4 → 2. Zwei neue Befunde aufgenommen und behoben: **B10** (sym-lib-table-Regression aus Merge `d7a21e2`) und **B11** (U6-Schiene ohne Netznamen, `#PWR103` gesetzt). Verbleibend: **B12** (Topologie Buck-Ausgang). **Nächster Schritt:** ERC erneut laufen lassen — erwartet 1 Fehler, ~4 Warnungen; danach B12 in der GUI, dann Netzliste und PCB.

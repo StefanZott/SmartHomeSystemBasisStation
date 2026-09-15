@@ -83,7 +83,9 @@ USB-Netzteil / Kabel (5 V)
 | PWR_FLAG an VBUS, VIN und Ausgang | eingefügt 2026-09-15 (`#FLG01`–`#FLG03`) |
 | `+3V3`-Symbol auf der U6-Schiene (`#PWR103`) | eingefügt 2026-09-15 |
 | PCB-Platzierung/Routing | offen |
-| ERC/DRC ohne Fehler | offen (Lauf 2026-09-15 21:43: **1 Fehler**, 9 Warnungen — einziger Fehler ist der Topologiefehler) |
+| Buck-Ausgangszweig korrigiert (B12) | erledigt 2026-09-15 |
+| ERC ohne Fehler | **erreicht** (Lauf 2026-09-15 22:27: 0 Fehler, 9 unkritische Warnungen) |
+| DRC ohne Fehler | offen (PCB noch nicht nachgezogen) |
 
 **Hinweis:** Automatisches Einfügen per Skript (2026-06-08) hat KiCad zum Absturz geführt (defekte `lib_symbols`). Power-Teile **nur über die KiCad-GUI** eintragen.
 
@@ -95,11 +97,14 @@ ERC-Verlauf an diesem Tag: **53 → 11 Meldungen**. Bereinigt wurden die
 Symbolbibliotheks-Auflösung, die `+3V3`-Netzverbindung und zwei
 Verdrahtungsfehler (Commits `da60c97`, `1c1b027`, `0268e9a`, `217546d`).
 
-### Offen: Buck-Ausgangszweig weicht von der Soll-Kette ab
+### Behoben 2026-09-15: Buck-Ausgangszweig wich von der Soll-Kette ab
 
-Die aus der Schaltplangeometrie rekonstruierte Netzliste weicht von der
-oben dokumentierten Power-Kette ab. **Das aktuelle Netz `+3V3` ist
-tatsächlich der Schaltknoten `SW`**:
+Bis zum 2026-09-15 wich die aus der Schaltplangeometrie rekonstruierte
+Netzliste von der oben dokumentierten Power-Kette ab. **Das Netz `+3V3` war
+tatsächlich der Schaltknoten `SW`.** Der Abschnitt bleibt als Nachweis
+stehen; der Ist-Stand nach der Korrektur steht unter „Ergebnis" am Ende.
+
+Ist-Stand vor der Korrektur:
 
 | Knoten | Ist | Soll |
 | ------ | --- | ---- |
@@ -178,10 +183,30 @@ offenen Drahtende (248,92 / 22,86); damit entfällt zugleich die Warnung
 einem Netz. Das ist kein Fehler der PWR_FLAG-Platzierung, sondern die
 ERC-sichtbare Bestätigung des oben beschriebenen Topologiefehlers: der
 Draht mit dem `+3V3`-Label **ist** elektrisch der Schaltknoten `SW`.
-`#FLG03` bleibt bewusst stehen; der Fehler entfällt mit der Korrektur des
+`#FLG03` blieb bewusst stehen; der Fehler entfiel mit der Korrektur des
 Ausgangszweigs. Die vollständige Ist/Soll-Verdrahtung mit Schritt-für-Schritt-
 Anleitung steht im Report
 [2026-09-15_shbs-4-buck-ausgangszweig.md](../../tmp/report/2026-09-15_shbs-4-buck-ausgangszweig.md).
+
+### Ergebnis — Ist-Stand nach der Korrektur (2026-09-15 22:27)
+
+Aus der Schaltplangeometrie zurückverfolgt, alle Zielnetze erreicht, kein
+unverbundener Pin im Power-Zweig:
+
+| Netz | Pins |
+| ---- | ---- |
+| `SW` | `PS1.6`, `C15.2`, `D11.1` (K), `L1.2` |
+| `BST` | `PS1.1`, `C15.1` |
+| `+3V3` | `L1.1`, `C14.2`, `R17.1`, `#PWR100`, `#FLG03` |
+| `GND` | `D11.2` (A) über `#PWR013`, `C14.1`, `R18.1`, `PS1.2` |
+| `FB` | `PS1.3`, `R17.2`, `R18.2` |
+
+`D11` sitzt jetzt senkrecht auf der `SW`-Schiene (Kathode oben) statt
+hinter `L1`, `C15` liegt zwischen `BST` und `SW` statt gegen GND, und
+`C14`/`R17` hängen hinter `L1` am geglätteten Ausgang.
+
+**ERC: 0 Fehler, 9 Warnungen.** Die Warnungen sind unverändert die oben
+beschriebenen unkritischen Befunde ausserhalb der Power-Kette.
 
 #### Warnungen — Regression aus dem Merge `d7a21e2`
 
@@ -425,8 +450,8 @@ Symbole in KiCad: **Platzieren → Symbol** → Bibliothek **`shbs_power`** oder
 
 ## Nächste Schritte (Checkliste)
 
-1. [ ] **Ausgangszweig korrigieren** (D11-Polung, C15 als Bootstrap, C14/R17 hinter L1) — siehe oben
-2. [ ] ERC erneut laufen lassen; nach Punkt 1 muss der letzte Fehler (`pin_to_pin` PS1.6/`#FLG03`) entfallen
+1. [x] **Ausgangszweig korrigiert** (D11-Polung, C15 als Bootstrap, C14/R17 hinter L1) — 2026-09-15
+2. [x] ERC erneut gelaufen — **0 Fehler** (2026-09-15 22:27)
 3. [x] Footprints für `F1`, `R17`–`R20` zuweisen — erledigt 2026-09-15
 4. [ ] Netzliste `BasisStation.net` neu exportieren (aktuell vom 2026-06-09, enthält noch `PS2`/`+12V`)
 5. [ ] Alle Power-Bauteile in `BasisStation_Layout.kicad_sch` platzieren und verdrahten
