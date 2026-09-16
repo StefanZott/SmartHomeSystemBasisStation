@@ -1,4 +1,4 @@
-ERC-Bericht (2026-09-15T22:27:19+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-16T22:27:36+0200, UTF8-kodiert)
 
 ***** Schaltplan /
 [lib_symbol_mismatch]: Symbol "WCAP-PT5H_6.3X5.2" stimmt nicht mit Kopie in Bibliothek "WCAP-PT5H_6.3X5.2" überein
@@ -27,7 +27,7 @@ ERC-Bericht (2026-09-15T22:27:19+0200, UTF8-kodiert)
 [pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
     ; warning
     @(57,15 mm, 60,96 mm): Symbol S2 Pin 1 [1, Bidirectional, Line]
-    @(55,88 mm, 97,79 mm): Symbol J1 Pin 5 [GND, Power output, Line]
+    @(262,89 mm, 76,20 mm): Symbol #FLG04 Pin 1 [Power output, Line]
 [multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
     ; warning
     @(35,56 mm, 100,33 mm): Symbol #PWR029 Pin 1 [Power input, Line]

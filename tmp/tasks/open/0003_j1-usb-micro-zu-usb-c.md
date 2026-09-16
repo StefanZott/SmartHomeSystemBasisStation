@@ -45,23 +45,34 @@ Die frühere Annahme „Amphenol 12401548E4-2A ist power-only, für Daten wird e
 
 Vorteile: eine BOM-Position statt zwei, Footprint existiert bereits, beide Buchsen bauform- und höhengleich.
 
-### Offen: Symbolquelle
+### Symbolquelle (16.09.2026) — entschieden
 
-Gebraucht wird nur ein **Symbol mit Datenpins**:
+`Connector:USB_C_Receptacle_USB2.0_16P` ist in der KiCad-Installation vorhanden und wird verwendet. Kein eigenes Projektsymbol nötig.
 
-1. **`Connector:USB_C_Receptacle_USB2.0_16P`** (KiCad-Standard) — dessen 16 Pinnamen (`A1`, `A4`–`A9`, `A12`, `B1`, `B4`–`B9`, `B12`) existieren alle als Pads im vorhandenen Footprint; die acht SuperSpeed-Pads bleiben netzlos, was bei USB-2.0-Nutzung normal ist. **Bevorzugt** — muss in KiCad verifiziert werden (globale Bibliothek von der Agentenseite nicht einsehbar).
-2. Eigenes Symbol in der Projektbibliothek — mehr Kontrolle, aber Pflegeaufwand.
+Wichtig für spätere Arbeiten am Symbol: KiCad **stapelt** die redundanten VBUS-Pins (`A4`/`B4`/`A9`/`B9`) und GND-Pins (`A1`/`B1`/`A12`/`B12`) auf jeweils einer Position. Ein Draht an `A4` bzw. `A1` verbindet alle vier — in der Netzliste bestätigt.
+
+Verworfen wurde die Alternative, ein eigenes Symbol in der Projektbibliothek zu pflegen — unnötiger Aufwand, da das Standardsymbol passt. Die acht SuperSpeed-Pads des Footprints bleiben netzlos; bei USB-2.0-Nutzung ist das normal.
+
+### Nebenwirkung: GND ohne ERC-Treiber (16.09.2026)
+
+Das alte Symbol `Connector:USB_B_Micro` hatte seinen GND-Pin (Pin 5) als **Power output** deklariert. Dieser Pin war — unbemerkt — der einzige ERC-Treiber des globalen GND-Netzes. Das USB-C-Symbol deklariert GND als `power_in`, wie alle übrigen GND-Pins im Projekt (`J_PWR1`, `PS1`, `U6`). Folge: `power_pin_not_driven` im Debugging-Blatt.
+
+[Task 0028](../done/0028_erc-pwr-flag-layout-fehler.md) hatte das GND-`PWR_FLAG` seinerzeit entfernt — unter der Annahme, GND sei versorgt. Das war es auch, nur durch ein Steckersymbol. Diese Annahme ist mit dem Umbau entfallen.
+
+**Behoben** durch `PWR_FLAG` (`#FLG04`) am GND-Draht von `J_PWR1.A1` in `Stromversorgung.kicad_sch`. Bleibt Variante A aus Task 0028 (KiCad-Standardweg, keine ERC-Ausnahmen).
 
 ## Aufgaben
 
-1. [ ] Prüfen, ob `Connector:USB_C_Receptacle_USB2.0_16P` in der KiCad-Installation vorhanden ist; sonst eigenes Symbol anlegen.
-2. [ ] `J1` im Debugging-Blatt ersetzen:
+1. [x] ~~Prüfen, ob `Connector:USB_C_Receptacle_USB2.0_16P` vorhanden ist~~ — vorhanden, verwendet.
+2. [x] `J1` im Debugging-Blatt ersetzt:
    - **`A6`+`B6` (D+) und `A7`+`B7` (D−) jeweils zusammenführen.** Bei USB-C liegen die Datenpaare doppelt an; ohne diese Brücke funktioniert der Stecker nur in **einer** von zwei Steckrichtungen. Klassischer Fehler bei USB-2.0-Designs.
    - `CC1`/`CC2` je **5,1 kΩ Rd gegen GND** (`R21`, `R22` — beide Bezeichner sind frei).
    - `SHIELD` an GND, `SBU1`/`SBU2` offen, `VBUS` unverändert nur am ESD-Array.
-3. [ ] Footprint `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A` an `J1` zuweisen (Feld ist aktuell leer).
+3. [x] Footprint `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A` an `J1` zugewiesen.
 4. [x] ~~Abgrenzung zu Task 0001 klären~~ — erledigt, siehe Entscheidung oben.
-5. [ ] ERC und Netzlisten-Export ohne Fehler.
+5. [x] ERC und Netzlisten-Export ohne Fehler (16.09.2026: 0 Fehler, 9 Warnungen).
+
+**Verbleibend:** Akzeptanzkriterium „`idf.py flash` / JTAG über den neuen Anschluss" lässt sich erst nach Bestückung der Hardware prüfen. Alles andere ist erledigt.
 
 **Nicht in diesem Task:** PCB-Layout und DRC. Wird zusammen mit dem Layout aus [Task 0001](0001_usb-c-12v-stromversorgung.md) nachgezogen, damit die Netzliste nur einmal ins Board übernommen werden muss.
 
@@ -71,17 +82,18 @@ Die frühere Formulierung „CC-Widerstände (**Rp**) für Sink/Device-Modus" wa
 
 ## Akzeptanzkriterien
 
-- [ ] `J1` ist USB-C (kein USB-B-Micro mehr im Schaltplan/BOM).
-- [ ] Beide Datenpaare (`A6`/`B6`, `A7`/`B7`) gebrückt — Stecker funktioniert in beiden Orientierungen.
-- [ ] `CC1`/`CC2` mit je 5,1 kΩ **Rd** gegen GND.
-- [ ] `USB+`/`USB-` weiterhin funktional an `U6.14`/`U6.13` angebunden.
-- [ ] `J1` hat einen Footprint zugewiesen.
-- [ ] ERC ohne Fehler, Netzliste exportiert.
+- [x] `J1` ist USB-C (kein USB-B-Micro mehr im Schaltplan/BOM).
+- [x] Beide Datenpaare (`A6`/`B6`, `A7`/`B7`) gebrückt — Stecker funktioniert in beiden Orientierungen.
+- [x] `CC1`/`CC2` mit je 5,1 kΩ **Rd** gegen GND.
+- [x] `USB+`/`USB-` weiterhin funktional an `U6.14`/`U6.13` angebunden.
+- [x] `J1` hat einen Footprint zugewiesen.
+- [x] ERC ohne Fehler, Netzliste exportiert.
 - [ ] `idf.py flash` / JTAG über den neuen Anschluss möglich (nach Hardware-Bestückung; Verifikation dokumentieren).
-- [ ] `docs/project/hardware.md` Schnittstellen-Tabelle aktualisiert.
+- [x] `docs/project/hardware.md` Schnittstellen-Tabelle aktualisiert.
 
 ## Fortschritt
 
+- 2026-09-16: **Schaltplan umgesetzt.** `J1` durch `Connector:USB_C_Receptacle_USB2.0_16P` ersetzt, beide Datenpaare gebrückt, `R21`/`R22` als Rd gesetzt, Footprint zugewiesen, `5VUSB` → `VBUS_J1` umbenannt. Netzliste verifiziert: `USB+` = `J1.A6`+`J1.B6`+`U1.2`+`U6.14`, `USB-` = `J1.A7`+`J1.B7`+`U1.1`+`U6.13`, `VBUS_J1` = alle vier VBUS-Pins + `U1.4`, GND = alle vier GND-Pins + `S1`. GND-Treiber über `#FLG04` wiederhergestellt. **ERC: 0 Fehler, 9 Warnungen** (alle Altbestand). `hardware.md` aktualisiert. **Offen:** nur noch die Flash-/JTAG-Verifikation nach Hardware-Bestückung.
 - 2026-09-15: Ist-Stand analysiert (Netze, Datenpfad zu `U6`, toter `5VUSB`-Netzname, fehlender Footprint). Port-Konzept entschieden (zwei getrennte Ports). Bauteilfrage geklärt — die vorhandene Amphenol-Buchse ist vollbestückt und wiederverwendbar, es fehlt nur ein Symbol mit Datenpins. Rp/Rd-Fehler im Task korrigiert. **Nächster Schritt:** Aufgabe 1 (Symbolverfügbarkeit in KiCad prüfen).
 - 2026-06-08: Task angelegt.
 
@@ -89,5 +101,7 @@ Die frühere Formulierung „CC-Widerstände (**Rp**) für Sink/Device-Modus" wa
 
 - `pcb/BasisStation/BasisStation_Debugging.kicad_sch`
 - `pcb/BasisStation/BasisStation.net`
+- `pcb/BasisStation/Stromversorgung.kicad_sch` (PWR_FLAG `#FLG04`)
+- `pcb/BasisStation/ERC.rpt`
 - `docs/project/hardware.md`
 - ggf. Projekt-Symbolbibliothek (falls kein KiCad-Standardsymbol passt)

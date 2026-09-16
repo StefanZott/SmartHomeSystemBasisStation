@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-08
+last_updated: 2026-09-16
 type: project-doc
 ---
 
@@ -16,9 +16,9 @@ Smart-Home-Basisstation mit Tastern, USB/PROG/JTAG, WLAN-Antenne, vier LEDs (Rot
 
 | Schnittstelle | Zweck |
 |---------------|--------|
-| USB | Debugging (Seriell/JTAG über USB, je nach Design) |
-| PROG | Firmware flashen |
-| JTAG | On-Chip-Debugging |
+| USB-C (`J1`) | Debug- und Datenanschluss: natives USB-Serial-JTAG des ESP32-S3. Flashen und On-Chip-Debugging über einen Stecker. Keine Stromversorgung über diesen Port. |
+| PROG | Firmware flashen (alternativ über `J1`) |
+| JTAG | On-Chip-Debugging (alternativ über `J1`) |
 | WLAN | Externe 2,4-GHz-Antenne über U.FL-Pigtail und RP-SMA-Gehäusebuchse (Modul **1U**) |
 | Ethernet | Ziel: kabelgebundene Netzwerkverbindung (Umsetzung: Hardware + Firmware prüfen) |
 
@@ -70,6 +70,22 @@ Mouser-Referenzen (Schaltplan-Felder): CAB.6061 (`742-CAB.6061`), GW.20.5150 (`7
 
 Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail`, `WLAN_Antenna`).
 
+## Debug-/Datenanschluss J1 (SHBS-6)
+
+`J1` ist eine **USB-C-Buchse** (Amphenol **12401548E4-2A**, dieselbe Bauform wie der Versorgungsport `J_PWR1` — eine BOM-Position für beide). Symbol: `Connector:USB_C_Receptacle_USB2.0_16P`, Footprint: `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A`.
+
+| Eigenschaft | Umsetzung |
+|-------------|-----------|
+| Datenpfad | `J1` → ESD-Array `U1` (D3V3XA4B10LP) → `U6.14`/`U6.13` (GPIO20/GPIO19, USB_D+/USB_D−) |
+| Steckrichtung | Beide Datenpaare gebrückt (`A6`+`B6` = D+, `A7`+`B7` = D−) — Stecker funktioniert in beiden Orientierungen |
+| Rolle | **Sink/UFP**: je 5,1 kΩ **Rd** von `CC1` (`R21`) und `CC2` (`R22`) gegen GND |
+| VBUS | Netz `VBUS_J1`, endet am ESD-Array. **Keine Versorgung über diesen Port** |
+| SBU1/SBU2 | Unbeschaltet (No-Connect) |
+
+**Zwei getrennte Ports.** Versorgung läuft ausschließlich über `J_PWR1` (siehe [power_supply.md](power_supply.md)), `J1` ist reiner Datenanschluss. Zum Flashen sind daher **zwei Kabel** nötig. Ein gemeinsamer Port und eine ORing-Lösung wurden verworfen; da `VBUS_J1` nirgends auf die Versorgungsschiene führt, besteht kein Rückspeise-Risiko zwischen den Ports.
+
+Schaltplan: `pcb/BasisStation/BasisStation_Debugging.kicad_sch`.
+
 ## Stromversorgung (SHBS-4)
 
 Primäre Versorgung: **USB-C 5 V → MP2359 Buck → 3,3 V**. PS2/+12V entfernt.
@@ -87,6 +103,7 @@ Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[powe
 | Bauteilbibliothek MCU | `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
 | Power (USB-C, Buck) | `pcb/Bauteile/Power/power.kicad_sym` (J_PWR, PS1) |
+| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 16.09.2026: 0 Fehler, 9 Warnungen) |
 | Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware

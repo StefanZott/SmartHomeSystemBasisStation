@@ -1627,6 +1627,12 @@
 		(uuid "2fe71a36-73c3-4f38-b4bd-1afc2dbff3a9")
 	)
 	(junction
+		(at 262.89 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3ce8bea8-b2c1-4e2b-bfad-80bf7e6ff837")
+	)
+	(junction
 		(at 190.5 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1852,7 +1858,7 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 78.74) (xy 267.97 78.74)
+			(xy 256.54 78.74) (xy 262.89 78.74)
 		)
 		(stroke
 			(width 0)
@@ -2002,6 +2008,16 @@
 	)
 	(wire
 		(pts
+			(xy 262.89 76.2) (xy 262.89 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0a8c42b-d0ff-4006-816f-4d7dfac63e87")
+	)
+	(wire
+		(pts
 			(xy 185.42 138.43) (xy 190.5 138.43)
 		)
 		(stroke
@@ -2079,6 +2095,16 @@
 			(type default)
 		)
 		(uuid "d19860fe-f615-4411-ae08-0b1e10230d49")
+	)
+	(wire
+		(pts
+			(xy 262.89 78.74) (xy 267.97 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1c3e8d6-54e2-4538-b352-c4e565c208a0")
 	)
 	(wire
 		(pts
@@ -2892,6 +2918,72 @@
 			(project "BasisStation"
 				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/5fd3b213-b7bb-4f0b-b520-d744bf60efa7"
 					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 262.89 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "49c5561e-7236-4556-aa0c-5b55c346380f")
+		(property "Reference" "#FLG04"
+			(at 262.89 74.295 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 262.89 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 262.89 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 262.89 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 262.89 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7b7aa8e5-1539-402a-b7de-3a5ecb99601e")
+		)
+		(instances
+			(project ""
+				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/5fd3b213-b7bb-4f0b-b520-d744bf60efa7"
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
