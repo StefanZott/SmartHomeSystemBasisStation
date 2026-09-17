@@ -1,37 +1,37 @@
-ERC-Bericht (2026-09-16T22:27:36+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-17T15:59:03+0200, UTF8-kodiert)
 
 ***** Schaltplan /
 [lib_symbol_mismatch]: Symbol "WCAP-PT5H_6.3X5.2" stimmt nicht mit Kopie in Bibliothek "WCAP-PT5H_6.3X5.2" überein
     ; warning
-    @(66,04 mm, 30,48 mm): Symbol C8 [WCAP-PT5H_6.3X5.2]
+    @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
 [lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
     ; warning
-    @(57,15 mm, 60,96 mm): Symbol S2 [1543-650-149]
+    @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(57,15 mm, 68,58 mm): Symbol C7 [WCAP-FTXX_P10]
+    @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
-    @(85,09 mm, 53,34 mm): Horizontale Verbindung, Länge 10,16 mm
+    @(3350 mils, 2100 mils): Horizontale Verbindung, Länge 400 mils
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(146,05 mm, 41,91 mm): Symbol C10 [WCAP-FTXX_P10]
+    @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(247,65 mm, 45,72 mm): Symbol C12 [WCAP-FTXX_P10]
+    @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
 [lib_symbol_mismatch]: Symbol "WL-TMRC_3MM" stimmt nicht mit Kopie in Bibliothek "WL-TMRC_3MM" überein
     ; warning
-    @(252,73 mm, 86,36 mm): Symbol D7 [WL-TMRC_3MM]
+    @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
 
 ***** Schaltplan /Layout/
 [pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
     ; warning
-    @(57,15 mm, 60,96 mm): Symbol S2 Pin 1 [1, Bidirectional, Line]
-    @(262,89 mm, 76,20 mm): Symbol #FLG04 Pin 1 [Power output, Line]
+    @(2250 mils, 2400 mils): Symbol S2 Pin 1 [1, Bidirectional, Line]
+    @(10350 mils, 3000 mils): Symbol #FLG04 Pin 1 [Power output, Line]
 [multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
     ; warning
-    @(35,56 mm, 100,33 mm): Symbol #PWR029 Pin 1 [Power input, Line]
-    @(138,43 mm, 137,16 mm): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
+    @(9150 mils, 4650 mils): Symbol #PWR04 Pin 1 [Power input, Line]
+    @(5450 mils, 5400 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
 
 ***** Schaltplan /Debugging/
 
