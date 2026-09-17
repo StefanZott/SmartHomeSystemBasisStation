@@ -51,7 +51,8 @@ Setzt Tasks `0002` und `0003` voraus.
 Der Bediener zeichnet in KiCad; der Agent prüft danach gegen die Netzliste.
 
 **Die Buchse bringt Bob-Smith-Terminierung und den 2-kV-Kondensator bereits
-mit** (4 × 75 Ω + 1 nF/2 kV, Datenblatt S. 2, kabelseitig an `J4`/`J5`/`J7`/`J8`).
+mit** (4 × 75 Ω + 1 nF/2 kV, Datenblatt S. 2, an den Kabelkontakten 4, 5, 7 und 8 —
+nicht zu verwechseln mit Schaltplan-Referenzen).
 Extern ist dafür **nichts** zu bauen. Übertrager 1:1, 350 µH — deckt sich mit
 der Forderung des W5500-Datenblatts (Abschnitt 5.5.5).
 

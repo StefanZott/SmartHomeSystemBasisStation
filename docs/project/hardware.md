@@ -10,19 +10,18 @@ KiCad-Layout und physische Schnittstellen der SmartHome-Basisstation auf Basis *
 
 ## Zielbild
 
-Smart-Home-Basisstation mit Tastern, USB/PROG/JTAG, WLAN-Antenne, vier LEDs (Rot, Grün, Blau, Gelb) und **Ethernet** als geplante Schnittstelle.
+Smart-Home-Basisstation mit Tastern, USB-C-Debuganschluss, PROG-Header, WLAN-Antenne, vier LEDs (Rot, Grün, Blau, Gelb) und **Ethernet** über W5500.
 
 ## Physische Schnittstellen
 
 | Schnittstelle | Zweck |
 |---------------|--------|
 | USB-C (`J1`) | Debug- und Datenanschluss: natives USB-Serial-JTAG des ESP32-S3. Flashen und On-Chip-Debugging über einen Stecker. Keine Stromversorgung über diesen Port. |
-| PROG | Firmware flashen (alternativ über `J1`) |
-| JTAG | On-Chip-Debugging (alternativ über `J1`) |
+| PROG (`J6`) | 6-poliger Header: Firmware flashen über UART (alternativ über `J1`) |
 | WLAN | Externe 2,4-GHz-Antenne über U.FL-Pigtail und RP-SMA-Gehäusebuchse (Modul **1U**) |
 | Ethernet | Kabelgebundene Netzwerkverbindung über **WIZnet W5500** (SPI). Architektur und Begründung: [ethernet.md](ethernet.md). Schaltplan in Arbeit (SHBS-5), Layout offen (SHBS-10), Firmware offen (SHBS-11) |
 
-**Annahme (gekennzeichnet):** Die genaue Pinbelegung von PROG/JTAG/Ethernet folgt dem KiCad-Projekt; ohne geöffnetes Schema keine feste Signalzuordnung in dieser Doku.
+**Separater JTAG-Header entfallen.** Der ESP32-S3 bringt USB-Serial-JTAG im Chip mit; On-Chip-Debugging läuft über `J1`. Der frühere 10-polige Header `J5` wurde deshalb aus dem Schaltplan entfernt — ein Steckverbinder und dessen Platinenfläche weniger.
 
 ## Steckverbinder (KiCad / BOM)
 
@@ -107,7 +106,7 @@ Transistoren: **BC337** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E).
 
 **Dimensionierung:** Der Vorwiderstand stellt bei ca. 2 V Flussspannung rund 5 mA LED-Strom ein. Der Basiswiderstand begrenzt den Basisstrom auf ca. 0,55 mA — ausreichend für sichere Sättigung und unkritisch für den GPIO-Treiber. Ohne diesen Widerstand wirkt die Basis-Emitter-Strecke als Diode gegen GND und der Pin-Strom wäre nur durch die Treiberimpedanz begrenzt.
 
-**Pinwahl:** Bewusst auf GPIOs **ohne** Strapping-, ADC- oder Touch-Funktion gelegt. Die Strapping-Pins GPIO3, GPIO45 und GPIO46 waren zuvor belegt und sind jetzt frei — ein an der Basis hängender Pegel hätte beim Reset die Boot-Konfiguration beeinflussen können (GPIO45 = VDD_SPI-Spannung, GPIO46 = ROM-Log, GPIO3 = JTAG-Quellenwahl, relevant wegen `J5`).
+**Pinwahl:** Bewusst auf GPIOs **ohne** Strapping-, ADC- oder Touch-Funktion gelegt. Die Strapping-Pins GPIO3, GPIO45 und GPIO46 waren zuvor belegt und sind jetzt frei — ein an der Basis hängender Pegel hätte beim Reset die Boot-Konfiguration beeinflussen können (GPIO45 = VDD_SPI-Spannung, GPIO46 = ROM-Log, GPIO3 = JTAG-Quellenwahl). GPIO3 bleibt auch nach dem Wegfall von `J5` unbelegt: Das Strapping wählt zwischen internem USB-Serial-JTAG und externen JTAG-Pins und darf beim Reset nicht verzogen werden.
 
 **Nicht verwenden:** GPIO35, GPIO36 und GPIO37 erscheinen in der Netzliste als frei, sind beim Modul **N16R8** aber intern vom Octal-PSRAM belegt.
 

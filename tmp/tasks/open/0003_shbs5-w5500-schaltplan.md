@@ -26,7 +26,7 @@ GPIO4–GPIO18**:
 | Gesperrt | Grund |
 | -------- | ----- |
 | GPIO35, GPIO36, GPIO37 | Beim Modul **N16R8** intern vom Octal-PSRAM belegt — erscheinen in der Netzliste fälschlich als frei |
-| GPIO3, GPIO45, GPIO46 | Strapping-Pins; GPIO3 zusätzlich JTAG-Quellenwahl (relevant wegen `J5`) |
+| GPIO3, GPIO45, GPIO46 | Strapping-Pins; GPIO3 wählt zwischen internem USB-Serial-JTAG und externen JTAG-Pins |
 | GPIO19, GPIO20 | USB D−/D+ am Debug-Port `J1` |
 | GPIO1, GPIO2 | Frei, aber ADC1/Touch — für spätere Sensorik reservieren |
 

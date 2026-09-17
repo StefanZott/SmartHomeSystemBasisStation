@@ -1354,6 +1354,48 @@
 		)
 	)
 	(sheet
+		(at 2.54 393.7)
+		(size 294.64 146.05)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "351e3242-3ef6-4484-be75-fa36abbf06d6")
+		(property "Sheetname" "Ethernet"
+			(at 2.54 392.9884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ethernet.kicad_sch"
+			(at 2.54 540.3346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "BasisStation"
+				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 302.26 224.79)
 		(size 298.45 152.4)
 		(exclude_from_sim no)
