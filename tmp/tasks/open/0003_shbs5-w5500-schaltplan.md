@@ -30,10 +30,31 @@ GPIO4–GPIO18**:
 | GPIO19, GPIO20 | USB D−/D+ am Debug-Port `J1` |
 | GPIO1, GPIO2 | Frei, aber ADC1/Touch — für spätere Sensorik reservieren |
 
-Vorschlag (im Task nach Festlegung eintragen): SCLK, MOSI, MISO, CS, INT, RST
-auf sechs Pins aus GPIO4–GPIO18. Die gewählte Belegung ist **verbindlich für
-die Firmware-Umsetzung in SHBS-11** — nach der Festlegung hier dokumentieren
-und im Ticket SHBS-11 nachtragen.
+### Festgelegt (Bediener, 17.09.2026)
+
+| Netz | GPIO | Modul-Pad | Begründung |
+| ---- | ---- | --------- | ---------- |
+| `ETH_RST` | **9** | 17 | FSPIHD, hier als Reset |
+| `ETH_CS` | **10** | 18 | FSPICS0 |
+| `ETH_MOSI` | **11** | 19 | FSPID |
+| `ETH_SCLK` | **12** | 20 | FSPICLK |
+| `ETH_MISO` | **13** | 21 | FSPIQ |
+| `ETH_INT` | **14** | 22 | FSPIWP, hier als Interrupt |
+
+Zwei Gründe für diesen Block:
+
+- **IO-MUX statt GPIO-Matrix.** GPIO10–13 sind die nativen FSPI-Pins des
+  ESP32-S3. SPI läuft darüber ohne Umweg über die GPIO-Matrix — bessere
+  Signalintegrität bei den 20–40 MHz, die für den W5500 realistisch sind.
+- **Zusammenhängende Modul-Pads 17–22.** Ergibt im Layout ein kompaktes
+  Bündel zum W5500 statt Leitungen quer über die Platine.
+
+Kosten: GPIO9 und GPIO10 belegen ADC1_CH8 und ADC1_CH9. GPIO11–14 hängen an
+ADC2, das mit aktivem WLAN ohnehin kaum nutzbar ist. **GPIO1–GPIO8 bleiben
+vollständig frei** für analoge Sensorik, GPIO15–GPIO18 für UART1 oder einen
+32-kHz-Quarz.
+
+Diese Belegung ist **verbindlich für die Firmware in SHBS-11**.
 
 **Hinweis:** Der W5500 hängt an einem beliebigen GPIO-Satz — der ESP32-S3
 routet SPI über die GPIO-Matrix. Oberhalb ca. 40 MHz SPI-Takt wären die
@@ -110,6 +131,91 @@ Tabelle 2 „W5500 Pin Description".
 | Reglerkondensator | 10 nF | `1V2O` (22) |
 | Quarz | 25 MHz + Lastkondensatoren nach Quarz-Datenblatt | `XI`/`XO` (30/31) |
 | Abblockung | je 100 nF an jedem `AVDD`/`VDD` | 4, 8, 11, 15, 17, 21, 28 |
+
+## Arbeitsteilung
+
+Der **Bediener zeichnet** das Blatt in KiCad. Der Agent liefert die
+Sollbeschaltung unten und prüft anschliessend `BasisStation.net` Pin für Pin
+gegen das Datenblatt — wie bei den LED-Treibern in SHBS-9.
+
+## Sollbeschaltung W5500 (`U?`)
+
+Alle Pinnummern nach Datenblatt Rev. 1.0.5, Tabelle 2.
+
+### Versorgung
+
+| W5500-Pin | Netz | Bauteil |
+| --------- | ---- | ------- |
+| 28 `VDD` | `+3V3` | 100 nF gegen `GND`, dicht am Pin |
+| 4, 8, 11, 15, 17, 21 `AVDD` | `+3V3` | **je 100 nF** gegen `GND`, dicht am Pin |
+| 29 `GND`, 3, 9, 14, 16, 19, 48 `AGND` | `GND` | — |
+| — | `+3V3` | zusätzlich **10 µF** Stützkondensator am Baustein |
+
+### Analoge Stützbeschaltung
+
+| W5500-Pin | Beschaltung | Wert |
+| --------- | ----------- | ---- |
+| 10 `EXRES1` | gegen `GND` | **12,4 kΩ, 1 %** — Toleranz nicht aufweichen, bestimmt die Sendeamplitude |
+| 20 `TOCAP` | gegen `GND` | **4,7 µF**, Leiterbahn kurz halten |
+| 22 `1V2O` | gegen `GND` | **10 nF** (Ausgang des internen 1,2-V-Reglers) |
+| 18 `VBG` | **offen lassen** | No-Connect-Flag setzen |
+| 7 `DNC` | **offen lassen** | No-Connect-Flag setzen |
+
+### Takt
+
+| W5500-Pin | Netz |
+| --------- | ---- |
+| 30 `XI/CLKIN` | Quarz **25 MHz** |
+| 31 `XO` | Quarz 25 MHz |
+
+Lastkondensatoren beidseitig gegen `GND` nach Quarz-Datenblatt (typisch
+2 × 22 pF). Quarz im Layout dicht an den Baustein.
+
+### SPI und Steuerung zum Modul `U6`
+
+| W5500-Pin | Netz | U6-Pad | Zusatz |
+| --------- | ---- | ------ | ------ |
+| 32 `SCSn` | `ETH_CS` | 18 (GPIO10) | — |
+| 33 `SCLK` | `ETH_SCLK` | 20 (GPIO12) | — |
+| 35 `MOSI` | `ETH_MOSI` | 19 (GPIO11) | — |
+| 34 `MISO` | `ETH_MISO` | 21 (GPIO13) | — |
+| 36 `INTn` | `ETH_INT` | 22 (GPIO14) | **10 kΩ Pull-up** nach `+3V3` |
+| 37 `RSTn` | `ETH_RST` | 17 (GPIO9) | **10 kΩ Pull-up** nach `+3V3` |
+
+### Betriebsart
+
+| W5500-Pin | Beschaltung |
+| --------- | ----------- |
+| 43 `PMODE2`, 44 `PMODE1`, 45 `PMODE0` | je **10 kΩ Pull-up** nach `+3V3` |
+
+`PMODE[2:0] = 111` ergibt „All capable, Auto-negotiation enabled". Die Pins
+haben interne Pull-ups, offen lassen würde also auch `111` liefern — externe
+Widerstände machen die Betriebsart unabhängig vom Baustein eindeutig.
+Zusätzlich Pads für Pull-downs gegen `GND` vorsehen, um im Fehlerfall eine
+feste Betriebsart erzwingen zu können.
+
+### Reserviert
+
+| W5500-Pin | Beschaltung |
+| --------- | ----------- |
+| 23 `RSVD` | **auf `GND`** |
+| 38, 39, 40, 41, 42 `RSVD` | **offen lassen** |
+| 12, 13, 46, 47 (NC) | **offen lassen** |
+
+> **Nicht verwechseln:** Pin 23 heisst im Datenblatt genauso `RSVD` wie die
+> Pins 38–42, gehört aber auf Masse. Die anderen fünf bleiben offen.
+
+### Zur RJ45-Seite (Details in Task 0004)
+
+| W5500-Pin | Netz |
+| --------- | ---- |
+| 2 `TXP` | `ETH_TXP` |
+| 1 `TXN` | `ETH_TXN` |
+| 6 `RXP` | `ETH_RXP` |
+| 5 `RXN` | `ETH_RXN` |
+| 25 `LINKLED` | `ETH_LINKLED` |
+| 27 `ACTLED` | `ETH_ACTLED` |
+| 24 `SPDLED`, 26 `DUPLED` | offen lassen (Buchse hat nur zwei LEDs) |
 
 ## Akzeptanzkriterien
 

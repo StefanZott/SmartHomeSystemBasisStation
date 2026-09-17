@@ -79,11 +79,52 @@ Ethernet-Signale, sondern gewöhnliches SPI plus zwei Steuerleitungen — im
 Layout unkritisch. Impedanzkontrolliert (100 Ω differenziell) müssen nur
 `TX±` und `RX±` zwischen W5500 und Buchse geführt werden.
 
+## GPIO-Belegung (SHBS-5)
+
+Sechs Leitungen verbinden Modul und Controller. Es sind **keine**
+Ethernet-Signale, sondern gewöhnliches SPI plus Reset und Interrupt.
+
+| Netz | GPIO | Modul-Pad | Funktion am ESP32-S3 |
+|------|------|-----------|----------------------|
+| `ETH_RST` | 9 | 17 | FSPIHD |
+| `ETH_CS` | 10 | 18 | FSPICS0 |
+| `ETH_MOSI` | 11 | 19 | FSPID |
+| `ETH_SCLK` | 12 | 20 | FSPICLK |
+| `ETH_MISO` | 13 | 21 | FSPIQ |
+| `ETH_INT` | 14 | 22 | FSPIWP |
+
+Gewählt wurden die nativen **FSPI-Pins**: SPI läuft darüber über das IO-MUX
+statt über die GPIO-Matrix, was bei den realistischen 20–40 MHz die
+Signalintegrität verbessert. Die sechs Pins liegen am Modul ausserdem auf den
+**zusammenhängenden Pads 17–22**, was im Layout ein kompaktes Bündel ergibt.
+
+Belegt werden dadurch ADC1_CH8 und ADC1_CH9 (GPIO9/10) sowie vier
+ADC2-Kanäle, die bei aktivem WLAN ohnehin kaum nutzbar sind. **GPIO1–GPIO8
+bleiben frei** für analoge Sensorik, GPIO15–GPIO18 für UART1 oder einen
+32-kHz-Quarz.
+
+Diese Belegung ist verbindlich für die Firmware-Umsetzung (**SHBS-11**).
+
+## Kein Auto-MDIX
+
+Der W5500 beherrscht **kein Auto-MDIX** (Datenblatt Rev. 1.0.5, Abschnitt
+5.5.6). Er vertauscht Sende- und Empfangspaar also nicht selbständig.
+
+| Gegenstelle | Kabel |
+|-------------|-------|
+| Switch, Router, Access Point | **normales Patchkabel** (straight-through) |
+| Direkt an PC, Server oder eine zweite Basisstation | **Crossover-Kabel** |
+
+In der Praxis unkritisch: Nahezu jeder aktuelle Switch beherrscht Auto-MDIX
+auf seiner Seite und gleicht die Verdrahtung aus. Relevant wird es nur beim
+direkten Anschluss an ein Gerät, das ebenfalls kein Auto-MDIX hat.
+
 ## Grenzen
 
 - Ein Port, kein Switch und kein Router.
 - 10/100 Mbit/s, kein Gigabit.
 - Kein PoE.
+- **Kein Auto-MDIX** — siehe oben.
 - **Durchsatz real 15–20 Mbit/s.** Begrenzend ist der SPI-Bus, nicht die
   Leitung — unabhängig davon, dass die Gegenstelle 100 Mbit/s aushandelt. Für
   Konfigurations-Web-UI und Smart-Home-Telemetrie unkritisch.
