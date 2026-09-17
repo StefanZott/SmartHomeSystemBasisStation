@@ -265,6 +265,7 @@ Vor Änderungen an einem Themenbereich die zugehörige Doku lesen. Nach Änderun
 | [project/power_supply.md](docs/project/power_supply.md) | USB-C 5 V → Buck 3,3 V (SHBS-4), BOM, Verdrahtung |
 | [project/memory_map.md](docs/project/memory_map.md) | Flash-Partitionen (`partitions.csv`), SPIFFS, kein OTA |
 | [project/communication.md](docs/project/communication.md) | WLAN, HTTP/Web-UI, SPIFFS-Konfiguration, Ethernet (Ziel) |
+| [project/ethernet.md](docs/project/ethernet.md) | Ethernet über W5500 (SPI): Architektur, Begründung SPI statt RMII (SHBS-5) |
 | [project/struktur-anpassung-agents.md](docs/project/struktur-anpassung-agents.md) | Migrationsplan und Gap-Analyse (SHBS-1) |
 
 ### Verzahnte Projekte (`docs/related-projects/`)

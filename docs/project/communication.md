@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-02
+last_updated: 2026-09-17
 type: project-doc
 ---
 
@@ -11,6 +11,8 @@ Logische Schnittstellen (WLAN, HTTP, SPIFFS) und Verweis auf physische Anbindung
 Verzahnte Projekte / Produktscope: [project-scope.md](../related-projects/project-scope.md).
 
 Physische Schnittstellen (USB, PROG, JTAG, Ethernet): [hardware.md](hardware.md).
+
+Ethernet-Architektur (W5500 über SPI, Begründung): [ethernet.md](ethernet.md).
 
 ## Persistente Konfiguration (SPIFFS)
 
@@ -55,4 +57,6 @@ Typisch über USB-UART bzw. JTAG-Adapter — ESP-IDF-Standardfluss (`idf.py flas
 ## Abgrenzung
 
 - Kein separates API-Schema (OpenAPI) im Repository; diese Datei ist die Einstiegsübersicht.
-- **Ethernet:** nicht in der aktuellen Firmware-Kommunikationsschicht vorhanden.
+- **Ethernet:** nicht in der aktuellen Firmware-Kommunikationsschicht vorhanden (**SHBS-11**).
+  Hardwareseitig über **WIZnet W5500** am SPI-Bus — erwarteter Durchsatz 15–20 Mbit/s,
+  begrenzt durch SPI, nicht durch die Leitung. Details: [ethernet.md](ethernet.md).
