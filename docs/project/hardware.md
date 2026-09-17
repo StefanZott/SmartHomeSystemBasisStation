@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-16
+last_updated: 2026-09-17
 type: project-doc
 ---
 
@@ -92,6 +92,27 @@ Primäre Versorgung: **USB-C 5 V → MP2359 Buck → 3,3 V**. PS2/+12V entfernt.
 
 Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[power_supply.md](power_supply.md)**.
 
+## Status-LEDs (SHBS-9)
+
+Vier Status-LEDs, je über einen NPN-Transistor als **Low-Side-Schalter** gegen GND geschaltet. Die LED-Anoden liegen gemeinsam auf +3V3, die Emitter aller Transistoren auf GND. Ein GPIO auf **High** schaltet die zugehörige LED **ein**.
+
+| LED | Farbe | Transistor | GPIO (Modul-Pad) | Basiswiderstand | Vorwiderstand |
+|-----|-------|------------|------------------|-----------------|---------------|
+| `D7` | Gelb | `Q4` | GPIO21 (23) | `R23`, 4,7 kΩ | `R13`, 220 Ω |
+| `D9` | Rot | `Q3` | GPIO38 (31) | `R24`, 4,7 kΩ | `R15`, 220 Ω |
+| `D10` | Grün | `Q2` | GPIO47 (24) | `R25`, 4,7 kΩ | `R16`, 220 Ω |
+| `D8` | Blau | `Q1` | GPIO48 (25) | `R26`, 4,7 kΩ | `R14`, 220 Ω |
+
+Transistoren: **BC337** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E).
+
+**Dimensionierung:** Der Vorwiderstand stellt bei ca. 2 V Flussspannung rund 5 mA LED-Strom ein. Der Basiswiderstand begrenzt den Basisstrom auf ca. 0,55 mA — ausreichend für sichere Sättigung und unkritisch für den GPIO-Treiber. Ohne diesen Widerstand wirkt die Basis-Emitter-Strecke als Diode gegen GND und der Pin-Strom wäre nur durch die Treiberimpedanz begrenzt.
+
+**Pinwahl:** Bewusst auf GPIOs **ohne** Strapping-, ADC- oder Touch-Funktion gelegt. Die Strapping-Pins GPIO3, GPIO45 und GPIO46 waren zuvor belegt und sind jetzt frei — ein an der Basis hängender Pegel hätte beim Reset die Boot-Konfiguration beeinflussen können (GPIO45 = VDD_SPI-Spannung, GPIO46 = ROM-Log, GPIO3 = JTAG-Quellenwahl, relevant wegen `J5`).
+
+**Nicht verwenden:** GPIO35, GPIO36 und GPIO37 erscheinen in der Netzliste als frei, sind beim Modul **N16R8** aber intern vom Octal-PSRAM belegt.
+
+Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`.
+
 ## Repository-Ist-Stand (KiCad)
 
 | Bereich | Pfad / Artefakt |
@@ -103,7 +124,7 @@ Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[powe
 | Bauteilbibliothek MCU | `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
 | Power (USB-C, Buck) | `pcb/Bauteile/Power/power.kicad_sym` (J_PWR, PS1) |
-| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 16.09.2026: 0 Fehler, 9 Warnungen) |
+| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 17.09.2026: 0 Fehler, 9 Warnungen) |
 | Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware
