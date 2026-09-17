@@ -35,7 +35,7 @@ Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [commu
 |------|--------|
 | `main/` | ESP-IDF-Firmware (Ausnahme: statt `embedded/` laut CLAUDE.md) |
 | `spiffs/` | Web-Assets (HTML, CSS, JS) → SPIFFS-Image |
-| `pcb/` | KiCad-Projekt Basisstation |
+| `pcb/` | KiCad-Projekt Basisstation; Bauteildaten je Bauteil in `pcb/Bauteile/<Bauteil>/` (SHBS-12) |
 | `docs/project/` | Technische Projektdokumentation |
 | `docs/userdoc/` | Anwenderdokumentation |
 | `partitions.csv` | Flash-Partitionen (App, SPIFFS, NVS) |

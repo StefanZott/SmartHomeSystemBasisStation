@@ -27,7 +27,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Footprints:ESP32-S3-WROOM-1U"
+		(property "Footprint" "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U"
 			(at 2.54 -48.26 0)
 			(effects
 				(font

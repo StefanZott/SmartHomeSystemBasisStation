@@ -20,7 +20,7 @@ Smart-Home-Basisstation mit Tastern, USB/PROG/JTAG, WLAN-Antenne, vier LEDs (Rot
 | PROG | Firmware flashen (alternativ über `J1`) |
 | JTAG | On-Chip-Debugging (alternativ über `J1`) |
 | WLAN | Externe 2,4-GHz-Antenne über U.FL-Pigtail und RP-SMA-Gehäusebuchse (Modul **1U**) |
-| Ethernet | Ziel: kabelgebundene Netzwerkverbindung (Umsetzung: Hardware + Firmware prüfen) |
+| Ethernet | Kabelgebundene Netzwerkverbindung über **WIZnet W5500** (SPI). Architektur und Begründung: [ethernet.md](ethernet.md). Schaltplan in Arbeit (SHBS-5), Layout offen (SHBS-10), Firmware offen (SHBS-11) |
 
 **Annahme (gekennzeichnet):** Die genaue Pinbelegung von PROG/JTAG/Ethernet folgt dem KiCad-Projekt; ohne geöffnetes Schema keine feste Signalzuordnung in dieser Doku.
 
@@ -120,18 +120,36 @@ Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`.
 | Hauptprojekt | `pcb/BasisStation/BasisStation.kicad_pro` |
 | Schaltpläne | u. a. `BasisStation.kicad_sch`, `BasisStation_Layout.kicad_sch`, `BasisStation_Debugging.kicad_sch`, `BasisStation_architektur.kicad_sch` |
 | Leiterplatte | `BasisStation.kicad_pcb` |
-| Symbole / Footprints | `pcb/Symbol/`, `pcb/Footprints/` |
-| Bauteilbibliothek MCU | `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/` |
+| Bauteilbibliotheken | `pcb/Bauteile/<Bauteil>/` — **ein Ordner je Bauteil** mit Symbol, Footprint und 3D-Modell (SHBS-12) |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
-| Power (USB-C, Buck) | `pcb/Bauteile/Power/power.kicad_sym` (J_PWR, PS1) |
-| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 17.09.2026: 0 Fehler, 9 Warnungen) |
+| Power (USB-C, Buck) | `pcb/Bauteile/Power/` (J_PWR, PS1) |
+| Ethernet | `pcb/Bauteile/W5500/`, `pcb/Bauteile/wuerth_7499011121A/` (SHBS-5) |
+| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 17.09.2026 nach SHBS-12: **0 Fehler, 7 Warnungen**) |
 | Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware
 
-Die Firmware in `main/` beschreibt das **Laufzeitverhalten** (WLAN, Webserver, LEDs). Ob und wie **Ethernet** auf der Platine angebunden ist, ergibt sich aus dem KiCad-Projekt; in der aktuellen Firmware gibt es **keine** Ethernet-Treiber-Nutzung.
+Die Firmware in `main/` beschreibt das **Laufzeitverhalten** (WLAN, Webserver, LEDs). In der aktuellen Firmware gibt es **keine** Ethernet-Treiber-Nutzung — die Anbindung über `esp_eth` ist als **SHBS-11** offen. Hintergrund: [ethernet.md](ethernet.md).
 
 Netzwerk-Konfiguration über HTTP: [communication.md](communication.md).
+
+## Bibliotheksstruktur (SHBS-12)
+
+Symbol, Footprint und 3D-Modell eines Bauteils liegen **gemeinsam** in
+`pcb/Bauteile/<Bauteil>/`. Die früheren Sammelordner `pcb/Symbol/`,
+`pcb/Footprints/` und `pcb/3D-Model/` gibt es nicht mehr.
+
+Je Bauteilordner ist ein Eintrag in `sym-lib-table` (falls ein eigenes Symbol
+existiert) und in `fp-lib-table` gesetzt. Alle Pfade sind über `${KIPRJMOD}`
+projektrelativ — absolute Pfade sind unzulässig, weil sie nur auf einem
+Rechner funktionieren.
+
+Neues Bauteil anlegen:
+
+1. Ordner `pcb/Bauteile/<Bauteil>/` mit Symbol, Footprint und 3D-Modell.
+2. 3D-Referenz im Footprint auf `${KIPRJMOD}/../Bauteile/<Bauteil>/<Datei>`.
+3. Eintrag in `sym-lib-table` und `fp-lib-table` ergänzen.
+4. Footprint-Vorgabe im Symbol auf `<Bibliothek>:<Footprint>` setzen.
 
 ## Pflege
 

@@ -6,6 +6,10 @@ secrets/*
 sdkconfig.old
 .claude/settings.local.json
 
+# KiCad local caches and per-user settings (regenerated, not shared)
+fp-info-cache
+*.kicad_prl
+
 # KiCad temporary files (lock, autosave, backups)
 *.lck
 _autosave-*

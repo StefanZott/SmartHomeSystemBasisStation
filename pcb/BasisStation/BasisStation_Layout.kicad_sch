@@ -1239,7 +1239,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Footprints:ESP32-S3-WROOM-1U"
+			(property "Footprint" "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U"
 				(at 2.54 -48.26 0)
 				(effects
 					(font
@@ -5156,7 +5156,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WL-TMRW_3MM"
+		(property "Footprint" "WL-TMRW_3MM:WL-TMRW_3MM"
 			(at 254 96.52 0)
 			(effects
 				(font
@@ -5466,7 +5466,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WCAP-FTXX_P10L13W7H13"
+		(property "Footprint" "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 			(at 146.05 41.91 0)
 			(effects
 				(font
@@ -5756,7 +5756,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WL-TMRC_3MM"
+		(property "Footprint" "WL-TMRC_3MM:WL-TMRC_3MM"
 			(at 252.73 86.36 0)
 			(effects
 				(font
@@ -6278,7 +6278,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Footprints:WCAP-PT5H_6.3X5.2_DXL_"
+		(property "Footprint" "WCAP-PT5H_6.3X5.2:WCAP-PT5H_6.3X5.2_DXL_"
 			(at 66.04 30.48 0)
 			(effects
 				(font
@@ -6771,7 +6771,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WL-TMRW_3MM"
+		(property "Footprint" "WL-TMRW_3MM:WL-TMRW_3MM"
 			(at 254 116.84 0)
 			(effects
 				(font
@@ -6848,7 +6848,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WCAP-FTXX_P10L13W7H13"
+		(property "Footprint" "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 			(at 57.15 68.58 0)
 			(effects
 				(font
@@ -7005,7 +7005,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WL-TMRC_3MM"
+		(property "Footprint" "WL-TMRC_3MM:WL-TMRC_3MM"
 			(at 254 106.68 0)
 			(effects
 				(font
@@ -7379,7 +7379,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Footprints:1543650149"
+		(property "Footprint" "1543-650-149:1543650149"
 			(at 57.15 60.96 0)
 			(effects
 				(font
@@ -7686,7 +7686,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Footprints:ESP32-S3-WROOM-1U"
+		(property "Footprint" "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U"
 			(at 140.97 144.78 0)
 			(effects
 				(font
@@ -7988,7 +7988,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:WCAP-FTXX_P10L13W7H13"
+		(property "Footprint" "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 			(at 247.65 45.72 0)
 			(effects
 				(font
@@ -8146,7 +8146,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Footprints:61200621621"
+		(property "Footprint" "wuerth_6120XX21621:61200621621"
 			(at 226.06 63.5 0)
 			(effects
 				(font
@@ -8292,7 +8292,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Footprints:61201021621"
+		(property "Footprint" "wuerth_6120XX21621:61201021621"
 			(at 46.99 97.79 0)
 			(effects
 				(font

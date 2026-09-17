@@ -22,7 +22,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:MP2359DJ"
+		(property "Footprint" "shbs_power:MP2359DJ"
 			(at 0 0 0)
 			(effects
 				(font
@@ -219,7 +219,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A"
+		(property "Footprint" "shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A"
 			(at 0 0 0)
 			(effects
 				(font

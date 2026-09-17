@@ -750,7 +750,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Footprints:61201021621"
+	(footprint "wuerth_6120XX21621:61201021621"
 		(layer "F.Cu")
 		(uuid "35230752-64bc-4d6f-ac81-e46994ce8c6e")
 		(at 197.27 103.58 90)
@@ -1350,7 +1350,7 @@
 			(uuid "7bf98164-8a04-4d32-bdca-c1e74823074d")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/6120XX21621_61201021621.step"
+		(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61201021621.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -1362,7 +1362,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WL-TMRC_3MM"
+	(footprint "WL-TMRC_3MM:WL-TMRC_3MM"
 		(layer "F.Cu")
 		(uuid "37d26c4c-38a2-489d-b44d-a7b2ade905d0")
 		(at 109.5 153.5)
@@ -1676,7 +1676,7 @@
 			(uuid "fed8ce12-5a2a-47b2-a8b7-7d0e3c6031a5")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRC_3MM.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRC_3MM/WL-TMRC_3MM.step"
 			(offset
 				(xyz 0 0 5)
 			)
@@ -2048,7 +2048,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Footprints:1543650149"
+	(footprint "1543-650-149:1543650149"
 		(layer "F.Cu")
 		(uuid "535415b9-55c8-4f40-b089-4e7c0aacb286")
 		(at 177.5 32.5 180)
@@ -2535,7 +2535,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Footprints:WCAP-FTXX_P10L13W7H13"
+	(footprint "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 		(layer "F.Cu")
 		(uuid "5b644145-8319-47ea-8d93-3716e18bc74d")
 		(at 187.5 54 180)
@@ -2824,7 +2824,7 @@
 			(uuid "41a47eea-796b-4078-aaf6-433e5452df71")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -2836,7 +2836,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WL-TMRW_3MM"
+	(footprint "WL-TMRW_3MM:WL-TMRW_3MM"
 		(layer "F.Cu")
 		(uuid "6532024b-03b3-43b4-b9d6-35e129a47610")
 		(at 128.5 153.5)
@@ -3047,7 +3047,7 @@
 			(uuid "ee3eab39-83f5-446d-a2c1-57107b0bbc9c")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRW_3MM.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRW_3MM/WL-TMRW_3MM.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -3322,7 +3322,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WCAP-FTXX_P10L13W7H13"
+	(footprint "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 		(layer "F.Cu")
 		(uuid "6f296c02-2da7-4976-96ef-eae4afd113d1")
 		(at 126 65)
@@ -3611,7 +3611,7 @@
 			(uuid "66418076-fc36-4d09-9bf8-38070f903506")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -3623,7 +3623,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WCAP-PT5H_6.3X5.2_DXL_"
+	(footprint "WCAP-PT5H_6.3X5.2:WCAP-PT5H_6.3X5.2_DXL_"
 		(layer "F.Cu")
 		(uuid "823063ba-3f5d-46ef-8625-ceb94cb2379c")
 		(at 102.5 44.75 90)
@@ -3994,7 +3994,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "Footprints:WCAP-FTXX_P10L13W7H13"
+	(footprint "WCAP-FTXX_P10:WCAP-FTXX_P10L13W7H13"
 		(layer "F.Cu")
 		(uuid "9fcf1f6e-22c2-449d-b666-7407093fffa9")
 		(at 163 42 -90)
@@ -4283,7 +4283,7 @@
 			(uuid "a1e5fb77-d6df-4014-9002-94685597b928")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WCAP-FTXX_P10.step"
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
 				(xyz 0 0 6)
 			)
@@ -4655,7 +4655,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:ESP32-S3-WROOM-1U"
+	(footprint "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U"
 		(layer "F.Cu")
 		(uuid "c09d614d-ef84-4f94-bc7b-5faf2ad9f7de")
 		(at 135.985 86)
@@ -5386,7 +5386,7 @@
 			(uuid "1fd0f6dd-0c6c-473d-b0c3-43c015b1bf8f")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/ESP32-S3-WROOM-1U.STEP"
+		(model "${KIPRJMOD}/../Bauteile/ESP32-S3-WROOM-1U-N16R8/ESP32-S3-WROOM-1U.STEP"
 			(offset
 				(xyz -9 -9.8 0)
 			)
@@ -5398,7 +5398,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WL-TMRW_3MM"
+	(footprint "WL-TMRW_3MM:WL-TMRW_3MM"
 		(layer "F.Cu")
 		(uuid "c8d4be83-3c1c-4709-b5c4-f26eb4e8f64a")
 		(at 119 153.5)
@@ -5609,7 +5609,7 @@
 			(uuid "9ba9c573-11cb-4ec9-b10a-c65b565056f3")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRW_3MM.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRW_3MM/WL-TMRW_3MM.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -5621,7 +5621,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:61200621621"
+	(footprint "wuerth_6120XX21621:61200621621"
 		(layer "F.Cu")
 		(uuid "e59dda80-40e4-47f2-a7ae-19b643fd55f1")
 		(at 197.23 78.04 -90)
@@ -6183,7 +6183,7 @@
 			(uuid "29270bc7-0e52-48f2-a4f9-20462f9dcea3")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/6120XX21621_61200621621.step"
+		(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step"
 			(offset
 				(xyz 0 0 4.5)
 			)
@@ -6195,7 +6195,7 @@
 			)
 		)
 	)
-	(footprint "Footprints:WL-TMRC_3MM"
+	(footprint "WL-TMRC_3MM:WL-TMRC_3MM"
 		(layer "F.Cu")
 		(uuid "e9a43051-3d3a-4f5c-9822-edd61d0a5630")
 		(at 138 153.5)
@@ -6395,7 +6395,7 @@
 			(uuid "ca4193e7-d836-4b0f-a688-bd9bb03badb4")
 		)
 		(embedded_fonts no)
-		(model "E:/Projekte/SmartHomeSystemBasisStation/pcb/3D-Model/WL-TMRC_3MM.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRC_3MM/WL-TMRC_3MM.step"
 			(offset
 				(xyz 0 0 5)
 			)

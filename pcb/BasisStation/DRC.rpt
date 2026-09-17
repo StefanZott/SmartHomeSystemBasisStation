@@ -1,0 +1,38 @@
+** Drc report for BasisStation.kicad_pcb **
+** Created on 2026-09-17T22:19:47+0200 **
+
+** Found 8 DRC violations **
+[track_dangling]: Leiterbahn hat unverbundenes Ende
+    Lokale Überschreibung; warning
+    @(87,0400 mm, 38,2000 mm): Leiterbahn [+3V3] auf F.Cu, Länge 15,4600 mm
+[track_dangling]: Leiterbahn hat unverbundenes Ende
+    Lokale Überschreibung; warning
+    @(112,5000 mm, 57,0000 mm): Leiterbahn [EN] auf F.Cu, Länge 1,5000 mm
+[lib_footprint_mismatch]: Footprint "R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal" stimmt nicht mit Kopie in Bibliothek "Resistor_THT" überein.
+    Lokale Überschreibung; warning
+    @(131,0000 mm, 113,3400 mm): Footprint R4
+[lib_footprint_mismatch]: Footprint "R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal" stimmt nicht mit Kopie in Bibliothek "Resistor_THT" überein.
+    Lokale Überschreibung; warning
+    @(120,5000 mm, 133,6600 mm): Footprint R3
+[lib_footprint_mismatch]: Footprint "R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal" stimmt nicht mit Kopie in Bibliothek "Resistor_THT" überein.
+    Lokale Überschreibung; warning
+    @(141,0000 mm, 113,3400 mm): Footprint R5
+[lib_footprint_mismatch]: Footprint "R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal" stimmt nicht mit Kopie in Bibliothek "Resistor_THT" überein.
+    Lokale Überschreibung; warning
+    @(110,5000 mm, 113,3400 mm): Footprint R2
+[lib_footprint_mismatch]: Footprint "R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" stimmt nicht mit Kopie in Bibliothek "Resistor_THT" überein.
+    Lokale Überschreibung; warning
+    @(112,0000 mm, 66,9200 mm): Footprint R1
+[text_height]: Schrifthöhe außerhalb des zulässigen Bereichs (Einschränkungen aus Platinenkonfiguration zur Bestückungsdruckhöhe min. Breite 0,8000 mm; tatsächlich 0,6400 mm)
+    Regel: Einschränkungen aus Platinenkonfiguration zur Bestückungsdruckhöhe; warning
+    @(98,1136 mm, 44,9900 mm): Referenzfeld von C3
+
+** Found 1 unconnected pads **
+[unconnected_items]: Fehlende Verbindung zwischen Elementen
+    Lokale Überschreibung; error
+    @(115,2000 mm, 80,2800 mm): Leiterbahn [EN] auf F.Cu, Länge 4,5255 mm
+    @(122,5000 mm, 57,0000 mm): Leiterbahn [EN] auf B.Cu, Länge 10,0000 mm
+
+** Found 0 Footprint errors **
+
+** End of Report **

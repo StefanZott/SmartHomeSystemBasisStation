@@ -1,9 +1,6 @@
-ERC-Bericht (2026-09-17T15:59:03+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-17T22:15:18+0200, UTF8-kodiert)
 
 ***** Schaltplan /
-[lib_symbol_mismatch]: Symbol "WCAP-PT5H_6.3X5.2" stimmt nicht mit Kopie in Bibliothek "WCAP-PT5H_6.3X5.2" überein
-    ; warning
-    @(2600 mils, 1200 mils): Symbol C8 [WCAP-PT5H_6.3X5.2]
 [lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
     ; warning
     @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
@@ -19,9 +16,6 @@ ERC-Bericht (2026-09-17T15:59:03+0200, UTF8-kodiert)
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
     @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
-[lib_symbol_mismatch]: Symbol "WL-TMRC_3MM" stimmt nicht mit Kopie in Bibliothek "WL-TMRC_3MM" überein
-    ; warning
-    @(9950 mils, 3400 mils): Symbol D7 [WL-TMRC_3MM]
 
 ***** Schaltplan /Layout/
 [pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
@@ -30,11 +24,11 @@ ERC-Bericht (2026-09-17T15:59:03+0200, UTF8-kodiert)
     @(10350 mils, 3000 mils): Symbol #FLG04 Pin 1 [Power output, Line]
 [multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
     ; warning
-    @(9150 mils, 4650 mils): Symbol #PWR04 Pin 1 [Power input, Line]
+    @(1400 mils, 3950 mils): Symbol #PWR029 Pin 1 [Power input, Line]
     @(5450 mils, 5400 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
 
 ***** Schaltplan /Debugging/
 
 ***** Schaltplan /Stromversorgung/
 
- ** ERC-Meldungen: 9  Fehler 0  Warnungen 9
+ ** ERC-Meldungen: 7  Fehler 0  Warnungen 7

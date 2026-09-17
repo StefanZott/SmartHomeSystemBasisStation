@@ -2384,7 +2384,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A"
+		(property "Footprint" "shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A"
 			(at 36.83 50.8 0)
 			(effects
 				(font

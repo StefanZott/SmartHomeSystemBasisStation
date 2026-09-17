@@ -7,7 +7,7 @@
     (property "Value" "1543-650-149" (id 1) (at 16.51 5.08 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Footprints:1543650149" (id 2) (at 0 0 0)
+    (property "Footprint" "1543-650-149:1543650149" (id 2) (at 0 0 0)
       (effects (font (size 1.27 1.27)) (justify bottom) hide)
     )
     (property "MANUFACTURER_NAME" "Bourns" (id 4) (at 0 0 0)
