@@ -1,4 +1,4 @@
-ERC-Bericht (2026-09-18T21:19:44+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-18T21:48:01+0200, UTF8-kodiert)
 
 ***** Schaltplan /
 [lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
@@ -24,7 +24,7 @@ ERC-Bericht (2026-09-18T21:19:44+0200, UTF8-kodiert)
     @(10350 mils, 3000 mils): Symbol #FLG04 Pin 1 [Power output, Line]
 [multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
     ; warning
-    @(9100 mils, 4950 mils): Symbol #PWR05 Pin 1 [Power input, Line]
+    @(8750 mils, 4400 mils): Symbol #PWR06 Pin 1 [Power input, Line]
     @(4150 mils, 5500 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
 
 ***** Schaltplan /Debugging/

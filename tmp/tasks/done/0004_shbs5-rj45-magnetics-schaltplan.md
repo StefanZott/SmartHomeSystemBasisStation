@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 type: feature
 created: 2026-09-17
@@ -202,20 +202,76 @@ Die vier **49,9 Ω mit 1 %** sind toleranzkritisch — sie bilden zusammen die
 Der HV-Kondensator braucht wegen der Spannungsfestigkeit eine größere
 Bauform als 0805 — Typ erst nach Auswahl festlegen.
 
+## Ergebnis (18.09.2026)
+
+Blatt `ethernet.kicad_sch` vollständig. **Alle 29 Pin-Prüfungen des W5500
+bestanden**, 35 Bauteile, keine doppelten Referenzen. ERC: 0 Fehler,
+7 Warnungen — alle sieben vorbestehend, das Ethernet-Blatt meldet nichts.
+
+### MDI-Abschluss
+
+| Ref | Wert | Funktion |
+| --- | ---- | -------- |
+| `R36`, `R37` | 49,9 Ω 1 % | Abschluss `TXP`/`TXN` nach `+3V3A` |
+| `R38` | 10 Ω 1 % | Speisung Mittelanzapfung `TCT` |
+| `C32` | 22 nF | Abblockung `TCT` |
+| `C29`, `C30` | 6,8 nF | **in Serie** in `RXP`/`RXN` |
+| `R39`, `R40` | 49,9 Ω 1 % | Abschluss `RXP`/`RXN` auf `RCT` |
+| `C31` | 10 nF | Abblockung `RCT` |
+
+Die Mittelanzapfungen sind über die lokalen Labels `TCT` und `RCT` angebunden
+statt über durchgezogene Leitungen — das vermeidet rund ein Dutzend
+Leitungskreuzungen quer über das Blatt.
+
+### Versorgungstrennung
+
+| Netz | Liegt darauf |
+| ---- | ------------ |
+| `+3V3A` | `U7.4/8/11/15/17/21` mit `C17`–`C22`, Stütz `C27`, TX-Abschluss `R36`–`R38`, `PWR_FLAG` |
+| `+3V3` | `U7.28` mit `C16`, Pull-ups `R28`–`R32`, LED-Vorwiderstände `R33`/`R34` |
+
+Verbunden über `FB1`.
+
+### Schirmung
+
+`T1.S1`/`T1.S2` auf `CHASSIS`, gekoppelt über `C28` (1 nF/2 kV) nach `GND`,
+`R35` mit 0 Ω als unbestückte Brücke parallel.
+
+### Arbeitsteilung
+
+Der Agent hat das Blatt diesmal selbst gezeichnet, nicht nur spezifiziert.
+Ohne KiCad im Container war das nur über direkte Bearbeitung der
+S-Expression möglich; die Prüfung erfolgte geometrisch über einen
+Netz-Tracer, der Draht-Endpunkte, Pin-Positionen, Labels und T-Abzweige auf
+Drahtmitten auswertet.
+
+### Nacharbeit (kosmetisch, kein Funktionsmangel)
+
+- **`FB1` trägt ein Widerstandssymbol.** Für `Device:FerriteBead` stand offline
+  keine Symboldefinition zur Verfügung. Netzliste und Footprint
+  (`Inductor_SMD:L_0805_2012Metric`) stimmen; in KiCad auf
+  `Device:FerriteBead` umstellen. Hinweis als verstecktes Feld am Bauteil.
+- **`+3V3A` ist ein lokales Label, kein Power-Symbol** — gleicher Grund.
+  Funktioniert, sieht neben den `+3V3`-Symbolen aber uneinheitlich aus.
+- **Platzierung ist funktional, nicht schön.** Alles liegt im freien Band bei
+  y = 118–132 mit 7,62 mm Spaltenabstand. Einige Leitungen kreuzen ohne
+  Verbindung; an allen echten Abzweigen sitzen geprüfte Knotenpunkte.
+- **`C28` (1 nF/2 kV)** braucht noch einen konkreten Typ mit Bestellnummer.
+
 ## Akzeptanzkriterien
 
-- [ ] RJ45 im Schaltplan, alle acht Leitungspins und der Schirm beschaltet.
-- [ ] Differenzielle Paare zum W5500 vollständig, Netznamen sprechend.
+- [x] RJ45 im Schaltplan, alle acht Leitungspins und der Schirm beschaltet.
+- [x] Differenzielle Paare zum W5500 vollständig, Netznamen sprechend.
 - [x] Bob-Smith-Terminierung: entfällt, in der Würth-Buchse integriert.
-- [ ] Mittelanzapfungen nach Referenzschaltbild beschaltet (`TCT` gespeist,
+- [x] Mittelanzapfungen nach Referenzschaltbild beschaltet (`TCT` gespeist,
       `RCT` gleichstromgetrennt).
-- [ ] MDI-Abschluss vollständig: 4 × 49,9 Ω 1 %, 2 × 6,8 nF in Serie,
+- [x] MDI-Abschluss vollständig: 4 × 49,9 Ω 1 %, 2 × 6,8 nF in Serie,
       10 Ω 1 %, 22 nF, 10 nF.
-- [ ] Netz `+3V3A` angelegt, über Ferritperle aus `+3V3` gespeist, `PWR_FLAG`
+- [x] Netz `+3V3A` angelegt, über Ferritperle aus `+3V3` gespeist, `PWR_FLAG`
       gesetzt; `AVDD`-Pins, deren Abblockung und der Sendezweig darauf umgehängt.
-- [ ] Schirmanbindung als bestückbare Option (0 Ω ‖ HV-C) ausgeführt.
-- [ ] Link-/Activity-Anzeige vorhanden (integriert oder diskret).
-- [ ] ERC ohne neue Fehler.
+- [x] Schirmanbindung als bestückbare Option (0 Ω ‖ HV-C) ausgeführt.
+- [x] Link-/Activity-Anzeige vorhanden (integriert oder diskret).
+- [x] ERC ohne neue Fehler.
 
 ## Betroffene Dateien
 
