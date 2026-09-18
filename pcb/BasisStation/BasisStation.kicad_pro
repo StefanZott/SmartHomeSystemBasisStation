@@ -736,6 +736,150 @@
           "label": "Mouser Price/Stock",
           "name": "Mouser Price/Stock",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Operating Temperature",
+          "name": "Operating Temperature",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PHY Chip Mode",
+          "name": "PHY Chip Mode",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Critical Parameter",
+          "name": "Critical Parameter",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Part Number",
+          "name": "Part Number",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PoE",
+          "name": "PoE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Ports",
+          "name": "Ports",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "LED",
+          "name": "LED",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Data rate",
+          "name": "Data rate",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Series",
+          "name": "Series",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Shield Tabs",
+          "name": "Shield Tabs",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Mounting Technology",
+          "name": "Mounting Technology",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Notes",
+          "name": "Notes",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Size",
+          "name": "Size",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Improved CMRR",
+          "name": "Improved CMRR",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Stability (ppm)",
+          "name": "Stability (ppm)",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Tab",
+          "name": "Tab",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Tol. f",
+          "name": "Tol. f",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "USB",
+          "name": "USB",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "f",
+          "name": "f",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer URL",
+          "name": "Manufacturer URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Automotive",
+          "name": "Automotive",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Cload (pF)",
+          "name": "Cload (pF)",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Created Date",
+          "name": "Created Date",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Application",
+          "name": "Application",
+          "show": false
         }
       ],
       "filter_string": "",

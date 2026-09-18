@@ -152,7 +152,7 @@ Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethern
 | Power (USB-C, Buck) | `pcb/Bauteile/Power/` (J_PWR, PS1) |
 | Ethernet | `pcb/Bauteile/W5500/`, `pcb/Bauteile/wuerth_7499011121A/`, `pcb/Bauteile/wuerth_830059532/` (SHBS-5) |
 | ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 18.09.2026 nach SHBS-5: **0 Fehler, 7 Warnungen**) |
-| Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
+| Architektur-Diagramm | Als Textdiagramm in [architecture.md](architecture.md) — das frühere drawio-Diagramm wurde gestrichen, weil es in drei Dateien gepflegt werden musste und auseinandergelaufen war |
 
 ## Abgrenzung Firmware
 

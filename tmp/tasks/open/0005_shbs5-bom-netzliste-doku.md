@@ -48,8 +48,11 @@ Setzt Tasks `0002`–`0004` voraus.
    (ESP32-S3 WLAN-TX ~350 mA, W5500 inkl. LEDs ~150 mA, Status-LEDs ~20 mA →
    ~520 mA @ 3,3 V, entspricht ca. 400 mA am 5-V-Eingang; innerhalb `F1` 1,1 A
    und MP2359 1,2 A).
-9. **`pcb/architektur_basisStation.drawio`** um den Ethernet-Zweig ergänzen,
-   PNG/PDF neu exportieren.
+9. ~~`pcb/architektur_basisStation.drawio` um den Ethernet-Zweig ergänzen~~ —
+   **entschieden 18.09.2026: Diagramm gestrichen.** Es lag in drei Dateien
+   (`.drawio`, `.png`, `.pdf`) vor, war an vier Stellen veraltet (+24V,
+   USB-UART-Bridge, JTAG-Header, fehlendes Ethernet) und duplizierte das
+   Textdiagramm in `architecture.md`, das versioniert und im Diff sichtbar ist.
 10. Erkenntnisse aus
    [tmp/report/2026-09-17_shbs-5-ethernet-architektur.md](../../report/2026-09-17_shbs-5-ethernet-architektur.md)
    sind damit in `docs/` überführt; Report auf `status: final` setzen.
@@ -84,15 +87,33 @@ prüfen.**
 Generische Passive (Widerstände, Kondensatoren) tragen projektkonform **keine**
 Bestellnummern — wie `R13`, `R23`, `C13`, `C15` im übrigen Projekt auch.
 
+### Erledigt — Footprints (18.09.2026)
+
+Die BOM-Auswertung zeigte **13 Kondensatoren ohne Footprint**. Ohne den
+kommen sie beim Übertragen der Netzliste nicht aufs Board.
+
+| Referenzen | Wert | Footprint |
+| ---------- | ---- | --------- |
+| `C16`–`C22` | 100 nF | `Capacitor_SMD:C_0805_2012Metric` |
+| `C23` | 4,7 µF | `Capacitor_SMD:C_0805_2012Metric` |
+| `C24` | 10 nF | `Capacitor_SMD:C_0805_2012Metric` |
+| `C25`, `C26` | 27 pF | `Capacitor_SMD:C_0805_2012Metric` |
+| `C27` | 10 µF | `Capacitor_SMD:C_0805_2012Metric` |
+| `C28` | 1 nF/2 kV | `Capacitor_SMD:C_1206_3216Metric` — **vorläufig** |
+
+`C28` hat wegen der 2 kV bewusst die grössere Bauform 1206 bekommen. Der Wert
+ist ein Platzhalter: Sobald der konkrete Typ feststeht, gegen dessen Datenblatt
+prüfen — 2-kV-Typen verlangen je nach Hersteller 1210 oder grösser.
+
+Alle **35 Bauteile** des Ethernet-Blatts tragen jetzt einen Footprint.
+
 ### Offen — nur in KiCad möglich
 
 1. **Netzliste und BOM exportieren.** `BasisStation.net` ist noch vom
    17.09.2026 und kennt weder `U7` noch `T1`, `Y1` und die MDI-Beschaltung.
    Ebenso `BasisStation.csv`.
 2. **ERC abschliessend laufen lassen** und `ERC.rpt` festhalten.
-3. **Architektur-Diagramm** `pcb/architektur_basisStation.drawio` um den
-   Ethernet-Zweig ergänzen, PNG und PDF neu exportieren. Das ASCII-Diagramm in
-   `architecture.md` ist bereits aktuell und kann als Vorlage dienen.
+3. ~~Architektur-Diagramm~~ — erledigt durch Streichen, siehe oben.
 
 ### Offen — kosmetisch aus Task 0004
 
@@ -107,7 +128,7 @@ Bestellnummern — wie `R13`, `R23`, `C13`, `C15` im übrigen Projekt auch.
 - [ ] ERC ohne neue Fehler.
 - [x] `ethernet.md`, `hardware.md`, `communication.md`, `architecture.md` und
       `power_supply.md` aktualisiert, `last_updated` gesetzt.
-- [ ] Architektur-Diagramm zeigt den Ethernet-Zweig.
+- [x] Architektur-Diagramm: drawio gestrichen, Textdiagramm in `architecture.md` zeigt den Ethernet-Zweig.
 - [x] Report auf `status: final`.
 
 ## Hinweise
@@ -120,5 +141,5 @@ Eintrag in `docs/userdoc/releases.md` (vgl. CLAUDE.md, Abweichungen).
 - `pcb/BasisStation/BasisStation.net`, `BasisStation.csv`, `ERC.rpt`
 - `docs/project/ethernet.md`, `hardware.md`, `communication.md`,
   `architecture.md`, `power_supply.md`
-- `pcb/architektur_basisStation.drawio`, `.png`, `.pdf`
+- ~~`pcb/architektur_basisStation.drawio`, `.png`, `.pdf`~~ (gestrichen)
 - `tmp/report/2026-09-17_shbs-5-ethernet-architektur.md`
