@@ -2,7 +2,7 @@
 type: analysis
 created: 2026-09-18
 jira: SHBS-5
-status: draft
+status: final
 ---
 
 # Abgleich der MDI-Sektion gegen das WIZnet-Referenzschaltbild
@@ -99,8 +99,9 @@ PHYs Standard.
 Rechnung ist die lehrbuchmässige; 18 pF im Referenzdesign würde bedeuten, dass
 die effektive Lastkapazität nur etwa 13 pF beträgt und der Quarz zu schnell
 läuft. Möglich, dass die Referenz einen Quarz mit anderer Lastkapazität
-verwendet. **Empfehlung:** bei 27 pF bleiben und am ersten Prototyp die
-Frequenz messen.
+verwendet. **Entschieden am 18.09.2026: bei 27 pF bleiben.** Die Rechnung hat Vorrang vor
+der Referenz; die Frequenz wird am ersten Prototyp gemessen und die
+Kondensatoren bei Bedarf nachgezogen.
 
 ## Empfehlungen
 
@@ -116,9 +117,10 @@ Frequenz messen.
 ## Nächste Schritte
 
 - Punkt 1 und 2 in Task `0004` als Sollbeschaltung ausformulieren.
-- Punkt 3 berührt auch den Stromversorgungszweig (SHBS-4) und die
-  Versorgungsbeschaltung aus Task 0003 — Entscheidung des Bedieners nötig, ob
-  die Trennung noch in SHBS-5 einfliesst oder ein eigenes Ticket bekommt.
+- Punkt 3 **entschieden am 18.09.2026: Trennung erfolgt in SHBS-5.** Späteres
+  Nachrüsten würde bedeuten, die sieben Abblockkondensatoren aus Task 0003 ein
+  zweites Mal umzuhängen. Der Buck-Zweig aus SHBS-4 bleibt unberührt, die
+  Ferritperle sitzt auf dem Ethernet-Blatt. Spezifikation in Task 0004.
 - Offen bleibt die Auswahl des HV-Kondensators (`C28`, 1 nF/2 kV) als
   konkretes Bauteil mit Bestellnummer.
 

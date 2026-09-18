@@ -109,6 +109,29 @@ bleiben frei** für analoge Sensorik, GPIO15–GPIO18 für UART1 oder einen
 
 Diese Belegung ist verbindlich für die Firmware-Umsetzung (**SHBS-11**).
 
+## Versorgung: digital und analog getrennt
+
+`+3V3` (digital) und `+3V3A` (analog) sind getrennte Netze, verbunden über eine
+Ferritperle mit 100–2000 Ω bei 100 MHz. Das hält die Schaltströme des
+Digitalteils aus der analogen Sendeendstufe des PHY heraus und entspricht dem
+WIZnet-Referenzdesign.
+
+| Netz | Versorgt |
+|------|----------|
+| `+3V3A` | alle `AVDD`-Pins des W5500 samt Abblockung, Stützkondensator, Abschlusswiderstände und Speisung der Sende-Mittelanzapfung |
+| `+3V3` | `VDD` des W5500, Pull-ups, LED-Vorwiderstände |
+
+## Quarz-Lastkondensatoren: 27 pF
+
+Der Quarz verlangt **CL = 18 pF**. Mit `CL = C/2 + C_stray` und rund 4 pF
+Streukapazität folgt C = 28 pF, also der Normwert **27 pF**.
+
+Das WIZnet-Referenzschaltbild zeigt an dieser Stelle 18 pF. Dem folgen wir
+bewusst **nicht**: 18-pF-Kondensatoren ergäben eine effektive Last von etwa
+13 pF, der Quarz liefe zu schnell. Wahrscheinlich nutzt die Referenz einen
+Quarz mit anderer Lastkapazität. Die Frequenz ist am ersten Prototyp zu messen
+und die Kondensatoren bei Bedarf nachzuziehen.
+
 ## Kein Auto-MDIX
 
 Der W5500 beherrscht **kein Auto-MDIX** (Datenblatt Rev. 1.0.5, Abschnitt

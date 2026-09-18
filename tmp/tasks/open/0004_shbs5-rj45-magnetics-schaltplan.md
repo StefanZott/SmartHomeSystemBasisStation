@@ -115,14 +115,44 @@ des Chips auf dem Übertrager. Beides zeigt weder ERC noch ein einfacher
 Funktionstest — die Symptome sind sporadische Paketfehler und Abbrüche bei
 längeren Kabeln.
 
-### Offen: getrennte Analogversorgung
+### Getrennte Analogversorgung (entschieden 18.09.2026)
 
-Das Referenzdesign trennt `3V3D` und `3V3A` über eine Ferritperle
-(100–2000 Ω bei 100 MHz). Unser Entwurf führt ein einziges `+3V3`. Die
-Tabellen oben nennen `+3V3A` bereits als eigenes Netz. **Entscheidung des
-Bedieners nötig**, ob die Trennung in SHBS-5 einfliesst oder ein eigenes
-Ticket bekommt — sie berührt auch die sieben Abblockkondensatoren aus
-Task 0003, die dann teilweise auf die Analogseite wandern.
+Digital- und Analogversorgung werden getrennt, **innerhalb von SHBS-5**.
+Begründung: Späteres Nachrüsten hiesse, die sieben Abblockkondensatoren aus
+Task 0003 ein zweites Mal umzuhängen. Der Buck-Zweig aus SHBS-4 ist nicht
+betroffen — die Ferritperle sitzt auf dem Ethernet-Blatt.
+
+**Neues Netz `+3V3A`**, gespeist aus `+3V3` über eine Ferritperle:
+
+| Bauteil | von | nach | Hinweis |
+| ------- | --- | ---- | ------- |
+| Ferritperle `FB1` | `+3V3` | `+3V3A` | 100–2000 Ω bei 100 MHz, Dauerstrom ≥ 300 mA |
+| `PWR_FLAG` | `+3V3A` | — | sonst meldet ERC das Netz als nicht getrieben |
+
+**Umzuhängen von `+3V3` auf `+3V3A`:**
+
+| Bisher auf `+3V3` | Neu |
+| ----------------- | --- |
+| `U7.4`, `U7.8`, `U7.11`, `U7.15`, `U7.17`, `U7.21` (`AVDD`) samt `C17`–`C22` | `+3V3A` |
+| `C27` 10 µF Stützkondensator | `+3V3A` |
+| Abschlusswiderstände `TXP`/`TXN` (49,9 Ω, siehe oben) | `+3V3A` |
+| Speisung `TCT` (10 Ω, siehe oben) | `+3V3A` |
+
+**Bleibt auf `+3V3` (digital):**
+
+| | |
+| --- | --- |
+| `U7.28` `VDD` samt `C16` | Digitalversorgung des Bausteins |
+| `R28`–`R32` | Pull-ups an PMODE, `INTn`, `RSTn` |
+| `R33`, `R34` | LED-Vorwiderstände |
+
+Das entspricht der Aufteilung im Referenzschaltbild, wo `3V3D` den `VDD`-Pin
+und die LEDs speist, während `3V3A` an allen `AVDD`-Pins und am Sendezweig
+liegt.
+
+**Hinweis:** Dieser Schritt ändert Bauteile, die in Task 0003 bereits gesetzt
+wurden. Das ist beabsichtigt — Task 0003 bleibt abgeschlossen, die Änderung
+läuft unter 0004, weil sie erst durch den Referenzabgleich entstanden ist.
 
 ### Schirm und unbenutzte Pins
 
@@ -164,6 +194,7 @@ Status-LEDs `D7`–`D10` des Projekts, die ebenfalls 220 Ω verwenden.
 | Kondensator | Abblockung `TCT` | 22 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 1 | offen |
 | Kondensator | Serienkopplung `RXP`/`RXN` | 6,8 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 2 | offen |
 | Kondensator | Abblockung `RCT` | 10 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 1 | offen |
+| Ferritperle | `FB1` Trennung `+3V3`/`+3V3A` | 100–2000 Ω @ 100 MHz, ≥ 300 mA | `Device:FerriteBead` | `Inductor_SMD:L_0805_2012Metric` | 1 | offen, Typ wählen |
 
 Die vier **49,9 Ω mit 1 %** sind toleranzkritisch — sie bilden zusammen die
 100-Ω-Abschlussimpedanz der Ethernet-Leitung.
@@ -180,6 +211,8 @@ Bauform als 0805 — Typ erst nach Auswahl festlegen.
       `RCT` gleichstromgetrennt).
 - [ ] MDI-Abschluss vollständig: 4 × 49,9 Ω 1 %, 2 × 6,8 nF in Serie,
       10 Ω 1 %, 22 nF, 10 nF.
+- [ ] Netz `+3V3A` angelegt, über Ferritperle aus `+3V3` gespeist, `PWR_FLAG`
+      gesetzt; `AVDD`-Pins, deren Abblockung und der Sendezweig darauf umgehängt.
 - [ ] Schirmanbindung als bestückbare Option (0 Ω ‖ HV-C) ausgeführt.
 - [ ] Link-/Activity-Anzeige vorhanden (integriert oder diskret).
 - [ ] ERC ohne neue Fehler.
