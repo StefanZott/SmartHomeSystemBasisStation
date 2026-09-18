@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 type: docs
 created: 2026-09-17
@@ -107,13 +107,43 @@ prüfen — 2-kV-Typen verlangen je nach Hersteller 1210 oder grösser.
 
 Alle **35 Bauteile** des Ethernet-Blatts tragen jetzt einen Footprint.
 
-### Offen — nur in KiCad möglich
+### Erledigt — Export und Verifikation (18.09.2026)
 
-1. **Netzliste und BOM exportieren.** `BasisStation.net` ist noch vom
-   17.09.2026 und kennt weder `U7` noch `T1`, `Y1` und die MDI-Beschaltung.
-   Ebenso `BasisStation.csv`.
-2. **ERC abschliessend laufen lassen** und `ERC.rpt` festhalten.
-3. ~~Architektur-Diagramm~~ — erledigt durch Streichen, siehe oben.
+Netzliste, Stückliste und ERC vom Bediener neu erzeugt, vom Agenten gegen die
+Sollbeschaltung geprüft.
+
+| Artefakt | Ergebnis |
+| -------- | -------- |
+| `BasisStation.net` | **0 Abweichungen** — Versorgung, Masse, MDI-Paare, Mittelanzapfungen, Schirm und LEDs alle wie spezifiziert |
+| `BasisStation.csv` | 46 Positionen, **alle mit Footprint** ausser `ANT1`/`ANT2` (mechanische BOM-Positionen, korrekt ohne) |
+| `ERC.rpt` | **0 Fehler, 7 Warnungen** — Niveau vor SHBS-5, keine aus der Ethernet-Sektion |
+
+Die sechs SPI-Netze liegen paarweise richtig:
+
+| Netz | Knoten |
+| ---- | ------ |
+| `ETH_SCSn` | `U6.18` (GPIO10), `U7.32` |
+| `ETH_SCLK` | `U6.20` (GPIO12), `U7.33` |
+| `ETH_MISO` | `U6.21` (GPIO13), `U7.34` |
+| `ETH_MOSI` | `U6.19` (GPIO11), `U7.35` |
+| `ETH_INT` | `U6.22` (GPIO14), `U7.36`, `R31` |
+| `ETH_RST` | `U6.17` (GPIO9), `U7.37`, `R32` |
+
+Der Empfangszweig ist korrekt gleichstromgetrennt: `U7.6` (`RXP`) → `C29`
+→ `T1.4` (`RD+`), `U7.5` (`RXN`) → `C30` → `T1.6` (`RD−`), die
+Abschlusswiderstände `R39`/`R40` chipseitig auf `RCT`.
+
+### Zwischenfall: Kurzschluss SCLK/SCSn
+
+Ein beim Verschieben der Labels entstandener Draht verband `ETH_SCLK` und
+`ETH_SCSn` direkt. Der Fehler steckte zwischenzeitlich auch in der exportierten
+Netzliste — vier Pins auf einem Netz, Takt und Chip-Select kurzgeschlossen.
+Gefunden durch den Netzliesten-Abgleich, nicht durch ERC: Die Meldung
+`multiple_net_names` ist nur eine Warnung, keine Fehlermeldung. Behoben.
+
+**Lehre für künftige Runden:** Korrekturen an einer Datei, die KiCad geöffnet
+hält, werden beim nächsten Speichern überschrieben. Der Fix musste dreimal
+angewendet werden, bis KiCad geschlossen war.
 
 ### Offen — kosmetisch aus Task 0004
 
@@ -123,9 +153,11 @@ Alle **35 Bauteile** des Ethernet-Blatts tragen jetzt einen Footprint.
 
 ## Akzeptanzkriterien
 
-- [ ] Alle neuen Bauteile mit Herstellernummer und Mouser-Referenz in der BOM.
-- [ ] `BasisStation.net` und `BasisStation.csv` neu exportiert.
-- [ ] ERC ohne neue Fehler.
+- [x] Herstellernummern vollständig. **Mouser-Referenzen offen:** `T1` und
+      `Y1` aus dem üblichen Würth-Präfix abgeleitet und ungeprüft, `U7` fehlt
+      — Mouser blockiert automatisierte Zugriffe. Bei der Bestellung prüfen.
+- [x] `BasisStation.net` und `BasisStation.csv` neu exportiert.
+- [x] ERC ohne neue Fehler.
 - [x] `ethernet.md`, `hardware.md`, `communication.md`, `architecture.md` und
       `power_supply.md` aktualisiert, `last_updated` gesetzt.
 - [x] Architektur-Diagramm: drawio gestrichen, Textdiagramm in `architecture.md` zeigt den Ethernet-Zweig.
