@@ -121,6 +121,15 @@ Dimensionierung: Flussspannung laut Würth-Datenblatt 1,8–2,4 V bei 20 mA. Bei
 3,3 V und 220 Ω stellen sich rund **6 mA** ein — konsistent zu den
 Status-LEDs `D7`–`D10` des Projekts, die ebenfalls 220 Ω verwenden.
 
+| Bauart | Bauteil | Wert | Symbol | Footprint | Anzahl |
+| ------ | ------- | ---- | ------ | --------- | ------ |
+| **Widerstand** | LED-Vorwiderstand | 220 Ω, 5 % | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 2 |
+| Kondensator | HV-Kopplung `CHASSIS`–`GND` | 1 nF, **≥ 2 kV** | `Device:C` | gehäuseabhängig, 1206 oder größer | 1 |
+| **Widerstand** | Brücke `CHASSIS`–`GND` | 0 Ω | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 1 |
+
+Der HV-Kondensator braucht wegen der Spannungsfestigkeit eine größere
+Bauform als 0805 — Typ erst nach Auswahl festlegen.
+
 ## Akzeptanzkriterien
 
 - [ ] RJ45 im Schaltplan, alle acht Leitungspins und der Schirm beschaltet.

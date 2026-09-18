@@ -70,7 +70,7 @@ Drei Bauteile im Schaltplan erklären sich aus der Funktion des PHY:
 
 | Bauteil | Wofür |
 |---------|-------|
-| **25-MHz-Quarz** | Taktreferenz des PHY. 100BASE-TX überträgt 125 MBaud auf der Leitung; der Chip leitet diesen Takt intern ab. Deshalb toleranzkritisch. |
+| **25-MHz-Quarz** | Taktreferenz des PHY. 100BASE-TX überträgt 125 MBaud auf der Leitung; der Chip leitet diesen Takt intern ab. Deshalb toleranzkritisch: verlangt sind ±30 ppm bei 25 °C und 18 pF Lastkapazität. Gewählt: Würth **830059532** (CFPX-104, ±20 ppm), Lastkondensatoren 2 × 27 pF in **C0G/NP0**. |
 | **Bias-Widerstand an `EXRES1`** | Stellt den Bias-Strom der analogen Sendetreiber ein und bestimmt damit direkt die Signalamplitude auf dem Kabel. Zu grosse Toleranz verlässt die Ethernet-Spezifikation — daher 1 %. |
 | **Magnetics in der RJ45-Buchse** | Galvanische Trennung zwischen Platine und Kabel plus Symmetrierung. Ethernet ist potentialfrei spezifiziert; ohne Übertrager bestünde eine leitende Verbindung zu jedem anderen Gerät im Netz. |
 

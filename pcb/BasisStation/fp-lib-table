@@ -10,4 +10,5 @@
   (lib (name "WL-TMRW_3MM")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/WL-TMRW_3MM")(options "")(descr "LED 3 mm"))
   (lib (name "wuerth_6120XX21621")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621")(options "")(descr "Stiftleisten J5/J6"))
   (lib (name "wuerth_rj45")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/wuerth_7499011121A")(options "")(descr "RJ45 mit Magnetics (SHBS-5)"))
+  (lib (name "wuerth_830059532")(type "KiCad")(uri "${KIPRJMOD}/../Bauteile/wuerth_830059532")(options "")(descr "Quarz 25 MHz CFPX-104 (SHBS-5)"))
 )
