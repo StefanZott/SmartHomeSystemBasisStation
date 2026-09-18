@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-15
+last_updated: 2026-09-18
 type: project-doc
 jira: SHBS-4
 ---
@@ -301,6 +301,36 @@ Footprint-Feld. Ohne Zuweisung übernimmt der PCB-Abgleich (F8) sie nicht.
   neu erzeugen.
 
 ---
+
+## Lastbudget (Stand 18.09.2026)
+
+Nach Hinzunahme der Ethernet-Sektion (SHBS-5).
+
+| Verbraucher | Annahme @ 3,3 V | Quelle |
+|-------------|-----------------|--------|
+| ESP32-S3, WLAN-Sendespitze | ~350 mA | Modul-Datenblatt |
+| W5500, 100 Mbit/s sendend | **132 mA** | W5500-Datenblatt Abschnitt 5.4 |
+| Link-LEDs der RJ45 (2 × 6 mA) | ~12 mA | 220 Ω an 3,3 V |
+| Status-LEDs `D7`–`D10` (4 × 5 mA) | ~20 mA | 220 Ω an 3,3 V |
+| **Summe Worst Case** | **~515 mA** | |
+
+Bei rund 85 % Wandlerwirkungsgrad entspricht das etwa **400 mA am 5-V-Eingang**.
+
+| Grenze | Wert | Auslastung |
+|--------|------|------------|
+| Polyfuse `F1` | 1,1 A | ~36 % |
+| Wandler `PS1` MP2359DJ | 1,2 A | ~43 % |
+
+**Kein Redesign nötig.** Die Ethernet-Sektion erhöht die Last um rund 145 mA;
+beide Grenzen bleiben mit deutlichem Abstand eingehalten.
+
+Die Werte sind Spitzenwerte und treten nicht zwingend gleichzeitig auf — WLAN
+und Ethernet senden im Normalbetrieb selten zugleich mit voller Leistung.
+
+**Hinweis zur Analogversorgung:** Die Ethernet-Sektion trennt intern `+3V3`
+(digital) und `+3V3A` (analog) über eine Ferritperle. Beide speisen sich aus
+derselben 3,3-V-Schiene; für das Lastbudget ist die Trennung ohne Belang, für
+das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 
 ## Stückliste (Power)
 

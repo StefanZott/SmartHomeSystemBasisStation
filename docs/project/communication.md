@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-17
+last_updated: 2026-09-18
 type: project-doc
 ---
 
@@ -57,6 +57,14 @@ Typisch über USB-UART bzw. JTAG-Adapter — ESP-IDF-Standardfluss (`idf.py flas
 ## Abgrenzung
 
 - Kein separates API-Schema (OpenAPI) im Repository; diese Datei ist die Einstiegsübersicht.
-- **Ethernet:** nicht in der aktuellen Firmware-Kommunikationsschicht vorhanden (**SHBS-11**).
-  Hardwareseitig über **WIZnet W5500** am SPI-Bus — erwarteter Durchsatz 15–20 Mbit/s,
-  begrenzt durch SPI, nicht durch die Leitung. Details: [ethernet.md](ethernet.md).
+- **Ethernet:** nicht in der aktuellen Firmware-Kommunikationsschicht vorhanden
+  (**SHBS-11**). Der Schaltplan ist fertig (SHBS-5), das Layout offen (SHBS-10).
+  Angebunden über **WIZnet W5500** am SPI-Bus; ESP-IDF betreibt ihn im
+  MACRAW-Modus unter lwIP, aus Sicht der Kommunikationsschicht also ein
+  reguläres `esp_netif`-Interface neben WLAN. Erwarteter Durchsatz
+  **15–20 Mbit/s** — begrenzt durch den SPI-Bus, nicht durch die Leitung.
+  Details: [ethernet.md](ethernet.md).
+- **Koexistenz WLAN/Ethernet** ist noch nicht entworfen: `WLAN.c` und
+  `WebServer.c` kennen bisher genau ein Netif. Interface-Priorität,
+  Fallback-Verhalten und SoftAP-Verhalten bei bestehendem Ethernet-Link sind in
+  SHBS-11 zu klären.

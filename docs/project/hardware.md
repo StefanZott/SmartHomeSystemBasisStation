@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-17
+last_updated: 2026-09-18
 type: project-doc
 ---
 
@@ -112,6 +112,34 @@ Transistoren: **BC337** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E).
 
 Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`.
 
+## Ethernet (SHBS-5)
+
+Kabelgebundene Netzwerkanbindung über **WIZnet W5500** am SPI-Bus, RJ45-Buchse
+**Würth 7499011121A** mit integrierten Magnetics. Schaltplanblatt
+`pcb/BasisStation/ethernet.kicad_sch`.
+
+**Warum SPI und nicht RMII:** Der ESP32-S3 besitzt — anders als der
+ursprüngliche ESP32 — keine EMAC-Peripherie. Ein RMII-PHY findet im SoC keine
+Gegenstelle. Der W5500 bringt MAC und PHY selbst mit und hängt am SPI-Bus.
+
+| Netz | W5500-Pin | GPIO | Modul-Pad |
+|------|-----------|------|-----------|
+| `ETH_RST` | 37 `RSTn` | 9 | 17 |
+| `ETH_SCSn` | 32 `SCSn` | 10 | 18 |
+| `ETH_MOSI` | 35 `MOSI` | 11 | 19 |
+| `ETH_SCLK` | 33 `SCLK` | 12 | 20 |
+| `ETH_MISO` | 34 `MISO` | 13 | 21 |
+| `ETH_INT` | 36 `INTn` | 14 | 22 |
+
+Gewählt wurden die nativen **FSPI-Pins** (IO-MUX statt GPIO-Matrix), die am
+Modul zudem auf den zusammenhängenden Pads 17–22 liegen. Dadurch belegt sind
+ADC1_CH8 und ADC1_CH9; **GPIO1–GPIO8 bleiben frei** für analoge Sensorik.
+
+Die Versorgung ist in `+3V3` (digital) und `+3V3A` (analog) getrennt,
+verbunden über eine Ferritperle.
+
+Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethernet.md)**.
+
 ## Repository-Ist-Stand (KiCad)
 
 | Bereich | Pfad / Artefakt |
@@ -122,13 +150,13 @@ Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`.
 | Bauteilbibliotheken | `pcb/Bauteile/<Bauteil>/` — **ein Ordner je Bauteil** mit Symbol, Footprint und 3D-Modell (SHBS-12) |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
 | Power (USB-C, Buck) | `pcb/Bauteile/Power/` (J_PWR, PS1) |
-| Ethernet | `pcb/Bauteile/W5500/`, `pcb/Bauteile/wuerth_7499011121A/` (SHBS-5) |
-| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 17.09.2026 nach SHBS-12: **0 Fehler, 7 Warnungen**) |
+| Ethernet | `pcb/Bauteile/W5500/`, `pcb/Bauteile/wuerth_7499011121A/`, `pcb/Bauteile/wuerth_830059532/` (SHBS-5) |
+| ERC-Bericht | `pcb/BasisStation/ERC.rpt` (Stand 18.09.2026 nach SHBS-5: **0 Fehler, 7 Warnungen**) |
 | Architektur-Diagramm (extern) | `pcb/architektur_basisStation.drawio` |
 
 ## Abgrenzung Firmware
 
-Die Firmware in `main/` beschreibt das **Laufzeitverhalten** (WLAN, Webserver, LEDs). In der aktuellen Firmware gibt es **keine** Ethernet-Treiber-Nutzung — die Anbindung über `esp_eth` ist als **SHBS-11** offen. Hintergrund: [ethernet.md](ethernet.md).
+Die Firmware in `main/` beschreibt das **Laufzeitverhalten** (WLAN, Webserver, LEDs). Ethernet ist **schaltplanseitig fertig** (SHBS-5); das **PCB-Layout** steht als **SHBS-10** aus, die **Firmware-Anbindung** über `esp_eth` als **SHBS-11**. In der aktuellen Firmware gibt es keine Ethernet-Nutzung. Hintergrund: [ethernet.md](ethernet.md).
 
 Netzwerk-Konfiguration über HTTP: [communication.md](communication.md).
 

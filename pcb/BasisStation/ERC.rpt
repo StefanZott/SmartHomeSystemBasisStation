@@ -1,4 +1,4 @@
-ERC-Bericht (2026-09-18T21:48:01+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-18T22:40:47+0200, UTF8-kodiert)
 
 ***** Schaltplan /
 [lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
@@ -32,5 +32,9 @@ ERC-Bericht (2026-09-18T21:48:01+0200, UTF8-kodiert)
 ***** Schaltplan /Stromversorgung/
 
 ***** Schaltplan /Ethernet/
+[multiple_net_names]: ETH_SCLK und ETH_SCSn sind jeweils mit dem gleichen Teil verbunden. ETH_SCLK wird in der Netzliste benutzt
+    ; warning
+    @(10600 mils, 3300 mils): Globaler Bezeichner "ETH_SCLK"
+    @(10600 mils, 3400 mils): Globaler Bezeichner "ETH_SCSn"
 
- ** ERC-Meldungen: 7  Fehler 0  Warnungen 7
+ ** ERC-Meldungen: 8  Fehler 0  Warnungen 8

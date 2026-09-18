@@ -54,15 +54,61 @@ Setzt Tasks `0002`–`0004` voraus.
    [tmp/report/2026-09-17_shbs-5-ethernet-architektur.md](../../report/2026-09-17_shbs-5-ethernet-architektur.md)
    sind damit in `docs/` überführt; Report auf `status: final` setzen.
 
+## Fortschritt (18.09.2026)
+
+### Erledigt — Dokumentation
+
+| Datei | Änderung |
+| ----- | -------- |
+| `ethernet.md` | Bauteilliste (herstellerspezifisch + Beschaltung), toleranzkritische Werte, Schirmung, Stand je Ticket |
+| `hardware.md` | Neuer Abschnitt „Ethernet (SHBS-5)" mit GPIO-Tabelle und Begründung SPI statt RMII; ERC-Stand; Abgrenzung Firmware auf SHBS-10/SHBS-11 präzisiert; Quarz-Bauteilordner ergänzt |
+| `communication.md` | Abgrenzung korrigiert, Durchsatz 15–20 Mbit/s, MACRAW-Betrieb, offene Koexistenzfragen für SHBS-11 benannt |
+| `architecture.md` | Systemdiagramm neu — Ethernet-Zweig statt „Ziel", JTAG-Header entfernt, `J1`/`J6` benannt; Ethernet-Abschnitt mit Ticket-Tabelle |
+| `power_supply.md` | **Lastbudget** ergänzt: ~515 mA @ 3,3 V Worst Case, ~400 mA am 5-V-Eingang, ~36 % von `F1` und ~43 % von `PS1`. Kein Redesign nötig |
+
+Report `2026-09-17_shbs-5-ethernet-architektur.md` auf `status: final`.
+
+### Erledigt — BOM-Felder
+
+| Ref | Hersteller | Herstellernummer | Mouser |
+| --- | ---------- | ---------------- | ------ |
+| `T1` | Würth Elektronik | 7499011121A | `710-7499011121A` — **ungeprüft** |
+| `Y1` | Würth Elektronik | 830059532 | `710-830059532` — **ungeprüft** |
+| `U7` | WIZnet | W5500 | **fehlt** |
+
+Die beiden Würth-Nummern sind aus dem üblichen Mouser-Präfix abgeleitet, nicht
+verifiziert. Die W5500-Nummer konnte nicht ermittelt werden — Mouser blockiert
+automatisierte Zugriffe (Zeitüberschreitung). **Alle drei vor der Bestellung
+prüfen.**
+
+Generische Passive (Widerstände, Kondensatoren) tragen projektkonform **keine**
+Bestellnummern — wie `R13`, `R23`, `C13`, `C15` im übrigen Projekt auch.
+
+### Offen — nur in KiCad möglich
+
+1. **Netzliste und BOM exportieren.** `BasisStation.net` ist noch vom
+   17.09.2026 und kennt weder `U7` noch `T1`, `Y1` und die MDI-Beschaltung.
+   Ebenso `BasisStation.csv`.
+2. **ERC abschliessend laufen lassen** und `ERC.rpt` festhalten.
+3. **Architektur-Diagramm** `pcb/architektur_basisStation.drawio` um den
+   Ethernet-Zweig ergänzen, PNG und PDF neu exportieren. Das ASCII-Diagramm in
+   `architecture.md` ist bereits aktuell und kann als Vorlage dienen.
+
+### Offen — kosmetisch aus Task 0004
+
+- `FB1` trägt ein Widerstandssymbol, sollte `Device:FerriteBead` werden.
+- `+3V3A` ist ein lokales Label statt eines Power-Symbols.
+- `C28` (1 nF / ≥ 2 kV) braucht einen konkreten Typ mit Bestellnummer.
+
 ## Akzeptanzkriterien
 
 - [ ] Alle neuen Bauteile mit Herstellernummer und Mouser-Referenz in der BOM.
 - [ ] `BasisStation.net` und `BasisStation.csv` neu exportiert.
 - [ ] ERC ohne neue Fehler.
-- [ ] `ethernet.md`, `hardware.md`, `communication.md`, `architecture.md` und
+- [x] `ethernet.md`, `hardware.md`, `communication.md`, `architecture.md` und
       `power_supply.md` aktualisiert, `last_updated` gesetzt.
 - [ ] Architektur-Diagramm zeigt den Ethernet-Zweig.
-- [ ] Report auf `status: final`.
+- [x] Report auf `status: final`.
 
 ## Hinweise
 

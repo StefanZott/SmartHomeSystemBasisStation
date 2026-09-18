@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-17
+last_updated: 2026-09-18
 type: project-doc
 jira: SHBS-5
 ---
@@ -167,10 +167,63 @@ direkten Anschluss an ein Gerät, das ebenfalls kein Auto-MDIX hat.
 
 Entscheidungsgrundlage: `tmp/report/2026-09-17_shbs-5-ethernet-architektur.md`.
 
+## Bauteile
+
+Schaltplanblatt `pcb/BasisStation/ethernet.kicad_sch`.
+
+### Herstellerspezifisch
+
+| Ref | Bauteil | Typ | Bauteilordner |
+|-----|---------|-----|---------------|
+| `U7` | Ethernet-Controller | WIZnet **W5500**, LQFP-48 | `pcb/Bauteile/W5500/` |
+| `T1` | RJ45 mit Magnetics | Würth **7499011121A**, CFPX — 10/100BASE-T, geschirmt, Tab unten, gelb/grüne LEDs | `pcb/Bauteile/wuerth_7499011121A/` |
+| `Y1` | Quarz | Würth **830059532**, CFPX-104 — 25 MHz, CL 18 pF, ±20 ppm | `pcb/Bauteile/wuerth_830059532/` |
+
+Die Buchse bringt die **Bob-Smith-Terminierung und den 2-kV-Kondensator
+bereits intern** mit; extern ist dafür nichts zu bauen. Übertrager 1:1,
+350 µH — deckt sich mit Abschnitt 5.5.5 des W5500-Datenblatts.
+
+### Beschaltung
+
+| Funktion | Bauteile |
+|----------|----------|
+| Abblockung je Versorgungspin | `C16`–`C22`, 7 × 100 nF |
+| Stützkondensator | `C27`, 10 µF |
+| Bias `EXRES1` | `R27`, 12,4 kΩ **1 %** |
+| `TOCAP`, `1V2O` | `C23` 4,7 µF, `C24` 10 nF |
+| Quarz-Last | `C25`, `C26`, 2 × 27 pF **C0G/NP0** |
+| Pull-ups PMODE0–2, `INTn`, `RSTn` | `R28`–`R32`, 5 × 10 kΩ |
+| MDI-Abschluss | `R36`, `R37`, `R39`, `R40` — 4 × 49,9 Ω **1 %** |
+| Mittelanzapfung Sendezweig | `R38` 10 Ω 1 %, `C32` 22 nF |
+| Serienkopplung Empfangszweig | `C29`, `C30`, 2 × 6,8 nF |
+| Mittelanzapfung Empfangszweig | `C31`, 10 nF |
+| Versorgungstrennung | `FB1`, Ferritperle 100–2000 Ω @ 100 MHz |
+| LED-Vorwiderstände | `R33`, `R34`, 2 × 220 Ω |
+| Schirmkopplung | `C28` 1 nF/2 kV, `R35` 0 Ω (unbestückt) |
+
+**Toleranzkritisch:** die vier 49,9 Ω (bilden die 100-Ω-Leitungsimpedanz),
+die 12,4 kΩ an `EXRES1` (stellt die Sendeamplitude ein) und das C0G/NP0-
+Dielektrikum der Quarz-Lastkondensatoren (bestimmt die Frequenzgenauigkeit).
+
+Die MDI-Beschaltung folgt dem WIZnet-Referenzschaltbild
+`pcb/Datasheets/wiznet_W5500_ref-schematic_RJ45-with-magnetics.pdf`;
+der Abgleich steht in
+`tmp/report/2026-09-18_shbs-5-mdi-referenzabgleich.md`.
+
+### Schirmung
+
+`T1.S1`/`T1.S2` liegen auf einem eigenen Netz `CHASSIS`, das über `C28`
+(1 nF/2 kV) mit `GND` gekoppelt ist. Parallel dazu `R35` mit 0 Ω,
+**unbestückt** — die Kopplung lässt sich damit bei EMV-Problemen härter
+machen, ohne die Platine zu ändern.
+
 ## Stand
 
-Schaltplan und BOM: **SHBS-5** (in Arbeit). PCB-Layout: **SHBS-10** (offen).
-Firmware-Anbindung: **SHBS-11** (offen) — in `main/` gibt es derzeit keine
-Ethernet-Nutzung.
+| Thema | Ticket | Stand |
+|-------|--------|-------|
+| Schaltplan und BOM | **SHBS-5** | Schaltplan fertig, ERC 0 Fehler |
+| PCB-Layout | **SHBS-10** | offen |
+| Firmware-Anbindung | **SHBS-11** | offen — in `main/` keine Ethernet-Nutzung |
 
-Datenblatt: `pcb/Datasheets/` (W5500 v1.0.5).
+Datenblätter unter `pcb/Datasheets/`: W5500 Rev. 1.0.5, Würth 7499011121A,
+Würth 830059532, dazu beide WIZnet-Referenzschaltbilder.

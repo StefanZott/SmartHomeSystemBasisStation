@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-02
+last_updated: 2026-09-18
 type: project-doc
 ---
 
@@ -14,18 +14,20 @@ ESP-IDF-Firmware auf **ESP32-S3**, KiCad-Hardware und SPIFFS-Web-UI für die Kon
 Stromversorgung              Rechenkern / Peripherie
 ─────────────────            ─────────────────────────────────────────
 
-  [DC/DC, z. B. TSR 1-2433E
-   auf 3,3 V] ──────────────► ESP32-S3-WROOM-1U-N16R8
+  [USB-C J_PWR1 → Buck
+   MP2359 auf 3,3 V] ───────► ESP32-S3-WROOM-1U-N16R8
                                       │
   [Power- / Reset-Taster] ────────────┤
                                       ├──► [4 LEDs, RGBY]
-  [USB]  ─────────────────────────────┤
-  [PROG] ─────────────────────────────┤
-  [JTAG] ─────────────────────────────┤
+  [USB-C J1, Debug] ──────────────────┤
+  [PROG J6] ──────────────────────────┤
                                       ├──► [WLAN-Antenne am Modul 1U]
                                       │
-                                      └──► [Ethernet]  (Ziel; siehe [hardware.md](hardware.md))
+                                      └─SPI─► [W5500] ──► [RJ45 T1] ──► Netzwerk
 ```
+
+Der separate JTAG-Header ist entfallen — der ESP32-S3 bringt USB-Serial-JTAG
+im Chip mit, On-Chip-Debugging läuft über `J1`.
 
 Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [communication.md](communication.md).
 
@@ -148,4 +150,17 @@ In `main.c` wird nach `file_isExisting(wifiConfigFile)` zwischen `cJSON_IsNull(c
 
 ## Ethernet
 
-Laut Projektziel vorgesehen; in der analysierten Firmware **nicht** implementiert (keine `ETH_`-Nutzung in `main/`). Hardware-Stand: [hardware.md](hardware.md).
+Angebunden über **WIZnet W5500** am SPI-Bus — der ESP32-S3 hat keine
+EMAC-Peripherie, RMII ist deshalb nicht möglich. ESP-IDF betreibt den Baustein
+im MACRAW-Modus unter lwIP; firmwareseitig entsteht ein reguläres
+`esp_netif`-Interface neben WLAN. Erwarteter Durchsatz 15–20 Mbit/s, begrenzt
+durch den SPI-Bus.
+
+| Thema | Ticket | Stand |
+|-------|--------|-------|
+| Schaltplan und BOM | SHBS-5 | fertig |
+| PCB-Layout | SHBS-10 | offen |
+| Firmware-Anbindung | SHBS-11 | offen — keine `ETH_`-Nutzung in `main/` |
+
+Architektur und Begründung: **[ethernet.md](ethernet.md)**. Hardware-Stand:
+[hardware.md](hardware.md).

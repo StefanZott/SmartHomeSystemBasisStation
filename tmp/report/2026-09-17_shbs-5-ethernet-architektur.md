@@ -2,7 +2,7 @@
 type: analysis
 created: 2026-09-17
 jira: SHBS-5
-status: draft
+status: final
 ---
 
 # SHBS-5 — Ethernet-Anbindung: Architekturentscheidung
