@@ -32,14 +32,18 @@ GPIO4–GPIO18**:
 
 ### Festgelegt (Bediener, 17.09.2026)
 
-| Netz | GPIO | Modul-Pad | Begründung |
-| ---- | ---- | --------- | ---------- |
-| `ETH_RST` | **9** | 17 | FSPIHD, hier als Reset |
-| `ETH_CS` | **10** | 18 | FSPICS0 |
-| `ETH_MOSI` | **11** | 19 | FSPID |
-| `ETH_SCLK` | **12** | 20 | FSPICLK |
-| `ETH_MISO` | **13** | 21 | FSPIQ |
-| `ETH_INT` | **14** | 22 | FSPIWP, hier als Interrupt |
+| Netz | W5500-Pin | GPIO | Modul-Pad | Begründung |
+| ---- | --------- | ---- | --------- | ---------- |
+| `ETH_RST` | **37** `RSTn` | **9** | 17 | FSPIHD, hier als Reset |
+| `ETH_SCSn` | **32** `SCSn` | **10** | 18 | FSPICS0 |
+| `ETH_MOSI` | **35** `MOSI` | **11** | 19 | FSPID |
+| `ETH_SCLK` | **33** `SCLK` | **12** | 20 | FSPICLK |
+| `ETH_MISO` | **34** `MISO` | **13** | 21 | FSPIQ |
+| `ETH_INT` | **36** `INTn` | **14** | 22 | FSPIWP, hier als Interrupt |
+
+> Die Pinnamen am W5500 heißen nicht wie die Netze. Chip-Select heißt am
+> Baustein **`SCSn`**, nicht `CS`. Das angehängte `n` bedeutet **active low** —
+> betrifft `SCSn`, `RSTn` und `INTn`.
 
 Zwei Gründe für diesen Block:
 
@@ -69,7 +73,7 @@ die Wahl unkritischer Pins nicht verdrängen.
 3. W5500 beschalten. Werte aus dem Datenblatt Rev. 1.0.5 (Tabelle 2,
    S. 9–12) verifiziert — siehe Pinbelegung unten.
 4. SPI-Netze zum Modul `U6` benennen (`ETH_SCLK`, `ETH_MOSI`, `ETH_MISO`,
-   `ETH_CS`, `ETH_INT`, `ETH_RST`) — keine anonymen `Net-(…)`-Namen.
+   `ETH_SCSn`, `ETH_INT`, `ETH_RST`) — keine anonymen `Net-(…)`-Namen.
 5. ERC auf dem neuen Blatt laufen lassen.
 
 ## W5500-Pinbelegung (LQFP-48, Datenblatt Rev. 1.0.5)
@@ -175,7 +179,7 @@ Lastkondensatoren beidseitig gegen `GND` nach Quarz-Datenblatt (typisch
 
 | W5500-Pin | Netz | U6-Pad | Zusatz |
 | --------- | ---- | ------ | ------ |
-| 32 `SCSn` | `ETH_CS` | 18 (GPIO10) | — |
+| 32 `SCSn` | `ETH_SCSn` | 18 (GPIO10) | — |
 | 33 `SCLK` | `ETH_SCLK` | 20 (GPIO12) | — |
 | 35 `MOSI` | `ETH_MOSI` | 19 (GPIO11) | — |
 | 34 `MISO` | `ETH_MISO` | 21 (GPIO13) | — |

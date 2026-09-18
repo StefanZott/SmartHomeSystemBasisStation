@@ -84,14 +84,18 @@ Layout unkritisch. Impedanzkontrolliert (100 Ω differenziell) müssen nur
 Sechs Leitungen verbinden Modul und Controller. Es sind **keine**
 Ethernet-Signale, sondern gewöhnliches SPI plus Reset und Interrupt.
 
-| Netz | GPIO | Modul-Pad | Funktion am ESP32-S3 |
-|------|------|-----------|----------------------|
-| `ETH_RST` | 9 | 17 | FSPIHD |
-| `ETH_CS` | 10 | 18 | FSPICS0 |
-| `ETH_MOSI` | 11 | 19 | FSPID |
-| `ETH_SCLK` | 12 | 20 | FSPICLK |
-| `ETH_MISO` | 13 | 21 | FSPIQ |
-| `ETH_INT` | 14 | 22 | FSPIWP |
+| Netz | W5500-Pin | GPIO | Modul-Pad | Funktion am ESP32-S3 |
+|------|-----------|------|-----------|----------------------|
+| `ETH_RST` | 37 `RSTn` | 9 | 17 | FSPIHD |
+| `ETH_SCSn` | 32 `SCSn` | 10 | 18 | FSPICS0 |
+| `ETH_MOSI` | 35 `MOSI` | 11 | 19 | FSPID |
+| `ETH_SCLK` | 33 `SCLK` | 12 | 20 | FSPICLK |
+| `ETH_MISO` | 34 `MISO` | 13 | 21 | FSPIQ |
+| `ETH_INT` | 36 `INTn` | 14 | 22 | FSPIWP |
+
+Die Netznamen folgen den Pinnamen des W5500, deshalb `ETH_SCSn` und nicht
+`ETH_CS`. Das `n` steht für *active low* und betrifft ebenso `RSTn` und
+`INTn` — alle drei Signale sind im Ruhezustand High.
 
 Gewählt wurden die nativen **FSPI-Pins**: SPI läuft darüber über das IO-MUX
 statt über die GPIO-Matrix, was bei den realistischen 20–40 MHz die

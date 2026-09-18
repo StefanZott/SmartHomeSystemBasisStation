@@ -1,34 +1,36 @@
-ERC-Bericht (2026-09-17T22:15:18+0200, UTF8-kodiert)
+ERC-Bericht (2026-09-18T08:54:40+0200, UTF8-kodiert)
 
 ***** Schaltplan /
 [lib_symbol_mismatch]: Symbol "1543-650-149" stimmt nicht mit Kopie in Bibliothek "1543-650-149" überein
     ; warning
-    @(2250 mils, 2400 mils): Symbol S2 [1543-650-149]
+    @(950 mils, 2500 mils): Symbol S2 [1543-650-149]
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(2250 mils, 2700 mils): Symbol C7 [WCAP-FTXX_P10]
+    @(950 mils, 2800 mils): Symbol C7 [WCAP-FTXX_P10]
 [unconnected_wire_endpoint]: Unverbundenes Verbindungsende
     ; warning
-    @(3350 mils, 2100 mils): Horizontale Verbindung, Länge 400 mils
+    @(2050 mils, 2200 mils): Horizontale Verbindung, Länge 400 mils
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(5750 mils, 1650 mils): Symbol C10 [WCAP-FTXX_P10]
+    @(4450 mils, 1750 mils): Symbol C10 [WCAP-FTXX_P10]
 [lib_symbol_mismatch]: Symbol "WCAP-FTXX_P10" stimmt nicht mit Kopie in Bibliothek "WCAP-FTXX_P10" überein
     ; warning
-    @(9750 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
+    @(7350 mils, 1800 mils): Symbol C12 [WCAP-FTXX_P10]
 
 ***** Schaltplan /Layout/
 [pin_to_pin]: Pins vom Typ Bidirectional und Power output sind verbunden
     ; warning
-    @(2250 mils, 2400 mils): Symbol S2 Pin 1 [1, Bidirectional, Line]
+    @(950 mils, 2500 mils): Symbol S2 Pin 1 [1, Bidirectional, Line]
     @(10350 mils, 3000 mils): Symbol #FLG04 Pin 1 [Power output, Line]
 [multiple_net_names]: GND und EPAD sind jeweils mit dem gleichen Teil verbunden. GND wird in der Netzliste benutzt
     ; warning
-    @(1400 mils, 3950 mils): Symbol #PWR029 Pin 1 [Power input, Line]
-    @(5450 mils, 5400 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
+    @(9500 mils, 5500 mils): Symbol #PWR04 Pin 1 [Power input, Line]
+    @(4150 mils, 5500 mils): Symbol U6 Versteckter Pin 41 [EPAD, Power input, Line]
 
 ***** Schaltplan /Debugging/
 
 ***** Schaltplan /Stromversorgung/
+
+***** Schaltplan /Ethernet/
 
  ** ERC-Meldungen: 7  Fehler 0  Warnungen 7
