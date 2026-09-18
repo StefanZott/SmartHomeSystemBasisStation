@@ -46,7 +46,7 @@ Setzt Tasks `0002` und `0003` voraus.
 7. ERC laufen lassen; auf dem `CHASSIS`-Netz ein `PWR_FLAG` setzen, sonst
    meldet KiCad ein nicht getriebenes Netz.
 
-## Sollbeschaltung RJ45 (`J?`, Würth 7499011121A)
+## Sollbeschaltung RJ45 (`T1`, Würth 7499011121A)
 
 Der Bediener zeichnet in KiCad; der Agent prüft danach gegen die Netzliste.
 
@@ -71,26 +71,58 @@ der Forderung des W5500-Datenblatts (Abschnitt 5.5.5).
 > Beschriftung im PDF geprüft und stimmt mit dem offiziellen Würth-Symbol
 > überein.
 
-### Mittelanzapfungen — vor dem Zeichnen klären
+### Mittelanzapfungen und MDI-Abschluss
 
-| Buchsen-Pin | Signal |
-| ----------- | ------ |
-| 2 | `CTD` (Mittelanzapfung Sendepfad) |
-| 5 | `CRD` (Mittelanzapfung Empfangspfad) |
+Geklärt am 18.09.2026 aus dem WIZnet-Referenzschaltbild
+(`pcb/Datasheets/wiznet_W5500_ref-schematic_RJ45-with-magnetics.pdf`).
+Vollständiger Abgleich:
+[tmp/report/2026-09-18_shbs-5-mdi-referenzabgleich.md](../../report/2026-09-18_shbs-5-mdi-referenzabgleich.md).
 
-Beide sind **getrennt herausgeführt**, nicht intern verbunden. Das ist
-günstig: Der WIZnet-Hinweis, wonach bei intern verbundenen CT-Signalen das
-Anpassnetzwerk der `RX±`-Seite vom CT-Knoten getrennt werden muss, greift
-hier nicht.
+Die Sende- und Empfangszweige brauchen mehr als die blosse Paarverbindung.
+Der Sendetreiber des W5500 arbeitet stromgesteuert und braucht eine
+**gespeiste** Mittelanzapfung; der Empfänger arbeitet spannungsgesteuert,
+bringt seine Vorspannung selbst mit und wird deshalb **gleichstromgetrennt**.
 
-**Offener Punkt:** Ob `CTD` und `CRD` auf `+3V3` (mit Abblockung) oder über
-Kondensator auf `GND` gehen, ist gegen das **W5500-Referenzschaltbild** von
-WIZnet zu prüfen — der Sendetreiber des W5500 arbeitet stromgesteuert, was
-üblicherweise eine gespeiste Sende-Mittelanzapfung verlangt. Das
-Chip-Datenblatt zeigt die Beschaltung nur als Grafik (Abbildung 24), nicht als
-Text. **Vor dem Zeichnen im Referenzschaltbild nachsehen, nicht raten** — eine
-falsch beschaltete Mittelanzapfung verschlechtert die Signalqualitaet, ohne
-dass es beim Funktionstest auffällt.
+**Sendezweig**
+
+| Bauteil | von | nach |
+| ------- | --- | ---- |
+| 49,9 Ω 1 % | `+3V3A` | `U7.1` `TXN` |
+| 49,9 Ω 1 % | `+3V3A` | `U7.2` `TXP` |
+| 10 Ω 1 % | `+3V3A` | Knoten `TCT` |
+| 22 nF | Knoten `TCT` | `GND` |
+| — | Knoten `TCT` | `T1.2` `CTD` |
+
+**Empfangszweig**
+
+| Bauteil | von | nach |
+| ------- | --- | ---- |
+| 6,8 nF | `U7.6` `RXP` | `T1.4` `RD+` — **in Serie**, ersetzt die direkte Verbindung |
+| 6,8 nF | `U7.5` `RXN` | `T1.6` `RD−` — **in Serie**, ersetzt die direkte Verbindung |
+| 49,9 Ω 1 % | `U7.6` `RXP` (chipseitig, vor dem Kondensator) | Knoten `RCT` |
+| 49,9 Ω 1 % | `U7.5` `RXN` (chipseitig, vor dem Kondensator) | Knoten `RCT` |
+| 10 nF | Knoten `RCT` | `GND` |
+| — | Knoten `RCT` | `T1.5` `CRD` |
+
+> **Achtung bei den 6,8 nF:** Sie liegen **in Serie** in den beiden
+> Empfangsleitungen. Die bestehende Direktverbindung `U7.6`–`T1.4` und
+> `U7.5`–`T1.6` wird dadurch aufgetrennt. Die 49,9 Ω hängen auf der
+> **Chipseite** der Kondensatoren.
+
+Warum das nicht optional ist: Ohne die Abschlusswiderstände stimmt die
+Leitungsimpedanz nicht, ohne die Serienkondensatoren liegt der Gleichanteil
+des Chips auf dem Übertrager. Beides zeigt weder ERC noch ein einfacher
+Funktionstest — die Symptome sind sporadische Paketfehler und Abbrüche bei
+längeren Kabeln.
+
+### Offen: getrennte Analogversorgung
+
+Das Referenzdesign trennt `3V3D` und `3V3A` über eine Ferritperle
+(100–2000 Ω bei 100 MHz). Unser Entwurf führt ein einziges `+3V3`. Die
+Tabellen oben nennen `+3V3A` bereits als eigenes Netz. **Entscheidung des
+Bedieners nötig**, ob die Trennung in SHBS-5 einfliesst oder ein eigenes
+Ticket bekommt — sie berührt auch die sieben Abblockkondensatoren aus
+Task 0003, die dann teilweise auf die Analogseite wandern.
 
 ### Schirm und unbenutzte Pins
 
@@ -121,11 +153,20 @@ Dimensionierung: Flussspannung laut Würth-Datenblatt 1,8–2,4 V bei 20 mA. Bei
 3,3 V und 220 Ω stellen sich rund **6 mA** ein — konsistent zu den
 Status-LEDs `D7`–`D10` des Projekts, die ebenfalls 220 Ω verwenden.
 
-| Bauart | Bauteil | Wert | Symbol | Footprint | Anzahl |
-| ------ | ------- | ---- | ------ | --------- | ------ |
-| **Widerstand** | LED-Vorwiderstand | 220 Ω, 5 % | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 2 |
-| Kondensator | HV-Kopplung `CHASSIS`–`GND` | 1 nF, **≥ 2 kV** | `Device:C` | gehäuseabhängig, 1206 oder größer | 1 |
-| **Widerstand** | Brücke `CHASSIS`–`GND` | 0 Ω | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 1 |
+| Bauart | Bauteil | Wert | Symbol | Footprint | Anzahl | Status |
+| ------ | ------- | ---- | ------ | --------- | ------ | ------ |
+| **Widerstand** | LED-Vorwiderstand | 220 Ω, 5 % | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 2 | `R33`, `R34` gesetzt |
+| Kondensator | HV-Kopplung `CHASSIS`–`GND` | 1 nF, **≥ 2 kV** | `Device:C` | gehäuseabhängig, 1206 oder größer | 1 | `C28` gesetzt, Typ offen |
+| **Widerstand** | Brücke `CHASSIS`–`GND` | 0 Ω, **DNP** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 1 | `R35` gesetzt |
+| **Widerstand** | Abschluss `TXP`/`TXN` | 49,9 Ω, **1 %** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 2 | offen |
+| **Widerstand** | Abschluss `RXP`/`RXN` | 49,9 Ω, **1 %** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 2 | offen |
+| **Widerstand** | Speisung `TCT` | 10 Ω, **1 %** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` | 1 | offen |
+| Kondensator | Abblockung `TCT` | 22 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 1 | offen |
+| Kondensator | Serienkopplung `RXP`/`RXN` | 6,8 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 2 | offen |
+| Kondensator | Abblockung `RCT` | 10 nF | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` | 1 | offen |
+
+Die vier **49,9 Ω mit 1 %** sind toleranzkritisch — sie bilden zusammen die
+100-Ω-Abschlussimpedanz der Ethernet-Leitung.
 
 Der HV-Kondensator braucht wegen der Spannungsfestigkeit eine größere
 Bauform als 0805 — Typ erst nach Auswahl festlegen.
@@ -134,7 +175,11 @@ Bauform als 0805 — Typ erst nach Auswahl festlegen.
 
 - [ ] RJ45 im Schaltplan, alle acht Leitungspins und der Schirm beschaltet.
 - [ ] Differenzielle Paare zum W5500 vollständig, Netznamen sprechend.
-- [ ] Mittelanzapfungen und Bob-Smith-Terminierung gegen Datenblatt geprüft.
+- [x] Bob-Smith-Terminierung: entfällt, in der Würth-Buchse integriert.
+- [ ] Mittelanzapfungen nach Referenzschaltbild beschaltet (`TCT` gespeist,
+      `RCT` gleichstromgetrennt).
+- [ ] MDI-Abschluss vollständig: 4 × 49,9 Ω 1 %, 2 × 6,8 nF in Serie,
+      10 Ω 1 %, 22 nF, 10 nF.
 - [ ] Schirmanbindung als bestückbare Option (0 Ω ‖ HV-C) ausgeführt.
 - [ ] Link-/Activity-Anzeige vorhanden (integriert oder diskret).
 - [ ] ERC ohne neue Fehler.
