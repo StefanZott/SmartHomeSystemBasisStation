@@ -23,6 +23,26 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
   && rm -rf /var/lib/apt/lists/* \
   && npm install -g @anthropic-ai/claude-code
 
+# KiCad 9 (kicad-cli) - required to run ERC, DRC, netlist and BOM exports
+# headlessly against pcb/BasisStation/*. The schematic files use format version
+# 20250114, so KiCad 9 is mandatory; noble only ships KiCad 8, hence the PPA.
+# Symbols and footprints are needed to resolve the project libraries; the
+# metapackage kicad-libraries is avoided because it drags in kicad-packages3d
+# (3.2 GB), which only matters for STEP/VRML exports. Add that package here if
+# 3D output ever becomes relevant. xvfb covers the export subcommands that
+# still expect an X display.
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
+  software-properties-common \
+  && DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:kicad/kicad-9.0-releases \
+  && DEBIAN_FRONTEND=noninteractive apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
+  kicad \
+  kicad-symbols \
+  kicad-footprints \
+  xvfb \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN update-alternatives --install /usr/local/bin/usbip usbip `ls /usr/lib/linux-tools/*/usbip | tail -n1` 20
 
 # QEMU
@@ -59,6 +79,14 @@ ENV USER=${CONTAINER_USER}
 WORKDIR /home/${CONTAINER_USER}
 
 RUN echo "source /opt/esp/idf/export.sh > /dev/null 2>&1" >> ~/.bashrc
+
+# Seed KiCad's global library tables for the container user. kicad-cli creates
+# fp-lib-table by itself on first run, but not sym-lib-table - without it every
+# stock library (power, Device, Connector, ...) is reported missing and ERC
+# drowns in lib_symbol_issues violations.
+RUN mkdir -p ~/.config/kicad/9.0 \
+  && cp /usr/share/kicad/template/sym-lib-table ~/.config/kicad/9.0/sym-lib-table \
+  && cp /usr/share/kicad/template/fp-lib-table ~/.config/kicad/9.0/fp-lib-table
 
 ENTRYPOINT [ "/opt/esp/entrypoint.sh" ]
 

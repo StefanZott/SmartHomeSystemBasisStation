@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-18
+last_updated: 2026-09-19
 type: project-doc
 ---
 
@@ -177,6 +177,76 @@ Neues Bauteil anlegen:
 2. 3D-Referenz im Footprint auf `${KIPRJMOD}/../Bauteile/<Bauteil>/<Datei>`.
 3. Eintrag in `sym-lib-table` und `fp-lib-table` ergänzen.
 4. Footprint-Vorgabe im Symbol auf `<Bibliothek>:<Footprint>` setzen.
+
+## KiCad-CLI im Dev-Container (SHBS-13)
+
+`kicad-cli` ist das Kommandozeilen-Binary von KiCad. Es erzeugt ERC-, DRC-,
+Netzlisten- und BOM-Ausgaben ohne GUI und macht damit prüfbar, ob eine
+Schaltplan-Änderung tatsächlich fehlerfrei ist — vorher mussten diese
+Artefakte manuell in der KiCad-GUI erzeugt und eingecheckt werden.
+
+Installation und Versionsbindung stehen im [Dockerfile](../../.devcontainer/Dockerfile).
+Zwei Punkte sind dort entscheidend:
+
+- **KiCad 9 ist Pflicht.** Die Projektdateien tragen das Format
+  `version 20250114`. Ubuntu 24.04 liefert nur KiCad 8, deshalb das PPA
+  `kicad/kicad-9.0-releases`.
+- **`kicad-packages3d` bleibt draußen.** Das Paket wiegt 3,2 GB und wird nur
+  für STEP-/VRML-Export gebraucht. Symbole und Footprints sind installiert,
+  weil ERC, Netzliste und BOM sie zum Auflösen der Bibliotheken benötigen.
+- **Globale Bibliothekstabellen werden vorbelegt.** `kicad-cli` legt beim
+  ersten Aufruf nur `fp-lib-table` selbst an, nicht `sym-lib-table`. Ohne diese
+  Datei gelten sämtliche Standardbibliotheken (`power`, `Device`, …) als
+  unbekannt und der ERC-Report füllt sich mit `lib_symbol_issues`. Das
+  Dockerfile kopiert deshalb beide Vorlagen aus `/usr/share/kicad/template/`
+  nach `~/.config/kicad/9.0/`.
+
+Typische Aufrufe gegen `pcb/BasisStation/`:
+
+| Zweck | Befehl |
+|-------|--------|
+| ERC prüfen | `kicad-cli sch erc --output ERC.rpt BasisStation.kicad_sch` |
+| Netzliste | `kicad-cli sch export netlist --output BasisStation.net BasisStation.kicad_sch` |
+| Stückliste | siehe unten (`sch export bom` mit Feldliste) |
+| DRC prüfen | `kicad-cli pcb drc --output DRC.rpt BasisStation.kicad_pcb` |
+
+Die Stückliste muss die GUI-Voreinstellungen explizit mitbekommen, sonst
+weichen Spalten und Gruppierung von der eingecheckten `BasisStation.csv` ab:
+
+```
+kicad-cli sch export bom \
+  --fields 'Reference,Value,Datasheet,Footprint,${QUANTITY},${DNP}' \
+  --labels 'Reference,Value,Datasheet,Footprint,Qty,DNP' \
+  --group-by 'Value,Footprint' --ref-range-delimiter '' \
+  --output BasisStation.csv BasisStation.kicad_sch
+```
+
+Einziger verbleibender Unterschied zur GUI-Ausgabe ist die DNP-Spalte: die
+deutschsprachige GUI schreibt dort `Nicht bestücken`, die CLI `DNP`.
+
+Schlägt ein Export mit einem Display-Fehler fehl, hilft `xvfb-run kicad-cli …`
+— einzelne Unterbefehle erwarten je nach Version noch einen X-Server.
+
+### Stand der Verifikation
+
+Gegen die eingecheckten Artefakte geprüft (2026-09-19):
+
+| Artefakt | Ergebnis |
+|----------|----------|
+| ERC | deckungsgleich — 7 Verstöße, 0 Fehler, 7 Warnungen |
+| Netzliste | deckungsgleich — 102 Netze, identische Namen |
+| Stückliste | deckungsgleich bis auf die DNP-Beschriftung (Sprache) |
+| DRC | **abweichend** — CLI meldet 418 Verstöße gegen 8 im eingecheckten Report |
+
+Die DRC-Abweichung betrifft ausschließlich Konflikte mit den beiden
+GND-Zonen (`clearance`, `solder_mask_bridge`, `hole_clearance`). Naheliegende
+Ursache: die GUI füllt Zonen vor dem DRC neu, `kicad-cli` rechnet mit dem im
+Board gespeicherten — inzwischen veralteten — Füllstand. Bis das geklärt ist,
+bleibt der DRC in der GUI die verbindliche Quelle; die CLI wird für ERC,
+Netzliste und Stückliste genutzt.
+
+Nach einem Update des Dockerfiles muss der Container neu gebaut werden
+(*Rebuild Container*), sonst fehlt das Binary weiterhin.
 
 ## Pflege
 
