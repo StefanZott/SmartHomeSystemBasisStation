@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-18
+last_updated: 2026-09-19
 type: project-doc
 jira: SHBS-4
 ---
@@ -79,12 +79,12 @@ USB-Netzteil / Kabel (5 V)
 | Symbole/Footprints (`power.kicad_sym`, `pcb/Footprints/`) | erledigt |
 | `sym-lib-table`, `fp-lib-table` | erledigt |
 | PS2 / +12V aus Schaltplan und PCB entfernt | erledigt |
-| Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet; Ausgangszweig noch fehlerhaft (siehe unten) |
+| Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet und verdrahtet |
 | PWR_FLAG an VBUS, VIN und Ausgang | eingefügt 2026-09-15 (`#FLG01`–`#FLG03`) |
 | `+3V3`-Symbol auf der U6-Schiene (`#PWR103`) | eingefügt 2026-09-15 |
 | PCB-Platzierung/Routing | offen |
 | Buck-Ausgangszweig korrigiert (B12) | erledigt 2026-09-15 |
-| ERC ohne Fehler | **erreicht** (Lauf 2026-09-15 22:27: 0 Fehler, 9 unkritische Warnungen) |
+| ERC ohne Fehler | **erreicht** (Lauf 2026-09-18 23:42: 0 Fehler, 7 unkritische Warnungen; Blatt `/Stromversorgung/` ohne jede Meldung) |
 | DRC ohne Fehler | offen (PCB noch nicht nachgezogen) |
 
 **Hinweis:** Automatisches Einfügen per Skript (2026-06-08) hat KiCad zum Absturz geführt (defekte `lib_symbols`). Power-Teile **nur über die KiCad-GUI** eintragen.
@@ -150,10 +150,10 @@ Vor dem Einfügen enthielt das Projekt **keine einzige** platzierte
 PWR_FLAG — `BasisStation_Layout.kicad_sch` führt das Symbol nur in seinem
 `lib_symbols`-Block, ohne Instanz.
 
-> **Achtung:** `#FLG03` hängt an dem Draht, der aktuell das Label `+3V3`
-> trägt — und dieser Knoten ist wegen des oben beschriebenen
-> Topologiefehlers tatsächlich noch `SW`. Nach der Korrektur des
-> Ausgangszweigs prüfen, dass `#FLG03` weiterhin **hinter** `L1` liegt.
+> **Erledigt:** `#FLG03` hing ursprünglich an dem Draht, der zwar `+3V3`
+> hiess, elektrisch aber `SW` war. Nach der Topologie-Korrektur liegt
+> `#FLG03` **hinter** `L1` auf dem echten Ausgangsknoten — am 2026-09-19
+> aus der Schaltplangeometrie gegengeprüft.
 
 ### ERC-Lauf 2026-09-15 — verbleibende Befunde
 
@@ -299,6 +299,8 @@ Footprint-Feld. Ohne Zuweisung übernimmt der PCB-Abgleich (F8) sie nicht.
 - `BasisStation.net` stammt vom 2026-06-09 und enthält noch `PS2`/`+12V`;
   das PCB ist älter als der Schaltplan. Beides nach der Topologie-Korrektur
   neu erzeugen.
+- Netznamen der Eingangsseite: `PW_EN` auf der 5-V-Schiene, VBUS unbenannt
+  (siehe Abschnitt „Netze"). Rein kosmetisch, ändert die Topologie nicht.
 
 ---
 
@@ -426,11 +428,20 @@ Datenblatt: **1 µH … 10 µH**, Stromrating ≥ **1,5 A** (25 % über max. Las
 
 ## Netze
 
-| Netz | Herkunft | Verbraucher |
-|------|----------|-------------|
-| **+5V** | J_PWR VBUS | F1, D12, C13, PS1 VIN |
-| **+3V3** | PS1 via L1/C14 | U6, LEDs, Stecker, Entkopplung |
-| **GND** | J_PWR, PS1, Passives | gemeinsame Masse |
+| Netz | Name im Schaltplan | Herkunft | Verbraucher |
+|------|--------------------|----------|-------------|
+| VBUS (vor `F1`) | *unbenannt* | J_PWR VBUS (`A4`, `A9`) | `F1`, `#FLG01` |
+| 5 V (hinter `F1`) | **`PW_EN`** | `F1` | `D12`, `C13`, `PS1.5` (VIN), `PS1.4` (EN), `#FLG02` |
+| **`+3V3`** | `+3V3` | PS1 via `L1`/`C14` | U6, LEDs, Stecker, Entkopplung |
+| **`GND`** | `GND` | J_PWR, PS1, Passives | gemeinsame Masse |
+
+> **Namensabweichung:** Die 5-V-Schiene hinter `F1` trägt im Schaltplan das
+> globale Label **`PW_EN`**, nicht `+5V`. Der Name stammt daher, dass `PS1.4`
+> (EN) über dasselbe Label an VIN gelegt ist — das ist die dokumentierte
+> Absicht („EN mit VIN verbinden, Wandler immer an"), aber der Name beschreibt
+> den Enable-Pin, nicht die Leistungsschiene. Das VBUS-Netz vor `F1` ist
+> unbenannt. Beides ist elektrisch korrekt; für Netzliste, Routing und BOM
+> wäre `+5V` bzw. `VBUS` lesbarer. Umbenennung steht als Restposten aus.
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 
@@ -480,8 +491,8 @@ Symbole in KiCad: **Platzieren → Symbol** → Bibliothek **`shbs_power`** oder
 
 ## Nächste Schritte (Checkliste)
 
-1. [x] **Ausgangszweig korrigiert** (D11-Polung, C15 als Bootstrap, C14/R17 hinter L1) — 2026-09-15
-2. [x] ERC erneut gelaufen — **0 Fehler** (2026-09-15 22:27)
+1. [x] **Ausgangszweig korrigiert** (D11-Polung, C15 als Bootstrap, C14/R17 hinter L1) — 2026-09-15, unabhängig gegengeprüft 2026-09-19
+2. [x] ERC erneut gelaufen — **0 Fehler** (2026-09-18 23:42: 0 Fehler, 7 Warnungen)
 3. [x] Footprints für `F1`, `R17`–`R20` zuweisen — erledigt 2026-09-15
 4. [ ] Netzliste `BasisStation.net` neu exportieren (aktuell vom 2026-06-09, enthält noch `PS2`/`+12V`)
 5. [ ] Alle Power-Bauteile in `BasisStation_Layout.kicad_sch` platzieren und verdrahten

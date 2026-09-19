@@ -225,3 +225,37 @@ Netze sind identisch.
 
 Footprints für `F1` und `R17`–`R20` (Befund B13) sind am 2026-09-15
 zugewiesen und blockieren Schritt 3 nicht mehr.
+
+## Verifikation (2026-09-19)
+
+Unabhängig nachgerechnet, ohne auf den Eintrag vom 2026-09-15 zu vertrauen:
+Pinkoordinaten erneut aus den `lib_symbols` mit Platzierungstransformation
+(`at`, Rotation, `mirror`) in Blattkoordinaten umgerechnet, gegen alle
+Drahtsegmente geschnitten, inklusive T-Verbindungen. Ergebnis identisch zur
+Soll-Tabelle — alle fünf Netze (`SW`, `BST`, `+3V3`, `GND`, `FB`) stimmen,
+alle sechs `PS1`-Pins sind belegt.
+
+ERC-Stand `pcb/BasisStation/ERC.rpt` (Lauf 2026-09-18 23:42):
+**0 Fehler, 7 Warnungen.** Das Blatt `/Stromversorgung/` erzeugt keine
+einzige Meldung. Der frühere `pin_to_pin`-Fehler `PS1.6` ↔ `#FLG03` ist
+entfallen.
+
+**Befund B12 ist damit geschlossen.** Tasks `0005_shbs4-buck-topologie-korrektur`
+und der davon blockierte `0003_shbs4-b3-pwrflag-platzierung` liegen in
+`tmp/tasks/done/`.
+
+### Nebenbefund — Netznamen der Eingangsseite
+
+Bei der Rekonstruktion fiel auf, dass die 5-V-Schiene hinter `F1` im
+Schaltplan das globale Label **`PW_EN`** trägt, nicht `+5V` wie in
+`docs/project/power_supply.md` beschrieben. Ursache: `PS1.4` (EN) ist über
+dasselbe Label an VIN gelegt, statt über einen Draht. Elektrisch ist das die
+dokumentierte Absicht (Wandler dauerhaft aktiv), der Netzname beschreibt aber
+den Enable-Pin statt der Leistungsschiene. Das VBUS-Netz vor `F1` ist
+unbenannt.
+
+Empfehlung: Schiene hinter `F1` in `+5V` umbenennen, EN separat als
+kurzes Label `PW_EN` oder direkt per Draht an VIN führen, und vor `F1` ein
+Label `VBUS` setzen. Rein kosmetisch — Topologie und ERC bleiben unberührt,
+aber Netzliste, Routing-Ansicht und BOM werden lesbar. In
+`power_supply.md`, Abschnitt „Netze", als Restposten festgehalten.

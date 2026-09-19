@@ -1,4 +1,4 @@
-status: open
+status: done
 priority: critical
 type: bugfix
 created: 2026-09-08
@@ -55,3 +55,29 @@ Power-Teilen KiCad zum Absturz gebracht hat (defekte `lib_symbols`).
   geprüft).
 - `docs/project/power_supply.md` gegengelesen, ggf. präzisiert.
 - Danach Task 0003 (PWR_FLAG) entsperren.
+
+## Ergebnis (2026-09-19)
+
+Korrektur wurde am 2026-09-15 in der KiCad-GUI durchgeführt. Am 2026-09-19
+unabhängig aus der Schaltplangeometrie nachgerechnet (Pinkoordinaten aus den
+`lib_symbols` mit Platzierungstransformation, geschnitten gegen alle
+Drahtsegmente). Ergebnis deckt sich vollständig mit der Soll-Tabelle:
+
+| Netz | Pins | Soll |
+| ---- | ---- | ---- |
+| `SW` | `PS1.6`, `C15.2`, `D11.1` (K), `L1.2` | erfüllt |
+| `BST` | `PS1.1`, `C15.1` | erfüllt |
+| `+3V3` | `L1.1`, `C14.2`, `R17.1`, `#PWR100`, `#FLG03` | erfüllt |
+| `GND` | `D11.2` (A), `C14.1`, `R18.1`, `PS1.2` | erfüllt |
+| `FB` | `PS1.3`, `R17.2`, `R18.2` | erfüllt |
+
+Alle sechs `PS1`-Pins sind belegt, kein unverbundener Pin im Power-Zweig.
+`D11` liegt mit der Kathode auf `SW` — die Verpolung ist behoben.
+
+**ERC-Lauf 2026-09-18 23:42: 0 Fehler, 7 Warnungen.** Das Blatt
+`/Stromversorgung/` erzeugt keine einzige Meldung mehr.
+
+Done-Bedingung erfüllt:
+- Netzliste entspricht der Soll-Tabelle ✅
+- `docs/project/power_supply.md` gegengelesen und aktualisiert ✅
+- Task 0003 (PWR_FLAG) entsperrt — und dabei ebenfalls als erledigt befunden ✅

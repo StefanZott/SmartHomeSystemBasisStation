@@ -1,9 +1,8 @@
-status: blocked
+status: done
 priority: medium
 type: bugfix
 created: 2026-09-08
 jira: SHBS-4
-blocked_by: 0005_shbs4-buck-topologie-korrektur.md
 
 # B3 — PWR_FLAG an VBUS und 3,3-V-Ausgang platzieren
 
@@ -51,3 +50,24 @@ Bediener.**
 - PWR_FLAG an beiden Netzen (VBUS, +3V3) platziert.
 - Report/Task-Notiz zum verwaisten Layout-Cache-Eintrag ergänzt.
 - Hinweis an Bediener: ERC-Lauf + Netzliste-Neuerzeugung ausstehend.
+
+## Ergebnis (2026-09-19)
+
+Entsperrt durch den Abschluss von Task 0005. Bei der Prüfung zeigte sich,
+dass die Platzierung bereits am 2026-09-15 in der KiCad-GUI erfolgt ist.
+
+| Ref | Netz | Status |
+| --- | ---- | ------ |
+| `#FLG01` | VBUS vor `F1` (`J_PWR1.A4/A9`) | gesetzt |
+| `#FLG02` | 5-V-Schiene hinter `F1` (`PS1.5` VIN) | gesetzt |
+| `#FLG03` | Buck-Ausgang `+3V3` (hinter `L1`) | gesetzt, Lage nach der Topologie-Korrektur bestätigt |
+| `#FLG04` | GND (Blatt Layout) | gesetzt |
+
+Die beiden geforderten Flags an VBUS und `+3V3` liegen damit vor, `#FLG03`
+sitzt nachweislich hinter `L1` am echten Ausgangsknoten und nicht mehr auf
+`SW`. Die ERC-Fehler `power_pin_not_driven` an `PS1.5` und `J_PWR1.A4` sind
+entfallen — Lauf 2026-09-18 23:42 meldet **0 Fehler**.
+
+Zum verwaisten `lib_symbols`-Cache-Eintrag „PWR_FLAG" in
+`BasisStation_Layout.kicad_sch`: Das Blatt führt mit `#FLG04` inzwischen eine
+eigene Instanz, der Eintrag ist damit kein toter Cache mehr und bleibt.
