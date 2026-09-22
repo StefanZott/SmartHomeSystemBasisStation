@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: medium
 type: bugfix
 created: 2026-09-22
@@ -90,3 +90,22 @@ Nur Symptombehandlung, siehe oben. Nicht empfohlen.
 ## Done-Bedingung
 
 CLI und GUI melden beide 0 Verstoesse, Konnektivitaet unveraendert.
+
+## Fortschritt
+
+- 2026-09-22: **Erledigt — Option A** (Bediener-Entscheidung).
+  Pin 41 in `pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/…kicad_sym` von `EPAD` auf
+  `GND` umbenannt, Symbolbeschreibung um den Hinweis auf das Exposed Pad
+  ergaenzt. Derselbe Stand im Symbol-Cache von
+  `BasisStation_Layout.kicad_sch` nachgezogen, damit kein neuer
+  `lib_symbol_mismatch` entsteht — dadurch war keine GUI-Sitzung noetig.
+- Die gegenstandslos gewordene `multiple_net_names`-Ausnahme aus
+  `BasisStation.kicad_pro` entfernt. Verbleibt genau **eine** Ausnahme
+  (`pin_to_pin`).
+- Verifikation: `kicad-cli sch erc` meldet **0 Fehler, 0 Warnungen**. Der
+  JSON-Export mit `--severity-all` zeigt insgesamt nur noch **einen**
+  Verstoss, den bewusst ausgeschlossenen `pin_to_pin`. Beide Instanzen von
+  `multiple_net_names` sind an der Wurzel verschwunden.
+- Konnektivitaet der Netzliste **bitweise identisch** zum Stand vor SHBS-14
+  (102 Netze), Stueckliste identisch. `U6.41` liegt weiterhin auf `GND`,
+  nur die `pinfunction` lautet jetzt `GND` statt `EPAD`.

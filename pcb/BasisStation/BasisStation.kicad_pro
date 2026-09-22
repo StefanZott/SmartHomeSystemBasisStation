@@ -229,10 +229,6 @@
   "erc": {
     "erc_exclusions": [
       [
-        "multiple_net_names|1054100|1397000|b0c4c90b-ca4f-41b4-ab6e-a12ca21470d0|726fd824-6df3-442a-bb68-35787b60bf71|/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f|/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f|/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f",
-        "multiple_net_names GND/EPAD an U6.41 → versteckter EPAD-Pin auf GND"
-      ],
-      [
         "pin_to_pin|241300|635000|de5a944c-2b49-4b8e-9860-5b550174f31b|7b7aa8e5-1539-402a-b7de-3a5ecb99601e|/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f|/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f|/498c7092-55c1-4229-9f4b-13c6a8e7da47/5fd3b213-b7bb-4f0b-b520-d744bf60efa7",
         "pin_to_pin an S2/#FLG04 → GND-PWR_FLAG aus SHBS-6, KiCad-Standardweg"
       ]

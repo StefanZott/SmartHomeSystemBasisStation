@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: medium
 type: docs
 created: 2026-09-22
@@ -72,3 +72,15 @@ Zwei Ausnahmen hinterlegt und dokumentiert, Schweregrade unveraendert.
   wieder verschwindet.
 - Commit (Zwischenstand): `ec8158f`
 
+## Abschluss
+
+- 2026-09-22: **Erledigt.** Nach Umsetzung von Option A in
+  [Task 0037](0037_epad-netzname-u6.md) war die `multiple_net_names`-Ausnahme
+  gegenstandslos und wurde entfernt. Es verbleibt genau **eine** Ausnahme
+  (`pin_to_pin` am GND-`PWR_FLAG`), die dauerhaft traegt, weil sie an
+  stabilen Symbol-UUIDs haengt.
+- `rule_severities` unveraendert auf KiCad-Standard — keine Regel wurde auf
+  `ignore` gedreht.
+- `docs/project/hardware.md`: neuer Abschnitt "ERC: hinterlegte Ausnahmen und
+  Entwurfsregeln (SHBS-14)" mit der Ausnahme, der Regel zu versteckten
+  Power-Pins und dem Hinweis, immer GUI **und** CLI zu pruefen.

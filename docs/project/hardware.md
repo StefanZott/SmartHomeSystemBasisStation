@@ -212,6 +212,55 @@ registriert sind und nirgends verwendet werden:
 `pcb/Bauteile/W5500/KiCADv6/2026-09-17_19-45-49.kicad_sym` und
 `pcb/Bauteile/wuerth_7499011121A/WE-RJ45_7499011121A.kicad_sym`.
 
+## ERC: hinterlegte Ausnahmen und Entwurfsregeln (SHBS-14)
+
+Der Schaltplan ist so gebaut, dass `kicad-cli sch erc` **0 Fehler und
+0 Warnungen** meldet. Nur so fällt ein neuer Befund sofort auf.
+
+### Prüfe immer beide Werkzeuge
+
+GUI und CLI können auseinanderlaufen. Am 22.09.2026 meldete die GUI 0
+Verstöße, während das CLI noch eine Warnung führte — die GUI hatte schlicht
+eine andere Instanz derselben Warnung erzeugt als das CLI. Ein grünes
+Ergebnis aus nur einem der beiden Werkzeuge ist kein Nachweis.
+
+Alle Verstöße einschließlich der ausgeschlossenen sichtbar machen:
+
+```
+kicad-cli sch erc --severity-all --format json -o erc.json BasisStation.kicad_sch
+```
+
+### Einzige hinterlegte Ausnahme
+
+`pin_to_pin` an `S2` Pin 1 (Bidirectional) gegen `#FLG04` (Power output).
+Das ist das GND-`PWR_FLAG`. Mit dem Wechsel von `Connector:USB_B_Micro` auf
+`Connector:USB_C_Receptacle_USB2.0_16P` (SHBS-6) entfiel der einzige
+ERC-Treiber des globalen GND-Netzes — das alte Steckersymbol deklarierte
+seinen GND-Pin als *Power output*, das neue als `power_in`. `#FLG04` stellt
+den Treiber wieder her; das ist der KiCad-Standardweg.
+
+### Keine versteckten Power-Pins mit abweichendem Namen
+
+Ein **versteckter** `power_in`-Pin verbindet sich in KiCad implizit mit einem
+globalen Netz, das nach dem **Pinnamen** heißt. Ist derselbe Pin zusätzlich
+explizit verdrahtet, kollidieren zwei Netznamen → `multiple_net_names`.
+
+Aufgetreten an `U6` Pin 41, das Exposed Pad des ESP32-S3-WROOM-Moduls: Der
+Pin hieß `EPAD` und war zugleich auf GND verdrahtet. Erschwerend erzeugte
+KiCad **mehrere Instanzen** dieser Warnung, die den Pin je nach
+Durchlaufreihenfolge mit unterschiedlichen GND-Power-Symbolen paarten —
+ein Ausschluss per UUID hätte also nie dauerhaft getragen.
+
+Behoben durch Umbenennung des Pins auf `GND` in
+`pcb/Bauteile/ESP32-S3-WROOM-1U-N16R8/`. Das implizite Netz heißt seitdem
+`GND` und deckt sich mit der Verdrahtung. Die Pin**nummer** 41 ist
+unverändert, die Zuordnung zum Footprint-Pad also ebenfalls. Dass Pin 41 das
+Exposed Pad ist, steht jetzt in der Symbolbeschreibung.
+
+**Regel für neue Symbole:** Versteckte Power-Pins tragen den Namen des Netzes,
+auf dem sie tatsächlich liegen. Ein abweichender, sprechender Name gehört in
+die Symbolbeschreibung, nicht in den Pinnamen.
+
 ## KiCad-CLI im Dev-Container (SHBS-13)
 
 `kicad-cli` ist das Kommandozeilen-Binary von KiCad. Es erzeugt ERC-, DRC-,

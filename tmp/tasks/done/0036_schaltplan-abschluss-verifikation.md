@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 type: test
 created: 2026-09-22
@@ -50,3 +50,28 @@ Board uebernommen, und jede unbemerkte Abweichung waere dann teuer.
 
 ERC sauber auf Null, Netzliste und Stueckliste nachweislich unveraendert,
 Artefakte eingecheckt.
+
+## Abschluss
+
+- 2026-09-22: **Erledigt.** Endstand gegen die Referenzwerte:
+
+| Groesse | Ziel | Ist |
+| ------- | ---- | --- |
+| ERC-Fehler | 0 | **0** |
+| ERC-Warnungen | 0 | **0** |
+| Verstoesse gesamt (inkl. ausgeschlossener) | — | **1** (`pin_to_pin`, bewusst) |
+| Netze | 102 | **102** |
+| Konnektivitaet | unveraendert | **bitweise identisch** |
+| Stueckliste | unveraendert | **identisch** (78 Zeilen) |
+| Bauteile ohne Footprint | 0 | **0** (ausser `ANT1`/`ANT2`) |
+
+- Der Schaltplan taugt damit als Referenzstand fuer das PCB-Layout.
+
+## Offen fuer den Bediener
+
+- `pcb/BasisStation/BasisStation.net` und `ERC.rpt` stammen aus der
+  Windows-GUI (`source`-Pfad `C:\Projekte\…`, deutschsprachig). Sie wurden
+  **bewusst nicht** im Container neu erzeugt, weil sonst Pfad und Sprache bei
+  jedem Export hin- und herspringen. Inhaltlich ist nur die `pinfunction` von
+  `U6.41` veraltet (`EPAD` statt `GND`) — die Konnektivitaet stimmt.
+  Beim Start des PCB-Layouts ohnehin neu exportieren.

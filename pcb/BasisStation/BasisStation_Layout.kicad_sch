@@ -883,7 +883,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector"
+			(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector. Pin 41 is the exposed thermal pad, tied to GND."
 				(at 0 0 0)
 				(effects
 					(font
@@ -1190,7 +1190,7 @@
 					(at 0 -40.64 90)
 					(length 2.54)
 					(hide yes)
-					(name "EPAD"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -7714,7 +7714,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector"
+		(property "Description" "ESP32-S3-WROOM-1U-N16R8: 16 MB flash, 8 MB octal PSRAM, IPEX antenna connector. Pin 41 is the exposed thermal pad, tied to GND."
 			(at 105.41 99.06 0)
 			(effects
 				(font
