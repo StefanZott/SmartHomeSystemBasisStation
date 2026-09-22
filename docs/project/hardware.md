@@ -65,7 +65,15 @@ Beide Teile sind im Schaltplan `BasisStation_Layout.kicad_sch` als **mechanische
 
 ### BOM / Beschaffung
 
-Mouser-Referenzen (Schaltplan-Felder): CAB.6061 (`742-CAB.6061`), GW.20.5150 (`742-GW.20.5150`). Alternativ gleichwertige U.FL→RP-SMA-Bulkhead- und 2,4-GHz-RP-SMA-Antennen-Kombinationen — **Polarität und Steckertyp beibehalten**.
+Mouser-Referenzen: CAB.6061 → **`960-CAB.6061`** (845 ab Lager, Stand 2026-09-22). Alternativ gleichwertige U.FL→RP-SMA-Bulkhead- und 2,4-GHz-RP-SMA-Antennen-Kombinationen — **Polarität und Steckertyp beibehalten**.
+
+> **Achtung:** Die in den Schaltplan-Feldern gepflegten Nummern `742-CAB.6061`
+> und `742-GW.20.5150` sind **veraltet**. Die Abfrage gegen die Mouser-API am
+> 2026-09-22 ergab: `742-CAB.6061` liefert keinen Treffer mehr (gültig ist
+> `960-CAB.6061`), und **GW.20.5150 wird von Mouser gar nicht mehr geführt** —
+> für ANT2 ist eine Alternative oder ein anderer Distributor nötig. Die
+> Schaltplan-Felder sind noch nicht korrigiert (siehe Blatt „Offene Punkte“ der
+> Stückliste).
 
 Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail`, `WLAN_Antenna`).
 
@@ -306,6 +314,41 @@ kicad-cli sch export bom \
 
 Einziger verbleibender Unterschied zur GUI-Ausgabe ist die DNP-Spalte: die
 deutschsprachige GUI schreibt dort `Nicht bestücken`, die CLI `DNP`.
+
+### Bestellfähige Stückliste (`tmp/bom/`)
+
+Für den Abgleich gegen den Schaltplan reicht der CLI-Export oben. Für eine
+**bestellfähige** Stückliste reicht er nicht, aus einem Grund: Teilenummern
+liegen in diesem Projekt unter uneinheitlichen Feldnamen, je nachdem woher ein
+Symbol stammt (SnapEDA, Würth-Generator, handgepflegt). Dieselbe Information
+heißt mal `Manufacturer_Part_Number`, mal `MP`, mal `Part Number`;
+Mouser-Nummern mal `Mouser Part Number`, mal `MOUSER_PART_NUMBER`.
+`--fields` nimmt aber nur einen festen Namen und liefert für die übrigen
+still eine leere Spalte — der erste Export blieb deshalb ohne Teilenummern.
+
+[`tmp/bom/generate_bom.py`](../../tmp/bom/generate_bom.py) liest die
+Schaltplanblätter daher direkt (eigener S-Expression-Parser in
+[`sexp.py`](../../tmp/bom/sexp.py)), löst die Feld-Aliase auf, fragt Preis und
+Lagerbestand über die Mouser-Such-API ab und schreibt die Mappe über
+[`write_xlsx.py`](../../tmp/bom/write_xlsx.py).
+
+```
+python3 tmp/bom/generate_bom.py            # mit API-Abfrage
+python3 tmp/bom/generate_bom.py --no-network   # nur aus dem lokalen Cache
+```
+
+Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
+
+- **Gruppiert wird nach Wert + Footprint, nicht nach `lib_id`.** `J1` und
+  `J_PWR1` nutzen verschiedene Symbole für dieselbe Amphenol-Buchse; für eine
+  Bestellung ist das eine Position mit Menge 2 (siehe Abschnitt zu J1 oben).
+- **Antworten werden in `tmp/bom/mouser_cache.json` zwischengespeichert.** Das
+  schont das Tageskontingent des kostenlosen API-Schlüssels und macht Läufe
+  ohne Netz reproduzierbar. `--refresh` verwirft den Cache.
+
+Gefundene Abweichungen überschreiben die Schaltplan-Felder **nicht**, sondern
+landen als Befund im Blatt „Offene Punkte“ — eine veraltete Teilenummer gehört
+im Schaltplan korrigiert, nicht bei jedem Export stillschweigend übertüncht.
 
 Schlägt ein Export mit einem Display-Fehler fehl, hilft `xvfb-run kicad-cli …`
 — einzelne Unterbefehle erwarten je nach Version noch einen X-Server.

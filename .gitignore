@@ -15,3 +15,10 @@ fp-info-cache
 _autosave-*
 \#auto_saved_files\#
 *-backups/
+
+# Mouser-Antworten sind Tagespreise - Cache wird bei Bedarf neu aufgebaut
+tmp/bom/mouser_cache.json
+__pycache__/
+# LibreOffice-Sperrdateien
+.~lock.*
+~$*
