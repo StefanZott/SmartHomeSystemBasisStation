@@ -94,7 +94,7 @@ dem Bediener vorgelegt wird.
 
 ## Commits
 
-- (noch keine)
+- `6a50193` — KiCad-CLI im Dev-Container nutzbar gemacht (gepusht auf `main`)
 
 ## Offene Fragen
 

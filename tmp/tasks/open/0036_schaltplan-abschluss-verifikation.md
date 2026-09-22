@@ -1,0 +1,48 @@
+---
+status: open
+priority: high
+type: test
+created: 2026-09-22
+jira: SHBS-14
+---
+
+# Abschluss-Verifikation Schaltplan
+
+## Kontext
+
+Letzter Task zu SHBS-14. Belegt, dass der Schaltplan als Referenzstand fuer
+das PCB-Layout taugt — und dass die Aufraeumarbeiten der Tasks 0030-0035
+**elektrisch nichts verschoben** haben.
+
+Das ist der eigentliche Zweck der Uebung: Ab hier wird die Netzliste ins
+Board uebernommen, und jede unbemerkte Abweichung waere dann teuer.
+
+## Referenzwerte (Stand 2026-09-22, vor den Aenderungen)
+
+| Groesse | Wert |
+| ------- | ---- |
+| ERC-Fehler | 0 |
+| ERC-Warnungen | 7 (Ziel danach: 0) |
+| Netze | 102 |
+| Bauteile auf dem Board | 76 |
+| Bauteile ohne Footprint | 0 (ausser `ANT1`/`ANT2`, "Excluded from board") |
+| Ein-Pin-Netze | 40, alle `unconnected-*` |
+
+## Schritte
+
+- [ ] `kicad-cli sch erc` — **0 Fehler, 0 Warnungen**.
+- [ ] `kicad-cli sch export netlist` — 102 Netze, Namen und Knoten
+      identisch zum Referenzstand.
+- [ ] `kicad-cli sch export bom` — 76 Bauteile, Footprint-Spalte identisch,
+      `R35` weiterhin DNP.
+- [ ] Ein-Pin-Netze erneut zaehlen: 40, alle mit `unconnected-`-Praefix.
+      Taucht ein regulaer benanntes Netz mit nur einem Pin auf, ist beim
+      Aufraeumen eine Verbindung verloren gegangen.
+- [ ] `ERC.rpt` und `BasisStation.net` im Repo aktualisieren.
+- [ ] `docs/project/hardware.md` und `docs/project/ethernet.md`
+      gegenlesen.
+
+## Done-Bedingung
+
+ERC sauber auf Null, Netzliste und Stueckliste nachweislich unveraendert,
+Artefakte eingecheckt.

@@ -71,3 +71,7 @@ entfallen — Lauf 2026-09-18 23:42 meldet **0 Fehler**.
 Zum verwaisten `lib_symbols`-Cache-Eintrag „PWR_FLAG" in
 `BasisStation_Layout.kicad_sch`: Das Blatt führt mit `#FLG04` inzwischen eine
 eigene Instanz, der Eintrag ist damit kein toter Cache mehr und bleibt.
+
+## Commits
+
+- `1145412` — PWR_FLAG-Platzierung verifiziert und Task geschlossen

@@ -81,3 +81,7 @@ Done-Bedingung erfüllt:
 - Netzliste entspricht der Soll-Tabelle ✅
 - `docs/project/power_supply.md` gegengelesen und aktualisiert ✅
 - Task 0003 (PWR_FLAG) entsperrt — und dabei ebenfalls als erledigt befunden ✅
+
+## Commits
+
+- `1145412` — Buck-Topologie verifiziert und Task geschlossen
