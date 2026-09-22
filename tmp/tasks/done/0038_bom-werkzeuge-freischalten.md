@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 type: feature
 created: 2026-09-22
@@ -44,9 +44,11 @@ nicht ueber Scraping der Produktseiten.
 - [x] Paketnamen vorab gegen den Ubuntu-noble-Index geprueft (alle drei
       HTTP 200). Lehre aus SHBS-13, wo `kicad-templates` im PPA nicht
       existierte und den Build gebrochen haette.
-- [ ] **Bediener: Container neu bauen.**
-- [ ] Danach verifizieren: `soffice --version` und
-      `python3 -c "import openpyxl, pandas"`.
+- [x] **Bediener: Container neu bauen.**
+- [x] Danach verifiziert: `soffice --version` → LibreOffice 24.2.7.2, und
+      `python3 -c "import openpyxl, pandas"` → openpyxl 3.1.5, pandas 3.0.6.
+      Mouser-API-Funktionstest erneut bestätigt: HTTP 200, 1 Treffer,
+      deutsche Beschreibung, `mouser.de`-Produktlink.
 
 ## Groessenabschaetzung
 
