@@ -145,7 +145,7 @@ Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethern
 | Bereich | Pfad / Artefakt |
 |--------|------------------|
 | Hauptprojekt | `pcb/BasisStation/BasisStation.kicad_pro` |
-| Schaltpläne | u. a. `BasisStation.kicad_sch`, `BasisStation_Layout.kicad_sch`, `BasisStation_Debugging.kicad_sch`, `BasisStation_architektur.kicad_sch` |
+| Schaltpläne | `BasisStation.kicad_sch` (Root) mit den Unterblättern `BasisStation_Layout.kicad_sch`, `BasisStation_Debugging.kicad_sch`, `Stromversorgung.kicad_sch`, `ethernet.kicad_sch` |
 | Leiterplatte | `BasisStation.kicad_pcb` |
 | Bauteilbibliotheken | `pcb/Bauteile/<Bauteil>/` — **ein Ordner je Bauteil** mit Symbol, Footprint und 3D-Modell (SHBS-12) |
 | Mechanische BOM-Teile | `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (ANT1, ANT2) |
