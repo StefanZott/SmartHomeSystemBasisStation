@@ -54,3 +54,21 @@ abgelegt. Aktuell ist diese Liste leer.
 ## Done-Bedingung
 
 Zwei Ausnahmen hinterlegt und dokumentiert, Schweregrade unveraendert.
+
+## Fortschritt
+
+- 2026-09-22: Bediener hat beide Ausnahmen in der GUI hinterlegt.
+  Agent-Pruefung: `erc_exclusions` enthaelt genau zwei Eintraege,
+  `rule_severities` unveraendert auf KiCad-Standard — es wurde keine Regel
+  auf `ignore` gedreht.
+- **Teilweise wirkungslos.** Die `pin_to_pin`-Ausnahme greift auch im CLI.
+  Die `multiple_net_names`-Ausnahme deckt nur **eine von zwei** Instanzen
+  dieser Warnung ab; `kicad-cli sch erc` meldet die zweite weiterhin.
+  Ursachenanalyse und Loesungsoptionen in [Task 0037](0037_epad-netzname-u6.md).
+- **Bleibt offen**, bis 0037 entschieden ist: Bei den Optionen A und B wird
+  die `multiple_net_names`-Ausnahme gegenstandslos und ist wieder zu
+  entfernen. Erst danach ist die Doku in `docs/project/hardware.md`
+  sinnvoll zu schreiben — sonst dokumentieren wir eine Ausnahme, die gleich
+  wieder verschwindet.
+- Commit (Zwischenstand): `ec8158f`
+

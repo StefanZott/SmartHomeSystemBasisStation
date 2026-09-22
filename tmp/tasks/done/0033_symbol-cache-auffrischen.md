@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: medium
 type: bugfix
 created: 2026-09-22
@@ -46,3 +46,18 @@ sich hinterher belegen, dass keine Footprint-Zuweisung verloren ging.
 
 Vier Warnungen weg, Footprint-Zuweisungen und Netzliste nachweislich
 unveraendert.
+
+## Fortschritt
+
+- 2026-09-22: **Erledigt.** Bediener hat den Cache in der GUI aufgefrischt.
+  Agent-Verifikation: Stueckliste **identisch** (78 Zeilen, Footprint-Spalte
+  unveraendert — die instanzweisen Zuweisungen haben den Refresh
+  ueberstanden), Konnektivitaet der Netzliste **bitweise identisch**
+  (102 Netze). Die vier `lib_symbol_mismatch` sind verschwunden.
+- Der Netzlisten-Diff enthaelt nur Metadaten (Description-/Datasheet-Felder
+  aus den Bibliotheken, normalisierte Zeilenumbrueche) und einen
+  Footprint-Vorgabewert im `libparts`-Abschnitt — nicht bei einer Instanz.
+- Nebeneffekt: `ethernet.kicad_sch` erhielt 15 gefuellte Description-/
+  Datasheet-Felder. Keine Konnektivitaetsaenderung.
+- Commit: `ec8158f`
+

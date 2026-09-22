@@ -31,6 +31,10 @@ Board uebernommen, und jede unbemerkte Abweichung waere dann teuer.
 ## Schritte
 
 - [ ] `kicad-cli sch erc` — **0 Fehler, 0 Warnungen**.
+- [ ] **Gegenprobe in der GUI:** Auch dort 0 Verstoesse. Am 2026-09-22 zeigte
+      die GUI bereits 0, waehrend das CLI noch eine Warnung meldete (siehe
+      [Task 0037](0037_epad-netzname-u6.md)). Ein gruenes Ergebnis aus nur
+      einem der beiden Werkzeuge genuegt als Nachweis nicht.
 - [ ] `kicad-cli sch export netlist` — 102 Netze, Namen und Knoten
       identisch zum Referenzstand.
 - [ ] `kicad-cli sch export bom` — 76 Bauteile, Footprint-Spalte identisch,
