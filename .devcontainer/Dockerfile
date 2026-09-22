@@ -43,6 +43,21 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   xvfb \
   && rm -rf /var/lib/apt/lists/*
 
+# LibreOffice Calc (headless) - needed to recalculate generated .xlsx workbooks.
+# openpyxl writes formulas as plain strings without cached results, so anything
+# reading cached values (pandas, openpyxl data_only=True, previewers) sees empty
+# cells until a real spreadsheet engine has evaluated them. soffice also surfaces
+# formula errors that would otherwise ship unnoticed. Only the Calc component is
+# installed; the full metapackage drags in Writer, Impress and Java.
+# fonts-liberation provides metric-compatible substitutes for Arial, so column
+# widths in generated workbooks render as intended.
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
+  libreoffice-calc \
+  libreoffice-core \
+  fonts-liberation \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN update-alternatives --install /usr/local/bin/usbip usbip `ls /usr/lib/linux-tools/*/usbip | tail -n1` 20
 
 # QEMU
@@ -71,6 +86,13 @@ RUN set -eux; \
   env_dir="$(find /opt/esp/python_env -mindepth 1 -maxdepth 1 -type d -name 'idf*_env' | head -n1)"; \
   test -n "$env_dir"; \
   ln -sfn "$env_dir" /opt/esp/python_env/current
+
+# Spreadsheet tooling for the BOM exports (SHBS-14). Installed into the IDF
+# virtualenv because that is the python3 on PATH; the "current" symlink above
+# keeps this independent of the IDF/Python version in the directory name.
+RUN /opt/esp/python_env/current/bin/pip install --no-cache-dir \
+  openpyxl \
+  pandas
 
 RUN chmod -R 775 /opt/esp/python_env/
 
