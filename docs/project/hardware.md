@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-19
+last_updated: 2026-09-22
 type: project-doc
 ---
 
@@ -177,6 +177,40 @@ Neues Bauteil anlegen:
 2. 3D-Referenz im Footprint auf `${KIPRJMOD}/../Bauteile/<Bauteil>/<Datei>`.
 3. Eintrag in `sym-lib-table` und `fp-lib-table` ergänzen.
 4. Footprint-Vorgabe im Symbol auf `<Bibliothek>:<Footprint>` setzen.
+5. Symbol im **aktuellen KiCad-Dateiformat** ablegen (siehe unten).
+
+### Dateiformat der Symbolbibliotheken (SHBS-14)
+
+Alle `.kicad_sym` im Projekt liegen im KiCad-9-Format (`version 20241209`).
+
+Das ist keine Kosmetik: Liegt eine Bibliothek in einem älteren Format vor,
+während der Symbol-Cache im Schaltplan schon KiCad 9 ist, meldet die ERC für
+jedes betroffene Bauteil `lib_symbol_mismatch` — auch wenn Pins und Geometrie
+identisch sind. Die Warnungen verdecken dann echte Befunde.
+
+Von Herstellern oder SnapEDA bezogene Symbole kommen häufig im Format
+`20211014` (KiCad 6) oder `20220914` (KiCad 7). Vor dem Einchecken umwandeln:
+
+```
+kicad-cli sym upgrade --force pcb/Bauteile/<Bauteil>/<Datei>.kicad_sym
+```
+
+Der Befehl ändert ausschliesslich die Syntax — Pins, Pinnummern, Pintypen und
+Geometrie bleiben unangetastet. Bei der Umstellung der sechs Altbestände
+(SHBS-14) wurden Netzliste und Stückliste vorher und nachher verglichen und
+waren bitweise identisch.
+
+**Nicht ausreichend:** Der Upgrade der Bibliothek allein räumt eine bereits
+bestehende `lib_symbol_mismatch`-Warnung nicht ab. Der Symbol-Cache im
+Schaltplan muss zusätzlich über *Werkzeuge > Symbole aus Bibliothek
+aktualisieren* in der GUI aufgefrischt werden — dafür gibt es keinen
+CLI-Befehl. Dabei darf das Footprint-Feld **nicht** zurückgesetzt werden,
+sonst gehen die instanzweise gesetzten Footprint-Zuweisungen verloren.
+
+Nicht umgestellt sind zwei Archivdateien, die in keiner `sym-lib-table`
+registriert sind und nirgends verwendet werden:
+`pcb/Bauteile/W5500/KiCADv6/2026-09-17_19-45-49.kicad_sym` und
+`pcb/Bauteile/wuerth_7499011121A/WE-RJ45_7499011121A.kicad_sym`.
 
 ## KiCad-CLI im Dev-Container (SHBS-13)
 
