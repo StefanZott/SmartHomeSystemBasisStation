@@ -85,7 +85,7 @@ Inzwischen ist das Blatt `Stromversorgung.kicad_sch` **manuell gezeichnet** und 
 | R19, R20 | CC-Rd 5,1 kΩ |
 
 - [x] J_PWR, PS1, Schutz, CC-Rd manuell in KiCad eingezeichnet
-- [ ] **Netzanbindung defekt — siehe Abschnitt „Offene Netz-Befunde"**
+- [x] **Netzanbindung** — alle Netz-Befunde behoben (B1, B3, B9–B11, C8), ERC 0 Fehler; offen nur das optionale B2 *(Stand 2026-09-23)*
 - [ ] PCB-Layout Task 4
 
 ## Offene Netz-Befunde (Analyse 2026-09-06)
