@@ -103,7 +103,7 @@ Anwendung:
 
 ## Commits
 
-- (noch keine)
+- d1870af DigiKey-Zugang und Abdeckungspruefung (Teilschritt, Task noch offen)
 
 ## Offene Fragen
 

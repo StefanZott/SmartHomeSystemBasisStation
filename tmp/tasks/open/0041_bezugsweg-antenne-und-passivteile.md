@@ -82,7 +82,7 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
 
 ## Commits
 
-- (noch keine)
+- d1870af Befunde zu Abkuendigungen dokumentiert (Teilschritt, Task noch offen)
 
 ## Offene Fragen
 

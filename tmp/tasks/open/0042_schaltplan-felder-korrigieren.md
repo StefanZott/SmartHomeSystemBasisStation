@@ -75,7 +75,7 @@ einheitliche Symbolverwendung.
 
 ## Commits
 
-- (noch keine)
+- 05372f0 ANT2 auf Seriennachfolger GW.20.A151 umgestellt (Teilschritt, Task noch offen)
 
 ## Offene Fragen
 
