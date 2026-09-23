@@ -46,7 +46,7 @@ USB-Netzteil / Kabel (5 V)
 ┌───────────────────┐
 │ J_PWR  USB-C      │  VBUS (A4,A9,B4,B9) ──► Netz +5V
 │ Amphenol          │  GND  (A1,A12,B1,B12, Shield)
-│ 12401548E4#2A     │  CC1/CC2 ── 5,1 kΩ ── GND (UFP/Sink)
+│ 12401598E4#2A     │  CC1/CC2 ── 5,1 kΩ ── GND (UFP/Sink)
 └───────────────────┘
         │
         ▼ +5V
@@ -338,7 +338,7 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 
 | Ref | Funktion | Teil / Wert | KiCad-Symbol | Footprint (Vorschlag) |
 |-----|----------|-------------|--------------|----------------------|
-| **J_PWR** | USB-C Buchse | Amphenol **12401548E4#2A** | `shbs_power:USB_C_Receptacle_Power` | `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A` |
+| **J_PWR** | USB-C Buchse | Amphenol **12401598E4#2A** | `shbs_power:USB_C_Receptacle_Power` | `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` |
 | **F1** | Überstrom | Polyfuse **1,1 A** | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
 | **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS) | `Device:D` | `Diode_SMD:D_SMA` |
 | **D11** | Flyback | **SS34** (Schottky) | `Device:D` | `Diode_SMD:D_SMA` |
@@ -360,16 +360,32 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | L1 | Bourns **SRN6045TA-100M** (10 µH) | Alternative bei 10 µH |
 | C13 | Murata **GRM21BR61C106KE15** | 10 µF, 16 V, 0805 |
 
-**Abkündigung (Stand 2026-09-23, SHBS-17):** Die `12401548E4#2A` ist obsolet und bei Mouser und
-DigiKey nicht mehr ab Lager. Vorgeschlagener Nachfolger: Amphenol **`12401598E4#2A`** (von Mouser
-als Ersatz genannt, laut DigiKey gleiche Bauart: 24-polig, Hybrid SMD/THT, rechtwinklig, zusätzlich
-Führungsstifte). Die Zeichnung ist vor der Übernahme gegen den Footprint zu prüfen.
+**Buchsenwechsel (2026-09-23, SHBS-17):** Die ursprüngliche `12401548E4#2A` ist obsolet und bei
+Mouser und DigiKey nicht mehr ab Lager. Ersetzt durch Amphenol **`12401598E4#2A`** (von Mouser als
+Nachfolger genannt) — für `J_PWR1` **und** `J1`.
+
+Die neue Buchse ist **nicht** pad-kompatibel zur alten, obwohl beide 24-polig und rechtwinklig sind:
+
+| | alt `12401548E4#2A` | neu `12401598E4#2A` |
+| --- | --- | --- |
+| Reihe A1–A12 | SMD, Raster 0,5 mm | SMD, identisch |
+| Reihe B1–B12 | **durchkontaktiert** | **SMD**, 1,7 mm vor Reihe A, um 0,25 mm versetzt |
+| Schirmlaschen, Führungsstifte | 4 × THT, 2 × NPTH | identisch |
+
+Ermittelt aus dem Amphenol-3D-Modell (STEP über DigiKey), weil die Zeichnung auf amphenol-cs.com
+aus dem Container nicht abrufbar ist. Das Padbild deckt sich mit dem KiCad-Standard-Footprint der
+Schwester `12401610E4#2A`; er ist als `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A`
+ins Projekt übernommen. **Folge fürs Layout:** Die B-Kontakte (`B1`/`B12` GND, `B4`/`B9` VBUS,
+`B5` CC2, bei `J1` zusätzlich `B6`/`B7` D+/D−) liegen jetzt als SMD-Pads auf der Oberseite unter
+dem Buchsenkörper und müssen dort angebunden werden — eine Entflechtung über die Unterseite wie bei
+den bisherigen THT-Pins entfällt.
+
 GCT **USB4110-GF-A** ist entgegen früherer Annahme **nicht** footprint-kompatibel: 16-polig, reine
 SMD-Buchse zur Oberflächenmontage (Datenblatt USB4110 Rev. B2).
 
 ---
 
-## J_PWR — USB-C Pinbelegung (12401548E4#2A)
+## J_PWR — USB-C Pinbelegung (12401598E4#2A)
 
 Die Buchse ist **nur Power** (kein USB-Datenpfad). Strom kommt vom **Kabel** über **VBUS** rein; **kein Power-Output** an der Buchse — Ausgang ist **+3V3** nach PS1.
 
@@ -399,6 +415,14 @@ D+, D-, SuperSpeed (A2/A3, A6–A8, A10/A11, B2/B3, …) bleiben **offen**.
 ---
 
 ## PS1 — MP2359DJ Anschlüsse
+
+> **Ersatzbedarf (2026-09-23, SHBS-17):** Der MP2359 ist in allen Varianten (`DJ`, `DT`, `-Z`, `-P`)
+> „nicht für Neukonstruktionen" und als `DJ` bei Mouser und DigiKey ohne Lager; der früher
+> pinkompatible Richtek RT8259 ist abgekündigt. **Vorschlag: Diodes `AP3211KTR-G1`** — gleiche
+> Pinbelegung (1 BS, 2 GND, 3 FB, 4 EN, 5 IN, 6 SW), SOT-23-6 auf demselben Footprint, V<sub>FB</sub>
+> 0,81 V (R17/R18 bleiben), 1,4 MHz, asynchron mit D11, 1,5 A, V<sub>IN</sub> 4,5–18 V, UVLO 3,8 V typ.
+> Vor der Übernahme prüfen: Strombegrenzung 1,8–2,4 A gegen den Sättigungsstrom von L1. Noch nicht
+> im Schaltplan — wartet auf Freigabe.
 
 | Pin | Name | Verbindung |
 |-----|------|------------|
@@ -457,7 +481,7 @@ Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **P
 | Artefakt | Pfad |
 |----------|------|
 | Symbolbibliothek | `pcb/Bauteile/Power/power.kicad_sym` |
-| USB-C-Footprint | `pcb/Footprints/USB_C_Receptacle_Amphenol_12401548E4-2A.kicad_mod` |
+| USB-C-Footprint | `pcb/Bauteile/Power/USB_C_Receptacle_Amphenol_12401598E4-2A.kicad_mod` (bis SHBS-17: `…12401548E4-2A.kicad_mod`, ungenutzt) |
 | MP2359-Footprint | `pcb/Footprints/MP2359DJ.kicad_mod` |
 | Schaltplan (Layout) | `pcb/BasisStation/BasisStation_Layout.kicad_sch` |
 | Leiterplatte | `pcb/BasisStation/BasisStation.kicad_pcb` |

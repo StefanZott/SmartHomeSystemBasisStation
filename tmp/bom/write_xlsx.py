@@ -97,7 +97,7 @@ def _bom_sheet(workbook, groups, technology, status_of, stamp) -> None:
     row = _header(
         worksheet,
         "Stückliste SmartHome-Basisstation",
-        f"Quelle: PCB/BasisStation/*.kicad_sch · Stand {stamp} · "
+        f"Quelle: pcb/BasisStation/*.kicad_sch · Stand {stamp} · "
         f"{len(groups)} Positionen · {sum(g['quantity'] for g in groups)} Bauteile",
         "Grün = Preis aus Mouser- bzw. DigiKey-API (Tagespreis, unverbindlich, Staffel passend zur "
         "Menge). Fett = günstigerer lieferbarer Preis. Gelb = von Hand zu füllen. Die Bezugsquelle "
@@ -212,12 +212,15 @@ def _bom_sheet(workbook, groups, technology, status_of, stamp) -> None:
         total.border = BORDER
 
     counts = {n: sum(1 for g in groups if g["source"] == n) for n in ("DigiKey", "Mouser")}
-    caveat = (
-        "Die Summe ist deshalb eine Teilsumme, kein Gesamtpreis der Baugruppe."
-        if priced < len(groups)
-        else "Unter Vorbehalt: Vorschläge (Status gelb) sind noch nicht freigegeben, "
-        "Positionen mit Status \"Ersatz nötig\" sind nicht ab Lager lieferbar."
-    )
+    if priced < len(groups):
+        caveat = "Die Summe ist deshalb eine Teilsumme, kein Gesamtpreis der Baugruppe."
+    else:
+        caveats = []
+        if any(g.get("proposal") for g in groups):
+            caveats.append("Vorschläge (Status gelb) sind noch nicht freigegeben")
+        if any(not g.get("available") for g in groups if g.get("offers")):
+            caveats.append("nicht alle Positionen sind ab Lager lieferbar")
+        caveat = f"Unter Vorbehalt: {'; '.join(caveats)}." if caveats else ""
     worksheet.cell(
         row=row + len(totals) + 2,
         column=1,

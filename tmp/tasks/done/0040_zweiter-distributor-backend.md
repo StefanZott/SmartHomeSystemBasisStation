@@ -116,6 +116,7 @@ Anwendung:
 ## Commits
 
 - d1870af DigiKey-Zugang und Abdeckungspruefung (Teilschritt, Task noch offen)
+- 14ac68d DigiKey in Stueckliste eingebunden (Abschluss)
 
 ## Offene Fragen
 

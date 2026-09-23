@@ -8,7 +8,7 @@ Wuerth generator, hand-edited). The CLI exporter can only pull one fixed
 field name and would silently return nothing for most parts.
 
 Every position with a known part number is priced at Mouser and DigiKey side
-by side; DigiKey is preferred whenever it can deliver (see PREFERENCE).
+by side; the cheapest offer that can deliver wins (see choose_source).
 Responses are cached on disk so repeated runs neither hammer the APIs nor burn
 the daily quota, and so a run stays reproducible without network.
 
@@ -35,7 +35,7 @@ import digikey  # noqa: E402
 from sexp import children, parse  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-SCHEMATIC_GLOB = str(ROOT / "PCB" / "BasisStation" / "*.kicad_sch")
+SCHEMATIC_GLOB = str(ROOT / "pcb" / "BasisStation" / "*.kicad_sch")
 CACHE_PATH = ROOT / "tmp" / "bom" / "mouser_cache.json"
 KEY_PATH = ROOT / "secrets" / "mouser_api_key"
 OUTPUT_PATH = ROOT / "tmp" / "report" / "2026-09-22_stueckliste-basisstation.xlsx"
@@ -64,7 +64,8 @@ THROUGH_HOLE_FOOTPRINTS = {
     "WL-TMRW_3MM:WL-TMRW_3MM",
     "wuerth_6120XX21621:61200621621",
     "wuerth_rj45:T_Wurth_WE-RJ45LAN_7499011121A",
-    "shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A",
+    # SMD contacts, but the four shell legs are through-hole.
+    "shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A",
     "1543-650-149:1543650149",
 }
 
@@ -137,12 +138,12 @@ _PROPOSALS = [
     ),
     (("FB1",), "BLM21PG601SN1D", "Murata", "600 Ω @ 100 MHz, 0805"),
     (
-        ("J1", "J_PWR1"),
-        "12401598E4#2A",
-        "Amphenol",
-        "Nachfolger laut Mouser für die abgekündigte 12401548E4#2A; laut DigiKey gleiche "
-        "Bauart (24-polig, Hybrid SMD/THT, rechtwinklig), zusätzlich Führungsstifte. "
-        "Vor Übernahme Zeichnung gegen Footprint prüfen",
+        ("PS1",),
+        "AP3211KTR-G1",
+        "Diodes Incorporated",
+        "Pinkompatibel (1 BS, 2 GND, 3 FB, 4 EN, 5 IN, 6 SW), SOT-23-6 passt auf den Footprint "
+        "MP2359DJ, VFB 0,81 V (R17/R18 bleiben), 1,4 MHz, asynchron mit D11, 1,5 A. "
+        "Prüfen: Strombegrenzung 1,8–2,4 A gegen den Sättigungsstrom von L1",
     ),
 ]
 PROPOSED_PARTS = {ref: entry[1:] for entry in _PROPOSALS for ref in entry[0]}

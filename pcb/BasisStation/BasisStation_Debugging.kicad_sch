@@ -2412,7 +2412,7 @@
 				)
 			)
 		)
-		(property "Value" "12401548E4-2A"
+		(property "Value" "12401598E4-2A"
 			(at 33.02 30.48 0)
 			(effects
 				(font
@@ -2420,7 +2420,7 @@
 				)
 			)
 		)
-		(property "Footprint" "shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A"
+		(property "Footprint" "shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A"
 			(at 36.83 50.8 0)
 			(effects
 				(font
@@ -2456,7 +2456,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "12401548E4#2A"
+		(property "Manufacturer_Part_Number" "12401598E4#2A"
 			(at 33.02 50.8 0)
 			(effects
 				(font
@@ -2465,7 +2465,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "640-12401548E42A"
+		(property "Mouser Part Number" "523-12401598E4#2A"
 			(at 33.02 50.8 0)
 			(effects
 				(font
@@ -2474,7 +2474,7 @@
 				(hide yes)
 			)
 		)
-		(property "Notes" "Alternative: GCT USB4110-GF-A (verify land pattern before swap)"
+		(property "Notes" "Successor of discontinued 12401548E4#2A (SHBS-17); land pattern checked against Amphenol STEP model"
 			(at 33.02 50.8 0)
 			(effects
 				(font

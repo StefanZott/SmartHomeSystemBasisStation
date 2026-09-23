@@ -88,7 +88,7 @@ Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail
 
 ## Debug-/Datenanschluss J1 (SHBS-6)
 
-`J1` ist eine **USB-C-Buchse** (Amphenol **12401548E4-2A**, dieselbe Bauform wie der Versorgungsport `J_PWR1` — eine BOM-Position für beide). Symbol: `Connector:USB_C_Receptacle_USB2.0_16P`, Footprint: `Footprints:USB_C_Receptacle_Amphenol_12401548E4-2A`.
+`J1` ist eine **USB-C-Buchse** (Amphenol **12401598E4#2A**, dieselbe Bauform wie der Versorgungsport `J_PWR1` — eine BOM-Position für beide). Symbol: `Connector:USB_C_Receptacle_USB2.0_16P`, Footprint: `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A`. Bis 2026-09-23 war die inzwischen abgekündigte `12401548E4#2A` vorgesehen; Unterschiede und Folgen fürs Layout siehe [power_supply.md](power_supply.md) (Abschnitt Buchsenwechsel).
 
 | Eigenschaft | Umsetzung |
 |-------------|-----------|

@@ -52,10 +52,15 @@ Preise und Lagerbestaende nachzuziehen.
       Taoglas-Nachfolger `GW.20.A151`: eine Quelle statt zwei, und die Serie ist
       bereits im Schaltplan dokumentiert. Die Reichelt-Option DELOCK 88339 ist
       60 Cent guenstiger, verursacht aber eine zweite Bestellung
-- [ ] **Bediener:** Ersatz fuer `J1`/`J_PWR1` waehlen (abgekuendigt). Zuerst
-      pruefen, ob ein pinkompatibler Typ existiert — sonst muss der Footprint
-      `shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A` angepasst werden,
-      und das betrifft das PCB-Layout
+- [x] Ersatz fuer `J1`/`J_PWR1`: Bediener hat `12401598E4#2A` gewaehlt
+      (2026-09-23). **Nicht** pad-kompatibel (B-Reihe SMD statt THT) — neuer
+      Footprint `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` angelegt,
+      Schaltplan (J1, J_PWR1, Symbol-Cache, `power.kicad_sym`) umgestellt,
+      ERC 0 Fehler. PCB-Layout ist aelter als der Schaltplan und muss ohnehin
+      neu aus dem Schaltplan aktualisiert werden
+- [~] Ersatz fuer `PS1` (MP2359 NRND, kein Lager): Vorschlag Diodes
+      `AP3211KTR-G1`, pinkompatibel, gleicher Footprint — **Freigabe steht
+      aus**, danach Schaltplan umstellen
 - [~] Hausstandard fuer generische Passivteile — **Vorschlag erstellt**
       (2026-09-23, Bediener hat Vorgehen freigegeben), Einzelteile in
       `PROPOSED_PARTS` ([generate_bom.py](../../bom/generate_bom.py)),
@@ -74,11 +79,12 @@ Preise und Lagerbestaende nachzuziehen.
       46/46 Positionen bepreist, 49,30 EUR, LibreOffice 0 Formelfehler)*
 - [ ] Commit
 
-**J1/J_PWR1 — Stand 2026-09-23:** Vorschlag Amphenol `12401598E4#2A`
-(Mouser-Nachfolgeempfehlung, laut DigiKey gleiche Bauart 24P Hybrid).
-Zeichnung von amphenol-cs.com aus dem Container nicht abrufbar (HTTP 403) —
-**Bediener muss das Padbild gegen den Footprint pruefen**. GCT `USB4110-GF-A`
-scheidet aus (16P, reine SMD-Buchse).
+**J1/J_PWR1 — Stand 2026-09-23:** Umgestellt auf Amphenol `12401598E4#2A`.
+Die Zeichnung von amphenol-cs.com ist aus dem Container nicht abrufbar (HTTP
+403); das Padbild wurde stattdessen aus dem Amphenol-STEP-Modell (via DigiKey)
+ermittelt und deckt sich mit dem KiCad-Footprint der Schwester `12401610E4-2A`.
+Details in [power_supply.md](../../../docs/project/power_supply.md).
+GCT `USB4110-GF-A` scheidet aus (16P, reine SMD-Buchse).
 
 ## Nicht Teil dieses Tasks
 
@@ -99,9 +105,15 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
   Offen: Bestaetigung der Vorschlaege, Padbild-Pruefung J1, Ersatz PS1,
   Uebernahme in den Schaltplan.
 
+- 2026-09-23 (3): J1/J_PWR1 auf `12401598E4#2A` umgestellt (Footprint neu,
+  Schaltplan angepasst). PS1-Ersatz `AP3211KTR-G1` gefunden, bei Mouser und
+  DigiKey ab Lager — ein dritter Distributor ist nicht noetig. Stueckliste:
+  46/46 Positionen lieferbar, 47,78 EUR.
+
 ## Commits
 
 - d1870af Befunde zu Abkuendigungen dokumentiert (Teilschritt, Task noch offen)
+- 14ac68d Teilevorschlaege fuer alle offenen Stuecklistenpositionen (Teilschritt)
 
 ## Offene Fragen
 
