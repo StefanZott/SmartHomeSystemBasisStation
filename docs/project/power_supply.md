@@ -16,7 +16,7 @@ Verwandte Dokumente: [hardware.md](hardware.md), Analyse [tmp/report/2026-06-12_
 | Thema | Festlegung |
 |-------|------------|
 | Eingang | USB-C **5 V** (Standard-USB, kein PD) |
-| Wandler | **MP2359DJ** Buck **5 V → 3,3 V**, bis **1,2 A** |
+| Wandler | **AP3211** (Diodes) Buck **5 V → 3,3 V**, bis **1,5 A** — bis SHBS-17 MP2359DJ |
 | Ausgang | Netz **`+3V3`** (ESP32-S3-WROOM U6, LEDs, Stecker, …) |
 | Entfallen | **PS2** (Traco TSR 1-2433E), Netz **`+12V`** |
 | Debug-USB | Separates Blatt `BasisStation_Debugging.kicad_sch` / **J1** (SHBS-6) |
@@ -58,7 +58,7 @@ USB-Netzteil / Kabel (5 V)
         │
         ▼
 ┌───────────────────┐
-│ PS1  MP2359DJ     │  EN ── VIN (immer an)
+│ PS1  AP3211       │  EN ── VIN (immer an)
 │ SOT-23-6          │  BST ── C15 (100 nF) ── SW
 └───────────────────┘  SW ── L1 ── + D11 (SS34) ── GND
         │                │
@@ -321,7 +321,7 @@ Bei rund 85 % Wandlerwirkungsgrad entspricht das etwa **400 mA am 5-V-Eingang**.
 | Grenze | Wert | Auslastung |
 |--------|------|------------|
 | Polyfuse `F1` | 1,1 A | ~36 % |
-| Wandler `PS1` MP2359DJ | 1,2 A | ~43 % |
+| Wandler `PS1` AP3211 | 1,5 A | ~34 % |
 
 **Kein Redesign nötig.** Die Ethernet-Sektion erhöht die Last um rund 145 mA;
 beide Grenzen bleiben mit deutlichem Abstand eingehalten.
@@ -342,7 +342,7 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | **F1** | Überstrom | Polyfuse **1,1 A** | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
 | **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS) | `Device:D` | `Diode_SMD:D_SMA` |
 | **D11** | Flyback | **SS34** (Schottky) | `Device:D` | `Diode_SMD:D_SMA` |
-| **PS1** | Buck | **MP2359DJ-LF-Z** | `shbs_power:MP2359DJ` | `Footprints:MP2359DJ` |
+| **PS1** | Buck | **AP3211KTR-G1** | `shbs_power:AP3211` | `shbs_power:MP2359DJ` (SOT-23-6-Landmuster, passt unverändert) |
 | **L1** | Induktivität | **4,7 µH** (empf.) oder 10 µH | `Device:L` | `Inductor_SMD:L_5.7x5.7` oder `L_Bourns_SRN6045TA` |
 | **C13** | VIN bulk | **10 µF / 16 V** X5R | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
 | **C14** | VOUT bulk | **22 µF** | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
@@ -414,15 +414,18 @@ D+, D-, SuperSpeed (A2/A3, A6–A8, A10/A11, B2/B3, …) bleiben **offen**.
 
 ---
 
-## PS1 — MP2359DJ Anschlüsse
+## PS1 — AP3211 Anschlüsse
 
-> **Ersatzbedarf (2026-09-23, SHBS-17):** Der MP2359 ist in allen Varianten (`DJ`, `DT`, `-Z`, `-P`)
-> „nicht für Neukonstruktionen" und als `DJ` bei Mouser und DigiKey ohne Lager; der früher
-> pinkompatible Richtek RT8259 ist abgekündigt. **Vorschlag: Diodes `AP3211KTR-G1`** — gleiche
-> Pinbelegung (1 BS, 2 GND, 3 FB, 4 EN, 5 IN, 6 SW), SOT-23-6 auf demselben Footprint, V<sub>FB</sub>
-> 0,81 V (R17/R18 bleiben), 1,4 MHz, asynchron mit D11, 1,5 A, V<sub>IN</sub> 4,5–18 V, UVLO 3,8 V typ.
-> Vor der Übernahme prüfen: Strombegrenzung 1,8–2,4 A gegen den Sättigungsstrom von L1. Noch nicht
-> im Schaltplan — wartet auf Freigabe.
+> **Wandlerwechsel (2026-09-23, SHBS-17):** Der ursprüngliche MP2359DJ ist in allen Varianten
+> (`DJ`, `DT`, `-Z`, `-P`) „nicht für Neukonstruktionen" und als `DJ` bei Mouser und DigiKey ohne
+> Lager; der früher pinkompatible Richtek RT8259 ist abgekündigt. Ersetzt durch **Diodes
+> `AP3211KTR-G1`** ([Datenblatt](https://www.diodes.com/assets/Datasheets/AP3211.pdf)) — gleiche
+> Pinbelegung, SOT-23-6 auf demselben Footprint, V<sub>FB</sub> 0,81 V (R17/R18 bleiben), 1,4 MHz,
+> asynchron mit D11, 1,5 A, V<sub>IN</sub> 4,5–18 V, UVLO 3,8 V typ. Die Strombegrenzung
+> (1,8–2,4 A) liegt klar unter dem Sättigungsstrom von L1 (SRN6045TA-100M: 4,6 A); D11 (SS34, 3 A)
+> passt ebenfalls. Das Datenblatt nennt 10 nF Bootstrap-Kapazität, `C15` bleibt bei 100 nF —
+> unkritisch, der interne Bootstrap-Regler lädt ihn in jeder Aus-Phase nach. Pinname im Symbol
+> bleibt `BST` (Datenblatt: `BS`).
 
 | Pin | Name | Verbindung |
 |-----|------|------------|
@@ -447,7 +450,7 @@ D+, D-, SuperSpeed (A2/A3, A6–A8, A10/A11, B2/B3, …) bleiben **offen**.
                        GND
 ```
 
-Formel (Näherung): \( V_{OUT} \approx 0{,}6\,\text{V} \times (1 + R17/R18) \) — Werte laut **MP2359-Datenblatt** Tabelle 1 für **3,3 V**.
+Formel: \( V_{OUT} = V_{FB} \times (1 + R17/R18) = 0{,}81\,\text{V} \times (1 + 49{,}9/16{,}2) \approx 3{,}30\,\text{V} \) — V<sub>FB</sub> = 0,81 V bei MP2359 und AP3211 gleich (die frühere Angabe 0,6 V war falsch). Das AP3211-Datenblatt nutzt in der Applikationsschaltung 49,9 kΩ / 16,3 kΩ.
 
 ### Induktivität L1
 
@@ -482,7 +485,7 @@ Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **P
 |----------|------|
 | Symbolbibliothek | `pcb/Bauteile/Power/power.kicad_sym` |
 | USB-C-Footprint | `pcb/Bauteile/Power/USB_C_Receptacle_Amphenol_12401598E4-2A.kicad_mod` (bis SHBS-17: `…12401548E4-2A.kicad_mod`, ungenutzt) |
-| MP2359-Footprint | `pcb/Footprints/MP2359DJ.kicad_mod` |
+| Wandler-Footprint (PS1) | `pcb/Bauteile/Power/MP2359DJ.kicad_mod` — Name historisch, genutzt für AP3211 |
 | Schaltplan (Layout) | `pcb/BasisStation/BasisStation_Layout.kicad_sch` |
 | Leiterplatte | `pcb/BasisStation/BasisStation.kicad_pcb` |
 | `sym-lib-table` | Eintrag **`shbs_power`** |

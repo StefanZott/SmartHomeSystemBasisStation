@@ -137,14 +137,6 @@ _PROPOSALS = [
         "Last ~400 mA am 5-V-Eingang (~36 %)",
     ),
     (("FB1",), "BLM21PG601SN1D", "Murata", "600 Ω @ 100 MHz, 0805"),
-    (
-        ("PS1",),
-        "AP3211KTR-G1",
-        "Diodes Incorporated",
-        "Pinkompatibel (1 BS, 2 GND, 3 FB, 4 EN, 5 IN, 6 SW), SOT-23-6 passt auf den Footprint "
-        "MP2359DJ, VFB 0,81 V (R17/R18 bleiben), 1,4 MHz, asynchron mit D11, 1,5 A. "
-        "Prüfen: Strombegrenzung 1,8–2,4 A gegen den Sättigungsstrom von L1",
-    ),
 ]
 PROPOSED_PARTS = {ref: entry[1:] for entry in _PROPOSALS for ref in entry[0]}
 

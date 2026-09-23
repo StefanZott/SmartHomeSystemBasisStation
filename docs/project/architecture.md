@@ -15,7 +15,7 @@ Stromversorgung              Rechenkern / Peripherie
 ─────────────────            ─────────────────────────────────────────
 
   [USB-C J_PWR1 → Buck
-   MP2359 auf 3,3 V] ───────► ESP32-S3-WROOM-1U-N16R8
+   AP3211 auf 3,3 V] ───────► ESP32-S3-WROOM-1U-N16R8
                                       │
   [Power- / Reset-Taster] ────────────┤
                                       ├──► [4 LEDs, RGBY]

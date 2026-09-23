@@ -1186,7 +1186,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "shbs_power:MP2359DJ"
+		(symbol "shbs_power:AP3211"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1198,7 +1198,7 @@
 					)
 				)
 			)
-			(property "Value" "MP2359DJ"
+			(property "Value" "AP3211"
 				(at 0 -7.62 0)
 				(effects
 					(font
@@ -1215,7 +1215,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2359/document_id/90"
+			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP3211.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1224,7 +1224,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "1.2A, 24V, 1.4MHz step-down converter, SOT23-6"
+			(property "Description" "1.5A, 18V, 1.4MHz asynchronous step-down converter, SOT-23-6 (pin-compatible successor of MP2359DJ, SHBS-17)"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1233,7 +1233,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer" "Monolithic Power Systems"
+			(property "Manufacturer" "Diodes Incorporated"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1242,7 +1242,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "MP2359DJ-LF-Z"
+			(property "Manufacturer_Part_Number" "AP3211KTR-G1"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1251,7 +1251,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "946-MP2359DJ-LF-Z"
+			(property "Mouser Part Number" "621-AP3211KTR-G1"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1260,7 +1260,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "MP2359DJ_0_1"
+			(symbol "AP3211_0_1"
 				(rectangle
 					(start -7.62 5.08)
 					(end 7.62 -5.08)
@@ -4129,7 +4129,7 @@
 		)
 	)
 	(symbol
-		(lib_id "shbs_power:MP2359DJ")
+		(lib_id "shbs_power:AP3211")
 		(at 148.59 86.36 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4146,7 +4146,7 @@
 				)
 			)
 		)
-		(property "Value" "MP2359DJ"
+		(property "Value" "AP3211"
 			(at 148.59 78.74 0)
 			(effects
 				(font
@@ -4163,7 +4163,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP2359/document_id/90"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP3211.pdf"
 			(at 148.59 86.36 0)
 			(effects
 				(font
@@ -4172,7 +4172,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "1.2A, 24V, 1.4MHz step-down converter, SOT23-6"
+		(property "Description" "1.5A, 18V, 1.4MHz asynchronous step-down converter, SOT-23-6 (pin-compatible successor of MP2359DJ, SHBS-17)"
 			(at 148.59 86.36 0)
 			(effects
 				(font
@@ -4181,7 +4181,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Monolithic Power Systems"
+		(property "Manufacturer" "Diodes Incorporated"
 			(at 148.59 86.36 0)
 			(effects
 				(font
@@ -4190,7 +4190,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "MP2359DJ-LF-Z"
+		(property "Manufacturer_Part_Number" "AP3211KTR-G1"
 			(at 148.59 86.36 0)
 			(effects
 				(font
@@ -4199,7 +4199,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "946-MP2359DJ-LF-Z"
+		(property "Mouser Part Number" "621-AP3211KTR-G1"
 			(at 148.59 86.36 0)
 			(effects
 				(font

@@ -104,7 +104,7 @@ Schaltplan: `pcb/BasisStation/BasisStation_Debugging.kicad_sch`.
 
 ## Stromversorgung (SHBS-4)
 
-Primäre Versorgung: **USB-C 5 V → MP2359 Buck → 3,3 V**. PS2/+12V entfernt.
+Primäre Versorgung: **USB-C 5 V → AP3211 Buck → 3,3 V** (bis SHBS-17: MP2359, abgekündigt). PS2/+12V entfernt.
 
 Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[power_supply.md](power_supply.md)**.
 

@@ -58,9 +58,12 @@ Preise und Lagerbestaende nachzuziehen.
       Schaltplan (J1, J_PWR1, Symbol-Cache, `power.kicad_sym`) umgestellt,
       ERC 0 Fehler. PCB-Layout ist aelter als der Schaltplan und muss ohnehin
       neu aus dem Schaltplan aktualisiert werden
-- [~] Ersatz fuer `PS1` (MP2359 NRND, kein Lager): Vorschlag Diodes
-      `AP3211KTR-G1`, pinkompatibel, gleicher Footprint — **Freigabe steht
-      aus**, danach Schaltplan umstellen
+- [x] Ersatz fuer `PS1` (MP2359 NRND, kein Lager): Diodes `AP3211KTR-G1`,
+      pinkompatibel, gleicher Footprint, vom Bediener freigegeben
+      (2026-09-23). Symbol `shbs_power:AP3211` (umbenannt), Felder im
+      Schaltplan und in `power.kicad_sym` umgestellt, ERC 0 Fehler, Netzliste
+      unveraendert. L1-Saettigung (4,6 A) gegen Strombegrenzung (max. 2,4 A)
+      geprueft
 - [~] Hausstandard fuer generische Passivteile — **Vorschlag erstellt**
       (2026-09-23, Bediener hat Vorgehen freigegeben), Einzelteile in
       `PROPOSED_PARTS` ([generate_bom.py](../../bom/generate_bom.py)),
@@ -109,11 +112,16 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
   Schaltplan angepasst). PS1-Ersatz `AP3211KTR-G1` gefunden, bei Mouser und
   DigiKey ab Lager — ein dritter Distributor ist nicht noetig. Stueckliste:
   46/46 Positionen lieferbar, 47,78 EUR.
+- 2026-09-23 (4): PS1 im Schaltplan auf AP3211 umgestellt. Nebenbei
+  Formelfehler in power_supply.md korrigiert (V_FB 0,81 V statt 0,6 V).
+  Offen: Freigabe der 29 Teilevorschlaege, Uebernahme in den Schaltplan,
+  abgeleitete Nummern (D11, D12, U1, L1, J6) am Datenblatt bestaetigen.
 
 ## Commits
 
 - d1870af Befunde zu Abkuendigungen dokumentiert (Teilschritt, Task noch offen)
 - 14ac68d Teilevorschlaege fuer alle offenen Stuecklistenpositionen (Teilschritt)
+- 5f9b9d6 USB-C-Buchse auf 12401598E4#2A umgestellt (Teilschritt)
 
 ## Offene Fragen
 
