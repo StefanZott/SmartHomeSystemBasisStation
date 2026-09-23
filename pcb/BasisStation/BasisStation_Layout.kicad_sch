@@ -4614,7 +4614,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "GW.20.5150"
+		(property "Value" "GW.20.A151"
 			(at 149.86 147.3199 0)
 			(effects
 				(font
@@ -4659,7 +4659,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "GW.20.5150"
+		(property "Manufacturer_Part_Number" "GW.20.A151"
 			(at 135.89 146.05 0)
 			(effects
 				(font
@@ -4668,7 +4668,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "742-GW.20.5150"
+		(property "Mouser Part Number" "960-GW.20.A151"
 			(at 135.89 146.05 0)
 			(effects
 				(font
@@ -4677,7 +4677,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Price/Stock" "https://www.mouser.de/ProductDetail/Taoglas/GW-20-5150"
+		(property "Mouser Price/Stock" "https://www.mouser.de/de/ProductDetail/Taoglas/GW.20.A151"
 			(at 135.89 146.05 0)
 			(effects
 				(font
@@ -4982,7 +4982,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "742-CAB.6061"
+		(property "Mouser Part Number" "960-CAB.6061"
 			(at 74.93 147.32 0)
 			(effects
 				(font
@@ -4991,7 +4991,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Price/Stock" "https://www.mouser.de/ProductDetail/Taoglas/CAB-6061"
+		(property "Mouser Price/Stock" "https://www.mouser.de/de/ProductDetail/Taoglas/CAB.6061"
 			(at 74.93 147.32 0)
 			(effects
 				(font

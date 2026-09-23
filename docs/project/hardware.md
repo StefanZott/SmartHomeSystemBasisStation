@@ -67,13 +67,22 @@ Beide Teile sind im Schaltplan `BasisStation_Layout.kicad_sch` als **mechanische
 
 Mouser-Referenzen: CAB.6061 → **`960-CAB.6061`** (845 ab Lager, Stand 2026-09-22). Alternativ gleichwertige U.FL→RP-SMA-Bulkhead- und 2,4-GHz-RP-SMA-Antennen-Kombinationen — **Polarität und Steckertyp beibehalten**.
 
-> **Achtung:** Die in den Schaltplan-Feldern gepflegten Nummern `742-CAB.6061`
-> und `742-GW.20.5150` sind **veraltet**. Die Abfrage gegen die Mouser-API am
-> 2026-09-22 ergab: `742-CAB.6061` liefert keinen Treffer mehr (gültig ist
-> `960-CAB.6061`), und **GW.20.5150 wird von Mouser gar nicht mehr geführt** —
-> für ANT2 ist eine Alternative oder ein anderer Distributor nötig. Die
-> Schaltplan-Felder sind noch nicht korrigiert (siehe Blatt „Offene Punkte“ der
-> Stückliste).
+> **Umstellung am 2026-09-23 (SHBS-16):** `GW.20.5150` ist **abgekündigt** —
+> der Typ steht nicht mehr im Taoglas-Katalog. Ersetzt durch den
+> Seriennachfolger `GW.20.A151`, der form-, anschluss- und gewinngleich ist
+> (2 dBi, 2,4 GHz, RP-SMA(M) gerade). Zusätzlich ist Taoglas bei Mouser auf das
+> `960-`-Präfix umgezogen, die alten `742-`-Nummern liefern keinen Treffer mehr.
+>
+> | Position | Mouser-Nr. | Lager | Preis @1 |
+> | -------- | ---------- | ----- | -------- |
+> | ANT1 Pigtail `CAB.6061` | `960-CAB.6061` | 845 | 4,47 € |
+> | ANT2 Antenne `GW.20.A151` | `960-GW.20.A151` | 650 | 8,46 € |
+>
+> Die Schaltplan-Felder sind entsprechend nachgezogen. Eine weiße Variante
+> `960-GW.20.A151W` gibt es ebenfalls. **Kein Footprint betroffen:** `ANT1` und
+> `ANT2` sind mit `on_board no` als reine BOM-Einträge geführt und kommen nicht
+> auf die Leiterplatte (siehe Abschnitt oben). Mechanisch bleibt alles gleich,
+> die SMA-Bohrung richtet sich weiterhin nach dem Pigtail.
 
 Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail`, `WLAN_Antenna`).
 
