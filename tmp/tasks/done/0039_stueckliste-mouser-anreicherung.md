@@ -90,7 +90,7 @@ LibreOffice fehlerfrei durch.
 
 ## Commits
 
-- (wird beim Abschluss ergaenzt)
+- 3021dc2 Stueckliste reproduzierbar erzeugt und mit Mouser-Daten angereichert
 
 ## Offene Fragen
 

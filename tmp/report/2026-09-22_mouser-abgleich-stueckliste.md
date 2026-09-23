@@ -41,12 +41,42 @@ sondern gegen die API geprüft:
 | Bauteil | Im Schaltplan | Tatsächlich | Bewertung |
 | ------- | ------------- | ----------- | --------- |
 | `ANT1` | `742-CAB.6061` | `960-CAB.6061`, 845 ab Lager | Nummer gewechselt |
-| `ANT2` | `742-GW.20.5150` | **kein Treffer** | Teil wird nicht mehr geführt |
+| `ANT2` | `742-GW.20.5150` | **kein Treffer** | Typ abgekündigt, Nachfolger siehe Nachtrag |
 | `J1`, `J_PWR1` | `640-12401548E42A` | `523-12401548E4#2A`, nicht bevorratet | Nummer gewechselt |
 | `U1` | *(keine)* | `D3V3XA4B10LP` ist `N/A`, bestellbar nur als `D3V3XA4B10LP-7` | Gurtvariante nötig |
 
-`ANT2` ist der kritischste Punkt: Für die Antenne gibt es bei Mouser aktuell
-keinen Bezugsweg. Ohne Ersatz ist die Baugruppe nicht vollständig bestellbar.
+`ANT2` sah zunächst nach dem kritischsten Punkt aus. Der Nachtrag unten
+entschärft das.
+
+### Nachtrag 2026-09-23 — Korrektur zu ANT2 und ein neuer Befund
+
+**Die Aussage „für ANT2 gibt es bei Mouser keinen Bezugsweg" war zu weit
+gefasst.** Sie galt für die exakte Nummer, nicht für das Bauteil. Eine
+Stichwortsuche statt einer Teilenummernsuche zeigt: Taoglas ist bei Mouser auf
+das `960-`-Präfix umgezogen, und der Seriennachfolger ist verfügbar.
+
+| Position | Mouser-Nr. | Lager | Preis @1 |
+| -------- | ---------- | ----- | -------- |
+| ANT2 Nachfolger | `960-GW.20.A151` (2 dBi, 2,4 GHz, RP-SMA(M) gerade) | 650 | 8,46 € |
+| dito, weiß | `960-GW.20.A151W` | 480 | 8,27 € |
+| ANT1 Pigtail | `960-CAB.6061` | 845 | 4,47 € |
+
+Form, Anschluss und Gewinn stimmen mit `GW.20.5150` überein. Die Antennenkette
+ist damit **vollständig über Mouser beschaffbar** — es bleibt eine
+Teilenummernpflege, keine Produktentscheidung.
+
+**Lehre für die Methode:** Eine erfolglose Teilenummernsuche belegt nur, dass
+*diese Nummer* nicht mehr gilt — nicht, dass das Bauteil fehlt. Vor dem Schluss
+„nicht beschaffbar" gehört eine Stichwortsuche über Hersteller und Serie dazu.
+Derselbe Fehler wäre bei Reichelt fast passiert (siehe
+[Reichelt-Report](2026-09-22_reichelt-verfuegbarkeit.md), B5).
+
+**Neuer Befund — `J1`/`J_PWR1` sind ebenfalls abgekündigt.** Die Amphenol-Buchse
+`12401548E4#2A` ist laut DigiKey „no longer manufactured, substitute products
+are available". Das erklärt den Lagerbestand 0 bei Mouser und ist kein
+Distributorproblem, sondern ein Abkündigungsfall. **Hier ist wirklich ein Ersatz
+zu wählen** — und anders als bei der Antenne hängt daran ein Footprint, der
+möglicherweise angepasst werden muss.
 
 ### B3 — `PS1` ist gelistet, aber nicht verfügbar
 

@@ -22,3 +22,4 @@ __pycache__/
 # LibreOffice-Sperrdateien
 .~lock.*
 ~$*
+tmp/bom/digikey_cache.json
