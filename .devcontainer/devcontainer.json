@@ -44,6 +44,14 @@
 		"IDF_TARGET": "esp32s3"
 	},
 	"runArgs": ["--privileged", "--env-file", "${localWorkspaceFolder}/secrets/.env"],
+	// Claude Codes Zustand (Login-Token, Transcripts, Shell-Snapshots) liegt unter
+	// ~/.claude und damit im Container-Dateisystem. Ohne Volume ist er nach jedem
+	// Rebuild weg. Nur dieses eine Verzeichnis wird persistiert,
+	// nicht das ganze Home: das Dockerfile seedet ~/.bashrc und ~/.config/kicad,
+	// die muessen bei Image-Aenderungen neu erzeugt werden duerfen.
+	"mounts": [
+		"source=shbs-claude-state,target=/home/esp/.claude,type=volume"
+	],
 	// secrets/.env (z. B. GITHUB_PAT fuer die MCP-Server) ist git-ignoriert und wird
 	// daher nicht im Dockerfile-Image gebacken. Die Datei wird oben per --env-file
 	// direkt von Docker geladen, damit die Variablen in PID 1 und damit in jedem

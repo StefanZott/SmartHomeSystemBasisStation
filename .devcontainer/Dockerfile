@@ -102,6 +102,12 @@ WORKDIR /home/${CONTAINER_USER}
 
 RUN echo "source /opt/esp/idf/export.sh > /dev/null 2>&1" >> ~/.bashrc
 
+# Claude Codes Zustandsverzeichnis anlegen, solange noch das Image gebaut wird.
+# devcontainer.json mountet ein Named Volume darauf; Docker uebernimmt Inhalt und
+# Eigentuemer eines leeren Volumes aus dem Image. Fehlt das Verzeichnis hier,
+# legt Docker es als root:root an und der Container-User kann nicht hineinschreiben.
+RUN mkdir -p ~/.claude
+
 # Seed KiCad's global library tables for the container user. kicad-cli creates
 # fp-lib-table by itself on first run, but not sym-lib-table - without it every
 # stock library (power, Device, Connector, ...) is reported missing and ERC

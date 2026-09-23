@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-18
+last_updated: 2026-09-23
 type: project-doc
 ---
 
@@ -76,6 +76,26 @@ app_main – Startsequenz (von oben nach unten)
        v
   wifi_init_sta_and_softap()
 ```
+
+## Entwicklungsumgebung (Dev Container)
+
+Die Toolchain ist vollständig im Dev Container unter `.devcontainer/` beschrieben:
+ESP-IDF 5.5.2, KiCad 9 (`kicad-cli` für ERC/DRC/BOM), LibreOffice Calc (headless,
+rechnet erzeugte Mappen durch) und der Claude-Code-CLI.
+
+**Persistenz über Rebuilds hinweg.** Das Home-Verzeichnis `/home/esp` liegt im
+Container-Dateisystem und wird bei jedem Rebuild neu aus dem Image erzeugt.
+Persistiert wird gezielt nur `/home/esp/.claude` über das Named Volume
+`shbs-claude-state` — dort liegen Login-Token, Sitzungsprotokolle und
+Shell-Snapshots des Agenten. Das übrige Home bleibt bewusst flüchtig, weil das
+Dockerfile `~/.bashrc` und `~/.config/kicad/9.0/` seedet; diese Dateien müssen
+bei Image-Änderungen neu entstehen dürfen.
+
+Nicht persistiert wird `~/.claude.json`. Darin stehen unter anderem die pro
+Projekt erteilten Werkzeug-Freigaben — diese gehören stattdessen versioniert in
+`.claude/settings.json`, damit sie einen Rebuild überstehen und für alle
+Beteiligten gleich sind. Secrets kommen über `secrets/.env` (git-ignoriert) per
+`--env-file` in den Container.
 
 ## Build & Metadaten
 
