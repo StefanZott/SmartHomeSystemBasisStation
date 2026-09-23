@@ -69,15 +69,12 @@ THROUGH_HOLE_FOOTPRINTS = {
     "1543-650-149:1543650149",
 }
 
-# Values that are already a orderable type designation even though no part
-# number field is set. Flagged "abgeleitet" so nobody orders them unchecked.
-DERIVED_PART_NUMBERS = {
-    "D11": ("SS34", ""),
-    "D12": ("SMAJ5.0A", ""),
-    "U1": ("D3V3XA4B10LP", "Diodes Incorporated"),
-    "L1": ("SRN6045TA-100M", "Bourns"),
-    "J6": ("61200621621", "Würth Elektronik"),
-}
+# Values that are already an orderable type designation even though no part
+# number field is set: reference -> (part number, manufacturer). Flagged
+# "abgeleitet" so nobody orders them unchecked. Empty since 2026-09-23: the
+# five entries of SHBS-17 were checked against datasheet and package and are
+# now schematic fields (SS34 in particular exists in SMA and SMC).
+DERIVED_PART_NUMBERS: dict = {}
 
 # Proposed parts for positions whose schematic carries only a value, or whose
 # part is discontinued. Shown as "Vorschlag" until the operator confirms them
@@ -406,6 +403,12 @@ def digikey_offer(client, group: dict) -> dict | None:
         candidates.append((candidate, len(number) - len(target)))
     if not candidates:
         return None
+    # A generic type such as SMAJ5.0A is made by a dozen vendors; when the
+    # schematic names one, order that one rather than the cheapest look-alike.
+    maker = normalise(group.get("manufacturer", ""))[:6]
+    if maker:
+        same_maker = [c for c in candidates if normalise(c[0]["manufacturer"]).startswith(maker)]
+        candidates = same_maker or candidates
     # Orderable and stocked first, then the closest number, then the price.
     candidates.sort(
         key=lambda c: (

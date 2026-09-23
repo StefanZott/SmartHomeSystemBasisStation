@@ -27,12 +27,11 @@ dasselbe wie sein Footprint.
       `Manufacturer_Part_Number` von `GW.20.5150` auf `GW.20.A151`,
       Mouser-Nummer auf `960-GW.20.A151`, Produktlink aktualisiert.
       Kein Footprint betroffen (`on_board no`)
-- [ ] `J1` und `J_PWR1`: Mouser-Feld `640-12401548E42A` → `523-12401548E4#2A`.
-      **Achtung:** Das Teil ist abgekuendigt — erst die Ersatzentscheidung aus
-      Task 0041 abwarten, sonst wird eine tote Nummer gegen eine andere tote
-      Nummer getauscht
-- [ ] `U1`: Herstellerteilenummer als Feld pflegen, bestellbar ist
-      `D3V3XA4B10LP-7` (Tape & Reel), nicht die nackte `D3V3XA4B10LP`
+- [x] `J1` und `J_PWR1`: entfallen — die Buchse wurde in SHBS-17 (Task 0041,
+      Commit 5f9b9d6) durch `12401598E4#2A` ersetzt, Mouser-Feld
+      `523-12401598E4#2A` gesetzt *(2026-09-23)*
+- [x] `U1`: `D3V3XA4B10LP-7` samt Hersteller und Mouser-Nummer als Feld
+      eingetragen — erledigt in SHBS-17 (Task 0041) *(2026-09-23)*
 - [ ] `FB1`: von `Device:R` auf ein Ferrit-Symbol wechseln (Wert bleibt
       `Ferrit 600R@100MHz`)
 - [ ] `J6`: Wert von `Conn_02x03_Odd_Even` auf die Wuerth-Bestellbezeichnung

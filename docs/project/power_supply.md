@@ -369,8 +369,9 @@ bestellfähige Stückliste ([hardware.md](hardware.md), Abschnitt
 | C15 | YAGEO **CC0805KRX7R9BB104** | 100 nF, 50 V, X7R |
 | R17 / R18 | YAGEO **RC0805FR-0749K9L** / **RC0805FR-0716K2L** | 1 %, 0805 |
 | R19 / R20 | YAGEO **RC0805FR-075K1L** | 5,1 kΩ, 1 %, 0805 |
-| L1 | Bourns **SRN6045TA-100M** | 10 µH, I<sub>sat</sub> 4,6 A — Nummer aus dem Wert abgeleitet, am Datenblatt zu bestätigen |
-| D11 / D12 | **SS34** / **SMAJ5.0A** | herstellerneutrale Typen, am Datenblatt zu bestätigen |
+| L1 | Bourns **SRN6045TA-100M** | 10 µH, I<sub>sat</sub> 4,6 A, passt zum Footprint `L_Bourns_SRN6045TA` |
+| D11 | Comchip **SS34-HF** | Schottky 40 V / 3 A, **SMA** (DO-214AC). Achtung: „SS34" gibt es je nach Hersteller auch im größeren SMC-Gehäuse (DO-214AB), das nicht auf den Footprint `D_SMA` passt |
+| D12 | Littelfuse **SMAJ5.0A** | TVS unidirektional, 5,0 V Sperrspannung, SMA |
 
 **Buchsenwechsel (2026-09-23, SHBS-17):** Die ursprüngliche `12401548E4#2A` ist obsolet und bei
 Mouser und DigiKey nicht mehr ab Lager. Ersetzt durch Amphenol **`12401598E4#2A`** (von Mouser als

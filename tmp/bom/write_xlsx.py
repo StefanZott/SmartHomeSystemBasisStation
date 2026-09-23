@@ -398,15 +398,21 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
             )
         )
 
+    derived = [g for g in groups if g["derived"]]
+    if derived:
+        points.append(
+            (
+                "Abgeleitete Teilenummern",
+                "Bei "
+                + ", ".join(r for g in derived for r in g["references"])
+                + " stammt die Nummer aus Wert oder Bibliotheksnamen, nicht aus einem gepflegten Feld.",
+                "In der Spalte Status als \"abgeleitet\" markiert. Vor der Bestellung am Datenblatt "
+                "bestätigen — insbesondere das Gehäuse: gleichnamige Typen gibt es in mehreren Bauformen.",
+                "Bediener",
+            )
+        )
+
     points += [
-        (
-            "Abgeleitete Teilenummern",
-            "Bei D11, D12, U1, L1 und J6 stammt die Nummer aus Wert oder Bibliotheksnamen, "
-            "nicht aus einem gepflegten Feld.",
-            "In der Spalte Status als \"abgeleitet\" markiert. Vor der Bestellung am Datenblatt "
-            "bestätigen — Serienbezeichnungen wie SRN6045TA brauchen noch den Wert-Suffix.",
-            "Bediener",
-        ),
         (
             "FB1 (Ferritperle)",
             "Nutzt das Symbol Device:R — also einen Widerstand.",

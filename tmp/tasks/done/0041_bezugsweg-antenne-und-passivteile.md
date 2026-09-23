@@ -68,8 +68,12 @@ Preise und Lagerbestaende nachzuziehen.
       `C25`/`C26` gegen C_L 18 pF von `Y1` nachgerechnet (27 pF passt)
 - [x] `F1`: Bourns `MF-NSMF110-2` (1206, 1,1 A, 6 V) gemaess power_supply.md,
       freigegeben; Wert im Schaltplan von „Fuse" auf „1.1A" gesetzt
-- [ ] Abgeleitete Teilenummern am Datenblatt bestaetigen: `D11`, `D12`, `U1`,
-      `L1`, `J6`
+- [x] Abgeleitete Teilenummern bestaetigt und als Felder eingetragen
+      (2026-09-23): `D11` Comchip `SS34-HF` (SMA — die guenstigere SS34 von
+      Slkormicro ist SMC und passt nicht auf `D_SMA`), `D12` Littelfuse
+      `SMAJ5.0A`, `U1` `D3V3XA4B10LP-7`, `L1` `SRN6045TA-100M`, `J6`
+      `61200621621`. `DERIVED_PART_NUMBERS` geleert; DigiKey-Stichwortsuche
+      bevorzugt jetzt den Hersteller aus dem Schaltplan
 - [x] Entschiedene Teile als Felder in den Schaltplan eingetragen
       (2026-09-23, per Skript statt GUI): 29 Positionen / 58 Instanzen mit
       `Manufacturer`, `Manufacturer_Part_Number`, `Mouser Part Number`.
@@ -78,7 +82,7 @@ Preise und Lagerbestaende nachzuziehen.
 - [x] `generate_bom.py` erneut laufen lassen, Mappe pruefen *(2026-09-23:
       Gruppierung jetzt nach Teilenummer → 44 Positionen, alle bepreist und
       lieferbar, 47,78 EUR, LibreOffice 0 Formelfehler)*
-- [ ] Commit
+- [x] Commit
 
 **J1/J_PWR1 — Stand 2026-09-23:** Umgestellt auf Amphenol `12401598E4#2A`.
 Die Zeichnung von amphenol-cs.com ist aus dem Container nicht abrufbar (HTTP
@@ -114,6 +118,10 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
   Formelfehler in power_supply.md korrigiert (V_FB 0,81 V statt 0,6 V).
   Offen: Freigabe der 29 Teilevorschlaege, Uebernahme in den Schaltplan,
   abgeleitete Nummern (D11, D12, U1, L1, J6) am Datenblatt bestaetigen.
+- 2026-09-23 (5): Alle 29 Vorschlaege uebernommen (74c7e6a), danach die fuenf
+  abgeleiteten Nummern gegen Datenblatt und Gehaeuse geprueft und eingetragen.
+  Netzliste jeweils identisch, ERC 0 Fehler. Stueckliste: 44 Positionen, alle
+  eindeutig und lieferbar, 48,29 EUR. **Task abgeschlossen.**
 
 ## Commits
 
@@ -121,6 +129,7 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
 - 14ac68d Teilevorschlaege fuer alle offenen Stuecklistenpositionen (Teilschritt)
 - 5f9b9d6 USB-C-Buchse auf 12401598E4#2A umgestellt (Teilschritt)
 - 5547305 PS1 auf AP3211 umgestellt (Teilschritt)
+- 74c7e6a Teilenummern fuer 29 Positionen in den Schaltplan uebernommen
 
 ## Offene Fragen
 

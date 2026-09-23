@@ -92,7 +92,7 @@ Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail
 
 | Eigenschaft | Umsetzung |
 |-------------|-----------|
-| Datenpfad | `J1` → ESD-Array `U1` (D3V3XA4B10LP) → `U6.14`/`U6.13` (GPIO20/GPIO19, USB_D+/USB_D−) |
+| Datenpfad | `J1` → ESD-Array `U1` (D3V3XA4B10LP-7) → `U6.14`/`U6.13` (GPIO20/GPIO19, USB_D+/USB_D−) |
 | Steckrichtung | Beide Datenpaare gebrückt (`A6`+`B6` = D+, `A7`+`B7` = D−) — Stecker funktioniert in beiden Orientierungen |
 | Rolle | **Sink/UFP**: je 5,1 kΩ **Rd** von `CC1` (`R21`) und `CC2` (`R22`) gegen GND |
 | VBUS | Netz `VBUS_J1`, endet am ESD-Array. **Keine Versorgung über diesen Port** |
@@ -368,7 +368,10 @@ Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
   um Versandkosten zu sparen, stellt die Spalte entsprechend um.
 - **Beide Anbieter werden zweistufig abgefragt:** erst die exakte Nummer, dann
   eine Stichwortsuche, die Verpackungssuffixe (`D3V3XA4B10LP` → `-7`) und
-  herstellerneutrale Typen (`SS34`) auflöst. Verpackungen, deren
+  herstellerneutrale Typen (`SS34`) auflöst. Nennt der Schaltplan einen
+  Hersteller, bevorzugt die DigiKey-Suche dessen Treffer — sonst landet bei
+  Typen wie `SMAJ5.0A`, die ein Dutzend Hersteller fertigen, der billigste
+  Doppelgänger in der Bestellung. Verpackungen, deren
   Mindestbestellmenge über der Stückzahl liegt (Rollen), zählen nicht als
   Angebot.
 - **Teilevorschläge stehen im Skript, bis sie freigegeben sind.** Für

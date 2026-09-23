@@ -2695,6 +2695,33 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer" "Diodes Incorporated"
+			(at 91.44 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "D3V3XA4B10LP-7"
+			(at 91.44 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "621-D3V3XA4B10LP-7"
+			(at 91.44 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5f39a862-e831-4b72-a2a2-3b487e886e6b")
 		)
