@@ -43,9 +43,13 @@
 	"containerEnv": {
 		"IDF_TARGET": "esp32s3"
 	},
-	"runArgs": ["--privileged"],
+	"runArgs": ["--privileged", "--env-file", "${localWorkspaceFolder}/secrets/.env"],
 	// secrets/.env (z. B. GITHUB_PAT fuer die MCP-Server) ist git-ignoriert und wird
-	// daher nicht im Dockerfile-Image gebacken, sondern hier ins .bashrc eingehaengt,
-	// sobald der Workspace beim Container-Start tatsaechlich gemountet ist.
+	// daher nicht im Dockerfile-Image gebacken. Die Datei wird oben per --env-file
+	// direkt von Docker geladen, damit die Variablen in PID 1 und damit in jedem
+	// Kindprozess liegen - auch im VS-Code-Extension-Host, der Claude Code startet.
+	// Der postCreateCommand unten haengt sie zusaetzlich ins .bashrc ein, damit sie
+	// auch in interaktiven Terminals sichtbar sind.
+	// Achtung: --env-file entfernt keine Anfuehrungszeichen, Werte daher unquoted halten.
 	"postCreateCommand": "grep -qxF 'set -a; source \"${containerWorkspaceFolder}/secrets/.env\" 2>/dev/null; set +a' ~/.bashrc || echo 'set -a; source \"${containerWorkspaceFolder}/secrets/.env\" 2>/dev/null; set +a' >> ~/.bashrc"
 }

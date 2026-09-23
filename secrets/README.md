@@ -18,6 +18,26 @@ Store passwords, API keys, and certificates here only on your machine.
 | `mouser_api_key` | Mouser **Search**-API-Schlüssel (UUID, eine Zeile) | Stücklisten-Abfrage gegen `api.mouser.com` |
 | `.env` | Lokale Umgebungsvariablen | Entwicklungsumgebung |
 
+### `.env`
+
+Umgebungsvariablen für den Dev-Container, aktuell `GITHUB_PAT` für den
+GitHub-MCP-Server (`.mcp.json`).
+
+Format: `KEY=wert` je Zeile, **ohne Anführungszeichen**. Die Datei wird per
+`--env-file` in `runArgs` (`.devcontainer/devcontainer.json`) direkt von Docker
+geladen — und Docker entfernt keine Anführungszeichen, sondern übernimmt sie in
+den Wert. Ein gequoteter PAT landet dadurch als `Bearer "ghp_..."` im
+Authorization-Header und wird von GitHub mit
+`Authorization header is badly formatted` abgewiesen.
+
+Das Laden über `--env-file` stellt sicher, dass die Variablen in PID 1 und damit
+in jedem Kindprozess liegen — insbesondere im VS-Code-Extension-Host, der Claude
+Code startet. Der `postCreateCommand` hängt die Datei zusätzlich ins `~/.bashrc`
+ein, das greift aber nur für interaktive Terminals.
+
+Konsequenz: Fehlt `secrets/.env`, startet der Container nicht. Die Datei ist
+Voraussetzung, nicht optional.
+
 ### `mouser_api_key`
 
 Kostenlos über den [Mouser API Hub](https://www.mouser.com/en/api-hub/) anzufordern.
