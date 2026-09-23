@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/workflow-reminder.ps1"
+            "command": ".claude/hooks/workflow-reminder.sh"
           }
         ]
       }
