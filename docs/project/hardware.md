@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-22
+last_updated: 2026-09-23
 type: project-doc
 ---
 
@@ -42,7 +42,7 @@ U6 (IPEX) ←steckt→ ANT1 Pigtail ←SMA-Bulkhead→ Gehäusewand ←schraubt�
 | Referenz | Teil | Funktion |
 |----------|------|----------|
 | **ANT1** | Taoglas **CAB.6061** | U.FL → RP-SMA female bulkhead, 100 mm Koax, mit O-Ring |
-| **ANT2** | Taoglas **GW.20.5150** | 2,4 GHz Dipol, 2 dBi, RP-SMA male |
+| **ANT2** | Taoglas **GW.20.A151** (Nachfolger der abgekündigten GW.20.5150) | 2,4 GHz Dipol, 2 dBi, RP-SMA male |
 
 Beide Teile sind im Schaltplan `BasisStation_Layout.kicad_sch` als **mechanische BOM-Einträge** (`on_board no`) dokumentiert — sie werden **nicht** auf die Leiterplatte gelötet.
 
@@ -337,9 +337,12 @@ still eine leere Spalte — der erste Export blieb deshalb ohne Teilenummern.
 
 [`tmp/bom/generate_bom.py`](../../tmp/bom/generate_bom.py) liest die
 Schaltplanblätter daher direkt (eigener S-Expression-Parser in
-[`sexp.py`](../../tmp/bom/sexp.py)), löst die Feld-Aliase auf, fragt Preis und
-Lagerbestand über die Mouser-Such-API ab und schreibt die Mappe über
-[`write_xlsx.py`](../../tmp/bom/write_xlsx.py).
+[`sexp.py`](../../tmp/bom/sexp.py)), löst die Feld-Aliase auf, fragt Preis,
+Lagerbestand und Lebenszyklus **bei Mouser und DigiKey** ab
+([`digikey.py`](../../tmp/bom/digikey.py), Product Information V4, 2-legged
+OAuth) und schreibt die Mappe über
+[`write_xlsx.py`](../../tmp/bom/write_xlsx.py). Zugangsdaten:
+`secrets/mouser_api_key` und `secrets/digikey_api.json`.
 
 ```
 python3 tmp/bom/generate_bom.py            # mit API-Abfrage
@@ -351,9 +354,28 @@ Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
 - **Gruppiert wird nach Wert + Footprint, nicht nach `lib_id`.** `J1` und
   `J_PWR1` nutzen verschiedene Symbole für dieselbe Amphenol-Buchse; für eine
   Bestellung ist das eine Position mit Menge 2 (siehe Abschnitt zu J1 oben).
-- **Antworten werden in `tmp/bom/mouser_cache.json` zwischengespeichert.** Das
-  schont das Tageskontingent des kostenlosen API-Schlüssels und macht Läufe
-  ohne Netz reproduzierbar. `--refresh` verwirft den Cache.
+- **Antworten werden in `tmp/bom/mouser_cache.json` und
+  `tmp/bom/digikey_cache.json` zwischengespeichert.** Das schont die
+  Tageskontingente und macht Läufe ohne Netz reproduzierbar. `--refresh`
+  verwirft die Caches.
+- **Gerechnet wird mit dem günstigsten lieferbaren Angebot (SHBS-17).** Die
+  Spalte „Bezugsquelle“ steht auf dem Anbieter mit dem niedrigeren Preis, der
+  die Menge ab Lager liefern kann; bei Gleichstand auf DigiKey. Sie ist per
+  Auswahlliste änderbar; Einzelpreis, Gesamtpreis und die Teilsummen je
+  Anbieter rechnen sich daraus. Wer alles über einen Anbieter bestellen will,
+  um Versandkosten zu sparen, stellt die Spalte entsprechend um.
+- **Beide Anbieter werden zweistufig abgefragt:** erst die exakte Nummer, dann
+  eine Stichwortsuche, die Verpackungssuffixe (`D3V3XA4B10LP` → `-7`) und
+  herstellerneutrale Typen (`SS34`) auflöst. Verpackungen, deren
+  Mindestbestellmenge über der Stückzahl liegt (Rollen), zählen nicht als
+  Angebot.
+- **Teilevorschläge stehen im Skript, nicht im Schaltplan.** Für Positionen,
+  die im Schaltplan nur einen Wert oder ein abgekündigtes Teil tragen, hält
+  `PROPOSED_PARTS` in `generate_bom.py` einen Vorschlag nach Hausstandard
+  (Widerstände 0805 1 %, Kondensatoren X7R 50 V bzw. X5R/X7R 16–25 V ab 1 µF,
+  C0G am Quarz). Die Mappe markiert sie mit Status „Vorschlag“. Nach Freigabe
+  wandern sie als Felder in den Schaltplan und der Eintrag im Skript entfällt
+  — der Schaltplan bleibt die maßgebliche Quelle.
 
 Gefundene Abweichungen überschreiben die Schaltplan-Felder **nicht**, sondern
 landen als Befund im Blatt „Offene Punkte“ — eine veraltete Teilenummer gehört

@@ -2,7 +2,7 @@
 """Workbook rendering for the base-station bill of materials.
 
 Kept separate from the data gathering so the sheet layout can change without
-touching the schematic parsing or the Mouser client.
+touching the schematic parsing or the distributor clients.
 """
 
 from __future__ import annotations
@@ -13,12 +13,13 @@ import re
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.datavalidation import DataValidation
 
 TITLE_FONT = Font(bold=True, size=14)
 HEAD_FONT = Font(bold=True, color="FFFFFF")
 HEAD_FILL = PatternFill("solid", fgColor="44546A")
 MANUAL_FILL = PatternFill("solid", fgColor="FFF2CC")  # still to be filled by hand
-API_FILL = PatternFill("solid", fgColor="E2EFDA")  # came from the Mouser API
+API_FILL = PatternFill("solid", fgColor="E2EFDA")  # came from a distributor API
 WARN_FILL = PatternFill("solid", fgColor="FCE4D6")
 THIN = Side(style="thin", color="BFBFBF")
 BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
@@ -30,21 +31,29 @@ COLUMNS = [
     ("Referenzen", 26),
     ("Wert (Schaltplan)", 20),
     ("Technik", 8),
-    ("Symbol (lib_id)", 30),
     ("Footprint", 38),
     ("Hersteller", 18),
     ("Hersteller-Teilenr.", 24),
     ("Mouser-Teilenr.", 22),
-    ("Einzelpreis EUR", 14),
-    ("Gesamtpreis EUR", 15),
-    ("Staffel ab", 10),
-    ("Lager", 9),
-    ("Preisquelle", 13),
-    ("Mouser-Link", 13),
-    ("Datenblatt", 12),
-    ("Status", 15),
+    ("Mouser EUR", 11),
+    ("Mouser Lager", 9),
+    ("DigiKey-Teilenr.", 28),
+    ("DigiKey EUR", 11),
+    ("DigiKey Lager", 9),
+    ("Lebenszyklus", 18),
+    ("Bezugsquelle", 12),
+    ("Einzelpreis EUR", 12),
+    ("Gesamtpreis EUR", 13),
+    ("Mouser", 9),
+    ("DigiKey", 9),
+    ("Datenblatt", 10),
+    ("Status", 14),
     ("Hinweis", 60),
 ]
+# Column numbers the formulas and fills refer to.
+COL_QUANTITY, COL_MOUSER_PRICE, COL_DIGIKEY_PRICE = 2, 10, 13
+COL_SOURCE, COL_UNIT, COL_TOTAL, COL_STATUS, COL_NOTE = 16, 17, 18, 22, 23
+DISTRIBUTOR_COLUMNS = {"Mouser": (9, 10, 11, 19), "DigiKey": (12, 13, 14, 20)}
 
 
 def _header(worksheet, title: str, subtitle: str, note: str, columns: list) -> int:
@@ -65,6 +74,23 @@ def _header(worksheet, title: str, subtitle: str, note: str, columns: list) -> i
     return row + 1
 
 
+def _link(worksheet, row: int, column: int, label: str, url: str) -> None:
+    if not url:
+        return
+    cell = worksheet.cell(row=row, column=column, value=label)
+    cell.hyperlink = url
+    cell.font = Font(color="0563C1", underline="single")
+
+
+def _lifecycle(group: dict) -> str:
+    """Worst lifecycle state reported by either distributor."""
+    offers = [o for o in (group.get("offers") or {}).values() if o]
+    ending = [o["lifecycle"] for o in offers if o["end_of_life"]]
+    if ending:
+        return ending[0]
+    return next((o["lifecycle"] for o in offers if o["lifecycle"]), "")
+
+
 def _bom_sheet(workbook, groups, technology, status_of, stamp) -> None:
     worksheet = workbook.create_sheet("Stückliste")
     priced = sum(1 for g in groups if g["price"] is not None)
@@ -73,82 +99,134 @@ def _bom_sheet(workbook, groups, technology, status_of, stamp) -> None:
         "Stückliste SmartHome-Basisstation",
         f"Quelle: PCB/BasisStation/*.kicad_sch · Stand {stamp} · "
         f"{len(groups)} Positionen · {sum(g['quantity'] for g in groups)} Bauteile",
-        "Grün = Preis aus der Mouser-API (Tagespreis, unverbindlich). "
-        "Gelb = von Hand zu füllen. Gesamtpreis und Summe rechnen sich aus Menge × Einzelpreis.",
+        "Grün = Preis aus Mouser- bzw. DigiKey-API (Tagespreis, unverbindlich, Staffel passend zur "
+        "Menge). Fett = günstigerer lieferbarer Preis. Gelb = von Hand zu füllen. Die Bezugsquelle "
+        "steht auf dem günstigsten Anbieter mit ausreichend Lager und ist per Auswahlliste änderbar; "
+        "Einzel-, Gesamtpreis und Summen rechnen sich daraus.",
         COLUMNS,
     )
+
+    source_choice = DataValidation(type="list", formula1='"DigiKey,Mouser"', allow_blank=True)
+    worksheet.add_data_validation(source_choice)
 
     first_data_row = row
     for position, group in enumerate(groups, start=1):
         status, note = status_of(group)
+        offers = group.get("offers") or {}
         values = [
             position,
             group["quantity"],
             ", ".join(group["references"]),
             group["value"],
             technology(group["footprint"]),
-            group["lib_id"],
             group["footprint"],
             group["manufacturer"],
             group["manufacturer_part"],
-            group["mouser_part"],
-            group["price"],
-            None,  # formula below
-            group["price_break"],
-            group["stock"],
-            group["source"],
-            None,  # link below
-            None,  # datasheet below
-            status,
-            note,
         ]
         for index, value in enumerate(values, start=1):
-            cell = worksheet.cell(row=row, column=index, value=value)
-            cell.border = BORDER
-            cell.alignment = Alignment(vertical="top", wrap_text=index in (3, 19))
+            worksheet.cell(row=row, column=index, value=value)
 
-        worksheet.cell(row=row, column=12).value = (
-            f'=IF(OR(K{row}="",B{row}=""),"",B{row}*K{row})'
+        deliverable_prices = {
+            name: o["price"]
+            for name, o in offers.items()
+            if o and o["price"] is not None and o["stock"] >= group["quantity"]
+        }
+        cheapest = (
+            min(deliverable_prices, key=deliverable_prices.get)
+            if len(deliverable_prices) == 2
+            and len(set(deliverable_prices.values())) == 2
+            else ""
         )
-        for column in (11, 12):
+        for name, (part_col, price_col, stock_col, link_col) in DISTRIBUTOR_COLUMNS.items():
+            offer = offers.get(name)
+            if not offer:
+                continue
+            worksheet.cell(row=row, column=part_col, value=offer["part"])
+            price = worksheet.cell(row=row, column=price_col, value=offer["price"])
+            if offer["price"] is not None:
+                price.fill = API_FILL
+                price.font = Font(bold=name == cheapest)
+            stock = worksheet.cell(row=row, column=stock_col, value=offer["stock"])
+            if offer["stock"] < group["quantity"]:
+                stock.fill = WARN_FILL
+            _link(worksheet, row, link_col, name, offer["url"])
+
+        worksheet.cell(row=row, column=15, value=_lifecycle(group))
+        source = worksheet.cell(row=row, column=COL_SOURCE, value=group["source"] or None)
+        source_choice.add(source)
+        if not group["source"]:
+            source.fill = MANUAL_FILL
+        elif not group.get("available"):
+            source.fill = WARN_FILL
+
+        src = f"{get_column_letter(COL_SOURCE)}{row}"
+        mouser = f"{get_column_letter(COL_MOUSER_PRICE)}{row}"
+        digikey = f"{get_column_letter(COL_DIGIKEY_PRICE)}{row}"
+        unit = f"{get_column_letter(COL_UNIT)}{row}"
+        quantity = f"{get_column_letter(COL_QUANTITY)}{row}"
+        worksheet.cell(row=row, column=COL_UNIT).value = (
+            f'=IF({src}="DigiKey",IF({digikey}="","",{digikey}),'
+            f'IF({src}="Mouser",IF({mouser}="","",{mouser}),""))'
+        )
+        worksheet.cell(row=row, column=COL_TOTAL).value = (
+            f'=IF(OR({unit}="",{quantity}=""),"",{quantity}*{unit})'
+        )
+        for column in (COL_MOUSER_PRICE, COL_DIGIKEY_PRICE, COL_UNIT, COL_TOTAL):
             worksheet.cell(row=row, column=column).number_format = EURO
+        if group["price"] is None:
+            worksheet.cell(row=row, column=COL_UNIT).fill = MANUAL_FILL
 
-        price_cell = worksheet.cell(row=row, column=11)
-        price_cell.fill = API_FILL if group["price"] is not None else MANUAL_FILL
-        if not group["mouser_part"]:
-            worksheet.cell(row=row, column=10).fill = MANUAL_FILL
+        _link(worksheet, row, 21, "PDF", group["datasheet"])
+        worksheet.cell(row=row, column=COL_STATUS, value=status)
+        worksheet.cell(row=row, column=COL_NOTE, value=note)
+        if status in ("prüfen", "unvollständig", "Ersatz nötig"):
+            worksheet.cell(row=row, column=COL_STATUS).fill = WARN_FILL
+        elif status == "Vorschlag":
+            worksheet.cell(row=row, column=COL_STATUS).fill = MANUAL_FILL
 
-        if group["url"]:
-            link = worksheet.cell(row=row, column=16, value="Mouser")
-            link.hyperlink = group["url"]
-            link.font = Font(color="0563C1", underline="single")
-        if group["datasheet"]:
-            sheet_link = worksheet.cell(row=row, column=17, value="PDF")
-            sheet_link.hyperlink = group["datasheet"]
-            sheet_link.font = Font(color="0563C1", underline="single")
-
-        if status in ("prüfen", "unvollständig"):
-            worksheet.cell(row=row, column=18).fill = WARN_FILL
+        for column in range(1, len(COLUMNS) + 1):
+            cell = worksheet.cell(row=row, column=column)
+            cell.border = BORDER
+            cell.alignment = Alignment(vertical="top", wrap_text=column in (3, COL_NOTE))
         row += 1
 
     last_data_row = row - 1
-    worksheet.cell(row=row + 1, column=10, value="Summe erfasster Positionen").font = Font(bold=True)
-    total = worksheet.cell(
-        row=row + 1, column=12, value=f"=SUM(L{first_data_row}:L{last_data_row})"
-    )
-    total.font = Font(bold=True)
-    total.number_format = EURO
-    total.border = BORDER
+    total_col = get_column_letter(COL_TOTAL)
+    source_col = get_column_letter(COL_SOURCE)
+    totals = [
+        ("Summe erfasster Positionen", f"=SUM({total_col}{first_data_row}:{total_col}{last_data_row})"),
+    ]
+    for name in ("DigiKey", "Mouser"):
+        totals.append(
+            (
+                f"davon {name}",
+                f'=SUMIF({source_col}{first_data_row}:{source_col}{last_data_row},"{name}",'
+                f"{total_col}{first_data_row}:{total_col}{last_data_row})",
+            )
+        )
+    for offset, (label, formula) in enumerate(totals, start=1):
+        worksheet.cell(row=row + offset, column=COL_UNIT - 1, value=label).font = Font(bold=offset == 1)
+        total = worksheet.cell(row=row + offset, column=COL_TOTAL, value=formula)
+        total.font = Font(bold=offset == 1)
+        total.number_format = EURO
+        total.border = BORDER
 
+    counts = {n: sum(1 for g in groups if g["source"] == n) for n in ("DigiKey", "Mouser")}
+    caveat = (
+        "Die Summe ist deshalb eine Teilsumme, kein Gesamtpreis der Baugruppe."
+        if priced < len(groups)
+        else "Unter Vorbehalt: Vorschläge (Status gelb) sind noch nicht freigegeben, "
+        "Positionen mit Status \"Ersatz nötig\" sind nicht ab Lager lieferbar."
+    )
     worksheet.cell(
-        row=row + 3,
+        row=row + len(totals) + 2,
         column=1,
         value=(
-            f"Von {len(groups)} Positionen tragen {priced} einen Preis aus der Mouser-API. "
-            "Die Summe ist deshalb eine Teilsumme, kein Gesamtpreis der Baugruppe."
+            f"Von {len(groups)} Positionen tragen {priced} einen Preis aus der API "
+            f"({counts['DigiKey']} über DigiKey, {counts['Mouser']} über Mouser). " + caveat
         ),
     ).font = Font(italic=True, size=9)
-    worksheet.auto_filter.ref = f"A{first_data_row - 1}:S{last_data_row}"
+    worksheet.auto_filter.ref = f"A{first_data_row - 1}:{get_column_letter(len(COLUMNS))}{last_data_row}"
 
 
 def _single_sheet(workbook, instances, technology, stamp) -> None:
@@ -180,7 +258,7 @@ def _single_sheet(workbook, instances, technology, stamp) -> None:
             item["lib_id"],
             item["footprint"],
             item["manufacturer"],
-            item["manufacturer_part"],
+            f"{item['manufacturer_part']} (Vorschlag)" if item["proposal"] else item["manufacturer_part"],
             item["mouser_part"],
         ]
         for index, value in enumerate(values, start=1):
@@ -198,7 +276,10 @@ def _plural(count: int, singular: str, plural: str) -> str:
 def _open_points_sheet(workbook, groups, technology, stamp) -> None:
     worksheet = workbook.create_sheet("Offene Punkte")
     columns = [("Nr", 5), ("Betrifft", 34), ("Punkt", 52), ("Warum es zählt", 62), ("Wer entscheidet", 16)]
-    generic = [g for g in groups if g["price"] is None and not g["mouser_part"]]
+    generic = [
+        g for g in groups if g["price"] is None and not g["mouser_part"] and not g["proposal"]
+    ]
+    proposed = [g for g in groups if g["proposal"]]
     through_hole = sorted(
         (r for g in groups if technology(g["footprint"]) == "THT" for r in g["references"]),
         key=lambda r: (re.match(r"([A-Za-z_]+)", r).group(1), int(re.sub(r"\D", "", r) or 0)),
@@ -211,10 +292,27 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
         columns,
     )
     mismatched = [g for g in groups if g.get("mismatch")]
-    unavailable = [
-        g for g in groups if (g["mouser_part"] or g["manufacturer_part"]) and g["price"] is None
+    end_of_life = [
+        g for g in groups if any(o and o["end_of_life"] for o in (g.get("offers") or {}).values())
     ]
-    no_stock = [g for g in groups if g["price"] is not None and g.get("stock") == 0]
+    unavailable = [
+        g
+        for g in groups
+        if (g["mouser_part"] or g["manufacturer_part"])
+        and not g.get("available")
+        and g not in end_of_life
+    ]
+    single_source = [
+        g
+        for g in groups
+        if g.get("available")
+        and sum(
+            1
+            for o in (g.get("offers") or {}).values()
+            if o and o["price"] is not None and o["stock"] >= g["quantity"]
+        )
+        == 1
+    ]
 
     points = []
     if mismatched:
@@ -231,55 +329,87 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
                 "Agent",
             )
         )
-    if unavailable:
+    if end_of_life:
         points.append(
             (
-                _plural(len(unavailable), "Position ohne Preis bei Mouser", "Positionen ohne Preis bei Mouser"),
+                _plural(len(end_of_life), "abgekündigte Position", "abgekündigte Positionen"),
                 "; ".join(
-                    f"{', '.join(g['references'])} ({g['value']})" for g in unavailable
+                    f"{', '.join(g['references'])} ({g['manufacturer_part']}): "
+                    + ", ".join(
+                        f"{n} {o['lifecycle'] or 'ohne Statusangabe'}, Lager {o['stock']}"
+                        for n, o in g["offers"].items()
+                        if o
+                    )
+                    for g in end_of_life
                 ),
-                "Teil ist bekannt, aber Mouser liefert keine Preisstaffel — entweder nicht "
-                "geführt oder nur auf Anfrage. Vor der Bestellung Alternative prüfen oder einen "
-                "zweiten Distributor anfragen.",
+                "Kein Beschaffungs-, sondern ein Abkündigungsproblem: auch ein Distributorwechsel "
+                "hilft nicht. Ersatztyp wählen; hängt ein eigener Footprint daran, betrifft der "
+                "Wechsel das Layout (Task 0041).",
                 "Bediener",
             )
         )
-    if no_stock:
+    if unavailable:
         points.append(
             (
-                _plural(len(no_stock), "Position mit Lagerbestand 0", "Positionen mit Lagerbestand 0"),
-                "; ".join(
-                    f"{', '.join(g['references'])} ({g['mouser_part']})" for g in no_stock
-                ),
-                "Gelistet und bepreist, aber nicht ab Lager verfügbar. Lieferzeit klären, bevor "
-                "der Termin für den Prototypenaufbau steht.",
+                _plural(len(unavailable), "Position nicht ab Lager lieferbar", "Positionen nicht ab Lager lieferbar"),
+                "; ".join(f"{', '.join(g['references'])} ({g['value']})" for g in unavailable),
+                "Teil ist bekannt, aber weder Mouser noch DigiKey haben es in der nötigen Menge "
+                "ab Lager. Lieferzeit klären oder Alternative wählen, bevor der Termin für den "
+                "Prototypenaufbau steht.",
+                "Bediener",
+            )
+        )
+    if single_source:
+        points.append(
+            (
+                _plural(len(single_source), "Position nur bei einem Anbieter", "Positionen nur bei einem Anbieter"),
+                "; ".join(f"{', '.join(g['references'])} (nur {g['source']})" for g in single_source),
+                "Kein Ausweichen möglich, falls der Anbieter ausverkauft ist. Beim Wechsel auf "
+                "ein breiter verfügbares Teil den Footprint im Blick behalten.",
+                "Bediener",
+            )
+        )
+
+    if proposed:
+        points.append(
+            (
+                _plural(len(proposed), "Position mit Teilevorschlag", "Positionen mit Teilevorschlag"),
+                "; ".join(f"{', '.join(g['references'])}: {g['manufacturer_part']}" for g in proposed),
+                "Der Schaltplan trägt hier nur einen Wert oder ein abgekündigtes Teil. Die Vorschläge "
+                "folgen einem Hausstandard (Widerstände 0805 1 %, Kondensatoren X7R 50 V bzw. "
+                "X5R/X7R 16–25 V ab 1 µF, C0G am Quarz) und sind in Spalte Status gelb markiert. "
+                "Nach Freigabe als Felder in den Schaltplan übernehmen, damit der nächste Export "
+                "sie ohne Skript-Tabelle trägt. J1/J_PWR1: Zeichnung des Nachfolgers vor der "
+                "Übernahme gegen den Footprint prüfen.",
+                "Bediener",
+            )
+        )
+    if generic:
+        points.append(
+            (
+                _plural(len(generic), "Position ohne Teilenummer", "Positionen ohne Teilenummer"),
+                "; ".join(f"{', '.join(g['references'])} ({g['value']})" for g in generic),
+                "Für eine Bestellung fehlen Toleranz, Spannungsfestigkeit, Dielektrikum bzw. "
+                "Belastbarkeit.",
                 "Bediener",
             )
         )
 
     points += [
         (
-            _plural(len(generic), "Position ohne Teilenummer", "Positionen ohne Teilenummer"),
-            "Überwiegend generische Passivteile, die nur einen Wert tragen.",
-            "Für eine Bestellung fehlen Toleranz, Spannungsfestigkeit, Dielektrikum (X7R/C0G) "
-            "und Belastbarkeit. Kritisch bei C25/C26 am 25-MHz-Quarz und den 1-%-Widerständen "
-            "des Ethernet-Zweigs.",
-            "Bediener",
-        ),
-        (
             "Abgeleitete Teilenummern",
             "Bei D11, D12, U1, L1 und J6 stammt die Nummer aus Wert oder Bibliotheksnamen, "
             "nicht aus einem gepflegten Feld.",
-            "In Spalte R als \"abgeleitet\" markiert. Vor der Bestellung am Datenblatt "
+            "In der Spalte Status als \"abgeleitet\" markiert. Vor der Bestellung am Datenblatt "
             "bestätigen — Serienbezeichnungen wie SRN6045TA brauchen noch den Wert-Suffix.",
             "Bediener",
         ),
         (
             "F1 (Sicherung)",
-            "Der Wert lautet schlicht \"Fuse\" — kein Strom- oder Auslösewert.",
-            "Ohne Nennstrom ist die Sicherung nicht bestellbar und die Schutzfunktion nicht "
-            "definiert. Hängt an der Stromaufnahme der Baugruppe (SHBS-4).",
-            "Bediener",
+            "Der Wert im Schaltplan lautet schlicht \"Fuse\" — kein Strom- oder Auslösewert.",
+            "Nennstrom steht in power_supply.md (Polyfuse 1,1 A); der Vorschlag MF-NSMF110-2 "
+            "folgt dem. Den Wert auch im Schaltplan eintragen, sonst liest man dort nur \"Fuse\".",
+            "Agent",
         ),
         (
             "FB1 (Ferritperle)",
@@ -316,9 +446,10 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
         ),
         (
             "Preise sind Tagespreise",
-            "Die grün hinterlegten Einzelpreise stammen aus der Mouser-API zum Stand oben.",
-            "Sie sind unverbindlich, staffelabhängig (Spalte M zeigt die zugrunde gelegte "
-            "Staffelmenge) und ohne Zoll, Versand und Steuer. Für ein Angebot neu abfragen.",
+            "Die grün hinterlegten Einzelpreise stammen aus der Mouser- und der DigiKey-API "
+            "zum Stand oben.",
+            "Sie sind unverbindlich, gelten für die Staffel passend zur Menge einer Baugruppe "
+            "und verstehen sich ohne Zoll, Versand und Steuer. Für ein Angebot neu abfragen.",
             "Bediener",
         ),
     ]

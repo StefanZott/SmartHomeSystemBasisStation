@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-19
+last_updated: 2026-09-23
 type: project-doc
 jira: SHBS-4
 ---
@@ -360,7 +360,12 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | L1 | Bourns **SRN6045TA-100M** (10 µH) | Alternative bei 10 µH |
 | C13 | Murata **GRM21BR61C106KE15** | 10 µF, 16 V, 0805 |
 
-Alternative USB-C (pin-/funktionsgleich): GCT **USB4110-GF-A** — Footprint vor Swap prüfen.
+**Abkündigung (Stand 2026-09-23, SHBS-17):** Die `12401548E4#2A` ist obsolet und bei Mouser und
+DigiKey nicht mehr ab Lager. Vorgeschlagener Nachfolger: Amphenol **`12401598E4#2A`** (von Mouser
+als Ersatz genannt, laut DigiKey gleiche Bauart: 24-polig, Hybrid SMD/THT, rechtwinklig, zusätzlich
+Führungsstifte). Die Zeichnung ist vor der Übernahme gegen den Footprint zu prüfen.
+GCT **USB4110-GF-A** ist entgegen früherer Annahme **nicht** footprint-kompatibel: 16-polig, reine
+SMD-Buchse zur Oberflächenmontage (Datenblatt USB4110 Rev. B2).
 
 ---
 

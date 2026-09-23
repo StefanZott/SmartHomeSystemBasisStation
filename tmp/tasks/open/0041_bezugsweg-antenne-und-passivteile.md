@@ -56,18 +56,29 @@ Preise und Lagerbestaende nachzuziehen.
       pruefen, ob ein pinkompatibler Typ existiert — sonst muss der Footprint
       `shbs_power:USB_C_Receptacle_Amphenol_12401548E4-2A` angepasst werden,
       und das betrifft das PCB-Layout
-- [ ] **Bediener:** Hausstandard fuer generische Passivteile festlegen —
+- [~] Hausstandard fuer generische Passivteile — **Vorschlag erstellt**
+      (2026-09-23, Bediener hat Vorgehen freigegeben), Einzelteile in
+      `PROPOSED_PARTS` ([generate_bom.py](../../bom/generate_bom.py)),
+      **Bestaetigung der Einzelteile steht aus**. Urspruenglich:
       Toleranz, Spannungsfestigkeit, Dielektrikum (X7R/C0G), Belastbarkeit.
       Vorrang: `C25`/`C26` am 25-MHz-Quarz (Lastkapazitaet gegen die
       Quarz-Spezifikation rechnen) und die 1-%-Widerstaende im Ethernet-Zweig
-- [ ] **Bediener:** Nennstrom fuer `F1` festlegen (haengt an der Stromaufnahme
-      der Baugruppe, SHBS-4) — traegt bisher nur den Wert „Fuse"
+- [~] Nennstrom fuer `F1`: stand bereits in power_supply.md (Polyfuse 1,1 A,
+      Last ~400 mA). Vorschlag Bourns `MF-NSMF110-2` (1206, 6 V) —
+      Bestaetigung steht aus. Traegt im Schaltplan bisher nur den Wert „Fuse"
 - [ ] Abgeleitete Teilenummern am Datenblatt bestaetigen: `D11`, `D12`, `U1`,
       `L1`, `J6`
 - [ ] Entschiedene Teile als Felder in den Schaltplan eintragen (GUI), damit
       der naechste Export sie traegt
-- [ ] `generate_bom.py` erneut laufen lassen, Mappe pruefen
+- [x] `generate_bom.py` erneut laufen lassen, Mappe pruefen *(2026-09-23:
+      46/46 Positionen bepreist, 49,30 EUR, LibreOffice 0 Formelfehler)*
 - [ ] Commit
+
+**J1/J_PWR1 — Stand 2026-09-23:** Vorschlag Amphenol `12401598E4#2A`
+(Mouser-Nachfolgeempfehlung, laut DigiKey gleiche Bauart 24P Hybrid).
+Zeichnung von amphenol-cs.com aus dem Container nicht abrufbar (HTTP 403) —
+**Bediener muss das Padbild gegen den Footprint pruefen**. GCT `USB4110-GF-A`
+scheidet aus (16P, reine SMD-Buchse).
 
 ## Nicht Teil dieses Tasks
 
@@ -79,6 +90,14 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
 
 - 2026-09-22: Task angelegt, noch nicht begonnen. Wartet auf die
   Entscheidungen des Bedieners (Schritte 1 bis 3).
+
+- 2026-09-23 (2): Bediener hat den Hausstandard-Vorschlag freigegeben
+  („mach das so"). 30 Positionen mit Teilevorschlag eingetragen und bei Mouser und DigiKey
+  geprueft, jeweils auf Lagerbestand ausgewichen (u. a. 10 µF 0805: fast alle
+  gaengigen Typen bei beiden Anbietern Lager 0 → Samsung CL21B106KOQNNNE).
+  Quarz-Lastkondensatoren gegen Y1 (CL 18 pF) nachgerechnet: 27 pF passt.
+  Offen: Bestaetigung der Vorschlaege, Padbild-Pruefung J1, Ersatz PS1,
+  Uebernahme in den Schaltplan.
 
 ## Commits
 

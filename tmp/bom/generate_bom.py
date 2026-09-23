@@ -7,8 +7,10 @@ inconsistent field names depending on where a symbol came from (SnapEDA, the
 Wuerth generator, hand-edited). The CLI exporter can only pull one fixed
 field name and would silently return nothing for most parts.
 
-Mouser responses are cached on disk so repeated runs neither hammer the API
-nor burn the daily quota, and so a run stays reproducible without network.
+Every position with a known part number is priced at Mouser and DigiKey side
+by side; DigiKey is preferred whenever it can deliver (see PREFERENCE).
+Responses are cached on disk so repeated runs neither hammer the APIs nor burn
+the daily quota, and so a run stays reproducible without network.
 
 Usage:
     python3 tmp/bom/generate_bom.py [--no-network] [--refresh]
@@ -29,6 +31,7 @@ import urllib.request
 from collections import OrderedDict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import digikey  # noqa: E402
 from sexp import children, parse  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -75,6 +78,75 @@ DERIVED_PART_NUMBERS = {
     "J6": ("61200621621", "Würth Elektronik"),
 }
 
+# Proposed parts for positions whose schematic carries only a value, or whose
+# part is discontinued (house standard proposed 2026-09-23, SHBS-17, task
+# 0041). Shown as "Vorschlag" until the operator confirms them and they move
+# into the schematic fields - the schematic stays the source of truth.
+_RES_0805 = "Dickschicht 0805, 1 %, 0,125 W (Hausstandard)"
+_CAP_X7R = "X7R, 50 V, 0805 (Hausstandard)"
+_PROPOSALS = [
+    (("R17",), "RC0805FR-0749K9L", "YAGEO", _RES_0805),
+    (("R18",), "RC0805FR-0716K2L", "YAGEO", _RES_0805),
+    (("R19", "R20", "R21", "R22"), "RC0805FR-075K1L", "YAGEO", _RES_0805),
+    (("R27",), "RC0805FR-0712K4L", "YAGEO", _RES_0805),
+    (("R28", "R29", "R30", "R31", "R32"), "RC0805FR-0710KL", "YAGEO", _RES_0805),
+    (("R33", "R34"), "RC0805FR-07220RL", "YAGEO", _RES_0805),
+    (("R35",), "RC0805JR-070RL", "YAGEO", "Nullohm-Brücke 0805"),
+    (("R36", "R37", "R39", "R40"), "RC0805FR-0749R9L", "YAGEO", _RES_0805),
+    (("R38",), "RC0805FR-0710RL", "YAGEO", _RES_0805),
+    (("R9",), "MFR-25FBF52-10K", "YAGEO", "Metallschicht 0207, 1 %, 0,25 W"),
+    (
+        ("R13", "R14", "R15", "R16"),
+        "PR02000202200JR500",
+        "Vishay BC Components",
+        "Metallschicht 2 W, 5 %, passend zum Footprint DIN0617 (Raster 20,32 mm); "
+        "elektrisch genügt 0,25 W — siehe Offene Punkte zur Mischbestückung",
+    ),
+    (
+        ("R23", "R24", "R25", "R26"),
+        "PR02000204701JR500",
+        "Vishay BC Components",
+        "Metallschicht 2 W, 5 %, passend zum Footprint DIN0617 (Raster 20,32 mm); "
+        "elektrisch genügt 0,25 W — siehe Offene Punkte zur Mischbestückung",
+    ),
+    (("C13", "C27"), "CL21B106KOQNNNE", "Samsung", "X7R, 16 V, 0805"),
+    (("C14",), "CL21A226MOQNNNE", "Samsung", "X5R, 16 V, 0805 — Kapazität sinkt unter DC-Vorspannung"),
+    (("C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22"), "CC0805KRX7R9BB104", "YAGEO", _CAP_X7R),
+    (("C23",), "CL21A475KAQNNNE", "Samsung", "X5R, 25 V, 0805"),
+    (("C24", "C31"), "CC0805KRX7R9BB103", "YAGEO", _CAP_X7R),
+    (
+        ("C25", "C26"),
+        "CC0805JRNPO9BN270",
+        "YAGEO",
+        "C0G, 50 V, 5 %. Wert geprüft: Quarz Y1 hat 18 pF Last, "
+        "2 × (18 pF − ~4,5 pF Streukapazität) ≈ 27 pF",
+    ),
+    (("C28",), "C1206C102KGRACTU", "KEMET", "X7R, 2 kV, 1206 — Schirmabschluss Ethernet"),
+    (("C29", "C30"), "CC0805KRX7R9BB682", "YAGEO", _CAP_X7R),
+    (("C32",), "CL21B223KBANNNC", "Samsung", _CAP_X7R),
+    (("D8",), "151033BS03000", "Würth Elektronik", "WL-TMRW 3 mm blau, passend zum Footprint"),
+    (("D9",), "151033RS03000", "Würth Elektronik", "WL-TMRW 3 mm rot, passend zum Footprint"),
+    (("D10",), "151031VS06000", "Würth Elektronik", "WL-TMRC 3 mm grün, passend zum Footprint"),
+    (("Q1", "Q2", "Q3", "Q4"), "BC33740TA", "onsemi", "BC337-40 (höchste Verstärkungsgruppe), TO-92"),
+    (
+        ("F1",),
+        "MF-NSMF110-2",
+        "Bourns",
+        "Polyfuse 1206, Haltestrom 1,1 A, 6 V, gemäß power_supply.md; "
+        "Last ~400 mA am 5-V-Eingang (~36 %)",
+    ),
+    (("FB1",), "BLM21PG601SN1D", "Murata", "600 Ω @ 100 MHz, 0805"),
+    (
+        ("J1", "J_PWR1"),
+        "12401598E4#2A",
+        "Amphenol",
+        "Nachfolger laut Mouser für die abgekündigte 12401548E4#2A; laut DigiKey gleiche "
+        "Bauart (24-polig, Hybrid SMD/THT, rechtwinklig), zusätzlich Führungsstifte. "
+        "Vor Übernahme Zeichnung gegen Footprint prüfen",
+    ),
+]
+PROPOSED_PARTS = {ref: entry[1:] for entry in _PROPOSALS for ref in entry[0]}
+
 GENERIC_PREFIXES = ("R", "C", "L", "FB")
 
 
@@ -114,6 +186,16 @@ def read_instances() -> list:
             derived = False
             if not resolved_part and manufacturer_part:
                 resolved_part, derived = manufacturer_part, True
+            mouser_part = pick(properties, MOUSER_FIELDS)
+            manufacturer = pick(properties, MANUFACTURER_FIELDS) or manufacturer
+            proposal, replaced = "", ""
+            if reference in PROPOSED_PARTS:
+                proposed_part, proposed_maker, proposal = PROPOSED_PARTS[reference]
+                # A schematic part number here is a discontinued one being
+                # replaced; its Mouser number would resolve the old part.
+                replaced = resolved_part
+                resolved_part, manufacturer, mouser_part = proposed_part, proposed_maker, ""
+                derived = False
             instances.append(
                 {
                     "reference": reference,
@@ -121,11 +203,13 @@ def read_instances() -> list:
                     "footprint": properties.get("Footprint", "").strip(),
                     "lib_id": str(lib_id),
                     "sheet": pathlib.Path(path).name,
-                    "mouser_part": pick(properties, MOUSER_FIELDS),
+                    "mouser_part": mouser_part,
                     "manufacturer_part": resolved_part,
-                    "manufacturer": pick(properties, MANUFACTURER_FIELDS) or manufacturer,
-                    "datasheet": pick(properties, DATASHEET_FIELDS),
+                    "manufacturer": manufacturer,
+                    "datasheet": "" if proposal else pick(properties, DATASHEET_FIELDS),
                     "derived": derived,
+                    "proposal": proposal,
+                    "replaced": replaced,
                 }
             )
     return instances
@@ -151,12 +235,14 @@ def group_instances(instances: list) -> list:
                 "manufacturer": "",
                 "datasheet": "",
                 "derived": False,
+                "proposal": "",
+                "replaced": "",
             },
         )
         group["references"].append(item["reference"])
         if item["lib_id"] and item["lib_id"] not in group["lib_ids"]:
             group["lib_ids"].append(item["lib_id"])
-        for field in ("mouser_part", "manufacturer_part", "manufacturer", "datasheet"):
+        for field in ("mouser_part", "manufacturer_part", "manufacturer", "datasheet", "proposal", "replaced"):
             if not group[field] and item[field]:
                 group[field] = item[field]
         group["derived"] = group["derived"] or item["derived"]
@@ -321,55 +407,167 @@ def price_for_quantity(part: dict, quantity: int):
     return chosen[1], chosen[0]
 
 
+def mouser_offer(api_key: str, cache: dict, group: dict) -> dict | None:
+    """Mouser result in the distributor-neutral offer shape."""
+    part, how = lookup(api_key, cache, group["mouser_part"], group["manufacturer_part"])
+    if not part:
+        return None
+    price, price_break = price_for_quantity(part, group["quantity"])
+    lifecycle = part.get("LifecycleStatus") or ""
+    return {
+        "part": (part.get("MouserPartNumber") or "").strip(),
+        "price": price,
+        "price_break": price_break,
+        "stock": stock_of(part),
+        "url": part.get("ProductDetailUrl") or "",
+        "lifecycle": lifecycle,
+        "end_of_life": is_end_of_life(lifecycle),
+        "manufacturer": part.get("Manufacturer") or "",
+        "manufacturer_part": part.get("ManufacturerPartNumber") or "",
+        "datasheet": part.get("DataSheetUrl") or "",
+        "how": how,
+    }
+
+
+# --------------------------------------------------------------------------
+# DigiKey
+
+
+def digikey_offer(client, group: dict) -> dict | None:
+    """Resolve one position at DigiKey via the manufacturer part number.
+
+    Same two-step route as Mouser: exact number first, then a keyword search
+    that accepts packaging suffixes ('D3V3XA4B10LP' -> '...-7') and generic
+    types made by several vendors ('SS34').
+    """
+    wanted = group["manufacturer_part"]
+    if not wanted:
+        return None
+    product = client.details(wanted)
+    if product:
+        result = digikey.offer(product, group["quantity"], "hersteller-nr")
+        result["end_of_life"] = result["end_of_life"] or is_end_of_life(result["lifecycle"])
+        return result
+
+    target = normalise(wanted)
+    candidates = []
+    for product in client.keyword(wanted):
+        number = normalise(product.get("ManufacturerProductNumber"))
+        if not number.startswith(target):
+            continue
+        candidate = digikey.offer(product, group["quantity"], "stichwortsuche")
+        candidate["end_of_life"] = candidate["end_of_life"] or is_end_of_life(candidate["lifecycle"])
+        candidates.append((candidate, len(number) - len(target)))
+    if not candidates:
+        return None
+    # Orderable and stocked first, then the closest number, then the price.
+    candidates.sort(
+        key=lambda c: (
+            c[0]["price"] is None,
+            c[0]["end_of_life"],
+            c[0]["stock"] < group["quantity"],
+            c[1],
+            c[0]["price"] or 0,
+        )
+    )
+    return candidates[0][0]
+
+
+# --------------------------------------------------------------------------
+# Distributor choice
+
+# The cheapest distributor that can deliver wins (operator decision
+# 2026-09-23, SHBS-17). PREFERENCE only breaks ties and orders the fallback;
+# DigiKey first because it is the house distributor.
+PREFERENCE = ("DigiKey", "Mouser")
+
+END_OF_LIFE_MARKERS = (
+    "obsolet",
+    "end of life",
+    "nicht für neukonstruktionen",
+    "not recommended",
+    "nrnd",
+    "abgekündigt",
+    "discontinued",
+    "letzte",
+    "last time",
+)
+
+
+def is_end_of_life(lifecycle: str) -> bool:
+    text = (lifecycle or "").lower()
+    return any(marker in text for marker in END_OF_LIFE_MARKERS)
+
+
+def deliverable(offer: dict | None, quantity: int) -> bool:
+    return bool(offer) and offer["price"] is not None and offer["stock"] >= quantity
+
+
+def choose_source(group: dict) -> tuple:
+    """Return (distributor, deliverable) for one position."""
+    offers = group["offers"]
+    candidates = [n for n in PREFERENCE if deliverable(offers.get(n), group["quantity"])]
+    if candidates:
+        # min() keeps the first of equal prices, i.e. the preferred one.
+        return min(candidates, key=lambda n: offers[n]["price"]), True
+    # Nobody has it on the shelf: still name a quote so the sum stays
+    # meaningful, taking whoever has the larger (possibly zero) stock.
+    priced = [n for n in PREFERENCE if offers.get(n) and offers[n]["price"] is not None]
+    if priced:
+        return max(priced, key=lambda n: offers[n]["stock"]), False
+    return "", False
+
+
 def enrich(groups: list, use_network: bool, refresh: bool) -> None:
     cache = {} if refresh else load_cache()
     api_key = ""
     if use_network:
         if not KEY_PATH.exists():
-            print("! secrets/mouser_api_key fehlt - laufe ohne Netzabfrage", file=sys.stderr)
-            use_network = False
+            print("! secrets/mouser_api_key fehlt - Mouser nur aus dem Cache", file=sys.stderr)
         else:
             api_key = KEY_PATH.read_text(encoding="utf-8").strip()
+    client = digikey.DigiKey(offline=not use_network, refresh=refresh)
+    if use_network and client.offline:
+        print("! secrets/digikey_api.json fehlt - DigiKey nur aus dem Cache", file=sys.stderr)
 
     for group in groups:
-        group["price"] = None
-        group["price_break"] = None
-        group["stock"] = ""
-        group["url"] = ""
-        group["source"] = ""
         group["schematic_mouser_part"] = group["mouser_part"]
         group["mismatch"] = False
-        if not (group["mouser_part"] or group["manufacturer_part"]):
-            continue
-        if not use_network and not cache:
-            continue  # nothing to resolve against
-        part, how = lookup(api_key, cache, group["mouser_part"], group["manufacturer_part"])
-        if not part:
-            continue
+        group["offers"] = {}
+        if group["mouser_part"] or group["manufacturer_part"]:
+            group["offers"]["Mouser"] = mouser_offer(api_key, cache, group)
+            group["offers"]["DigiKey"] = digikey_offer(client, group)
 
-        resolved_part = (part.get("MouserPartNumber") or "").strip()
-        if group["schematic_mouser_part"] and normalise(resolved_part) != normalise(
-            group["schematic_mouser_part"]
-        ):
-            # The schematic field is stale - report it rather than quietly
-            # replacing it, so the mismatch reaches the schematic as a fix.
-            group["mismatch"] = True
-        group["mouser_part"] = resolved_part
+        mouser = group["offers"].get("Mouser")
+        if mouser:
+            if group["schematic_mouser_part"] and normalise(mouser["part"]) != normalise(
+                group["schematic_mouser_part"]
+            ):
+                # The schematic field is stale - report it rather than quietly
+                # replacing it, so the mismatch reaches the schematic as a fix.
+                group["mismatch"] = True
+            group["mouser_part"] = mouser["part"]
 
-        price, price_break = price_for_quantity(part, group["quantity"])
-        group["price"] = price
-        group["price_break"] = price_break
-        group["stock"] = stock_of(part)
-        group["url"] = part.get("ProductDetailUrl") or ""
-        group["source"] = f"Mouser-API ({how})"
-        if not group["manufacturer"]:
-            group["manufacturer"] = part.get("Manufacturer") or ""
-        if not group["manufacturer_part"]:
-            group["manufacturer_part"] = part.get("ManufacturerPartNumber") or ""
-        if not group["datasheet"]:
-            group["datasheet"] = part.get("DataSheetUrl") or ""
+        source, available = choose_source(group)
+        chosen = group["offers"].get(source) or {}
+        group["source"] = source
+        group["available"] = available
+        group["price"] = chosen.get("price")
+        group["stock"] = chosen.get("stock", "")
+
+        # Fill gaps from the offer actually ordered first: for a generic type
+        # such as SS34 the two distributors may well list different makers.
+        others = [o for n, o in group["offers"].items() if o and n != source]
+        for offer in ([chosen] if chosen else []) + others:
+            if not group["manufacturer"]:
+                group["manufacturer"] = offer["manufacturer"]
+            if not group["manufacturer_part"]:
+                group["manufacturer_part"] = offer["manufacturer_part"]
+            if not group["datasheet"]:
+                group["datasheet"] = offer["datasheet"]
 
     save_cache(cache)
+    client.save_cache()
 
 
 # --------------------------------------------------------------------------
@@ -393,30 +591,56 @@ def is_generic(group: dict) -> bool:
 def status_of(group: dict) -> tuple:
     """Return (status, note) for one position."""
     notes = []
+    offers = group.get("offers") or {}
+    source = group.get("source", "")
     if group.get("mismatch"):
         notes.append(
             f"Mouser-Nr. im Schaltplan ({group['schematic_mouser_part']}) stimmt nicht — "
             f"gültig ist {group['mouser_part']}. Schaltplanfeld korrigieren."
         )
-    if group["price"] is not None and group.get("stock") == 0:
-        notes.append("Bei Mouser gelistet, aber Lagerbestand 0 — Lieferzeit vor der Bestellung prüfen.")
+    end_of_life = [
+        f"{name}: {offer['lifecycle']}" for name, offer in offers.items() if offer and offer["end_of_life"]
+    ]
+    if end_of_life:
+        notes.append(f"Abgekündigt ({'; '.join(end_of_life)}) — Ersatztyp wählen.")
+    if source and not group.get("available"):
+        notes.append(
+            f"Bei keinem Distributor ab Lager lieferbar (Lager {source}: {group['stock']}) — "
+            "Lieferzeit anfragen oder Ersatz wählen."
+        )
+    elif source:
+        other = next(n for n in PREFERENCE if n != source)
+        alternative = offers.get(other)
+        if not alternative:
+            notes.append(f"Bei {other} nicht geführt — nur über {source}.")
+        elif alternative["price"] is None:
+            notes.append(f"Bei {other} nur in Großverpackung gelistet — nur über {source}.")
+        elif not deliverable(alternative, group["quantity"]):
+            notes.append(f"Bei {other} nicht ausreichend ab Lager ({alternative['stock']}) — nur über {source}.")
+    if group["proposal"]:
+        lead = group["proposal"] + "."
+        if group["replaced"]:
+            lead = f"Ersatz für {group['replaced']} (abgekündigt). " + lead
+        notes.insert(0, lead)
+        if group["price"] is None:
+            notes.append("Bei keinem Distributor bepreist — Alternative wählen.")
+        notes.append("Nach Freigabe als Feld in den Schaltplan übernehmen.")
+        return ("Vorschlag", " ".join(notes))
     if group["derived"]:
         notes.append("Teilenummer aus Wert/Bibliothek abgeleitet — am Datenblatt bestätigen.")
         return ("abgeleitet", " ".join(notes))
+    if end_of_life:
+        return ("Ersatz nötig", " ".join(notes))
     if group["price"] is not None:
-        status = "prüfen" if (notes and group.get("mismatch")) else "eindeutig"
+        status = "eindeutig" if group.get("available") and not group.get("mismatch") else "prüfen"
         return (status, " ".join(notes))
     if group["mouser_part"] or group["manufacturer_part"]:
-        if group["source"]:
-            # Resolved at Mouser, but the response carried no price break.
-            notes.append(
-                "Bei Mouser gelistet, aber ohne Preisangabe und ohne Lagerbestand — "
-                "Preis und Lieferzeit anfragen."
-            )
+        if any(offers.values()):
+            notes.append("Gelistet, aber ohne Preis für diese Menge — Preis und Lieferzeit anfragen.")
         else:
             notes.append(
-                "Teilenummer bekannt, aber bei Mouser kein bestellbarer Treffer — "
-                "Alternative oder anderen Distributor suchen."
+                "Teilenummer bekannt, aber weder bei Mouser noch bei DigiKey ein Treffer — "
+                "Alternative oder weiteren Distributor suchen."
             )
         return ("prüfen", " ".join(notes))
     if is_generic(group):

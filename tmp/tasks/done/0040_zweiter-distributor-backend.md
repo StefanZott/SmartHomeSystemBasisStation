@@ -45,24 +45,29 @@ bzw. ueberhaupt verfuegbare Bezugsquelle sichtbar wird.
 - [x] OAuth-2-legged-Flow implementiert in [digikey.py](../../bom/digikey.py):
       Client-Credentials, Token wird bei Bedarf erneuert (599 s Laufzeit ist
       kuerzer als ein voller BOM-Lauf) *(2026-09-23)*
-- [ ] Distributor-Abfrage hinter einer gemeinsamen Schnittstelle kapseln —
-      `lookup()` ist gekapselt, aber noch Mouser-spezifisch
+- [x] Distributor-Abfrage hinter einer gemeinsamen Schnittstelle kapseln —
+      `mouser_offer()` und `digikey_offer()` liefern ein einheitliches
+      Angebotsformat (Nr., Preis, Staffel, Lager, Lebenszyklus, Link)
+      *(2026-09-23)*
 - [x] DigiKey-Client: Product Information V4, Suche ueber
       Herstellerteilenummer, EUR-Preis, Lagerbestand und Lebenszyklus-Status
       *(2026-09-23)*
 - [x] Antworten cachen (`tmp/bom/digikey_cache.json`), in `.gitignore`
       aufgenommen wie der Mouser-Cache *(2026-09-23)*
-- [ ] Mappe erweitern: Preis und Lagerbestand je Anbieter, guenstigste bzw.
-      einzige verfuegbare Quelle markieren
+- [x] Mappe erweitern: Preis und Lagerbestand je Anbieter, Lebenszyklus,
+      waehlbare Bezugsquelle (guenstigster lieferbarer Anbieter, bei
+      Gleichstand DigiKey — Bediener 2026-09-23), guenstigerer Preis fett,
+      Teilsummen je Anbieter *(2026-09-23)*
 - [x] **Abdeckungspruefung** der 17 Positionen mit bekannter Teilenummer
       *(2026-09-23)* — Ergebnis in
       [digikey-abdeckung.md](../../report/2026-09-23_digikey-abdeckung.md).
       Die restlichen 29 sind generische Passivteile ohne Teilenummer; fuer sie
       ist nicht die Abdeckung die Frage, sondern die Auswahl (Task 0041)
-- [ ] Gegenprobe: Mengensumme und Referenzabdeckung, Mappe mit LibreOffice
-      durchrechnen
-- [ ] Doku: Abschnitt „Bestellfaehige Stueckliste" in
-      [hardware.md](../../../docs/project/hardware.md) ergaenzen
+- [x] Gegenprobe: 46 Positionen, Menge 78, 78 Referenzen je genau einmal;
+      LibreOffice rechnet fehlerfrei (0 Formelfehler), Summe 35,59 EUR =
+      Zeilensumme (DigiKey 34,42 + Mouser 1,17) *(2026-09-23)*
+- [x] Doku: Abschnitt „Bestellfaehige Stueckliste" in
+      [hardware.md](../../../docs/project/hardware.md) ergaenzt *(2026-09-23)*
 - [ ] Commit
 
 ## Was der Bediener noch tun muss
@@ -100,6 +105,13 @@ Anwendung:
   NRND, beide Lager 0 bei beiden Distributoren).
   **Naechster Schritt:** `digikey.py` in `generate_bom.py` einhaengen, damit
   die Mappe beide Anbieter nebeneinander ausweist.
+- 2026-09-23 (3): **Mappe mit beiden Anbietern erzeugt.** DigiKey-Client um
+  Stichwortsuche erweitert (loest `D11` SS34, `D12` SMAJ5.0A und `U1`
+  D3V3XA4B10LP-7 auf). Ergebnis: 16 von 46 Positionen bepreist, 15 ueber
+  DigiKey, 1 ueber Mouser (`S2`). `PS1` steht mit Lager 0 auf DigiKey,
+  `J1`/`J_PWR1` ohne Angebot (Rolle MOQ 6000, obsolet) — beides
+  „Ersatz noetig", Task 0041. Hinweis: `ruff` ist im Container nicht
+  installiert, Lint-Pruefung daher nicht gelaufen.
 
 ## Commits
 
