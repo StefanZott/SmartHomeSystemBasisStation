@@ -408,13 +408,6 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
             "Bediener",
         ),
         (
-            "F1 (Sicherung)",
-            "Der Wert im Schaltplan lautet schlicht \"Fuse\" — kein Strom- oder Auslösewert.",
-            "Nennstrom steht in power_supply.md (Polyfuse 1,1 A); der Vorschlag MF-NSMF110-2 "
-            "folgt dem. Den Wert auch im Schaltplan eintragen, sonst liest man dort nur \"Fuse\".",
-            "Agent",
-        ),
-        (
             "FB1 (Ferritperle)",
             "Nutzt das Symbol Device:R — also einen Widerstand.",
             "Elektrisch folgenlos (zweipoliges Passivteil), aber Symbol und Bauteil "

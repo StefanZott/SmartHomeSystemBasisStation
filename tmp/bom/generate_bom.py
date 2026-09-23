@@ -80,64 +80,12 @@ DERIVED_PART_NUMBERS = {
 }
 
 # Proposed parts for positions whose schematic carries only a value, or whose
-# part is discontinued (house standard proposed 2026-09-23, SHBS-17, task
-# 0041). Shown as "Vorschlag" until the operator confirms them and they move
-# into the schematic fields - the schematic stays the source of truth.
-_RES_0805 = "Dickschicht 0805, 1 %, 0,125 W (Hausstandard)"
-_CAP_X7R = "X7R, 50 V, 0805 (Hausstandard)"
-_PROPOSALS = [
-    (("R17",), "RC0805FR-0749K9L", "YAGEO", _RES_0805),
-    (("R18",), "RC0805FR-0716K2L", "YAGEO", _RES_0805),
-    (("R19", "R20", "R21", "R22"), "RC0805FR-075K1L", "YAGEO", _RES_0805),
-    (("R27",), "RC0805FR-0712K4L", "YAGEO", _RES_0805),
-    (("R28", "R29", "R30", "R31", "R32"), "RC0805FR-0710KL", "YAGEO", _RES_0805),
-    (("R33", "R34"), "RC0805FR-07220RL", "YAGEO", _RES_0805),
-    (("R35",), "RC0805JR-070RL", "YAGEO", "Nullohm-Brücke 0805"),
-    (("R36", "R37", "R39", "R40"), "RC0805FR-0749R9L", "YAGEO", _RES_0805),
-    (("R38",), "RC0805FR-0710RL", "YAGEO", _RES_0805),
-    (("R9",), "MFR-25FBF52-10K", "YAGEO", "Metallschicht 0207, 1 %, 0,25 W"),
-    (
-        ("R13", "R14", "R15", "R16"),
-        "PR02000202200JR500",
-        "Vishay BC Components",
-        "Metallschicht 2 W, 5 %, passend zum Footprint DIN0617 (Raster 20,32 mm); "
-        "elektrisch genügt 0,25 W — siehe Offene Punkte zur Mischbestückung",
-    ),
-    (
-        ("R23", "R24", "R25", "R26"),
-        "PR02000204701JR500",
-        "Vishay BC Components",
-        "Metallschicht 2 W, 5 %, passend zum Footprint DIN0617 (Raster 20,32 mm); "
-        "elektrisch genügt 0,25 W — siehe Offene Punkte zur Mischbestückung",
-    ),
-    (("C13", "C27"), "CL21B106KOQNNNE", "Samsung", "X7R, 16 V, 0805"),
-    (("C14",), "CL21A226MOQNNNE", "Samsung", "X5R, 16 V, 0805 — Kapazität sinkt unter DC-Vorspannung"),
-    (("C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22"), "CC0805KRX7R9BB104", "YAGEO", _CAP_X7R),
-    (("C23",), "CL21A475KAQNNNE", "Samsung", "X5R, 25 V, 0805"),
-    (("C24", "C31"), "CC0805KRX7R9BB103", "YAGEO", _CAP_X7R),
-    (
-        ("C25", "C26"),
-        "CC0805JRNPO9BN270",
-        "YAGEO",
-        "C0G, 50 V, 5 %. Wert geprüft: Quarz Y1 hat 18 pF Last, "
-        "2 × (18 pF − ~4,5 pF Streukapazität) ≈ 27 pF",
-    ),
-    (("C28",), "C1206C102KGRACTU", "KEMET", "X7R, 2 kV, 1206 — Schirmabschluss Ethernet"),
-    (("C29", "C30"), "CC0805KRX7R9BB682", "YAGEO", _CAP_X7R),
-    (("C32",), "CL21B223KBANNNC", "Samsung", _CAP_X7R),
-    (("D8",), "151033BS03000", "Würth Elektronik", "WL-TMRW 3 mm blau, passend zum Footprint"),
-    (("D9",), "151033RS03000", "Würth Elektronik", "WL-TMRW 3 mm rot, passend zum Footprint"),
-    (("D10",), "151031VS06000", "Würth Elektronik", "WL-TMRC 3 mm grün, passend zum Footprint"),
-    (("Q1", "Q2", "Q3", "Q4"), "BC33740TA", "onsemi", "BC337-40 (höchste Verstärkungsgruppe), TO-92"),
-    (
-        ("F1",),
-        "MF-NSMF110-2",
-        "Bourns",
-        "Polyfuse 1206, Haltestrom 1,1 A, 6 V, gemäß power_supply.md; "
-        "Last ~400 mA am 5-V-Eingang (~36 %)",
-    ),
-    (("FB1",), "BLM21PG601SN1D", "Murata", "600 Ω @ 100 MHz, 0805"),
-]
+# part is discontinued. Shown as "Vorschlag" until the operator confirms them
+# and they move into the schematic fields - the schematic stays the source of
+# truth. Entries: ((references...), part number, manufacturer, rationale).
+# Empty since 2026-09-23: all 29 proposals of SHBS-17 were approved and are
+# now schematic fields.
+_PROPOSALS: list = []
 PROPOSED_PARTS = {ref: entry[1:] for entry in _PROPOSALS for ref in entry[0]}
 
 GENERIC_PREFIXES = ("R", "C", "L", "FB")
@@ -214,8 +162,13 @@ def group_instances(instances: list) -> list:
     for item in instances:
         # Keyed on what is ordered, not on which symbol was drawn: J1 and
         # J_PWR1 are the same Amphenol receptacle behind two different
-        # symbols, and a buyer wants one line of quantity two.
-        key = (item["value"], item["footprint"])
+        # symbols, and a buyer wants one line of quantity two. The part
+        # number wins over the value, which is spelt inconsistently across
+        # sheets ("100 nF" / "100nF").
+        if item["manufacturer_part"]:
+            key = ("mpn", normalise(item["manufacturer_part"]))
+        else:
+            key = (item["value"], item["footprint"])
         group = groups.setdefault(
             key,
             {

@@ -339,12 +339,12 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | Ref | Funktion | Teil / Wert | KiCad-Symbol | Footprint (Vorschlag) |
 |-----|----------|-------------|--------------|----------------------|
 | **J_PWR** | USB-C Buchse | Amphenol **12401598E4#2A** | `shbs_power:USB_C_Receptacle_Power` | `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` |
-| **F1** | Überstrom | Polyfuse **1,1 A** | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
+| **F1** | Überstrom | Polyfuse **1,1 A** (MF-NSMF110-2) | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
 | **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS) | `Device:D` | `Diode_SMD:D_SMA` |
 | **D11** | Flyback | **SS34** (Schottky) | `Device:D` | `Diode_SMD:D_SMA` |
 | **PS1** | Buck | **AP3211KTR-G1** | `shbs_power:AP3211` | `shbs_power:MP2359DJ` (SOT-23-6-Landmuster, passt unverändert) |
 | **L1** | Induktivität | **4,7 µH** (empf.) oder 10 µH | `Device:L` | `Inductor_SMD:L_5.7x5.7` oder `L_Bourns_SRN6045TA` |
-| **C13** | VIN bulk | **10 µF / 16 V** X5R | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
+| **C13** | VIN bulk | **10 µF / 16 V** X7R | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
 | **C14** | VOUT bulk | **22 µF** | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
 | **C15** | Bootstrap | **100 nF** | `Device:C` | `Capacitor_SMD:C_0805_2012Metric` |
 | **R17** | FB oben | **49,9 kΩ** (1 %) | `Device:R` | `Resistor_SMD:R_0805_2012Metric` |
@@ -352,13 +352,25 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | **R19** | CC1 Rd | **5,1 kΩ** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` |
 | **R20** | CC2 Rd | **5,1 kΩ** | `Device:R` | `Resistor_SMD:R_0805_2012Metric` |
 
-### Empfohlene Einzelteile (Beispiele)
+### Bestellteile (Stand 2026-09-23, SHBS-17)
 
-| Ref | MPN (Beispiel) | Anmerkung |
-|-----|----------------|-----------|
-| L1 | Würth **74405300470** (4,7 µH) | MP2359-Datenblatt Tabelle 2 |
-| L1 | Bourns **SRN6045TA-100M** (10 µH) | Alternative bei 10 µH |
-| C13 | Murata **GRM21BR61C106KE15** | 10 µF, 16 V, 0805 |
+Im Schaltplan als Felder `Manufacturer` / `Manufacturer_Part_Number` /
+`Mouser Part Number` hinterlegt; Preise und Verfügbarkeit liefert die
+bestellfähige Stückliste ([hardware.md](hardware.md), Abschnitt
+„Bestellfähige Stückliste“).
+
+| Ref | Teil | Anmerkung |
+|-----|------|-----------|
+| PS1 | Diodes **AP3211KTR-G1** | siehe Abschnitt PS1 |
+| J_PWR1 | Amphenol **12401598E4#2A** | siehe Abschnitt Buchsenwechsel |
+| F1 | Bourns **MF-NSMF110-2** | Polyfuse 1206, 1,1 A Halte-, 2,2 A Auslösestrom, 6 V |
+| C13 | Samsung **CL21B106KOQNNNE** | 10 µF, 16 V, X7R — die frühere Angabe Murata GRM21BR61C106KE15 ist bei Mouser und DigiKey ohne Lager |
+| C14 | Samsung **CL21A226MOQNNNE** | 22 µF, 16 V, X5R — Kapazität sinkt unter DC-Vorspannung |
+| C15 | YAGEO **CC0805KRX7R9BB104** | 100 nF, 50 V, X7R |
+| R17 / R18 | YAGEO **RC0805FR-0749K9L** / **RC0805FR-0716K2L** | 1 %, 0805 |
+| R19 / R20 | YAGEO **RC0805FR-075K1L** | 5,1 kΩ, 1 %, 0805 |
+| L1 | Bourns **SRN6045TA-100M** | 10 µH, I<sub>sat</sub> 4,6 A — Nummer aus dem Wert abgeleitet, am Datenblatt zu bestätigen |
+| D11 / D12 | **SS34** / **SMAJ5.0A** | herstellerneutrale Typen, am Datenblatt zu bestätigen |
 
 **Buchsenwechsel (2026-09-23, SHBS-17):** Die ursprüngliche `12401548E4#2A` ist obsolet und bei
 Mouser und DigiKey nicht mehr ab Lager. Ersetzt durch Amphenol **`12401598E4#2A`** (von Mouser als

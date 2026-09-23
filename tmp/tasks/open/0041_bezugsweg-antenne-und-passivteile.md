@@ -47,11 +47,9 @@ Preise und Lagerbestaende nachzuziehen.
 
 ## Schritte
 
-- [ ] **Bediener:** Antennenkette entscheiden — Tabelle oben. Da die Bestellung
-      ohnehin ueber DigiKey laufen soll, spricht viel fuer den
-      Taoglas-Nachfolger `GW.20.A151`: eine Quelle statt zwei, und die Serie ist
-      bereits im Schaltplan dokumentiert. Die Reichelt-Option DELOCK 88339 ist
-      60 Cent guenstiger, verursacht aber eine zweite Bestellung
+- [x] Antennenkette: Schaltplan traegt bereits den Taoglas-Nachfolger
+      `GW.20.A151` (Umstellung SHBS-16); in der Stueckliste bei beiden
+      Distributoren ab Lager
 - [x] Ersatz fuer `J1`/`J_PWR1`: Bediener hat `12401598E4#2A` gewaehlt
       (2026-09-23). **Nicht** pad-kompatibel (B-Reihe SMD statt THT) — neuer
       Footprint `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` angelegt,
@@ -64,22 +62,22 @@ Preise und Lagerbestaende nachzuziehen.
       Schaltplan und in `power.kicad_sym` umgestellt, ERC 0 Fehler, Netzliste
       unveraendert. L1-Saettigung (4,6 A) gegen Strombegrenzung (max. 2,4 A)
       geprueft
-- [~] Hausstandard fuer generische Passivteile — **Vorschlag erstellt**
-      (2026-09-23, Bediener hat Vorgehen freigegeben), Einzelteile in
-      `PROPOSED_PARTS` ([generate_bom.py](../../bom/generate_bom.py)),
-      **Bestaetigung der Einzelteile steht aus**. Urspruenglich:
-      Toleranz, Spannungsfestigkeit, Dielektrikum (X7R/C0G), Belastbarkeit.
-      Vorrang: `C25`/`C26` am 25-MHz-Quarz (Lastkapazitaet gegen die
-      Quarz-Spezifikation rechnen) und die 1-%-Widerstaende im Ethernet-Zweig
-- [~] Nennstrom fuer `F1`: stand bereits in power_supply.md (Polyfuse 1,1 A,
-      Last ~400 mA). Vorschlag Bourns `MF-NSMF110-2` (1206, 6 V) —
-      Bestaetigung steht aus. Traegt im Schaltplan bisher nur den Wert „Fuse"
+- [x] Hausstandard fuer generische Passivteile — Vorschlag vom Bediener
+      insgesamt freigegeben (2026-09-23, „alle aufeinmal freigeben"). Standard
+      dokumentiert in [hardware.md](../../../docs/project/hardware.md).
+      `C25`/`C26` gegen C_L 18 pF von `Y1` nachgerechnet (27 pF passt)
+- [x] `F1`: Bourns `MF-NSMF110-2` (1206, 1,1 A, 6 V) gemaess power_supply.md,
+      freigegeben; Wert im Schaltplan von „Fuse" auf „1.1A" gesetzt
 - [ ] Abgeleitete Teilenummern am Datenblatt bestaetigen: `D11`, `D12`, `U1`,
       `L1`, `J6`
-- [ ] Entschiedene Teile als Felder in den Schaltplan eintragen (GUI), damit
-      der naechste Export sie traegt
+- [x] Entschiedene Teile als Felder in den Schaltplan eingetragen
+      (2026-09-23, per Skript statt GUI): 29 Positionen / 58 Instanzen mit
+      `Manufacturer`, `Manufacturer_Part_Number`, `Mouser Part Number`.
+      Gegenprobe: keine Felder verloren, Pins und Positionen unveraendert,
+      Netzliste identisch (102 Netze), ERC 0 Fehler. `PROPOSED_PARTS` geleert
 - [x] `generate_bom.py` erneut laufen lassen, Mappe pruefen *(2026-09-23:
-      46/46 Positionen bepreist, 49,30 EUR, LibreOffice 0 Formelfehler)*
+      Gruppierung jetzt nach Teilenummer → 44 Positionen, alle bepreist und
+      lieferbar, 47,78 EUR, LibreOffice 0 Formelfehler)*
 - [ ] Commit
 
 **J1/J_PWR1 — Stand 2026-09-23:** Umgestellt auf Amphenol `12401598E4#2A`.
@@ -122,6 +120,7 @@ Beschaffungsentscheidung, und muesste als eigenes Thema laufen.
 - d1870af Befunde zu Abkuendigungen dokumentiert (Teilschritt, Task noch offen)
 - 14ac68d Teilevorschlaege fuer alle offenen Stuecklistenpositionen (Teilschritt)
 - 5f9b9d6 USB-C-Buchse auf 12401598E4#2A umgestellt (Teilschritt)
+- 5547305 PS1 auf AP3211 umgestellt (Teilschritt)
 
 ## Offene Fragen
 

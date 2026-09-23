@@ -351,9 +351,11 @@ python3 tmp/bom/generate_bom.py --no-network   # nur aus dem lokalen Cache
 
 Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
 
-- **Gruppiert wird nach Wert + Footprint, nicht nach `lib_id`.** `J1` und
-  `J_PWR1` nutzen verschiedene Symbole für dieselbe Amphenol-Buchse; für eine
-  Bestellung ist das eine Position mit Menge 2 (siehe Abschnitt zu J1 oben).
+- **Gruppiert wird nach Herstellerteilenummer, nur ohne Nummer nach Wert +
+  Footprint — nie nach `lib_id`.** `J1` und `J_PWR1` nutzen verschiedene
+  Symbole für dieselbe Amphenol-Buchse; für eine Bestellung ist das eine
+  Position mit Menge 2. Die Teilenummer hat Vorrang, weil Werte über die
+  Blätter uneinheitlich geschrieben sind (`100 nF` / `100nF`, `10uF` / `10 µF`).
 - **Antworten werden in `tmp/bom/mouser_cache.json` und
   `tmp/bom/digikey_cache.json` zwischengespeichert.** Das schont die
   Tageskontingente und macht Läufe ohne Netz reproduzierbar. `--refresh`
@@ -369,13 +371,19 @@ Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
   herstellerneutrale Typen (`SS34`) auflöst. Verpackungen, deren
   Mindestbestellmenge über der Stückzahl liegt (Rollen), zählen nicht als
   Angebot.
-- **Teilevorschläge stehen im Skript, nicht im Schaltplan.** Für Positionen,
-  die im Schaltplan nur einen Wert oder ein abgekündigtes Teil tragen, hält
-  `PROPOSED_PARTS` in `generate_bom.py` einen Vorschlag nach Hausstandard
-  (Widerstände 0805 1 %, Kondensatoren X7R 50 V bzw. X5R/X7R 16–25 V ab 1 µF,
-  C0G am Quarz). Die Mappe markiert sie mit Status „Vorschlag“. Nach Freigabe
-  wandern sie als Felder in den Schaltplan und der Eintrag im Skript entfällt
-  — der Schaltplan bleibt die maßgebliche Quelle.
+- **Teilevorschläge stehen im Skript, bis sie freigegeben sind.** Für
+  Positionen, die im Schaltplan nur einen Wert oder ein abgekündigtes Teil
+  tragen, kann `PROPOSED_PARTS` in `generate_bom.py` einen Vorschlag halten;
+  die Mappe markiert ihn mit Status „Vorschlag“. Nach Freigabe wandern die
+  Teile als Felder `Manufacturer`, `Manufacturer_Part_Number` und
+  `Mouser Part Number` in den Schaltplan, und der Eintrag im Skript entfällt
+  — der Schaltplan bleibt die maßgebliche Quelle. Die Liste ist seit
+  2026-09-23 leer: alle 29 Vorschläge aus SHBS-17 sind übernommen.
+- **Hausstandard für Passivteile (SHBS-17, freigegeben 2026-09-23):**
+  Widerstände Dickschicht 0805, 1 %, 0,125 W; Kondensatoren bis 100 nF X7R
+  50 V, ab 1 µF X5R/X7R 16–25 V; C0G für die Quarz-Lastkondensatoren
+  `C25`/`C26` (27 pF, gegen C<sub>L</sub> = 18 pF von `Y1` nachgerechnet);
+  `C28` 1 nF/2 kV in 1206 für den Ethernet-Schirmabschluss.
 
 Gefundene Abweichungen überschreiben die Schaltplan-Felder **nicht**, sondern
 landen als Befund im Blatt „Offene Punkte“ — eine veraltete Teilenummer gehört
