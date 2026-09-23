@@ -32,18 +32,24 @@ dasselbe wie sein Footprint.
       `523-12401598E4#2A` gesetzt *(2026-09-23)*
 - [x] `U1`: `D3V3XA4B10LP-7` samt Hersteller und Mouser-Nummer als Feld
       eingetragen — erledigt in SHBS-17 (Task 0041) *(2026-09-23)*
-- [ ] `FB1`: von `Device:R` auf ein Ferrit-Symbol wechseln (Wert bleibt
-      `Ferrit 600R@100MHz`)
-- [ ] `J6`: Wert von `Conn_02x03_Odd_Even` auf die Wuerth-Bestellbezeichnung
-      `61200621621` aendern
-- [ ] `D7`-`D10`: einheitliches Symbol verwenden — `D8`/`D9`/`D10` nutzen
-      `Device:LED`, `D7` das spezifische `WL-TMRC_3MM`
-- [ ] ERC laufen lassen: muss weiterhin **0 Fehler** melden
-- [ ] `generate_bom.py` laufen lassen und gegenpruefen, dass die Meldung
-      „veraltete Mouser-Nummern" verschwunden ist
-- [ ] Doku: Warnhinweis in [hardware.md](../../../docs/project/hardware.md)
-      (Abschnitt „BOM / Beschaffung") entfernen, sobald die Felder stimmen
-- [ ] Commit
+- [x] `FB1`: auf `Device:FerriteBead` umgestellt (gleiche Pin-Geometrie wie
+      `Device:R`), Wert unveraendert *(2026-09-23)*
+- [x] `J6`: Wert auf `61200621621` gesetzt *(2026-09-23)*
+- [x] `D7`-`D10`: alle auf `Device:LED` *(2026-09-23)*. **Dabei Polaritaetsfehler
+      an `D10` gefunden und behoben:** Footprint `WL-TMRC_3MM` hatte Pad 1 =
+      Anode, `Device:LED` Pin 1 = Kathode — D10 lag mit der Kathode an +3V3.
+      Footprint auf Pad 1 = K / Pad 2 = A umnummeriert (wie `WL-TMRW_3MM`),
+      Wuerth-Symbol `WL-TMRC_3MM` mitgezogen, D7 so platziert, dass K/A auf den
+      bisherigen Drahtenden liegen
+- [x] ERC: **0 Fehler**, 1 Warnung wie zuvor. Netzliste: alle 102 Netze mit
+      gleichen Bauteilen, nur D7-Pinnummern getauscht (gewollt); Polaritaet
+      aller vier LEDs auf Pad-Ebene geprueft
+- [x] `generate_bom.py`: keine veralteten Mouser-Nummern mehr, 44 Positionen
+      eindeutig; erledigte Punkte FB1/J6/LED-Symbol aus „Offene Punkte" entfernt
+- [x] Doku: Hinweiskasten in [hardware.md](../../../docs/project/hardware.md)
+      auf einen Absatz gekuerzt; Abschnitt Status-LEDs um Symbol/Polaritaet
+      und den Hinweis zum PCB-Abgleich ergaenzt
+- [x] Commit
 
 ## Hinweis zur Umsetzung
 
@@ -71,6 +77,10 @@ einheitliche Symbolverwendung.
   durch. `hardware.md` nachgezogen.
   **Naechster Schritt:** `FB1`, `J6` und die LED-Symbole in der GUI. `J1`/
   `J_PWR1` warten auf Task 0041.
+
+- 2026-09-23: Restliche Schritte umgesetzt — per Skript statt GUI, Nachweis
+  ueber Netzlisten-Vergleich (Pins bleiben an den Draehten). **Task
+  abgeschlossen.**
 
 ## Commits
 

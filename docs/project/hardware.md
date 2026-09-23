@@ -67,22 +67,13 @@ Beide Teile sind im Schaltplan `BasisStation_Layout.kicad_sch` als **mechanische
 
 Mouser-Referenzen: CAB.6061 → **`960-CAB.6061`** (845 ab Lager, Stand 2026-09-22). Alternativ gleichwertige U.FL→RP-SMA-Bulkhead- und 2,4-GHz-RP-SMA-Antennen-Kombinationen — **Polarität und Steckertyp beibehalten**.
 
-> **Umstellung am 2026-09-23 (SHBS-16):** `GW.20.5150` ist **abgekündigt** —
-> der Typ steht nicht mehr im Taoglas-Katalog. Ersetzt durch den
-> Seriennachfolger `GW.20.A151`, der form-, anschluss- und gewinngleich ist
-> (2 dBi, 2,4 GHz, RP-SMA(M) gerade). Zusätzlich ist Taoglas bei Mouser auf das
-> `960-`-Präfix umgezogen, die alten `742-`-Nummern liefern keinen Treffer mehr.
->
-> | Position | Mouser-Nr. | Lager | Preis @1 |
-> | -------- | ---------- | ----- | -------- |
-> | ANT1 Pigtail `CAB.6061` | `960-CAB.6061` | 845 | 4,47 € |
-> | ANT2 Antenne `GW.20.A151` | `960-GW.20.A151` | 650 | 8,46 € |
->
-> Die Schaltplan-Felder sind entsprechend nachgezogen. Eine weiße Variante
-> `960-GW.20.A151W` gibt es ebenfalls. **Kein Footprint betroffen:** `ANT1` und
-> `ANT2` sind mit `on_board no` als reine BOM-Einträge geführt und kommen nicht
-> auf die Leiterplatte (siehe Abschnitt oben). Mechanisch bleibt alles gleich,
-> die SMA-Bohrung richtet sich weiterhin nach dem Pigtail.
+`ANT2` ist seit 2026-09-23 (SHBS-16) der Taoglas-Seriennachfolger
+**`GW.20.A151`** (`960-GW.20.A151`); der ursprünglich vorgesehene `GW.20.5150`
+ist abgekündigt. Form, Anschluss und Gewinn sind gleich (2 dBi, 2,4 GHz,
+RP-SMA(M) gerade), eine weiße Variante `960-GW.20.A151W` gibt es ebenfalls.
+Taoglas führt bei Mouser inzwischen das Präfix `960-` statt `742-`. `ANT1` und
+`ANT2` sind mit `on_board no` reine BOM-Einträge; kein Footprint betroffen.
+Aktuelle Preise und Lager: bestellfähige Stückliste (Abschnitt unten).
 
 Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail`, `WLAN_Antenna`).
 
@@ -120,6 +111,18 @@ Vier Status-LEDs, je über einen NPN-Transistor als **Low-Side-Schalter** gegen 
 | `D8` | Blau | `Q1` | GPIO48 (25) | `R26`, 4,7 kΩ | `R14`, 220 Ω |
 
 Transistoren: **BC337** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E).
+
+**Symbol und Polarität (SHBS-16, 2026-09-23):** Alle vier LEDs nutzen
+`Device:LED` (Pin 1 = Kathode, Pin 2 = Anode). Die beiden Würth-Footprints
+`WL-TMRC_3MM` (D7, D10) und `WL-TMRW_3MM` (D8, D9) sind gleich nummeriert:
+Pad 1 = Kathode (abgeflachte Seite), Pad 2 = Anode (`+` im Bestückungsdruck).
+Das war nicht immer so — `WL-TMRC_3MM` kam vom Hersteller mit vertauschter
+Nummerierung (Pad 1 = Anode). Zusammen mit `Device:LED` war **D10 dadurch
+verpolt** und hätte nie geleuchtet; D7 war nur deshalb richtig, weil es das
+Würth-eigene Symbol nutzte. Der Footprint ist jetzt umnummeriert, das
+Würth-Symbol `WL-TMRC_3MM` entsprechend mitgezogen. **Beim nächsten
+PCB-Abgleich** den Footprint von D7/D10 aus der Bibliothek aktualisieren — die
+Platinendatei enthält noch die alte Nummerierung.
 
 **Dimensionierung:** Der Vorwiderstand stellt bei ca. 2 V Flussspannung rund 5 mA LED-Strom ein. Der Basiswiderstand begrenzt den Basisstrom auf ca. 0,55 mA — ausreichend für sichere Sättigung und unkritisch für den GPIO-Treiber. Ohne diesen Widerstand wirkt die Basis-Emitter-Strecke als Diode gegen GND und der Pin-Strom wäre nur durch die Treiberimpedanz begrenzt.
 

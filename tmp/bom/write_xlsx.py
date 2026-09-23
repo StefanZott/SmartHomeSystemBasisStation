@@ -414,26 +414,11 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
 
     points += [
         (
-            "FB1 (Ferritperle)",
-            "Nutzt das Symbol Device:R — also einen Widerstand.",
-            "Elektrisch folgenlos (zweipoliges Passivteil), aber Symbol und Bauteil "
-            "widersprechen sich. Wer den Schaltplan liest, sieht einen Widerstand.",
-            "Agent",
-        ),
-        (
-            "J6 (Stiftleiste)",
-            "Wert ist der generische KiCad-Symbolname \"Conn_02x03_Odd_Even\".",
-            "Der Footprint verweist auf Würth 61200621621. Der Wert sollte die "
-            "Bestellbezeichnung tragen, sonst ist die Stückliste ohne Blick in den "
-            "Footprint nicht lesbar.",
-            "Agent",
-        ),
-        (
-            "D8, D9, D10 (LEDs)",
-            "Nutzen das generische Symbol Device:LED, während D7 das spezifische "
-            "WL-TMRC_3MM-Symbol nutzt.",
-            "Uneinheitlich. Zudem liegen D8/D9 auf der Serie WL-TMRW, D10 auf WL-TMRC — "
-            "zwei verschiedene Würth-Serien in derselben Funktionsgruppe.",
+            "D7–D10 (LEDs): zwei Würth-Serien",
+            "D7/D10 sind WL-TMRC (eingefärbt, diffus), D8/D9 WL-TMRW (wasserklar).",
+            "Elektrisch gleichwertig, optisch nicht: wasserklare LEDs strahlen gerichteter und "
+            "wirken bei gleichem Strom heller. Für ein einheitliches Erscheinungsbild eine Serie "
+            "wählen — beide Footprints sind seit SHBS-16 gleich nummeriert (1 = K, 2 = A).",
             "Bediener",
         ),
         (
