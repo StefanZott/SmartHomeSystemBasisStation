@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 type: project-doc
 ---
 
@@ -17,7 +17,7 @@ Stromversorgung              Rechenkern / Peripherie
   [USB-C J_PWR1 → Buck
    AP3211 auf 3,3 V] ───────► ESP32-S3-WROOM-1U-N16R8
                                       │
-  [Power- / Reset-Taster] ────────────┤
+  [Reset-Taster S2] ──────────────────┤
                                       ├──► [4 LEDs, RGBY]
   [USB-C J1, Debug] ──────────────────┤
   [PROG J6] ──────────────────────────┤
@@ -29,7 +29,7 @@ Stromversorgung              Rechenkern / Peripherie
 Der separate JTAG-Header ist entfallen — der ESP32-S3 bringt USB-Serial-JTAG
 im Chip mit, On-Chip-Debugging läuft über `J1`.
 
-Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [communication.md](communication.md).
+Blockskizze: `pcb/architektur_basisStation.drawio`. Hardware-Details: [hardware.md](hardware.md). Kommunikation (WLAN, HTTP): [communication.md](communication.md).
 
 ## Verzeichnisstruktur (Repository)
 
