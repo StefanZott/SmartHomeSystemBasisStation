@@ -27,3 +27,7 @@ Namen. Das ist ein Hardware-Artefakt, kein Analysebericht. Zusätzlich lag in
 - [x] Skript schreibt nach `pcb/`
 - [x] Alte Mappe verschoben, `STL.xlsx` entfernt
 - [x] Doku aktualisiert
+
+## Commits
+
+- `a6bf592` Stückliste nach pcb/ verlegt, STL.xlsx entfernt
