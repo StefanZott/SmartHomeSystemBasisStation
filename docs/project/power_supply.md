@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 type: project-doc
 jira: SHBS-4
 ---
@@ -299,8 +299,8 @@ Footprint-Feld. Ohne Zuweisung übernimmt der PCB-Abgleich (F8) sie nicht.
 - `BasisStation.net` stammt vom 2026-06-09 und enthält noch `PS2`/`+12V`;
   das PCB ist älter als der Schaltplan. Beides nach der Topologie-Korrektur
   neu erzeugen.
-- Netznamen der Eingangsseite: `PW_EN` auf der 5-V-Schiene, VBUS unbenannt
-  (siehe Abschnitt „Netze"). Rein kosmetisch, ändert die Topologie nicht.
+- Netznamen der Eingangsseite: seit 2026-09-24 `VBUS` und `+5V` (siehe
+  Abschnitt „Netze"); vorher `PW_EN` bzw. unbenannt.
 
 ---
 
@@ -475,18 +475,20 @@ Datenblatt: **1 µH … 10 µH**, Stromrating ≥ **1,5 A** (25 % über max. Las
 
 | Netz | Name im Schaltplan | Herkunft | Verbraucher |
 |------|--------------------|----------|-------------|
-| VBUS (vor `F1`) | *unbenannt* | J_PWR VBUS (`A4`, `A9`) | `F1`, `#FLG01` |
-| 5 V (hinter `F1`) | **`PW_EN`** | `F1` | `D12`, `C13`, `PS1.5` (VIN), `PS1.4` (EN), `#FLG02` |
+| VBUS (vor `F1`) | **`VBUS`** (lokal) | J_PWR VBUS (`A4`, `A9`) | `F1`, `#FLG01` |
+| 5 V (hinter `F1`) | **`+5V`** (lokal) | `F1` | `D12`, `C13`, `PS1.5` (VIN), `PS1.4` (EN), `#FLG02` |
 | **`+3V3`** | `+3V3` | PS1 via `L1`/`C14` | U6, LEDs, Stecker, Entkopplung |
 | **`GND`** | `GND` | J_PWR, PS1, Passives | gemeinsame Masse |
 
-> **Namensabweichung:** Die 5-V-Schiene hinter `F1` trägt im Schaltplan das
-> globale Label **`PW_EN`**, nicht `+5V`. Der Name stammt daher, dass `PS1.4`
-> (EN) über dasselbe Label an VIN gelegt ist — das ist die dokumentierte
-> Absicht („EN mit VIN verbinden, Wandler immer an"), aber der Name beschreibt
-> den Enable-Pin, nicht die Leistungsschiene. Das VBUS-Netz vor `F1` ist
-> unbenannt. Beides ist elektrisch korrekt; für Netzliste, Routing und BOM
-> wäre `+5V` bzw. `VBUS` lesbarer. Umbenennung steht als Restposten aus.
+> **Netznamen (2026-09-24, SHBS-4 B2):** Die 5-V-Schiene hinter `F1` hieß bis
+> dahin **`PW_EN`** — nach dem Enable-Pin `PS1.4`, der über dasselbe Label an
+> VIN liegt (Wandler immer an), nicht nach der Leistungsschiene. Sie heißt
+> jetzt `+5V`, das Netz vor `F1` `VBUS`. Beide sind **lokale** Labels: Sie
+> werden nur auf diesem Blatt gebraucht, und ein globales Label hätte jedes
+> gleichnamige Label auf einem anderen Blatt stillschweigend mit der
+> 5-V-Schiene verbunden. In der Netzliste erscheinen sie daher als
+> `/Stromversorgung/+5V` und `/Stromversorgung/VBUS`. Verbindungen
+> unverändert (Netzlisten-Vergleich, ERC 0 Fehler).
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 

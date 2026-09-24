@@ -2226,49 +2226,35 @@
 		)
 		(uuid "ff3d82a7-9f6b-4d32-9934-2485343bd45b")
 	)
-	(global_label "PW_EN"
-		(shape input)
-		(at 161.29 77.47 90)
-		(fields_autoplaced yes)
+	(label "VBUS"
+		(at 231.14 78.74 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
+		)
+		(uuid "cbacffa5-d0d3-4a27-bbe3-72246d0fc994")
+	)
+	(label "+5V"
+		(at 161.29 77.47 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
 		)
 		(uuid "2ab7c461-582b-4d5b-b3a0-d0282c6ae6f9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 161.29 68.3163 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
 	)
-	(global_label "PW_EN"
-		(shape output)
+	(label "+5V"
 		(at 137.16 93.98 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify right bottom)
 		)
 		(uuid "faa80185-a2b3-45e7-baed-2326d5fe5260")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 103.1337 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
 	)
 	(symbol
 		(lib_id "power:GND")
