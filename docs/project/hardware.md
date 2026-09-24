@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 type: project-doc
 ---
 
@@ -110,7 +110,11 @@ Vier Status-LEDs, je über einen NPN-Transistor als **Low-Side-Schalter** gegen 
 | `D10` | Grün | `Q2` | GPIO47 (24) | `R25`, 4,7 kΩ | `R16`, 220 Ω |
 | `D8` | Blau | `Q1` | GPIO48 (25) | `R26`, 4,7 kΩ | `R14`, 220 Ω |
 
-Transistoren: **BC337** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E).
+Transistoren: **BC337-40** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E), bestellt
+als onsemi **`BC33740BU`** mit **geraden** Anschlussbeinen. Der Footprint
+`TO-92_Inline` hat 1,27 mm Raster; die Gurt-Variante `BC33740TA` hat auf
+2,54 mm aufgebogene Beine und passt nicht (so bis 2026-09-24 in der
+Stückliste, beim Footprint-Abgleich aufgefallen).
 
 **Symbol und Polarität (SHBS-16, 2026-09-23):** Alle vier LEDs nutzen
 `Device:LED` (Pin 1 = Kathode, Pin 2 = Anode). Die beiden Würth-Footprints

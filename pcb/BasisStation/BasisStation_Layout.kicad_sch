@@ -4262,7 +4262,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "BC33740TA"
+		(property "Manufacturer_Part_Number" "BC33740BU"
 			(at 246.38 148.59 0)
 			(effects
 				(font
@@ -4271,7 +4271,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "512-BC33740TA"
+		(property "Mouser Part Number" "512-BC33740BU"
 			(at 246.38 148.59 0)
 			(effects
 				(font
@@ -5612,7 +5612,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "BC33740TA"
+		(property "Manufacturer_Part_Number" "BC33740BU"
 			(at 219.71 104.14 0)
 			(effects
 				(font
@@ -5621,7 +5621,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "512-BC33740TA"
+		(property "Mouser Part Number" "512-BC33740BU"
 			(at 219.71 104.14 0)
 			(effects
 				(font
@@ -7155,7 +7155,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "BC33740TA"
+		(property "Manufacturer_Part_Number" "BC33740BU"
 			(at 228.6 118.11 0)
 			(effects
 				(font
@@ -7164,7 +7164,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "512-BC33740TA"
+		(property "Mouser Part Number" "512-BC33740BU"
 			(at 228.6 118.11 0)
 			(effects
 				(font
@@ -8725,7 +8725,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "BC33740TA"
+		(property "Manufacturer_Part_Number" "BC33740BU"
 			(at 238.76 133.35 0)
 			(effects
 				(font
@@ -8734,7 +8734,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "512-BC33740TA"
+		(property "Mouser Part Number" "512-BC33740BU"
 			(at 238.76 133.35 0)
 			(effects
 				(font
