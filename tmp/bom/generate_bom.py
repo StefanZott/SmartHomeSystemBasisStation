@@ -430,6 +430,18 @@ def digikey_offer(client, group: dict) -> dict | None:
 # DigiKey first because it is the house distributor.
 PREFERENCE = ("DigiKey", "Mouser")
 
+# Operator decisions that beat the price rule: reference -> (distributor, reason).
+# Applied only while that distributor can deliver; otherwise the price rule
+# takes over again rather than naming an empty shelf.
+SOURCE_OVERRIDES = {
+    "U6": (
+        "Mouser",
+        "Bezugsquelle Mouser festgelegt (Bediener, 2026-09-24): DigiKey hat nur "
+        "zweistelligen Lagerbestand, Mouser mehrere Tausend — sicherer fuer "
+        "groessere Stueckzahlen, Aufpreis rund 0,14 EUR.",
+    ),
+}
+
 END_OF_LIFE_MARKERS = (
     "obsolet",
     "end of life",
@@ -455,6 +467,10 @@ def deliverable(offer: dict | None, quantity: int) -> bool:
 def choose_source(group: dict) -> tuple:
     """Return (distributor, deliverable) for one position."""
     offers = group["offers"]
+    for ref in group["references"]:
+        forced = SOURCE_OVERRIDES.get(ref)
+        if forced and deliverable(offers.get(forced[0]), group["quantity"]):
+            return forced[0], True
     candidates = [n for n in PREFERENCE if deliverable(offers.get(n), group["quantity"])]
     if candidates:
         # min() keeps the first of equal prices, i.e. the preferred one.
@@ -547,6 +563,10 @@ def status_of(group: dict) -> tuple:
             f"Mouser-Nr. im Schaltplan ({group['schematic_mouser_part']}) stimmt nicht — "
             f"gültig ist {group['mouser_part']}. Schaltplanfeld korrigieren."
         )
+    for ref in group["references"]:
+        forced = SOURCE_OVERRIDES.get(ref)
+        if forced and source == forced[0]:
+            notes.append(forced[1])
     end_of_life = [
         f"{name}: {offer['lifecycle']}" for name, offer in offers.items() if offer and offer["end_of_life"]
     ]

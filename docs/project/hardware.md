@@ -372,7 +372,11 @@ Zwei Entwurfsentscheidungen, die beim Lesen sonst überraschen:
   die Menge ab Lager liefern kann; bei Gleichstand auf DigiKey. Sie ist per
   Auswahlliste änderbar; Einzelpreis, Gesamtpreis und die Teilsummen je
   Anbieter rechnen sich daraus. Wer alles über einen Anbieter bestellen will,
-  um Versandkosten zu sparen, stellt die Spalte entsprechend um.
+  um Versandkosten zu sparen, stellt die Spalte entsprechend um. Dauerhafte Festlegungen, die
+  die Preisregel übersteuern, stehen mit Begründung in `SOURCE_OVERRIDES` in
+  `generate_bom.py` und erscheinen in der Hinweisspalte — derzeit `U6` →
+  Mouser (DigiKey mit nur zweistelligem Lager, Mouser mehrere Tausend;
+  Bediener 2026-09-24).
 - **Beide Anbieter werden zweistufig abgefragt:** erst die exakte Nummer, dann
   eine Stichwortsuche, die Verpackungssuffixe (`D3V3XA4B10LP` → `-7`) und
   herstellerneutrale Typen (`SS34`) auflöst. Nennt der Schaltplan einen
