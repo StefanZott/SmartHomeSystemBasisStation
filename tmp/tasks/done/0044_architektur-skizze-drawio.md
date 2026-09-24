@@ -29,3 +29,7 @@ JTAG-Header, aber kein Ethernet.
 - [x] drawio-Datei nach aktuellem Schaltplanstand
 - [x] Bild im Root-Blatt ersetzt, ERC ohne neue Befunde
 - [x] Doku aktualisiert
+
+## Commits
+
+- `711e0e9` Architektur-Skizze als drawio neu erstellt und im Schaltplan eingebettet
