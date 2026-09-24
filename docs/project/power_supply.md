@@ -406,11 +406,20 @@ Die Buchse ist **nur Power** (kein USB-Datenpfad). Strom kommt vom **Kabel** üb
 
 | Signal | Pins | Anschluss |
 |--------|------|-----------|
-| **VBUS (+5 V)** | **A4, A9, B4, B9** | Netz **+5V** → F1 → PS1 **VIN** |
+| **VBUS (+5 V)** | **A4, A9, B4, B9** | Netz **VBUS** → F1 → **+5V** → PS1 **VIN** |
 | **GND** | **A1, A12, B1, B12** | GND |
 | **Shield** | **S1** (4× Montage) | GND |
 
-Im Projekt-Symbol sind derzeit **A4, A9** (VBUS) und **A1, B1** (GND) ausgeführt — auf dem **PCB alle VBUS- und GND-Pads** zum selben Netz führen.
+Seit SHBS-20 (2026-09-24) führt das Symbol `shbs_power:USB_C_Receptacle_Power`
+alle acht Kontakte. Sichtbar sind A4/A9 (VBUS) und A1/B1 (GND). **B4/B9** und
+**A12/B12** liegen unsichtbar gestapelt auf A4/A9 bzw. A1/B1 und sind als
+`passive` typisiert. Ein versteckter `power_in`-Pin würde sich implizit mit
+dem gleichnamigen globalen Netz verbinden (siehe [hardware.md](hardware.md),
+„Keine versteckten Power-Pins mit abweichendem Namen").
+
+Vorher fehlten diese vier Pins im Symbol. Die Pads waren auf dem PCB ohne
+Netz, und die Versorgung lief nur über die Hälfte der Kontakte, weil
+Standardstecker VBUS und GND intern brücken.
 
 ### CC (Spannungsfestlegung Sink/UFP)
 

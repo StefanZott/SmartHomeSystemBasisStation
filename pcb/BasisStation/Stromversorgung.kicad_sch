@@ -1496,6 +1496,25 @@
 						)
 					)
 				)
+				(pin passive line
+					(at -10.16 5.08 0)
+					(length 2.54)
+					(hide yes)
+					(name "VBUS"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
 				(pin power_in line
 					(at -10.16 2.54 0)
 					(length 2.54)
@@ -1507,6 +1526,25 @@
 						)
 					)
 					(number "A9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(hide yes)
+					(name "VBUS"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B9"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -1568,6 +1606,25 @@
 						)
 					)
 				)
+				(pin passive line
+					(at 10.16 5.08 180)
+					(length 2.54)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
 				(pin power_in line
 					(at 10.16 2.54 180)
 					(length 2.54)
@@ -1579,6 +1636,25 @@
 						)
 					)
 					(number "B1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "B12"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -2226,16 +2302,6 @@
 		)
 		(uuid "ff3d82a7-9f6b-4d32-9934-2485343bd45b")
 	)
-	(label "VBUS"
-		(at 231.14 78.74 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cbacffa5-d0d3-4a27-bbe3-72246d0fc994")
-	)
 	(label "+5V"
 		(at 161.29 77.47 90)
 		(effects
@@ -2245,6 +2311,16 @@
 			(justify left bottom)
 		)
 		(uuid "2ab7c461-582b-4d5b-b3a0-d0282c6ae6f9")
+	)
+	(label "VBUS"
+		(at 231.14 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cbacffa5-d0d3-4a27-bbe3-72246d0fc994")
 	)
 	(label "+5V"
 		(at 137.16 93.98 270)
