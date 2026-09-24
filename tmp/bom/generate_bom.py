@@ -38,7 +38,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 SCHEMATIC_GLOB = str(ROOT / "pcb" / "BasisStation" / "*.kicad_sch")
 CACHE_PATH = ROOT / "tmp" / "bom" / "mouser_cache.json"
 KEY_PATH = ROOT / "secrets" / "mouser_api_key"
-OUTPUT_PATH = ROOT / "tmp" / "report" / "2026-09-22_stueckliste-basisstation.xlsx"
+OUTPUT_PATH = ROOT / "pcb" / "BasisStation_Stueckliste.xlsx"
 
 MOUSER_ENDPOINT = "https://api.mouser.com/api/v2/search/{mode}"
 

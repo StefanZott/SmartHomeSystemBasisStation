@@ -348,7 +348,10 @@ Schaltplanblätter daher direkt (eigener S-Expression-Parser in
 Lagerbestand und Lebenszyklus **bei Mouser und DigiKey** ab
 ([`digikey.py`](../../tmp/bom/digikey.py), Product Information V4, 2-legged
 OAuth) und schreibt die Mappe über
-[`write_xlsx.py`](../../tmp/bom/write_xlsx.py). Zugangsdaten:
+[`write_xlsx.py`](../../tmp/bom/write_xlsx.py) nach
+`pcb/BasisStation_Stueckliste.xlsx` — fester Name neben `BasisStation.pdf`,
+jeder Lauf überschreibt sie, der Verlauf steht in Git (bis SHBS-19 unter
+`tmp/report/`; die frühere Handliste `pcb/STL.xlsx` ist entfernt). Zugangsdaten:
 `secrets/mouser_api_key` und `secrets/digikey_api.json`.
 
 ```
