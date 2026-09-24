@@ -41,7 +41,7 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
 
 ## Commits
 
-- (noch keine)
+- c2ccc4a (WIP) Erster Layout-Stand Stromversorgung und LEDs
 
 ## Offene Fragen
 

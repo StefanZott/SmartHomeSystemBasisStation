@@ -55,7 +55,8 @@ auf dem PCB angebunden.
 
 ## Commits
 
-- (noch keine)
+- fe2b06a USB-C J_PWR1 um B4/B9 (VBUS) und A12/B12 (GND) ergänzt
+- c2ccc4a (WIP, SHBS-21) PCB-Anbindung der Pads, gemeinsam mit Layout-Stand
 
 ## Offene Fragen
 
