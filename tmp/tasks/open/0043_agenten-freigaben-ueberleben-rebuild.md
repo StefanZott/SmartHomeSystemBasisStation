@@ -1,7 +1,7 @@
 ---
 title: Werkzeug-Freigaben und Agenten-Zustand ueberleben einen Container-Rebuild
 created: 2026-09-23
-jira: TBD
+jira: -
 priority: medium
 type: bugfix
 ---
@@ -36,14 +36,14 @@ Zwei voneinander unabhaengige Absicherungen:
 
 ## Schritte
 
-- [ ] `.claude/settings.json`: Allowlist um lesende Shell-Befehle, lesende
+- [x] `.claude/settings.json`: Allowlist um lesende Shell-Befehle, lesende
       Git-Befehle, `idf.py build/size/fullclean/reconfigure`, `kicad-cli`,
       `soffice --headless` und `python3` erweitern.
       **Bewusst ausgenommen:** `git commit`, `git push`, `idf.py flash`, `rm` —
       CLAUDE.md §9 verlangt dafuer eine ausdrueckliche Freigabe des Bedieners.
       *Der Agent kann diese Datei nicht selbst schreiben (Selbstmodifikations-
       Schutz des Auto-Modus). Der Bediener fuegt den Inhalt ein oder erteilt
-      die Freigaben ueber `/permissions`.*
+      die Freigaben ueber `/permissions`.* — vom Bediener eingefuegt.
 - [x] `.devcontainer/devcontainer.json`: Named Volume `shbs-claude-state` auf
       `/home/esp/.claude` gemountet.
 - [x] `.devcontainer/Dockerfile`: `~/.claude` bereits im Image anlegen, damit
@@ -55,7 +55,8 @@ Zwei voneinander unabhaengige Absicherungen:
       `.claude/settings.json` gehoeren.
 - [ ] Rebuild durch den Bediener, danach Gegenprobe: Volume vorhanden,
       `~/.claude` dem User `esp` gehoerend, Freigaben greifen.
-- [ ] Commit-Vorschlag an Bediener (JIRA-ID steht noch aus).
+- [x] Commits erstellt — der Bediener hat ausdruecklich "kein Ticket"
+      freigegeben (Ausnahme nach CLAUDE.md Pro-Prompt-Workflow Schritt 4).
 
 ## Fortschritt
 
@@ -65,12 +66,21 @@ Zwei voneinander unabhaengige Absicherungen:
   Auto-Modus dem Agenten das Schreiben der eigenen Rechtekonfiguration
   verweigert — der Vorschlag liegt dem Bediener vor.
 
+## Commits
+
+- fef1ec5 Workflow-Hook auf Bash umgestellt (Vorarbeit, eigener Commit)
+- 21ddec7 secrets/.env per --env-file laden (Vorarbeit, eigener Commit)
+- c7388a7 Werkzeug-Freigaben und Agenten-Zustand rebuild-fest gemacht
+
 ## Offene Fragen
 
-- JIRA-ID fuer diesen Task steht aus.
+- Ohne JIRA-Ticket abgewickelt, nach ausdruecklicher Freigabe des Bedieners.
 - `~/.claude.json` (Login-Konto, Projektzustand) wird weiterhin nicht
   persistiert. Ein Symlink ins Volume waere riskant, weil die Anwendung die
   Datei atomar per Rename schreibt und den Symlink dabei ersetzen wuerde; die
   Binary warnt ausserdem selbst vor dem Ueberschreiben dieser Datei
   (GH #3117). Solange die Freigaben versioniert im Workspace liegen, bleibt
   als Rest nur ein einmaliges Neu-Login nach einem Rebuild.
+- 2026-09-23 (2): Allowlist vom Bediener eingefuegt. Drei atomare Commits
+  erstellt (Hook-Umstellung, --env-file, Volume + Freigaben). Der Task bleibt
+  offen, bis der Rebuild gelaufen und die Gegenprobe erfolgt ist.
