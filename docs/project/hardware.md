@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-24
+last_updated: 2026-09-26
 type: project-doc
 ---
 
@@ -99,6 +99,8 @@ Primäre Versorgung: **USB-C 5 V → AP3211 Buck → 3,3 V** (bis SHBS-17: MP235
 
 Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[power_supply.md](power_supply.md)**.
 
+**Layout-Stand (2026-09-26, SHBS-21):** Buck-Wandler kompakt um PS1 platziert, +3V3 zu U6 und zu den LED-Anoden geroutet. Details und Begründung der Leitungsführung: [power_supply.md](power_supply.md), Abschnitt „Platzierung Buck-Wandler“.
+
 ## Status-LEDs (SHBS-9)
 
 Vier Status-LEDs, je über einen NPN-Transistor als **Low-Side-Schalter** gegen GND geschaltet. Die LED-Anoden liegen gemeinsam auf +3V3, die Emitter aller Transistoren auf GND. Ein GPIO auf **High** schaltet die zugehörige LED **ein**.
@@ -134,7 +136,7 @@ Platinendatei enthält noch die alte Nummerierung.
 
 **Nicht verwenden:** GPIO35, GPIO36 und GPIO37 erscheinen in der Netzliste als frei, sind beim Modul **N16R8** aber intern vom Octal-PSRAM belegt.
 
-Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`.
+Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`. Layout: gemeinsame +3V3-Sammelleitung unter den LEDs, gespeist rechts an U6 vorbei (SHBS-21).
 
 ## Ethernet (SHBS-5)
 

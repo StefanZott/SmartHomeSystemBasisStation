@@ -8,7 +8,7 @@ status: active
 
 Stand für die Weiterarbeit auf einem anderen Rechner. In einer neuen
 Agenten-Session diese Datei zuerst lesen, danach Task
-[0047](tasks/open/0047_pcb-layout-stromversorgung-leds.md) und den
+[0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) und den
 [Review-Report](report/2026-09-24_pcb-review-stromversorgung-leds.md).
 
 ## Git
@@ -22,7 +22,7 @@ Agenten-Session diese Datei zuerst lesen, danach Task
 | Ticket | Thema | Status |
 |--------|-------|--------|
 | **SHBS-20** | USB-C J_PWR1: Pins B4/B9 (VBUS), A12/B12 (GND) fehlten im Symbol | erledigt, Abschlusskommentar in Jira. Ticket-Status setzt der Bediener. Task [0046](tasks/done/0046_usb-c-jpwr1-pins-ergaenzen.md) |
-| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | in Arbeit, Task [0047](tasks/open/0047_pcb-layout-stromversorgung-leds.md) |
+| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | in Arbeit. Task [0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) erledigt, Rest in Task [0048](tasks/open/0048_pcb-power-leitungen-aufweiten-drc-ausschluesse.md) |
 | SHBS-10 | Ethernet-Layout | unberührt, bewusst getrennt von SHBS-21 |
 
 ## Was in der Session passiert ist
@@ -42,11 +42,12 @@ Agenten-Session diese Datei zuerst lesen, danach Task
    mit Mustern VBUS, +5V, SW, +3V3, GND. Schaltknoten per Label `SW` benannt,
    F8 im PCB ist erfolgt (`/Stromversorgung/SW`). Details siehe
    `docs/project/power_supply.md`, Abschnitt „Netzklasse `Power`".
-6. **Punkt 3 begonnen:** Anleitung zum kompakten Umplatzieren des
-   Buck-Wandlers gegeben (siehe unten). Der Bediener hat noch **nicht**
-   umplatziert.
+6. **Punkt 3 erledigt (2026-09-26):** Der Agent hat den Buck-Wandler per
+   Skript in der `.kicad_pcb` umplatziert und neu geroutet (Details in Task
+   0047, Fortschritt 2026-09-26). SW-Leitung ca. 9,2 mm. Der Bediener muss
+   im PCB-Editor noch `B` drücken und speichern, noch nicht committet.
 
-## Nächster Schritt: Punkt 3 — Buck-Wandler kompakt platzieren
+## Referenz: Punkt 3 — Planung Buck-Wandler (umgesetzt, L1/C14 um 0,3/0,6 mm tiefer)
 
 PS1 bei (66 / 53,5), Pins von oben gesehen: oben SW, IN, EN — unten BST,
 GND, FB. Die heiße Schleife C13(+) → IN → SW → D11 → GND → C13(−) klein
@@ -67,7 +68,7 @@ Leitungslängen per Skript aus der `.kicad_pcb` nach.
 
 ## Danach offen (aus dem Review / Task 0047)
 
-- +3V3 zu U6.2 und zu den LED-Anoden D7–D10 routen (B4).
+- ~~+3V3 zu U6.2 und zu den LED-Anoden D7–D10 routen (B4)~~ erledigt 2026-09-26 durch den Agenten, Details in Task 0047.
 - Versorgungsleitungen außerhalb des Wandlers aufweiten (VBUS ab Buchse,
   +3V3). Im Pad-Feld der USB-C-Buchse 0,2–0,3 mm lassen.
 - DRC-Ausschlüsse an J_PWR1 (im DRC-Fenster, Rechtsklick → Ausschließen):
