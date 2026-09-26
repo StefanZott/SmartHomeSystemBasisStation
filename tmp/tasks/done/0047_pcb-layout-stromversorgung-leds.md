@@ -88,6 +88,7 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
 - c2ccc4a (WIP) Erster Layout-Stand Stromversorgung und LEDs
 - 53c2221 (WIP) Netzklasse Power, Label SW, Session-Übergabe tmp/memory.md
 - 0c19f62 (WIP) Buck-Wandler kompakt um PS1 platziert und neu geroutet
+- 895aab9 +3V3 zu U6 und LED-Anoden geroutet, Task abgeschlossen
 
 ## Offene Fragen
 
