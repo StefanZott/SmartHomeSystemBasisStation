@@ -8,7 +8,7 @@ status: active
 
 Stand für die Weiterarbeit auf einem anderen Rechner. In einer neuen
 Agenten-Session diese Datei zuerst lesen, danach Task
-[0047](tasks/open/0047_pcb-layout-stromversorgung-leds.md) und den
+[0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) und den
 [Review-Report](report/2026-09-24_pcb-review-stromversorgung-leds.md).
 
 ## Git
@@ -22,7 +22,7 @@ Agenten-Session diese Datei zuerst lesen, danach Task
 | Ticket | Thema | Status |
 |--------|-------|--------|
 | **SHBS-20** | USB-C J_PWR1: Pins B4/B9 (VBUS), A12/B12 (GND) fehlten im Symbol | erledigt, Abschlusskommentar in Jira. Ticket-Status setzt der Bediener. Task [0046](tasks/done/0046_usb-c-jpwr1-pins-ergaenzen.md) |
-| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | in Arbeit, Task [0047](tasks/open/0047_pcb-layout-stromversorgung-leds.md) |
+| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | in Arbeit. Task [0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) erledigt, Rest in Task [0048](tasks/open/0048_pcb-power-leitungen-aufweiten-drc-ausschluesse.md) |
 | SHBS-10 | Ethernet-Layout | unberührt, bewusst getrennt von SHBS-21 |
 
 ## Was in der Session passiert ist
@@ -68,7 +68,7 @@ Leitungslängen per Skript aus der `.kicad_pcb` nach.
 
 ## Danach offen (aus dem Review / Task 0047)
 
-- +3V3 zu U6.2 und zu den LED-Anoden D7–D10 routen (B4).
+- ~~+3V3 zu U6.2 und zu den LED-Anoden D7–D10 routen (B4)~~ erledigt 2026-09-26 durch den Agenten, Details in Task 0047.
 - Versorgungsleitungen außerhalb des Wandlers aufweiten (VBUS ab Buchse,
   +3V3). Im Pad-Feld der USB-C-Buchse 0,2–0,3 mm lassen.
 - DRC-Ausschlüsse an J_PWR1 (im DRC-Fenster, Rechtsklick → Ausschließen):

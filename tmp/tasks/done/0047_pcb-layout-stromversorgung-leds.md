@@ -4,7 +4,7 @@ created: 2026-09-24
 jira: SHBS-21
 priority: high
 type: feature
-status: open
+status: done
 ---
 
 ## Kontext
@@ -25,15 +25,16 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
 - [x] Netzklasse `Power` (0,6 mm, Via 0,8/0,4) für VBUS, +5V, +3V3, GND, SW anlegen (B2)
 - [x] Schaltknoten im Schaltplan mit lokalem Label `SW` benennen
 - [x] Bediener: KiCad öffnen, im PCB-Editor F8 (Netz `Net-(D11-K)` → `/Stromversorgung/SW`)
-- [ ] Versorgungsleitungen auf Netzklassenbreite aufweiten (außer Pad-Feld USB-C)
+- [x] ~~Versorgungsleitungen auf Netzklassenbreite aufweiten~~ → ausgelagert in Task 0048
 - [x] Buck-Wandler kompakt um PS1 anordnen, Schaltknoten kurz halten (B3)
 - [x] Bediener: PCB öffnen, `B` (Zonen füllen), Sichtprüfung Wandler, speichern
-- [ ] +3V3 zu U6.2 und zu den LED-Anoden routen (B4)
-- [ ] DRC-Restmeldungen an J_PWR1 ausschließen: 2× `starved_thermal`
+- [x] +3V3 zu U6.2 und zu den LED-Anoden routen (B4)
+- [x] Bediener: `B` und speichern nach B4-Routing
+- [x] ~~DRC-Restmeldungen an J_PWR1 ausschließen~~ → ausgelagert in Task 0048:: 2× `starved_thermal`
       (A1, rechtes S1), 2× Kantenabstand NPTH (A12, linkes S1) —
       Hersteller-Landepattern, Pads per Leiterbahn angebunden (aus SHBS-20)
-- [ ] `docs/project/power_supply.md` und `hardware.md` um Layout-Stand ergänzen
-- [ ] Commit
+- [x] `docs/project/power_supply.md` und `hardware.md` um Layout-Stand ergänzen
+- [x] Commit
 
 ## Fortschritt
 
@@ -66,11 +67,27 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
   75 Meldungen, davon **keine** im Wandler-Bereich. Kupferbefunde nur noch
   außerhalb: J_PWR1 (bekannte Ausschlüsse), U1-Padabstände, GND-Stummel
   (21,8/90,3). Offen im Bereich nur +3V3 zu U6/U7 (B4).
+- 2026-09-26 (B4): +3V3 per Skript geroutet (F.Cu, 0,6 mm). Hauptleitung
+  R17-Knick (67,5/62,1) → y 62,1 bis x 111 → 45° → U6.2 (119,35/64,45).
+  LED-Zweig ab (105/62,1) über U6 (y 58,1) bis x 150, senkrecht bis
+  y 155, Sammelleitung y 157,5 mit Stichen zu D7/D10/D8/D9-Anoden. Erste
+  Variante links an U6 vorbei (x 105) wieder verworfen, weil sie USB, EN
+  und ETH-SPI auf F.Cu abgeschnitten hätte. DRC: +3V3 außerhalb Ethernet
+  vollständig verbunden, Kupferbefunde nur gegen veraltete Zonenfüllung.
+- 2026-09-26 (B4, nach `B`): DRC 75 Meldungen (Stand wie vor B4, keine
+  neuen), offene Verbindungen 144 → 139. Keine Befunde an den neuen
+  +3V3-Leitungen.
+- 2026-09-26: Abschluss auf Wunsch des Bedieners. Aufweiten VBUS/+5V und
+  DRC-Ausschlüsse J_PWR1 in Task
+  [0048](../open/0048_pcb-power-leitungen-aufweiten-drc-ausschluesse.md)
+  ausgelagert (gleiches Ticket SHBS-21, bleibt offen). `hardware.md` um
+  Layout-Stand ergänzt. Task nach `done/` verschoben.
 
 ## Commits
 
 - c2ccc4a (WIP) Erster Layout-Stand Stromversorgung und LEDs
 - 53c2221 (WIP) Netzklasse Power, Label SW, Session-Übergabe tmp/memory.md
+- 0c19f62 (WIP) Buck-Wandler kompakt um PS1 platziert und neu geroutet
 
 ## Offene Fragen
 
