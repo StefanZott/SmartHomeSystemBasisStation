@@ -42,11 +42,12 @@ Agenten-Session diese Datei zuerst lesen, danach Task
    mit Mustern VBUS, +5V, SW, +3V3, GND. Schaltknoten per Label `SW` benannt,
    F8 im PCB ist erfolgt (`/Stromversorgung/SW`). Details siehe
    `docs/project/power_supply.md`, Abschnitt „Netzklasse `Power`".
-6. **Punkt 3 begonnen:** Anleitung zum kompakten Umplatzieren des
-   Buck-Wandlers gegeben (siehe unten). Der Bediener hat noch **nicht**
-   umplatziert.
+6. **Punkt 3 erledigt (2026-09-26):** Der Agent hat den Buck-Wandler per
+   Skript in der `.kicad_pcb` umplatziert und neu geroutet (Details in Task
+   0047, Fortschritt 2026-09-26). SW-Leitung ca. 9,2 mm. Der Bediener muss
+   im PCB-Editor noch `B` drücken und speichern, noch nicht committet.
 
-## Nächster Schritt: Punkt 3 — Buck-Wandler kompakt platzieren
+## Referenz: Punkt 3 — Planung Buck-Wandler (umgesetzt, L1/C14 um 0,3/0,6 mm tiefer)
 
 PS1 bei (66 / 53,5), Pins von oben gesehen: oben SW, IN, EN — unten BST,
 GND, FB. Die heiße Schleife C13(+) → IN → SW → D11 → GND → C13(−) klein

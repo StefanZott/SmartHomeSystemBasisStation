@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-25
+last_updated: 2026-09-26
 type: project-doc
 jira: SHBS-4
 ---
@@ -82,7 +82,7 @@ USB-Netzteil / Kabel (5 V)
 | Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet und verdrahtet |
 | PWR_FLAG an VBUS, VIN und Ausgang | eingefügt 2026-09-15 (`#FLG01`–`#FLG03`) |
 | `+3V3`-Symbol auf der U6-Schiene (`#PWR103`) | eingefügt 2026-09-15 |
-| PCB-Platzierung/Routing | offen |
+| PCB-Platzierung/Routing | Buck-Wandler kompakt platziert und geroutet (2026-09-26); +3V3-Verteilung offen |
 | Buck-Ausgangszweig korrigiert (B12) | erledigt 2026-09-15 |
 | ERC ohne Fehler | **erreicht** (Lauf 2026-09-18 23:42: 0 Fehler, 7 unkritische Warnungen; Blatt `/Stromversorgung/` ohne jede Meldung) |
 | DRC ohne Fehler | offen (PCB noch nicht nachgezogen) |
@@ -522,6 +522,19 @@ senkt die Breite zusätzlich die Leitungsinduktivität.
 bleiben die Leiterbahnen 0,2–0,3 mm breit und werden erst nach dem Pad-Feld
 aufgeweitet. Die Netzklassenbreite ist nur der Vorgabewert beim Routen, kein
 DRC-Minimum.
+
+### Platzierung Buck-Wandler (Layout)
+
+Seit 2026-09-26 (SHBS-21) sind die Bauteile des Wandlers eng um PS1
+(66 / 53,5) angeordnet. Leitgedanke: Die Schleife mit den schnellen
+Stromflanken, C13 → IN → SW → D11 → GND → C13, bleibt möglichst klein. Dazu
+sitzt C13 direkt über IN/EN, D11 links oben mit der Kathode auf Höhe von SW,
+C15 zwischen D11 und PS1. L1 und C14 stehen darunter, der FB-Teiler R17/R18
+rechts unten, abgewandt von SW und L1. Die Schaltknoten-Leitung ist rund
+9 mm lang (vorher 40,7 mm). GND-Vias (0,8/0,4) sitzen an C13, D11, PS1.2,
+C14 und R18. R17 greift die Spannung für die Regelung am Ausgangskondensator
+C14 ab. Die Koordinaten stehen in der
+[`.kicad_pcb`](../../pcb/BasisStation/BasisStation.kicad_pcb).
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 
