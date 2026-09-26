@@ -22,7 +22,10 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
 ## Schritte
 
 - [x] Erste Platzierung und Routing durch Bediener (WIP-Stand)
-- [ ] Netzklasse `Power` (0,6–0,8 mm) für VBUS, +5V, +3V3, GND, SW anlegen (B2)
+- [x] Netzklasse `Power` (0,6 mm, Via 0,8/0,4) für VBUS, +5V, +3V3, GND, SW anlegen (B2)
+- [x] Schaltknoten im Schaltplan mit lokalem Label `SW` benennen
+- [ ] Bediener: KiCad öffnen, im PCB-Editor F8 (Netz `Net-(D11-K)` → `/Stromversorgung/SW`)
+- [ ] Versorgungsleitungen auf Netzklassenbreite aufweiten (außer Pad-Feld USB-C)
 - [ ] Buck-Wandler kompakt um PS1 anordnen, Schaltknoten kurz halten (B3)
 - [ ] +3V3 zu U6.2 und zu den LED-Anoden routen (B4)
 - [ ] DRC-Restmeldungen an J_PWR1 ausschließen: 2× `starved_thermal`
@@ -38,6 +41,14 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
   144 offene Verbindungen überwiegend außerhalb dieses Bereichs. Stand wird
   als WIP-Commit gesichert, damit SHBS-20 separat committet werden kann.
   Nächster Schritt: Netzklasse `Power` (Punkt 2 des Reviews).
+
+- 2026-09-25: Label `SW` in `Stromversorgung.kicad_sch` auf der Leitung ab
+  PS1.6 gesetzt (Netzliste: `/Stromversorgung/SW` = C15.2, D11.1, L1.2,
+  PS1.6; ERC unverändert). Netzklasse `Power` mit fünf Mustern in
+  `BasisStation.kicad_pro` angelegt. Muster per DRC-Probe in Kopie geprüft
+  (Abstand testweise 5 mm): GND, +3V3, VBUS, +5V greifen, SW erst nach F8.
+  `power_supply.md` ergänzt. Nächster Schritt: F8 durch Bediener, dann
+  Leitungen aufweiten.
 
 ## Commits
 

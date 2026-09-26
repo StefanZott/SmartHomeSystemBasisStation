@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-24
+last_updated: 2026-09-25
 type: project-doc
 jira: SHBS-4
 ---
@@ -484,9 +484,10 @@ Datenblatt: **1 µH … 10 µH**, Stromrating ≥ **1,5 A** (25 % über max. Las
 
 | Netz | Name im Schaltplan | Herkunft | Verbraucher |
 |------|--------------------|----------|-------------|
-| VBUS (vor `F1`) | **`VBUS`** (lokal) | J_PWR VBUS (`A4`, `A9`) | `F1`, `#FLG01` |
+| VBUS (vor `F1`) | **`VBUS`** (lokal) | J_PWR VBUS (`A4`, `A9`, `B4`, `B9`) | `F1`, `#FLG01` |
 | 5 V (hinter `F1`) | **`+5V`** (lokal) | `F1` | `D12`, `C13`, `PS1.5` (VIN), `PS1.4` (EN), `#FLG02` |
 | **`+3V3`** | `+3V3` | PS1 via `L1`/`C14` | U6, LEDs, Stecker, Entkopplung |
+| Schaltknoten | **`SW`** (lokal) | `PS1.6` | `L1.2`, `D11` Kathode, `C15.2` |
 | **`GND`** | `GND` | J_PWR, PS1, Passives | gemeinsame Masse |
 
 > **Netznamen (2026-09-24, SHBS-4 B2):** Die 5-V-Schiene hinter `F1` hieß bis
@@ -498,6 +499,29 @@ Datenblatt: **1 µH … 10 µH**, Stromrating ≥ **1,5 A** (25 % über max. Las
 > 5-V-Schiene verbunden. In der Netzliste erscheinen sie daher als
 > `/Stromversorgung/+5V` und `/Stromversorgung/VBUS`. Verbindungen
 > unverändert (Netzlisten-Vergleich, ERC 0 Fehler).
+
+> **Label `SW` (2026-09-25, SHBS-21):** Der Schaltknoten hieß bis dahin
+> automatisch `Net-(D11-K)`. Der Name hängt an der Referenz von D11 und hätte
+> sich beim Umnummerieren stillschweigend geändert, wodurch die
+> Netzklassen-Zuordnung verloren gegangen wäre. Das lokale Label `SW` auf der
+> Leitung ab `PS1.6` macht daraus `/Stromversorgung/SW`.
+
+### Netzklasse `Power` (Layout)
+
+Seit 2026-09-25 (SHBS-21) ist in `BasisStation.kicad_pro` neben `Default`
+(0,2 mm) die Netzklasse **`Power`** definiert: Leiterbahn **0,6 mm**, Abstand
+0,2 mm, Via 0,8/0,4 mm. Zuordnung per Muster: `/Stromversorgung/VBUS`,
+`/Stromversorgung/+5V`, `/Stromversorgung/SW`, `+3V3`, `GND`.
+
+**Warum 0,6 mm:** Spitzenlast auf `+3V3` ca. 0,7 A (ESP32-S3 beim
+WLAN-Senden plus W5500). 0,6 mm bei 35 µm tragen gut 1,5 A bei 10 °C
+Erwärmung, also Reserve bis zum Maximalstrom des AP3211. Am Schaltknoten
+senkt die Breite zusätzlich die Leitungsinduktivität.
+
+**Ausnahme:** An den Pads der USB-C-Buchse (0,3 mm breit, 0,5 mm Raster)
+bleiben die Leiterbahnen 0,2–0,3 mm breit und werden erst nach dem Pad-Feld
+aufgeweitet. Die Netzklassenbreite ist nur der Vorgabewert beim Routen, kein
+DRC-Minimum.
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 

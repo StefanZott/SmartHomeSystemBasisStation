@@ -2312,6 +2312,16 @@
 		)
 		(uuid "2ab7c461-582b-4d5b-b3a0-d0282c6ae6f9")
 	)
+	(label "SW"
+		(at 163.83 86.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "fd4dc0aa-75f7-48e0-95cd-cc69b7006142")
+	)
 	(label "VBUS"
 		(at 231.14 78.74 0)
 		(effects
