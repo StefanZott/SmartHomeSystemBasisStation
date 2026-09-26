@@ -53,6 +53,7 @@ Netzklasse für die Versorgungsnetze. DRC im Bereich ohne Fehler.
 ## Commits
 
 - c2ccc4a (WIP) Erster Layout-Stand Stromversorgung und LEDs
+- 53c2221 (WIP) Netzklasse Power, Label SW, Session-Übergabe tmp/memory.md
 
 ## Offene Fragen
 
