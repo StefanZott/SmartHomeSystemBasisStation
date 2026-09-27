@@ -4,7 +4,7 @@ created: 2026-09-26
 jira: SHBS-21
 priority: medium
 type: feature
-status: open
+status: done
 ---
 
 ## Kontext
@@ -25,22 +25,36 @@ ausgeschlossen, DRC im Bereich Stromversorgung ohne Fehler.
 
 ## Schritte
 
-- [ ] VBUS ab J_PWR1 bis D12/F1 auf 0,6 mm aufweiten (Agent, KiCad geschlossen)
-- [ ] +5V ab F1 bis C13/D12 auf 0,6 mm aufweiten
-- [ ] Bediener: `B` drücken, speichern, DRC prüfen
-- [ ] Bediener: DRC-Ausschlüsse an J_PWR1 im DRC-Fenster (Rechtsklick →
+- [x] VBUS ab J_PWR1 bis D12/F1 auf 0,6 mm aufweiten (Agent, KiCad geschlossen) — A4-Zweig nur 0,3 mm wegen CC1
+- [x] +5V ab F1 bis C13/D12 auf 0,6 mm aufweiten — Grafiklinien zu D12 durch Leiterbahnen ersetzt
+- [x] Bediener: `B` drücken, speichern, DRC prüfen
+- [x] Bediener: DRC-Ausschlüsse an J_PWR1 im DRC-Fenster (Rechtsklick →
       Ausschließen): 2× `starved_thermal` (A1, rechtes S1), 2× Kantenabstand
       zum NPTH (A12, linkes S1)
-- [ ] `docs/project/power_supply.md` aktualisieren
-- [ ] Commit
+- [x] `docs/project/power_supply.md` aktualisieren
+- [x] Commit
 
 ## Fortschritt
 
 - 2026-09-26: Task aus 0047 ausgelagert, noch nicht begonnen.
+- 2026-09-27: Agent hat per Skript (KiCad geschlossen) aufgeweitet:
+  VBUS-Hauptpfad A9 → F1 ab y 37,4 auf 0,6 mm (Segment im Pad-Feld geteilt),
+  B.Cu-Brücke 0,6 mm, A4-Zweig ab y 37,4 auf 0,3 mm (CC1 im Abstand 0,5 mm
+  parallel). +5V zu D12 bestand aus zwei `gr_line` auf F.Cu mit Netz → durch
+  0,6-mm-Segmente ersetzt, Stich zum Pad ebenfalls 0,6 mm. DRC: keine neuen
+  Abstandsfehler zwischen Leiterbahnen, offene Verbindungen unverändert 139.
+  12 neue Meldungen nur gegen die veraltete GND-Füllung. Doku ergänzt.
+  Nächster Schritt: Bediener `B`, speichern, DRC-Ausschlüsse J_PWR1.
+- 2026-09-27: Bediener hat Zonen gefüllt und die vier Meldungen an J_PWR1
+  ausgeschlossen (in `BasisStation.kicad_pro`, `drc_exclusions`). DRC: 71
+  statt 75 Meldungen, J_PWR1 ohne Meldung, keine Zonen-Artefakte mehr.
+  Außerhalb des Bereichs verbleiben u. a. 2× Kantenabstand an J1
+  (Debug-USB, gleiches Landepattern-Thema), 5× Abstand an U1, Silkscreen,
+  139 offene Verbindungen (überwiegend Ethernet/SHBS-10). Task abgeschlossen.
 
 ## Commits
 
-- (noch keine)
+- b0bc21b Versorgungsleitungen aufgeweitet, DRC-Ausschlüsse J_PWR1
 
 ## Offene Fragen
 
