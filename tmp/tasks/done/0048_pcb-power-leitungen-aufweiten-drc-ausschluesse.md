@@ -54,7 +54,8 @@ ausgeschlossen, DRC im Bereich Stromversorgung ohne Fehler.
 
 ## Commits
 
-- b0bc21b Versorgungsleitungen aufgeweitet, DRC-Ausschlüsse J_PWR1
+- b0bc21b (unvollständig, nur Verschieben der Task-Datei)
+- 6aa90d9 Versorgungsleitungen aufgeweitet, DRC-Ausschlüsse J_PWR1 (Nachtrag)
 
 ## Offene Fragen
 
