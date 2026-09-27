@@ -13,16 +13,16 @@ Agenten-Session diese Datei zuerst lesen, danach Task
 
 ## Git
 
-- Branch: **`fix/usb-c-jpwr1-pins`** (auf `origin` gepusht, noch nicht nach
-  `main` gemergt, kein PR angelegt).
-- Auf dem anderen Rechner: `git fetch && git switch fix/usb-c-jpwr1-pins`.
+- `fix/usb-c-jpwr1-pins` ist über PR #1 und #2 nach `main` gemergt.
+  Weitergearbeitet wird auf `main` (Stand 2026-09-27).
+- Auf einem anderen Rechner: `git switch main && git pull --ff-only`.
 
 ## Tickets
 
 | Ticket | Thema | Status |
 |--------|-------|--------|
 | **SHBS-20** | USB-C J_PWR1: Pins B4/B9 (VBUS), A12/B12 (GND) fehlten im Symbol | erledigt, Abschlusskommentar in Jira. Ticket-Status setzt der Bediener. Task [0046](tasks/done/0046_usb-c-jpwr1-pins-ergaenzen.md) |
-| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | in Arbeit. Task [0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) erledigt, Rest in Task [0048](tasks/open/0048_pcb-power-leitungen-aufweiten-drc-ausschluesse.md) |
+| **SHBS-21** | PCB-Layout Stromversorgung und Status-LEDs | erledigt 2026-09-27 (Tasks [0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md), [0048](tasks/done/0048_pcb-power-leitungen-aufweiten-drc-ausschluesse.md)), Abschlusskommentar in Jira. Ticket-Status setzt der Bediener |
 | SHBS-10 | Ethernet-Layout | unberührt, bewusst getrennt von SHBS-21 |
 
 ## Was in der Session passiert ist
@@ -69,11 +69,10 @@ Leitungslängen per Skript aus der `.kicad_pcb` nach.
 ## Danach offen (aus dem Review / Task 0047)
 
 - ~~+3V3 zu U6.2 und zu den LED-Anoden D7–D10 routen (B4)~~ erledigt 2026-09-26 durch den Agenten, Details in Task 0047.
-- Versorgungsleitungen außerhalb des Wandlers aufweiten (VBUS ab Buchse,
-  +3V3). Im Pad-Feld der USB-C-Buchse 0,2–0,3 mm lassen.
-- DRC-Ausschlüsse an J_PWR1 (im DRC-Fenster, Rechtsklick → Ausschließen):
-  2× `starved_thermal` (A1, rechtes S1), 2× Kantenabstand 0,30 mm zum
-  NPTH (A12, linkes S1). Die Meldungen stammen aus dem Hersteller-Landepattern.
+- ~~Versorgungsleitungen aufweiten, DRC-Ausschlüsse J_PWR1~~ erledigt
+  2026-09-27 (Task 0048).
+- J1 (Debug-USB) hat dieselben 2 Kantenabstands-Meldungen zum NPTH wie
+  J_PWR1 — noch nicht ausgeschlossen.
 - Optional: LED-Widerstände R13–R16/R23–R26 sind 2-W-Typen (PR02, 20 mm
   Raster), 0207 oder 0805 würden reichen (Entscheidung Bediener).
 - Kosmetik: Footprint PS1 heißt noch `MP2359DJ`, 4 Montagelöcher ohne

@@ -52,7 +52,24 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "copper_edge_clearance|68370000|34910000|9c349268-29b2-4976-9a79-90ee0ae147c1|8694d04b-041c-4bf5-aeb2-3eb79c163eac",
+          ""
+        ],
+        [
+          "copper_edge_clearance|69600000|36170000|9c349268-29b2-4976-9a79-90ee0ae147c1|acf578d5-35bb-4417-9135-e1a55aa280f2",
+          ""
+        ],
+        [
+          "starved_thermal|75250000|36520000|4cd5d639-55af-4b28-a530-735abb457483|b0045ab5-c623-4835-8002-363b998ad401|F.Cu",
+          ""
+        ],
+        [
+          "starved_thermal|76630000|34610000|4cd5d639-55af-4b28-a530-735abb457483|b85c619c-83de-4278-a3f0-d750470b5d12|F.Cu",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },

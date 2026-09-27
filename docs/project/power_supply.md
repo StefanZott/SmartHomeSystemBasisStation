@@ -523,6 +523,19 @@ bleiben die Leiterbahnen 0,2–0,3 mm breit und werden erst nach dem Pad-Feld
 aufgeweitet. Die Netzklassenbreite ist nur der Vorgabewert beim Routen, kein
 DRC-Minimum.
 
+**Umsetzung Eingangsseite (2026-09-27, Task 0048):**
+
+- **VBUS über A9 → F1** (Hauptpfad): bis y = 37,4 mm 0,2 mm (Pad-Feld),
+  danach 0,6 mm bis F1. Die B.Cu-Brücke zwischen den VBUS-Vias
+  (70,0 / 39,5) und (73,0 / 39,5) hat ebenfalls 0,6 mm.
+- **VBUS über A4:** nur **0,3 mm**. CC1 läuft im Abstand von 0,5 mm
+  parallel. Bei 0,6 mm blieben nur 0,1 mm Abstand. Der Zweig ist über die
+  B.Cu-Brücke mit dem Hauptpfad parallel geschaltet.
+- **+5V zu D12:** Die Verbindung bestand aus zwei Grafiklinien (`gr_line`)
+  auf F.Cu statt aus Leiterbahnen. Sie ist jetzt durch 0,6-mm-Leiterbahnen
+  ersetzt, weil Router und Netzklasse Grafiklinien nicht als Leiterbahn
+  behandeln.
+
 ### Platzierung Buck-Wandler (Layout)
 
 Seit 2026-09-26 (SHBS-21) sind die Bauteile des Wandlers eng um PS1
