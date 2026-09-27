@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-26
+last_updated: 2026-09-27
 type: project-doc
 ---
 
@@ -92,6 +92,21 @@ Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail
 **Zwei getrennte Ports.** Versorgung läuft ausschließlich über `J_PWR1` (siehe [power_supply.md](power_supply.md)), `J1` ist reiner Datenanschluss. Zum Flashen sind daher **zwei Kabel** nötig. Ein gemeinsamer Port und eine ORing-Lösung wurden verworfen; da `VBUS_J1` nirgends auf die Versorgungsschiene führt, besteht kein Rückspeise-Risiko zwischen den Ports.
 
 Schaltplan: `pcb/BasisStation/BasisStation_Debugging.kicad_sch`.
+
+**Layout (SHBS-22, 2026-09-27):**
+
+- **U1 als Durchgangs-Bauteil:** Jede Leitung läuft gerade unter dem
+  Gehäuse durch, von Pad 10→1 (USB−), 9→2 (USB+) und 7→4 (VBUS_J1). Neben
+  den breiten GND-Pads 3/8 sind die Durchgänge für USB+ und VBUS_J1 nur
+  0,15 mm breit. Der Footprint selbst hat nur 0,15 mm Padabstand; die
+  5 DRC-Meldungen dazu sind footprint-bedingt und werden ausgeschlossen.
+- **Brücken im Pad-Feld von J1:** D+ B6→A6 auf F.Cu. D− B7→A7 kreuzt D+
+  geometrisch und läuft daher über ein Via oberhalb der B-Reihe
+  (89,5 / 33,8) auf B.Cu zum USB−-Via (88,5 / 38,0). VBUS_J1: B4→A9 und
+  B9→A4. Die Gruppe A4/B9 ist von CC1 eingeschlossen und geht über ein Via
+  (90,85 / 37,6) auf B.Cu zu einem Via unter U1-Pin 4 (87,8 / 44,0).
+- USB D+/D− haben je 4 Vias und ca. 77 mm Länge bis U6. Für USB
+  Full-Speed (12 Mbit/s) ist das unkritisch.
 
 ## Stromversorgung (SHBS-4)
 

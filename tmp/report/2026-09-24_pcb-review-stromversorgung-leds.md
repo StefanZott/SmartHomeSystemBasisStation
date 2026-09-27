@@ -120,3 +120,46 @@ zwischen den LED-Anoden D7, D10, D8 und D9 (je Pin 2) und zu U6.2.
 - Die Punkte B1 (Symboländerung) und B2 (Netzklasse) betreffen Projektdateien.
   Die Umsetzung erfolgt nach Freigabe über JIRA-Ticket und Task.
 - Nach der Umplatzierung erneut reviewen.
+
+## Nachtrag 2026-09-27: Debug-USB J1, U1, R21, R22
+
+Der Bediener hat J1, das ESD-Array U1 und die CC-Widerstände R21/R22
+platziert und verdrahtet. Die Prüfung erfolgte per `kicad-cli` (DRC mit
+Schaltplan-Abgleich) und durch Auswertung der Leiterbahnen. Die Zonenfüllung
+war erneut veraltet (82 Zonenmeldungen).
+
+### D1 — Durchgangs-Pads an U1 nicht verbunden — hoch
+
+U1 (UDFN-10) ist als Durchgangs-Bauteil beschaltet: 10/1 = USB−, 9/2 = USB+,
+7/4 = VBUS_J1. Von J1 kommend endet jede Leitung am oberen Pad (10, 9, 7),
+zu U6 geht jeweils eine Leitung ab dem unteren Pad (1, 2). Die kurze
+Verbindung **quer durch das Bauteil** (10→1, 9→2, 7→4) fehlt. Damit ist der
+USB-Datenpfad zwischen J1 und U6 unterbrochen.
+
+### D2 — Brücken im Pad-Feld von J1 fehlen — hoch
+
+- **D+ B6→A6** und **D− B7→A7** fehlen. Ohne diese Brücken funktioniert
+  USB nur in einer Steckrichtung. Die beiden Paare kreuzen sich
+  geometrisch (B6 links von B7, A6 rechts von A7), eines braucht deshalb ein
+  Via. Vorschlag: D+ direkt auf F.Cu, D− von B7 kurz nach oben auf ein Via,
+  auf B.Cu zum vorhandenen USB−-Via (88,5 / 38,0).
+- **VBUS_J1:** B4→A9 fehlt, A4 und B9 sind nicht angebunden. Die
+  Gruppe A4/B9 kommt nur über B.Cu an den übrigen VBUS_J1-Zweig, weil CC1
+  (A5) zwischen A4 und dem Rest liegt.
+
+### D3 — Hinweise ohne Handlungsbedarf
+
+- Die USB-Leitungen haben je 4 Vias und 76–78 mm Länge. Für USB
+  Full-Speed (12 Mbit/s) ist das unkritisch. Die Lagenwechsel kreuzen die
+  +3V3-Leitung bei y 62,1.
+- R21/R22 (CC, 5,1 kΩ) korrekt angeschlossen. Die GND-Leitungen laufen
+  über (102 / 34,0) bzw. (102 / 37,5) zu einem GND-Via bei (102 / 36,0).
+- 5× Abstand 0,15 mm an U1 (Pad-Raster des Footprints) und 2× Kantenabstand
+  an J1 (Hersteller-Landepattern, wie J_PWR1) → im DRC ausschließen.
+
+### Umsetzung (SHBS-22)
+
+D1 und D2 hat der Agent per Skript geroutet (21 Segmente, 3 Vias; Details
+in `docs/project/hardware.md`, Abschnitt Debug-/Datenanschluss J1). DRC:
+offene Verbindungen 120 → 112, an J1/U1 keine mehr. Keine neuen
+Abstandsfehler außer gegen die veraltete Zonenfüllung.
