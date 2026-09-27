@@ -42,7 +42,7 @@ angebunden, footprint-bedingte DRC-Meldungen ausgeschlossen.
 
 ## Commits
 
-- (noch keine)
+- 23b1277 Debug-USB J1/U1 fertig verdrahtet
 
 ## Offene Fragen
 
