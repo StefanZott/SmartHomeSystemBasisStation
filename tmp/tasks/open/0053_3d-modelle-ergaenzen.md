@@ -36,7 +36,7 @@ Platine.
 
 ## Commits
 
-- (noch keine)
+- 00b777d 3D-Modelle ergänzt (S2 offen)
 
 ## Offene Fragen
 
