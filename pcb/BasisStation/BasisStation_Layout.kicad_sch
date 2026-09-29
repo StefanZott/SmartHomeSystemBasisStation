@@ -7344,7 +7344,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1543-650-149"
+		(property "Value" "PTS645VL58-2 LFS"
 			(at 30.48 54.6099 90)
 			(effects
 				(font
@@ -7353,7 +7353,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "1543-650-149:1543650149"
+		(property "Footprint" "PTS645VL58-2LFS:SW_Tactile_SPST_Angled_PTS645Vx58-2LFS"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7363,7 +7363,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.ckswitches.com/media/1471/pts645.pdf"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7372,7 +7372,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Pushbutton Switches Push Switch"
+		(property "Description" "Tactile switch SPST, right angle, 6 x 6 mm, actuator 5.8 mm"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7381,17 +7381,7 @@
 				(hide yes)
 			)
 		)
-		(property "MANUFACTURER_NAME" "Bourns"
-			(at 24.13 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MF" "Bourns"
+		(property "MANUFACTURER_NAME" "C&K"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7401,7 +7391,7 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER_PRICE-STOCK" "https://www.mouser.co.uk/ProductDetail/Bourns/1543-650-149?qs=2f2kQrcl%2FoiIszYh%252BBIYwA%3D%3D"
+		(property "MF" "C&K"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7411,7 +7401,7 @@
 				(hide yes)
 			)
 		)
-		(property "DESCRIPTION" "Pushbutton Switches Push Switch"
+		(property "MOUSER_PRICE-STOCK" "https://www.mouser.de/ProductDetail/611-PTS645VL582"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7421,7 +7411,17 @@
 				(hide yes)
 			)
 		)
-		(property "MOUSER_PART_NUMBER" "652-1543-650-149"
+		(property "DESCRIPTION" "Tactile switch SPST, right angle, 6 x 6 mm, actuator 5.8 mm"
+			(at 24.13 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MOUSER_PART_NUMBER" "611-PTS645VL582"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7451,7 +7451,7 @@
 				(hide yes)
 			)
 		)
-		(property "Check_prices" "https://www.snapeda.com/parts/1543-650-149/Bourns/view-part/?ref=eda"
+		(property "Check_prices" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7461,7 +7461,7 @@
 				(hide yes)
 			)
 		)
-		(property "HEIGHT" "15.1mm"
+		(property "HEIGHT" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7471,7 +7471,7 @@
 				(hide yes)
 			)
 		)
-		(property "MP" "1543-650-149"
+		(property "MP" "PTS645VL58-2 LFS"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7481,7 +7481,7 @@
 				(hide yes)
 			)
 		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/1543-650-149/Bourns/view-part/?ref=snap"
+		(property "SnapEDA_Link" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7491,7 +7491,7 @@
 				(hide yes)
 			)
 		)
-		(property "ARROW_PRICE-STOCK" "https://www.arrow.com/en/products/1543-650-149/bourns"
+		(property "ARROW_PRICE-STOCK" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7501,7 +7501,7 @@
 				(hide yes)
 			)
 		)
-		(property "ARROW_PART_NUMBER" "1543-650-149"
+		(property "ARROW_PART_NUMBER" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7511,7 +7511,7 @@
 				(hide yes)
 			)
 		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=2633736&manufacturer=Bourns&part_name=1543-650-149&search_term=1543-650-149"
+		(property "Purchase-URL" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7521,7 +7521,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description_1" "Switch Push Button SPST Round Plunger 0.01A 24VAC 24VDC PC Pins Thru-Hole"
+		(property "Description_1" "Tactile switch SPST, right angle, 6 x 6 mm, actuator 5.8 mm"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7531,7 +7531,7 @@
 				(hide yes)
 			)
 		)
-		(property "Availability" "In Stock"
+		(property "Availability" ""
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7541,7 +7541,7 @@
 				(hide yes)
 			)
 		)
-		(property "MANUFACTURER_PART_NUMBER" "1543-650-149"
+		(property "MANUFACTURER_PART_NUMBER" "PTS645VL58-2 LFS"
 			(at 24.13 63.5 0)
 			(effects
 				(font
@@ -7551,7 +7551,7 @@
 				(hide yes)
 			)
 		)
-		(property "MANUFACTURER" ""
+		(property "MANUFACTURER" "C&K"
 			(at 24.13 63.5 90)
 			(effects
 				(font

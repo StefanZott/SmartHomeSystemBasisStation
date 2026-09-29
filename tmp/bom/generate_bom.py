@@ -66,7 +66,7 @@ THROUGH_HOLE_FOOTPRINTS = {
     "wuerth_rj45:T_Wurth_WE-RJ45LAN_7499011121A",
     # SMD contacts, but the four shell legs are through-hole.
     "shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A",
-    "1543-650-149:1543650149",
+    "PTS645VL58-2LFS:SW_Tactile_SPST_Angled_PTS645Vx58-2LFS",
 }
 
 # Values that are already an orderable type designation even though no part

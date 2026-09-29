@@ -55,7 +55,7 @@ DEFAULT_TERMS = [
     ("D11 Schottky", "SS34"),
     ("D12 TVS", "SMAJ5.0A"),
     ("L1 Induktivitaet", "SMD Induktivitaet 10uH"),
-    ("S2 Taster", "1543-650-149"),
+    ("S2 Taster", "PTS645VL58-2LFS"),
     ("Q1-Q4 Transistor", "BC337"),
     ("Kondensator 0805", "X7R 0805 100n"),
     ("Widerstand 0805", "Widerstand SMD 0805"),
