@@ -1979,6 +1979,17 @@
 			(uuid "7fda88e7-653d-46c6-b4c4-35b603c5fe5b")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../Bauteile/1543-650-149/1543-650-149.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
@@ -5818,13 +5829,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 6)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -6141,15 +6152,15 @@
 			(uuid "c39ce816-6b49-4933-890a-6f725946fe21")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRW_3MM/WL-TMRW_3MM.step"
 			(offset
-				(xyz 1.27 0 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -10776,15 +10787,15 @@
 			(uuid "d5efa2f0-60c5-4941-9f5c-e81c35701195")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRW_3MM/WL-TMRW_3MM.step"
 			(offset
-				(xyz 1.27 0 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -13082,13 +13093,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 6)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -14288,15 +14299,15 @@
 			(uuid "8a197f60-7b8d-4899-851f-bc5238d3db9a")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRC_3MM/WL-TMRC_3MM.step"
 			(offset
-				(xyz 1.27 0 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -19253,13 +19264,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 6)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -20887,15 +20898,15 @@
 			(uuid "85caa4d3-39ea-4787-9294-6cad19e4b00e")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+		(model "${KIPRJMOD}/../Bauteile/WL-TMRC_3MM/WL-TMRC_3MM.step"
 			(offset
-				(xyz 1.27 0 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -25678,13 +25689,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 4.5)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)

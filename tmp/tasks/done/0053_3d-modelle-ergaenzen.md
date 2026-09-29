@@ -4,7 +4,7 @@ created: 2026-09-29
 jira: SHBS-24
 priority: medium
 type: bugfix
-status: open
+status: done
 ---
 
 ## Kontext
@@ -21,11 +21,11 @@ Platine.
 ## Schritte
 
 - [x] Vorhandene STEP-Dateien verknüpfen (C7/C10/C12, J6)
-- [x] KiCad-Standardmodelle für C8 und LEDs mit Drehung/Versatz passend zur Pad-Lage
+- [x] KiCad-Standardmodell für C8 mit Drehung/Versatz passend zur Pad-Lage; LEDs mit Würth-Originalmodellen
 - [x] PS1 auf `${KICAD9_3DMODEL_DIR}/…/SOT-23-6.step`
 - [x] Bibliotheken per `pcbnew.FootprintLoad` geprüft, DRC unverändert, Render geprüft
 - [x] `docs/project/hardware.md` (Abschnitt 3D-Modelle)
-- [ ] S2: offen, Hersteller unbekannt (Rückfrage an Bediener)
+- [x] S2: Bourns 1543-650-149 (laut Stückliste), Modell selbst aus dem Datenblatt erstellt
 
 ## Fortschritt
 
@@ -34,10 +34,18 @@ Platine.
   Footprints. KiCad-Standardmodelle nur unter Windows sichtbar (3D-Bibliothek
   fehlt im Container). S2 bleibt ohne Modell, bis der Hersteller bekannt ist.
 
+- 2026-09-29: Bediener hat C7/C10/C12 (Z 6 mm) und J6 (Z 4,5 mm) im 3D-Viewer
+  angehoben. Die Werte sind in die Bibliotheks-Footprints übernommen. S2 laut
+  Stückliste Bourns 1543-650-149. Mouser nicht abrufbar, SnapEDA nur mit
+  Anmeldung, daher STEP aus Datenblattmaßen mit `cadquery-ocp` erzeugt und im
+  Render geprüft. LEDs auf die vorhandenen Würth-Originalmodelle umgestellt
+  (vorher übersehen, KiCad-Ersatz verworfen), im Render geprüft. DRC
+  unverändert. Task abgeschlossen.
+
 ## Commits
 
 - 00b777d 3D-Modelle ergänzt (S2 offen)
 
 ## Offene Fragen
 
-- Hersteller/Datenblatt des Tasters S2 („1543-650-149-4")?
+- Keine.

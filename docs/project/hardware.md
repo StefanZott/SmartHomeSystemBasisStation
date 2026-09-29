@@ -259,20 +259,20 @@ schon.
 
 ### 3D-Modelle (SHBS-24, 2026-09-29)
 
-Alle Bauteile außer **S2** haben ein 3D-Modell, eingetragen im
-Bibliotheks-Footprint unter `pcb/Bauteile/` und in der Platine.
+Alle Bauteile haben ein 3D-Modell, eingetragen im Bibliotheks-Footprint unter
+`pcb/Bauteile/` und in der Platine.
 
 | Bauteile | Modell | Hinweis |
 |----------|--------|---------|
-| C7, C10, C12 | `Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step` | Hersteller-Modell, war vorhanden, aber nicht verknüpft |
-| J6 | `Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step` | dito |
+| C7, C10, C12 | `Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step` | Hersteller-Modell, war vorhanden, aber nicht verknüpft. Ursprung in Bauteilmitte, daher **Z-Versatz 6 mm** (vom Bediener ermittelt) |
+| J6 | `Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step` | dito, **Z-Versatz 4,5 mm** |
+| S2 | `Bauteile/1543-650-149/1543-650-149.step` | **Selbst erstellt** aus dem Bourns-Datenblatt (1543-650, Hebellänge 14,9 mm): Gehäuse 9,8 × 9,8 × 7,3 mm auf 1,0 mm Füßen, Stößel Ø 4,1 mm, Gesamthöhe 14,9 mm, Ursprung auf Pin 1. Erzeugt mit OpenCascade (`cadquery-ocp`). Ein Herstellermodell gibt es nur bei SnapEDA nach Anmeldung |
 | C8 | KiCad `CP_Radial_D6.3mm_P2.50mm` | Ersatz mit passenden Maßen. Pin 1 (+) des Footprints liegt rechts, daher 180° gedreht und 1,25 mm versetzt |
-| D7–D10 | KiCad `LED_D3.0mm` | Ersatz, 180° gedreht und 1,27 mm versetzt (Pad 1 = Kathode) |
+| D7–D10 | `Bauteile/WL-TMRC_3MM/…step`, `Bauteile/WL-TMRW_3MM/…step` | Würth-Originalmodelle (waren vorhanden), ohne Versatz, mit ungekürzten Anschlussdrähten |
 | PS1 | KiCad `SOT-23-6.step` | vorher veraltete Variable `KISYS3DMOD` mit `.wrl` |
 | J1, J_PWR1 | KiCad `USB_C_Receptacle_Amphenol_12401610E4-2A` | Nachbarvariante, für die Gehäusepassung nur eine Näherung |
 
-**S2** („1543-650-149-4") hat noch kein Modell, weil der Hersteller unbekannt
-ist. Die KiCad-Standardmodelle lassen sich im Dev-Container nicht rendern
+Die KiCad-Standardmodelle lassen sich im Dev-Container nicht rendern
 (3D-Bibliothek nicht installiert); geprüft werden sie im 3D-Viewer unter
 Windows.
 

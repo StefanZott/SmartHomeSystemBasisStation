@@ -146,15 +146,15 @@
       (xy 0.0 2.25)
     ) (layer F.CrtYd) (width 0.1)
   )
-	(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+	(model "${KIPRJMOD}/../Bauteile/WL-TMRC_3MM/WL-TMRC_3MM.step"
 		(offset
-			(xyz 1.27 0 0)
+			(xyz 0 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 180)
+			(xyz 0 0 0)
 		)
 	)
 )

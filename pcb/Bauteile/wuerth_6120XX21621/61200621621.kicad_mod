@@ -71,7 +71,7 @@
   )
 	(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 4.5)
 		)
 		(scale
 			(xyz 1 1 1)
