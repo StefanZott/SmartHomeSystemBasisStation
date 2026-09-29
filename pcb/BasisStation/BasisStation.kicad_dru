@@ -5,3 +5,9 @@
 (rule "U1 land pattern pad spacing"
 	(condition "A.Parent == 'U1' && B.Parent == 'U1'")
 	(constraint clearance (min 0.15mm)))
+
+# S2 (PTS645VL58-2 LFS): the GND pin is plated through and fully tied to the
+# B.Cu plane; on F.Cu the EN and USB tracks leave room for one spoke only.
+(rule "S2 GND pin thermal spokes"
+	(condition "A.Parent == 'S2'")
+	(constraint min_resolved_spokes 1))

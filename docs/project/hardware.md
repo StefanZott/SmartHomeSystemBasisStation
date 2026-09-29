@@ -204,7 +204,8 @@ Kante und wird bei der Fertigung abgeschnitten.
 | Y1, C25/C26 | rechts an U7 | Kurze XI/XO-Leitungen |
 | Abblock-C, FB1 | unter U7 | Zwei Reihen im Raster 3,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
 | Pull-ups R28–R32 | Reihe über U7 | Raster 3,5 mm |
-| S2, R9, C7 | oben zwischen T1 und U6 | Reset-Taster am Rand erreichbar |
+| S2 | obere Kante zwischen T1 und U6, liegend | Reset von außen durch die Gehäusewand (SHBS-25, siehe unten) |
+| R9 | oben zwischen T1 und U6 | Pull-up EN |
 | J6 | rechter Rand unter U6 | Nahe an UART0/GPIO0 |
 | C8, C10, C12 | unter dem SPI-Bündel | Puffer für +3V3 |
 | C7 (EN-Kondensator) | unter C10/C12 | Oben kein Platz neben der Pull-up-Reihe |
@@ -249,13 +250,38 @@ ausgeschlossene Meldungen. Die Begründung steht jeweils als Kommentar in
 | `starved_thermal` | 9 | Pad hat nur einen Thermal-Steg, ist aber zusätzlich per Leiterbahn oder Via an GND angebunden |
 | `silk_edge_clearance` T1 | 2 | Silkscreen-Umriss ragt mit der Buchse über die Kante, wird bei der Fertigung abgeschnitten |
 
-**Regel statt Ausschluss:** Die fünf Padabstände von 0,15 mm am ESD-Array U1
+**Regeln statt Ausschluss:** Die Thermal-Stege an S2 siehe „Reset-Taster S2". Die fünf Padabstände von 0,15 mm am ESD-Array U1
 sind eine Eigenschaft seines Landepatterns. `BasisStation.kicad_dru` erlaubt
 sie ausschließlich innerhalb von U1.
 
 **Hinweis für Skripte:** Ausschlüsse greifen nur bei exakter Marker-Position.
 Diese liegt nicht immer auf einer Pad-Position, bei `starved_thermal` aber
 schon.
+
+### Reset-Taster S2 von außen (SHBS-25, 2026-09-29)
+
+S2 (EN, Reset) ist ein **liegender Taster C&K PTS645VL58-2 LFS** an der oberen
+Kante, auf derselben Seite wie USB-C und RJ45. Sein Stößel zeigt zur Kante und
+wird **bündig mit der Gehäuseaußenseite** gedrückt.
+
+| Maß | Wert |
+|-----|------|
+| Wandstärke Gehäuse | 2,0 mm, Innenseite an der Platinenkante (y 27,45) |
+| Stößelspitze | y 25,45 = 2,0 mm vor der Kante, also in der Außenwand |
+| Pins | (169,5 / 31,35) und (174,0 / 31,35), Stößelspitze 5,9 mm vor den Pins |
+| Gehäusefront des Tasters | 1,05 mm hinter der Platinenkante |
+
+Vorher war S2 ein stehender Bourns 1543-650-149 mitten auf der Platine, im
+Gehäuse nicht erreichbar. Der PTS645 wurde gewählt, weil es für ihn Footprint
+und Herstellermodell in der KiCad-Bibliothek gibt und er breit lieferbar ist
+(Mouser 611-PTS645VL582, DigiKey CKN9116-ND). Die Bibliothek liegt in
+`pcb/Bauteile/PTS645VL58-2LFS/`. Das Schaltsymbol `1543-650-149` (Taster,
+2 Pins) wird weiterverwendet, nur Footprint und Bestellfelder sind umgestellt.
+
+Das GND-Pad hat auf F.Cu nur einen Thermal-Steg, weil EN und USB− dicht
+daneben laufen. Es ist durchkontaktiert und auf B.Cu voll angebunden.
+`BasisStation.kicad_dru` erlaubt deshalb für S2 einen Steg. Ein Ausschluss war
+nicht möglich: Bei diesem Pad liegt der DRC-Marker nicht auf der Pad-Mitte.
 
 ### 3D-Modelle (SHBS-24, 2026-09-29)
 
@@ -266,7 +292,7 @@ Alle Bauteile haben ein 3D-Modell, eingetragen im Bibliotheks-Footprint unter
 |----------|--------|---------|
 | C7, C10, C12 | `Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step` | Hersteller-Modell, war vorhanden, aber nicht verknüpft. Ursprung in Bauteilmitte, daher **Z-Versatz 6 mm** (vom Bediener ermittelt) |
 | J6 | `Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step` | dito, **Z-Versatz 4,5 mm** |
-| S2 | `Bauteile/1543-650-149/1543-650-149.step` | **Selbst erstellt** aus dem Bourns-Datenblatt (1543-650, Hebellänge 14,9 mm): Gehäuse 9,8 × 9,8 × 7,3 mm auf 1,0 mm Füßen, Stößel Ø 4,1 mm, Gesamthöhe 14,9 mm, Ursprung auf Pin 1. Erzeugt mit OpenCascade (`cadquery-ocp`). Ein Herstellermodell gibt es nur bei SnapEDA nach Anmeldung |
+| S2 | `Bauteile/PTS645VL58-2LFS/SW_Tactile_SPST_Angled_PTS645Vx58-2LFS.step` | Herstellermodell aus der KiCad-3D-Bibliothek (seit SHBS-25). Das selbst erstellte Modell des früheren Bourns 1543-650-149 liegt weiter unter `Bauteile/1543-650-149/`, wird aber nicht mehr verwendet |
 | C8 | KiCad `CP_Radial_D6.3mm_P2.50mm` | Ersatz mit passenden Maßen. Pin 1 (+) des Footprints liegt rechts, daher 180° gedreht und 1,25 mm versetzt |
 | D7–D10 | `Bauteile/WL-TMRC_3MM/…step`, `Bauteile/WL-TMRW_3MM/…step` | Würth-Originalmodelle (waren vorhanden), ohne Versatz, mit ungekürzten Anschlussdrähten |
 | PS1 | KiCad `SOT-23-6.step` | vorher veraltete Variable `KISYS3DMOD` mit `.wrl` |
