@@ -45,6 +45,7 @@ Platine.
 ## Commits
 
 - 00b777d 3D-Modelle ergänzt (S2 offen)
+- 438ef75 S2-Modell, Würth-LED-Modelle, Z-Versatz in Bibliothek
 
 ## Offene Fragen
 
