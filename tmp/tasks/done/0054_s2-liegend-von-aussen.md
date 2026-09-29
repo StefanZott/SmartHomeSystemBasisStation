@@ -38,7 +38,8 @@ ohne neue Fehler, Stückliste aktuell.
 
 ## Commits
 
-- (noch keine)
+- 7d8d7ec Bauteil, Schaltplan, Stückliste
+- 395e925 Platine, DRC-Regel, Doku
 
 ## Offene Fragen
 
