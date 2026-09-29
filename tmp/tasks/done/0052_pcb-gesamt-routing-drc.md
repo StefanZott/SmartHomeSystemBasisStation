@@ -55,7 +55,7 @@ DRC-Ausschlüsse aus Task 0049 (5× Padabstand U1, 2× Kantenabstand J1).
 
 ## Commits
 
-- (noch keine)
+- d2fd4e2 Gesamt-Layout platziert und geroutet, DRC sauber
 
 ## Offene Fragen
 

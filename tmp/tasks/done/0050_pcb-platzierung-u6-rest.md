@@ -40,7 +40,7 @@ ohne Courtyard-Überlappung, sinnvoll zum späteren Routing angeordnet.
 
 ## Commits
 
-- (noch keine)
+- d2fd4e2 Gesamt-Layout platziert und geroutet, DRC sauber
 
 ## Offene Fragen
 
