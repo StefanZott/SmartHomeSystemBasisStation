@@ -179,7 +179,7 @@ durch den SPI-Bus.
 | Thema | Ticket | Stand |
 |-------|--------|-------|
 | Schaltplan und BOM | SHBS-5 | fertig |
-| PCB-Layout | SHBS-10 | offen |
+| PCB-Layout | SHBS-10 | fertig (2026-09-29, siehe [hardware.md](hardware.md) „Gesamt-Layout") |
 | Firmware-Anbindung | SHBS-11 | offen — keine `ETH_`-Nutzung in `main/` |
 
 Architektur und Begründung: **[ethernet.md](ethernet.md)**. Hardware-Stand:

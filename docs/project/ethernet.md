@@ -222,7 +222,7 @@ machen, ohne die Platine zu ändern.
 | Thema | Ticket | Stand |
 |-------|--------|-------|
 | Schaltplan und BOM | **SHBS-5** | Schaltplan fertig, ERC 0 Fehler |
-| PCB-Layout | **SHBS-10** | offen |
+| PCB-Layout | **SHBS-10** | fertig (2026-09-29), Details in [hardware.md](hardware.md) „Gesamt-Layout" |
 | Firmware-Anbindung | **SHBS-11** | offen — in `main/` keine Ethernet-Nutzung |
 
 Datenblätter unter `pcb/Datasheets/`: W5500 Rev. 1.0.5, Würth 7499011121A,

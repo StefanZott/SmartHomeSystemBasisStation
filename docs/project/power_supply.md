@@ -82,7 +82,7 @@ USB-Netzteil / Kabel (5 V)
 | Power-Block im Schaltplan (`Stromversorgung.kicad_sch`) | gezeichnet und verdrahtet |
 | PWR_FLAG an VBUS, VIN und Ausgang | eingefügt 2026-09-15 (`#FLG01`–`#FLG03`) |
 | `+3V3`-Symbol auf der U6-Schiene (`#PWR103`) | eingefügt 2026-09-15 |
-| PCB-Platzierung/Routing | Buck-Wandler kompakt platziert und geroutet, +3V3 zu U6 und LEDs (2026-09-26); Ethernet-Teile offen (SHBS-10) |
+| PCB-Platzierung/Routing | Buck-Wandler kompakt platziert und geroutet, +3V3 zu U6 und LEDs (2026-09-26); Gesamt-Layout inkl. Ethernet fertig (SHBS-23/SHBS-10, 2026-09-29) |
 | Buck-Ausgangszweig korrigiert (B12) | erledigt 2026-09-15 |
 | ERC ohne Fehler | **erreicht** (Lauf 2026-09-18 23:42: 0 Fehler, 7 unkritische Warnungen; Blatt `/Stromversorgung/` ohne jede Meldung) |
 | DRC ohne Fehler | offen (PCB noch nicht nachgezogen) |
@@ -557,8 +557,9 @@ USB D+/D− (zu U1), EN (zu S2) und die SPI-Leitungen zum W5500 auf F.Cu nach
 links heraus. Eine Leitung auf der linken Seite hätte für alle diese Signale
 Vias erzwungen. Nachteil der gewählten Führung: Die Leitungen von U6 Pin 27,
 36 und 37 zu J6 können nicht über das Modul hinweg, bei ungünstiger Lage von
-J6 brauchen sie Vias. Die Ethernet-Teile (U7 und Umfeld) liegen noch
-außerhalb des Boards und werden unter SHBS-10 angebunden.
+J6 brauchen sie Vias. Seit 2026-09-29 sind U6 (rechts oben), U7 und J6
+platziert und geroutet (SHBS-23/SHBS-10, siehe [hardware.md](hardware.md)
+„Gesamt-Layout").
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 
