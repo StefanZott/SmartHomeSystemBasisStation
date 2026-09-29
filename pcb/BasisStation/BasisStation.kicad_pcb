@@ -5816,6 +5816,17 @@
 			(uuid "75115bde-2099-48c3-aefc-968b625a69b0")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "WL-TMRW_3MM:WL-TMRW_3MM"
 		(layer "F.Cu")
@@ -6130,6 +6141,17 @@
 			(uuid "c39ce816-6b49-4933-890a-6f725946fe21")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+			(offset
+				(xyz 1.27 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Package_DFN_QFN:Diodes_UDFN-10_1x2.5mm_P0.5mm"
 		(layer "F.Cu")
@@ -10754,6 +10776,17 @@
 			(uuid "d5efa2f0-60c5-4941-9f5c-e81c35701195")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+			(offset
+				(xyz 1.27 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
@@ -13047,6 +13080,17 @@
 			(uuid "c7f55e62-62ca-4a05-b05a-0d2fd667c21a")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Inductor_SMD:L_Bourns_SRN6045TA"
 		(layer "F.Cu")
@@ -14244,6 +14288,17 @@
 			(uuid "8a197f60-7b8d-4899-851f-bc5238d3db9a")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+			(offset
+				(xyz 1.27 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Package_TO_SOT_THT:TO-92_Inline"
 		(layer "F.Cu")
@@ -16420,7 +16475,7 @@
 			(uuid "12cb9b44-d015-419b-9f18-5b1b2bdc9304")
 		)
 		(embedded_fonts no)
-		(model "${KISYS3DMOD}/Package_TO_SOT_SMD.3dshapes/SOT-23-6.wrl"
+		(model "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-6.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19196,6 +19251,17 @@
 			(uuid "139d7357-4b8b-45f9-a404-f91abcab04e7")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../Bauteile/WCAP-FTXX_P10/WCAP-FTXX_P10.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "ESP32-S3-WROOM-1U-N16R8:ESP32-S3-WROOM-1U"
 		(layer "F.Cu")
@@ -20821,6 +20887,17 @@
 			(uuid "85caa4d3-39ea-4787-9294-6cad19e4b00e")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D3.0mm.step"
+			(offset
+				(xyz 1.27 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "F.Cu")
@@ -23975,6 +24052,17 @@
 			(uuid "a062809a-bc22-4b76-b7b3-4ac6a7f1c44c")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/CP_Radial_D6.3mm_P2.50mm.step"
+			(offset
+				(xyz 1.25 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
@@ -25588,6 +25676,17 @@
 			(uuid "31fdc3ab-bc31-4db2-a053-d84fe9a8a936")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")

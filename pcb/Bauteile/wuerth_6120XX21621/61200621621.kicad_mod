@@ -69,4 +69,15 @@
       (xy -2.25 4.425)
     ) (layer F.SilkS) (width 0.01)
   )
+	(model "${KIPRJMOD}/../Bauteile/wuerth_6120XX21621/6120XX21621_61200621621.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )
