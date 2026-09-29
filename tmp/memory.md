@@ -24,8 +24,19 @@ Agenten-Session diese Datei zuerst lesen, danach Task
   unter `/usr/bin/python3`, nicht im ESP-IDF-Python.
 - Achtung: Das Projektverzeichnis liegt auf einem Windows-Laufwerk (Ordner
   heißt real `PCB/`). Neue Dateien immer als `pcb/...` zu git hinzufügen.
-- Offen: Gehäuse, ggf. LED-Widerstände auf kleinere Bauform, Footprint-Name
-  PS1 (`MP2359DJ`).
+- **3D-Modelle vollständig** (SHBS-24): Würth-STEPs für C7/C10/C12/J6 mit
+  Z-Versatz 6 / 4,5 mm, Würth-LEDs, KiCad-Modell für C8 und PS1.
+- **S2 von außen bedienbar** (SHBS-25): liegender C&K PTS645VL58-2 LFS an der
+  Buchsenseite, Stößel bündig mit 2-mm-Gehäusewand (Spitze 2,0 mm vor der
+  Kante). Mouser 611-PTS645VL582.
+- Schaltplan fertig (ERC 0 Fehler), PCB fertig (DRC 0 offen, 0 Parität),
+  Stückliste aktuell. Alles auf `origin/main` gepusht.
+- Offen: Fertigungsdaten (Gerber/Bohr/Bestückung), Gehäuse, Prototyp-Tests
+  (Flashen über J1 = SHBS-6, Quarzfrequenz, Ethernet), Firmware Ethernet
+  (SHBS-11). Optional: LED-Widerstände kleiner, Footprint-Name PS1.
+- Git-Push aus der Agenten-Shell hängt, wenn VS Code seit Start der Shell neu
+  gestartet wurde (veralteter Anmeldehelfer). Abhilfe: VS Code neu starten
+  bzw. neue Shell, dann `GIT_TERMINAL_PROMPT=0 timeout 120 git push`.
 
 ## Git
 
