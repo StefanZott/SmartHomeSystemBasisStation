@@ -181,6 +181,82 @@ verbunden über eine Ferritperle.
 
 Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethernet.md)**.
 
+## Gesamt-Layout (SHBS-23, SHBS-10 — Stand 2026-09-29)
+
+Platine **160 × 132,55 mm** (Kontur x 50–210, y 27,45–160), 2 Lagen, 1,6 mm.
+Fest vorgegeben waren T1, J1, J_PWR1 und D7–D10.
+
+**Buchsen-Überstand für das Gehäuse:** Die obere Kante liegt so, dass
+J_PWR1, J1 (Front bei y 26,22) und T1 (26,14) **1,2–1,3 mm über die
+Platinenkante** hinausragen. Mehr lassen die USB-C-Buchsen nicht zu: Ihre
+vorderen Befestigungslaschen (S1, Kupfer ab y 27,96) brauchen 0,5 mm
+Randabstand. Mit 0,3 mm Randabstand (übliches Fertigungsminimum) wären
+1,44 mm möglich, dafür müsste die Projektregel gelockert werden. Die
+RJ45-Buchse allein könnte bis etwa 5,5 mm überstehen, bräuchte dafür aber
+eine Stufe in der Kontur. Die Montagelöcher H1/H2 sind mit der Kante um
+2,45 mm nach unten gewandert. Der Silkscreen-Umriss von T1 läuft über die
+Kante und wird bei der Fertigung abgeschnitten.
+
+| Bereich | Lage | Begründung |
+|---------|------|------------|
+| **U6** (ESP32-S3) | rechts oben, U.FL zur Ecke | Kurzer Pigtail zur Gehäuseantenne, weg von USB und Ethernet |
+| **U7** (W5500) | rechts neben T1 | TX/RX-Pins zeigen zu T1, SPI und Quarz zu U6 |
+| Y1, C25/C26 | rechts an U7 | Kurze XI/XO-Leitungen |
+| Abblock-C, FB1 | unter U7 | Zwei Reihen im Raster 3,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
+| Pull-ups R28–R32 | Reihe über U7 | Raster 3,5 mm |
+| S2, R9, C7 | oben zwischen T1 und U6 | Reset-Taster am Rand erreichbar |
+| J6 | rechter Rand unter U6 | Nahe an UART0/GPIO0 |
+| C8, C10, C12 | unter dem SPI-Bündel | Puffer für +3V3 |
+| C7 (EN-Kondensator) | unter C10/C12 | Oben kein Platz neben der Pull-up-Reihe |
+| LED-Treiber | unverändert über den LEDs | Passten bereits |
+
+**Ethernet-Paare:** TX± und RX± sind von Hand geroutet und gesperrt. RX
+verlässt T1 durch den Kanal zwischen den beiden Pad-Reihen, die
+Koppel-Kondensatoren C30/C29 sitzen versetzt hintereinander. So kreuzen sich
+die Paare nicht. Länge unter 20 mm. **Keine definierte Impedanz:** 100 Ω
+differenziell ist auf 2 Lagen mit 1,6 mm Dielektrikum nicht einstellbar. Bei
+diesen kurzen Wegen ist das für 100BASE-TX unkritisch, bei Problemen am
+Prototyp wäre ein 4-Lagen-Aufbau die Abhilfe. Der Abschluss R36 (TD+) ist
+über ein Via-Paar angebunden, weil TD− darüber liegt.
+
+**Chassis-Fläche:** Zone `CHASSIS_RJ45` (beide Lagen, Priorität 5) unter der
+Buchsenfront, x 104–130 / y 25,5–41,5. GND-Flächen halten 0,5 mm Abstand.
+Die Kopplung erfolgt nur über R35 ‖ C28 links unter T1.
+
+**Routing:** Die übrigen Netze hat Freerouting 2.4.1 geroutet, vorhandene
+Leitungen waren gesperrt. Ein zweiter Durchgang (alles andere gesperrt)
+hat USB− ergänzt. RXN → R40 ist von Hand über ein Via-Paar auf B.Cu
+angebunden, weil R40.1 auf F.Cu von RCT eingeschlossen ist. Isolierte GND-Pads und Flächeninseln (vor allem die
+inneren GND-Pins des W5500) sind über kurze Stiche auf GND-Vias zur
+durchgehenden Rückseitenmasse angebunden. Unter U7 verbindet eine
+Sammelleitung die +3V3A-Pins. DRC: **keine offenen Verbindungen**, keine
+Abstandsfehler außer den footprint-bedingten an U1/J1.
+
+Montagelöcher heißen im PCB **H1–H4** (vorher alle `REF**`). Der
+Specctra-Export braucht eindeutige Referenzen. Sie sind als
+„nur Platine" markiert (kein Schaltplan-Symbol nötig).
+
+### DRC: Regeln und Ausschlüsse (Stand 2026-09-29)
+
+`kicad-cli pcb drc --schematic-parity`: **0 offene Verbindungen, 0
+Schaltplan-Abweichungen, 0 offene Fehler.** Übrig sind 15 bewusst
+ausgeschlossene Meldungen. Die Begründung steht jeweils als Kommentar in
+`BasisStation.kicad_pro`:
+
+| Meldung | Anzahl | Grund |
+|---------|-------:|-------|
+| `copper_edge_clearance` J_PWR1, J1 | 4 | Hersteller-Landepattern Amphenol: A12/S1 liegen 0,30 mm am ovalen NPTH, KiCad behandelt NPTH als Kante |
+| `starved_thermal` | 9 | Pad hat nur einen Thermal-Steg, ist aber zusätzlich per Leiterbahn oder Via an GND angebunden |
+| `silk_edge_clearance` T1 | 2 | Silkscreen-Umriss ragt mit der Buchse über die Kante, wird bei der Fertigung abgeschnitten |
+
+**Regel statt Ausschluss:** Die fünf Padabstände von 0,15 mm am ESD-Array U1
+sind eine Eigenschaft seines Landepatterns. `BasisStation.kicad_dru` erlaubt
+sie ausschließlich innerhalb von U1.
+
+**Hinweis für Skripte:** Ausschlüsse greifen nur bei exakter Marker-Position.
+Diese liegt nicht immer auf einer Pad-Position, bei `starved_thermal` aber
+schon.
+
 ## Repository-Ist-Stand (KiCad)
 
 | Bereich | Pfad / Artefakt |

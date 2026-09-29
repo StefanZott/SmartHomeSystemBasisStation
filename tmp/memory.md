@@ -4,12 +4,28 @@ created: 2026-09-26
 status: active
 ---
 
-# Session-Übergabe: PCB-Review Stromversorgung und LEDs
+# Session-Übergabe: PCB-Layout BasisStation
 
 Stand für die Weiterarbeit auf einem anderen Rechner. In einer neuen
 Agenten-Session diese Datei zuerst lesen, danach Task
 [0047](tasks/done/0047_pcb-layout-stromversorgung-leds.md) und den
 [Review-Report](report/2026-09-24_pcb-review-stromversorgung-leds.md).
+
+## Stand 2026-09-29 (neueste Session)
+
+- **Gesamt-Layout fertig** (SHBS-23, SHBS-10): U6 rechts oben, W5500 neben
+  T1, alle Netze geroutet, GND nachgearbeitet. DRC: 0 offen, 0 Parität, nur
+  15 begründete Ausschlüsse. Details: `docs/project/hardware.md`, Abschnitte
+  „Gesamt-Layout" und „DRC: Regeln und Ausschlüsse".
+- Obere Platinenkante bei y 27,45: J_PWR1, J1 und T1 stehen 1,2–1,3 mm über
+  (Vorbereitung Gehäuse).
+- Werkzeuge: Freerouting 2.4.1 und Java 25 lagen nur im Scratchpad der
+  Session und sind auf einem neuen Rechner nicht vorhanden. `pcbnew` gibt es
+  unter `/usr/bin/python3`, nicht im ESP-IDF-Python.
+- Achtung: Das Projektverzeichnis liegt auf einem Windows-Laufwerk (Ordner
+  heißt real `PCB/`). Neue Dateien immer als `pcb/...` zu git hinzufügen.
+- Offen: Gehäuse, ggf. LED-Widerstände auf kleinere Bauform, Footprint-Name
+  PS1 (`MP2359DJ`).
 
 ## Git
 

@@ -1,0 +1,7 @@
+(version 1)
+
+# U1 (D3V3XA4B10LP, UDFN-10 1 x 2.5 mm): the manufacturer land pattern has
+# 0.15 mm between its pads; allow that inside the footprint only (SHBS-22).
+(rule "U1 land pattern pad spacing"
+	(condition "A.Parent == 'U1' && B.Parent == 'U1'")
+	(constraint clearance (min 0.15mm)))

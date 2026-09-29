@@ -62,12 +62,56 @@
           ""
         ],
         [
+          "copper_edge_clearance|84870000|34910000|fa2723a3-28c3-4e49-a506-c063e180e790|39fdaf5e-273e-4741-bf6f-083ca86383ec",
+          "Hersteller-Landepattern Amphenol 12401598E4#2A (wie J_PWR1)"
+        ],
+        [
+          "copper_edge_clearance|86100000|36170000|fa2723a3-28c3-4e49-a506-c063e180e790|a68217f8-1660-4471-89f2-5681967641b2",
+          "Hersteller-Landepattern Amphenol 12401598E4#2A (wie J_PWR1)"
+        ],
+        [
+          "silk_edge_clearance|111840000|27450000|a872d79e-b53a-4d87-941e-6fd168c740e1|49a0138f-1e34-4647-91ca-5193674551b3",
+          "T1-Umriss ragt mit der Buchse über die Kante, wird bei Fertigung abgeschnitten"
+        ],
+        [
+          "silk_edge_clearance|128040000|27450000|a872d79e-b53a-4d87-941e-6fd168c740e1|2097ed45-d431-4acf-966b-eb0704f9855a",
+          "T1-Umriss ragt mit der Buchse über die Kante, wird bei Fertigung abgeschnitten"
+        ],
+        [
+          "starved_thermal|137500000|58550000|4cd5d639-55af-4b28-a530-735abb457483|dfdafccf-32e5-4078-863d-5abfcc1ee2f1|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
+          "starved_thermal|141000000|58550000|4cd5d639-55af-4b28-a530-735abb457483|a4ebea4a-22e6-4d45-98f8-bdea8773f27c|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
+          "starved_thermal|154300000|56950000|4cd5d639-55af-4b28-a530-735abb457483|26b76217-da84-4779-bb9a-d6c6bcfeaf58|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
+          "starved_thermal|154850000|51900000|4cd5d639-55af-4b28-a530-735abb457483|71143af1-cd85-425d-a365-aba21311b12e|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
+          "starved_thermal|171250000|44000000|4cd5d639-55af-4b28-a530-735abb457483|a062809a-bc22-4b76-b7b3-4ac6a7f1c44c|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
           "starved_thermal|75250000|36520000|4cd5d639-55af-4b28-a530-735abb457483|b0045ab5-c623-4835-8002-363b998ad401|F.Cu",
           ""
         ],
         [
           "starved_thermal|76630000|34610000|4cd5d639-55af-4b28-a530-735abb457483|b85c619c-83de-4278-a3f0-d750470b5d12|F.Cu",
           ""
+        ],
+        [
+          "starved_thermal|86250000|36520000|4cd5d639-55af-4b28-a530-735abb457483|a68217f8-1660-4471-89f2-5681967641b2|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
+        ],
+        [
+          "starved_thermal|91750000|36520000|4cd5d639-55af-4b28-a530-735abb457483|8e9615e7-3159-45b9-8a5f-390f9ac2096d|F.Cu",
+          "Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)"
         ]
       ],
       "meta": {
