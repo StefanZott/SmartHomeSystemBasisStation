@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-06-02
+last_updated: 2026-09-29
 type: migration-plan
 ---
 
@@ -238,6 +238,8 @@ Bekannte Abweichungen:
 ---
 
 ## 9. Task-System (`tmp/tasks/`)
+
+> **Abgelöst am 2026-09-29:** Arbeitsschritte werden seitdem als Jira-Subtasks geführt, weil Task-Dateien auf einem zweiten Rechner erst nach Commit und Push sichtbar waren. `tmp/tasks/` ist ein eingefrorenes Archiv. Aktuelle Regel: [CLAUDE.md](../../CLAUDE.md), Abschnitte „Pro-Prompt-Workflow“ und „Abweichungen“ (Task-System).
 
 Für den Pro-Prompt-Workflow (AGENTS.md §11 + projektspezifisch):
 

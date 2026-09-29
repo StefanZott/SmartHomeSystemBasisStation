@@ -1,67 +1,63 @@
 ---
 name: jira
-description: Verwenden bei Jira-Interaktionen rund um einen Task — beim
-  Beginn eines Tasks ohne Ticket-Nummer klären, ob mit oder ohne Ticket
-  gearbeitet wird, Titel/Beschreibung für ein neues Ticket vorschlagen,
-  Fortschritts- oder Abschlusskommentare auf ein bestehendes Ticket
-  schreiben. Nutzt eine vorhandene Jira-Anbindung (MCP-Server oder CLI),
-  falls verfügbar, sonst wird der Text zum manuellen Eintragen vorbereitet.
+description: Verwenden bei Jira-Interaktionen rund um ein Ticket — Titel und
+  Beschreibung für ein neues Ticket vorschlagen und nach Freigabe anlegen,
+  Status von Tickets/Subtasks wechseln, Fortschritts- oder
+  Abschlusskommentare schreiben. Nutzt den Atlassian-MCP; Format und
+  Lebenszyklus der Subtasks stehen im task-Skill.
 ---
 
 # Jira-Skill
 
-Übernimmt alle Jira-Interaktionen rund um einen Task aus `temp/tasks/`. Ob
-in einem Projekt ein MCP-Server oder eine CLI zur Verfügung steht,
-unterscheidet sich — dieser Skill funktioniert in beiden Fällen, nur mit
-unterschiedlicher Tiefe.
+Übernimmt die Jira-Interaktionen auf Ticket-Ebene. Subtasks (Arbeitsschritte)
+sind im `task`-Skill beschrieben; dieser Skill regelt Parent-Tickets,
+Kommentare und Statuswechsel.
 
-## Verfügbarkeit prüfen
+## Anbindung
 
-Vor jeder Aktion feststellen, ob eine echte Jira-Anbindung existiert:
-- Verfügbare MCP-Tools nach "jira" durchsuchen.
-- Alternativ ein CLI-Tool prüfen (z. B. `command -v jira`).
+- Atlassian-MCP (`mcp__atlassian__*`), Site `zott-it.atlassian.net`,
+  Projekt `SHBS`. Cloud-ID über `getAccessibleAtlassianResources`.
+- Ist der MCP nicht erreichbar: im **Text-Modus** arbeiten — Titel,
+  Beschreibung bzw. Kommentar ausgeben, der Bediener trägt sie manuell ein
+  und nennt die ID. Das ist die Ausnahme, nicht der Normalfall.
 
-Ist nichts davon vorhanden, im **Text-Modus** arbeiten: Statt eine Aktion
-auszuführen, den nötigen Text (Titel, Beschreibung, Kommentar) ausgeben,
-den der Nutzer manuell in Jira einträgt.
+## Neues Ticket (Pro-Prompt-Schritt 4)
 
-## Bei Task-Beginn ohne Ticket
+1. Erst per JQL prüfen, ob ein offenes Ticket bereits dasselbe Problem
+   beschreibt — dann dieses verwenden. Ein Ticket bündelt ein Problem.
+2. Entwurf vorlegen:
+   - **Typ:** `Bug` (Fehler), `Story` (Nutzerfunktion) oder `Task` (sonstige
+     Arbeit).
+   - **Titel:** knapp, problemorientiert.
+   - **Beschreibung:** Symptome, Reproduktion, erwartetes Verhalten.
+3. Nach Freigabe per `createJiraIssue` anlegen und die ID melden.
+4. Ohne Ticket nur mit ausdrücklicher Freigabe des Bedieners (z. B.
+   trivialer Tippfehler in Doku).
 
-Wenn das `jira`-Feld einer Task-Datei leer ist und die Arbeit an dem Task
-beginnt:
+## Statuswechsel
 
-1. Nachfragen: "Mit oder ohne Jira-Ticket bearbeiten?"
-2. Bei "ohne": `jira:`-Feld bleibt leer, keine weitere Aktion.
-3. Bei "mit":
-   - Erst prüfen, ob eine andere Task-Datei in `temp/tasks/open/` oder
-     `temp/tasks/done/` bereits an demselben Problem arbeitet und ein
-     `jira:`-Feld gesetzt hat — falls ja, diese Ticket-Nummer übernehmen
-     statt ein neues Ticket anzulegen. Ein Ticket bündelt ein Problem,
-     nicht einen Task.
-   - Sonst: Titel und Beschreibung aus Kontext und Ziel der Task-Datei
-     ableiten und vorschlagen.
-   - **Mit Anbindung:** Ticket anlegen, Ticket-Nummer ins `jira:`-Feld der
-     Task-Datei eintragen.
-   - **Ohne Anbindung:** Titel/Beschreibung ausgeben, Nutzer um manuelles
-     Anlegen bitten. Sobald die Ticket-Nummer genannt wird, ins
-     `jira:`-Feld eintragen.
+- Übergänge immer per `getTransitionsForJiraIssue` ermitteln, dann
+  `transitionJiraIssue`.
+- Subtasks setzt der Agent selbst (`In Arbeit` beim Beginn, `Erledigt` beim
+  Abschluss, siehe `task`-Skill).
+- Den Status des **Parent-Tickets** setzt der Bediener, es sei denn, er
+  bittet ausdrücklich darum.
 
 ## Fortschritts-Kommentare
 
-Während der Arbeit an einem Task mit Ticket können nennenswerte
-Zwischenstände als Kommentar aufs Ticket geschrieben werden — nicht bei
-jedem einzelnen Eintrag im Fortschritt-Abschnitt der Task-Datei (siehe
-`task`-Skill), sondern bei Zwischenständen, die auch außerhalb der Task-Datei
-sichtbar sein sollten.
-
-- **Mit Anbindung:** Kommentar direkt am Ticket hinterlegen.
-- **Ohne Anbindung:** Kommentartext vorschlagen, den der Nutzer manuell
-  einträgt.
+- Am **Subtask**: Stand, nächster Schritt, Commit-Hashes (siehe `task`-Skill).
+- Am **Parent-Ticket** nur Zwischenstände, die über den einzelnen Schritt
+  hinaus relevant sind (z. B. geänderte Entscheidung, Blocker).
 
 ## Abschlusskommentar
 
-Ausgelöst vom `task`-Skill, aber erst, wenn es der **letzte** offene Task
-ist, der auf ein bestimmtes Ticket verweist (der `task`-Skill prüft das).
-Dann einen Abschlusskommentar vorschlagen bzw. hinterlegen, der
-zusammenfasst, was insgesamt umgesetzt wurde — über alle Tasks hinweg, die
-auf dieses Ticket verwiesen haben, nicht nur den zuletzt abgeschlossenen.
+Ausgelöst vom `task`-Skill, wenn der letzte offene Subtask eines Tickets
+erledigt ist. Dann einen Abschlusskommentar für das Parent-Ticket vorlegen,
+der über **alle** Subtasks zusammenfasst:
+
+- Was wurde geändert und warum.
+- Betroffene Dateien bzw. Bereiche.
+- Commits (Hash + Subtask-ID) und ggf. Version.
+- Hinweise für Test/Verifikation.
+
+Nach Freigabe per `addCommentToJiraIssue` am Parent hinterlegen.

@@ -305,40 +305,44 @@ Jeder Prompt, der Code oder Doku ändert, durchläuft folgende Phasen. Phasen d�
 - Scope, Intent und Akzeptanzkriterien klären.
 - Bei Unklarheit: Rückfrage an Bediener, keine Annahme.
 
-**4. JIRA-Ticket-Entwurf erstellen**
+**4. JIRA-Ticket anlegen**
 
-- Pro Aufgabe/Problem **ein** Ticket — nicht pro Sub-Task. Sub-Tasks aus Schritt 6 referenzieren später alle dieselbe Ticket-ID.
-- Agent liefert dem Bediener einen Entwurf bestehend aus:
+- Pro Aufgabe/Problem **ein** Ticket (Typ `Task`, `Bug` oder `Story`) im Projekt `SHBS`.
+- Agent legt dem Bediener einen Entwurf vor:
   - **Titel** (knapp, problemorientiert)
   - **Problembeschreibung:** Symptome, Reproduktion, erwartetes Verhalten
-- Der Bediener legt das Ticket in JIRA an und nennt die ID. Der Agent merkt sich die ID für die Schritte 6 (Task-Frontmatter `jira: PROJ-1234`) und 7 (Commit-Titel-Scope).
-- Ausnahme: Bei trivialen Änderungen (z. B. reiner Tippfehler in Doku) holt der Agent eine ausdrückliche Freigabe für „ohne Ticket" ein.
+- Nach Freigabe legt der Agent das Ticket selbst über den Atlassian-MCP an und nennt die ID.
+- Ausnahme: Bei trivialen Änderungen (z. B. reiner Tippfehler in Doku) holt der Agent eine ausdrückliche Freigabe für „ohne Ticket" ein. Ohne Ticket entfallen die Schritte 6 und 7.4–7.6; Commits tragen dann keinen Scope.
 
 **5. Lösung planen**
 
 - Betroffene Dateien und Änderungen benennen.
 - Bei nicht-trivialem Umfang: Plan (2–5 Punkte) vorlegen und Freigabe abwarten.
 
-**6. Tasks erstellen (siehe §11)**
+**6. Subtasks in JIRA anlegen**
 
-- Plan in diskrete Tasks unter `tmp/tasks/open/` zerlegen (Schema aus §11).
-- Jeder Task ist atomar abarbeitbar und hat eine klare Done-Bedingung inkl. Doku-Update.
-- Jeder Task trägt die in Schritt 4 vergebene Ticket-ID als `jira: PROJ-1234` im Frontmatter. Mehrere Tasks dürfen auf dasselbe Ticket referenzieren, wenn sie zusammen ein Problem lösen. Kein Task ohne Ticket-ID in die Abarbeitung.
+- Plan in diskrete **Jira-Subtasks** unter dem Ticket aus Schritt 4 zerlegen. Format und Lebenszyklus: `task`-Skill.
+- Jeder Subtask ist atomar abarbeitbar (eine Sitzung) und hat eine klare Done-Bedingung inkl. Doku-Update.
+- Agent zeigt die Subtask-Liste (Titel + Kurzbeschreibung), legt sie nach Freigabe per MCP an und nennt die IDs.
+- Jira ist die einzige Quelle für offene Arbeit. Es werden **keine** Task-Dateien unter `tmp/tasks/` mehr angelegt (Archiv, siehe Abweichungen).
 
-**7. Loop: Tasks abarbeiten**
+**7. Loop: Subtasks abarbeiten**
 
-Für jeden Task aus `tmp/tasks/open/`:
+Für jeden offenen Subtask des Tickets (Auswahl: `task`-Skill):
 
-1. Task implementieren.
-2. Validierung gemäß §10: Build (`idf.py build`) und vorhandene Tests ausführen.
-3. Doku-Pflege gemäß §10 (Boy Scout Rule, Datei-Index, kein Code-Friedhof): zugehörige `docs/project/*.md` aktualisieren, neue Markdown-Dateien im Index dieser CLAUDE.md eintragen.
-4. Task nach `tmp/tasks/done/` verschieben, `status: done`.
-5. Commit-Vorschlag an Bediener vorlegen (Conventional Commit gemäß §6, deutsch, mit Versionspräfix und JIRA-ID als Scope, Format: `v1.04.058 fix(PROJ-1234): Beschreibung`); nach Freigabe lokal committen. Ein Task = ein atomarer Commit; ein Ticket kann mehrere Tasks/Commits bündeln, alle referenzieren dieselbe JIRA-ID. Liegt keine JIRA-ID vor: Agent fordert sie ein, kein Commit ohne ID.
+1. Subtask in Jira lesen (Beschreibung + letzte Kommentare) und auf **In Arbeit** setzen.
+2. Subtask implementieren.
+3. Validierung gemäß §10: Build (`idf.py build`) und vorhandene Tests ausführen.
+4. Doku-Pflege gemäß §10 (Boy Scout Rule, Datei-Index, kein Code-Friedhof): zugehörige `docs/project/*.md` aktualisieren, neue Markdown-Dateien im Index dieser CLAUDE.md eintragen.
+5. Commit-Vorschlag an Bediener vorlegen (Conventional Commit gemäß §6, deutsch, mit Versionspräfix und **Subtask-ID** als Scope, Format: `v1.04.058 fix(SHBS-31): Beschreibung`); nach Freigabe lokal committen. Ein Subtask = ein atomarer Commit.
+6. Commit-Hash und Kurzfazit als Kommentar am Subtask hinterlegen, Subtask auf **Erledigt** setzen. Kein separater Commit zum Nachtragen von Hashes.
 
-**8. Abschluss (einmal pro Prompt, nach dem letzten Task)**
+Fortschritt bei Unterbrechung (Stand, nächster Schritt) kommt als Kommentar an den Subtask, damit die Arbeit auf dem anderen Rechner nahtlos weitergeht.
+
+**8. Abschluss (einmal pro Prompt, nach dem letzten Subtask)**
 
 - Versionierung und Release Notes gemäß §10 — unter Beachtung der projektspezifischen Abweichungen unten (ESP32-Code-Änderung + Bestätigung des Bedieners erforderlich).
-- **JIRA-Abschlusskommentar:** Sobald alle Tasks eines Tickets in `tmp/tasks/done/` liegen und commit-fertig sind, liefert der Agent einen Entwurf für einen JIRA-Abschlusskommentar (Lösungsbeschreibung: was geändert, in welchen Dateien, welche Commits/Versionen, ggf. Hinweise für Test/Verifikation). Der Bediener fügt den Kommentar in JIRA ein.
+- **JIRA-Abschlusskommentar:** Sobald alle Subtasks eines Tickets erledigt sind, legt der Agent einen Abschlusskommentar am Parent-Ticket vor (Lösungsbeschreibung: was geändert, in welchen Dateien, welche Commits/Versionen, ggf. Hinweise für Test/Verifikation) und hinterlegt ihn nach Freigabe. Den Status des Parent-Tickets setzt der Bediener.
 - Kurzer Status an Bediener: was geändert, was offen.
 
 ## Abweichungen zu 'Globale Projekt- und Agenten-Richtlinien'
@@ -346,7 +350,8 @@ Für jeden Task aus `tmp/tasks/open/`:
 - **Versionierung:** Die Firmware-Version wird in der sdkconfig gepflegt und darf nur inkrementiert werden, wenn sich der ESP32-Quellcode ändert. Änderungen an Test-Tools, Dokumentation oder Build-Skripten lösen keine Versionserhöhung aus. Die Version wird nur nach ausdrücklicher Bestätigung durch den Bediener erhöht.
 - **Release Notes:** Einträge in `docs/userdoc/releases.md` werden nur erzeugt, wenn eine Versionserhöhung stattgefunden hat.
 - **Git-Aktionen:** Ergänzung zu §9 — Nach ausdrücklicher Freigabe durch den Bediener darf der Agent Git-Aktionen ausführen (Commits, Branches erstellen, Merges, Cherry-Picks, Push). Ohne Freigabe bleibt das Verbot aus §9 bestehen. Die Freigabe gilt jeweils für den konkreten Vorgang, nicht dauerhaft — der Agent fragt vor jedem Push erneut und nennt dabei, welche Commits auf welchen Branch gehen.
-- **JIRA-Ticket-Verknüpfung:** Ergänzung zu §6 — jeder Commit referenziert genau ein JIRA-Ticket. Ein Ticket bündelt **ein Problem** und kann mehrere atomare Commits enthalten (ein Task = ein Commit). Die Ticket-ID steht als Scope im Conventional-Commit-Titel: `vX.YY.ZZZ <type>(<JIRA-ID>): <Beschreibung>`. Tickets werden vom Bediener in JIRA angelegt; der Agent liefert beim Start einen Entwurf mit Titel + Problembeschreibung und beim Abschluss (alle Tasks done) einen Entwurf für einen Lösungs-Kommentar, den der Bediener in JIRA einfügt. Wenn ausnahmsweise kein Ticket sinnvoll ist (z. B. trivialer Tippfehler in Doku), holt der Agent dafür eine ausdrückliche Freigabe ein.
+- **JIRA-Ticket-Verknüpfung:** Ergänzung zu §6 — jeder Commit referenziert genau einen JIRA-**Subtask**; dessen ID steht als Scope im Conventional-Commit-Titel: `vX.YY.ZZZ <type>(<Subtask-ID>): <Beschreibung>`. Ein Ticket bündelt **ein Problem**, seine Subtasks die einzelnen atomaren Commits. Ticket und Subtasks legt der Agent nach Freigabe per Atlassian-MCP an (Cloud `zott-it.atlassian.net`, Projekt `SHBS`). Wenn ausnahmsweise kein Ticket sinnvoll ist (z. B. trivialer Tippfehler in Doku), holt der Agent dafür eine ausdrückliche Freigabe ein.
+- **Task-System (ersetzt §11):** Arbeitsschritte werden als Jira-Subtasks geführt, nicht als Dateien unter `tmp/tasks/`. Grund: Gearbeitet wird von mehreren Rechnern; Task-Dateien waren dort erst nach Commit + Push sichtbar. `tmp/tasks/open/` und `tmp/tasks/done/` bleiben als eingefrorenes Archiv (read-only, keine neuen Dateien). Details: Skills `task`, `planen`, `jira`, `github` unter `.claude/skills/`.
 - **Git-Richtlinien:** Ergänzend zu §6 gelten die unternehmensweiten Git-Vorgaben; projektspezifische Zusammenfassung: [git_guidelines.md](docs/userdoc/git_guidelines.md). Zentrale Punkte:
   - **Branching:** `main` = Arbeitszweig, `release/x.y` = Pflege veröffentlichter Versionen, `fix/<name>` = Bugfixes über mehrere Branches, `feature/<name>` = neue Funktionalitäten. Feature-Branches werden nach Fertigstellung auf `main` gemergt.
   - **Commits:** Atomar (ein Bugfix/Feature = ein Commit). WIP-Commits sind erlaubt, müssen in der Commit-Nachricht mit `(WIP)` markiert werden.
