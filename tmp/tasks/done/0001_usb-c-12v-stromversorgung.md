@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 type: feature
 created: 2026-06-08
@@ -66,7 +66,7 @@ Projekt: `sym-lib-table` + **`fp-lib-table`** (neu, behebt Footprints-Einträge)
 - [x] Symbole in `pcb/Bauteile/Power/power.kicad_sym`
 - [x] Footprints in `pcb/Footprints/`
 - [x] `sym-lib-table` + `fp-lib-table` ergänzt
-- [ ] Schaltplan/Layout (Task 3/4)
+- [x] Schaltplan/Layout (Task 3/4)
 
 ## Task 3 — Schaltplan Power — **gezeichnet** (Stand 2026-09-06)
 
@@ -86,7 +86,7 @@ Inzwischen ist das Blatt `Stromversorgung.kicad_sch` **manuell gezeichnet** und 
 
 - [x] J_PWR, PS1, Schutz, CC-Rd manuell in KiCad eingezeichnet
 - [x] **Netzanbindung** — alle Netz-Befunde behoben (B1, B3, B9–B11, C8), ERC 0 Fehler; offen nur das optionale B2 *(Stand 2026-09-23)*
-- [ ] PCB-Layout Task 4
+- [x] PCB-Layout Task 4
 
 ## Offene Netz-Befunde (Analyse 2026-09-06)
 
@@ -170,6 +170,8 @@ Betrifft nur das Layout, nicht den Schaltplan — deshalb kein ERC-Befund.
 - 2026-09-06: **B9 per ERC verifiziert.** Neuer Lauf (23:22) gegen den alten (2026-06-17 20:49): Meldungen 53 → 24, Fehler 5 → 4, Warnungen 48 → 20. Die 28 `lib_symbol_issues` zu `power:GND` sind verschwunden, ebenso der `unannotated`-Fehler an J_PWR. Die verbleibenden 4 Fehler sind exakt B1 (U6 Pin 2 [3V3]), B3 (PS1 Pin 5 [VIN], J_PWR1 Pin A4 [VBUS]) und C8 Pin 1. **Nächster Schritt:** B1 — `+3V3` auf beiden Blättern als Power-Symbol.
 - 2026-09-06: B9 umgesetzt — `sym-lib-table` und `Stromversorgung.kicad_sch` angepasst (5 geänderte Zeilen, Zeilenenden erhalten). Restreferenzen projektweit geprüft: keine. **Nächster Schritt:** Schaltplan in KiCad öffnen, ERC laufen lassen — die 28 GND-Warnungen müssen verschwunden sein. Danach B1.
 - 2026-09-06: Analyse der KiCad-Dateien. Task 3 ist entgegen dem bisherigen Vermerk gezeichnet und committet. Netzanbindung jedoch defekt — Befunde B1–B3 dokumentiert. **Nächster Schritt:** B1–B3 in KiCad beheben, dann Netzliste und PCB neu erzeugen.
+
+- 2026-09-29: Schaltplan und Layout der USB-C-Versorgung sind fertig (SHBS-20, SHBS-21, SHBS-23; DRC sauber). Ticket SHBS-4 auf Erledigt gesetzt, Task abgeschlossen.
 
 ## Commits
 
