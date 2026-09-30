@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-27
+last_updated: 2026-09-30
 type: project-doc
 ---
 
@@ -337,6 +337,8 @@ Neues Bauteil anlegen:
 
 1. Ordner `pcb/Bauteile/<Bauteil>/` mit Symbol, Footprint und 3D-Modell.
 2. 3D-Referenz im Footprint auf `${KIPRJMOD}/../Bauteile/<Bauteil>/<Datei>`.
+   Modelle aus der KiCad-Standardbibliothek werden über
+   `${KICAD10_3DMODEL_DIR}/…` referenziert (SHBS-32).
 3. Eintrag in `sym-lib-table` und `fp-lib-table` ergänzen.
 4. Footprint-Vorgabe im Symbol auf `<Bibliothek>:<Footprint>` setzen.
 5. Symbol im **aktuellen KiCad-Dateiformat** ablegen (siehe unten).
@@ -344,6 +346,9 @@ Neues Bauteil anlegen:
 ### Dateiformat der Symbolbibliotheken (SHBS-14)
 
 Alle `.kicad_sym` im Projekt liegen im KiCad-9-Format (`version 20241209`).
+Seit dem Umstieg auf KiCad 10 (SHBS-30) gilt die Regel sinngemäß für das
+KiCad-10-Format: Sobald der Schaltplan in KiCad 10 gespeichert ist, die
+Bibliotheken mit `kicad-cli sym upgrade` nachziehen.
 
 Das ist keine Kosmetik: Liegt eine Bibliothek in einem älteren Format vor,
 während der Symbol-Cache im Schaltplan schon KiCad 9 ist, meldet die ERC für
@@ -433,18 +438,23 @@ Artefakte manuell in der KiCad-GUI erzeugt und eingecheckt werden.
 Installation und Versionsbindung stehen im [Dockerfile](../../.devcontainer/Dockerfile).
 Zwei Punkte sind dort entscheidend:
 
-- **KiCad 9 ist Pflicht.** Die Projektdateien tragen das Format
-  `version 20250114`. Ubuntu 24.04 liefert nur KiCad 8, deshalb das PPA
-  `kicad/kicad-9.0-releases`.
-- **`kicad-packages3d` bleibt draußen.** Das Paket wiegt 3,2 GB und wird nur
-  für STEP-/VRML-Export gebraucht. Symbole und Footprints sind installiert,
-  weil ERC, Netzliste und BOM sie zum Auflösen der Bibliotheken benötigen.
+- **KiCad 10 ist Pflicht (SHBS-30).** Nur KiCad 10 erzeugt PDFs mit
+  eingebettetem 3D-Modell (siehe unten). Container und Arbeitsplätze müssen
+  dieselbe Hauptversion haben: Eine in KiCad 10 gespeicherte Datei kann
+  KiCad 9 nicht mehr lesen. Ubuntu 24.04 liefert nur KiCad 8, deshalb das
+  PPA `kicad/kicad-10.0-releases`.
+- **`kicad-packages3d` ist installiert.** Das Paket wiegt 3,2 GB, liefert
+  aber die Standard-3D-Modelle (Widerstände, Kondensatoren, USB-C, …). Ohne
+  es fehlen diese Bauteile im 3D-Export stillschweigend — `kicad-cli` meldet
+  fehlende Modelle nicht. Symbole und Footprints werden für ERC, Netzliste
+  und BOM benötigt.
 - **Globale Bibliothekstabellen werden vorbelegt.** `kicad-cli` legt beim
   ersten Aufruf nur `fp-lib-table` selbst an, nicht `sym-lib-table`. Ohne diese
   Datei gelten sämtliche Standardbibliotheken (`power`, `Device`, …) als
   unbekannt und der ERC-Report füllt sich mit `lib_symbol_issues`. Das
   Dockerfile kopiert deshalb beide Vorlagen aus `/usr/share/kicad/template/`
-  nach `~/.config/kicad/9.0/`.
+  nach `~/.config/kicad/10.0/`. In KiCad 10 stammen die Vorlagen aus den
+  Paketen `kicad-symbols` und `kicad-footprints`.
 
 Typische Aufrufe gegen `pcb/BasisStation/`:
 
@@ -567,6 +577,40 @@ Netzliste und Stückliste genutzt.
 
 Nach einem Update des Dockerfiles muss der Container neu gebaut werden
 (*Rebuild Container*), sonst fehlt das Binary weiterhin.
+
+### Umstieg auf KiCad 10: neue Befunde (SHBS-30)
+
+Vorab-Lauf von `kicad-cli` 10.0.6 gegen den unveränderten KiCad-9-Stand
+(2026-09-30), mit KiCad 9 waren ERC und DRC ohne Befund:
+
+| Prüfung | Befund unter KiCad 10 |
+|---------|-----------------------|
+| ERC | 1 Warnung `lib_symbol_mismatch` an J1 — das Standardsymbol `USB_C_Receptacle_USB2.0_16P` hat sich in der KiCad-10-Bibliothek geändert |
+| DRC | 2 Fehler `copper_edge_clearance`: NPTH-Loch von J1 zur GND-Zone (F.Cu und B.Cu) 0,25 mm statt 0,5 mm |
+| DRC | 57 Warnungen `footprint_symbol_field_mismatch`, fast alle `Datasheet` (`~` im Board, leer im Schaltplan) |
+
+KiCad 10 wertet NPTH-Bohrungen offenbar als Platinenkante. Die Zonen wurden
+noch mit KiCad 9 gefüllt; erst nach *Zonen neu füllen* und *Leiterplatte aus
+Schaltplan aktualisieren* in KiCad 10 lässt sich beurteilen, was davon übrig
+bleibt.
+
+## Dokumentations-PDF mit 3D-Modell (SHBS-30)
+
+[`pcb/export_pdf.sh`](../../pcb/export_pdf.sh) erzeugt ein einziges PDF unter
+`pcb/export/BasisStation.pdf` (git-ignoriert):
+
+1. Schaltplan, alle Blätter (`sch export pdf`)
+2. Leiterplatte, eine Seite je Lage (F.Cu, B.Cu, Bestückungsdruck, Fab),
+   Platinenumriss auf jeder Seite (`pcb export pdf --mode-multipage`)
+3. Interaktives 3D-Modell (`pcb export 3dpdf`, U3D) — ohne DNP-Bauteile
+
+Zusammengeführt wird mit `qpdf`, das Seiten samt Annotationen kopiert; das
+3D-Modell überlebt den Merge. KiCad 10.0.6 schreibt in die 3D-PDF fehlerhafte
+xref-Einträge, die `qpdf` beim Merge repariert (Warnung, kein Fehler).
+
+Das 3D-Modell lässt sich nur in **Adobe Acrobat Reader** oder **Foxit**
+drehen. Browser, Poppler (Evince, Okular) und macOS Vorschau zeigen auf der
+letzten Seite eine leere Fläche.
 
 ## Pflege
 
