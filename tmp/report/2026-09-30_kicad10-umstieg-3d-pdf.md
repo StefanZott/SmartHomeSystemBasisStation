@@ -49,3 +49,19 @@ im Container wurden die KiCad-10-Pakete aus dem PPA im Scratchpad entpackt und
 
 - Container-Rebuild durch Bediener, Done-Bedingung SHBS-31 prüfen.
 - 3D-Seite in Acrobat Reader prüfen (SHBS-33).
+
+## Nachtrag: Behebung (SHBS-35)
+
+- Zonen per `kicad-cli pcb drc --refill-zones --save-board` neu gefüllt →
+  `copper_edge_clearance` weg; Board jetzt Format `20260206`.
+- Speichern über die `pcbnew`-Python-API verworfen: sortiert Segmente um
+  (≈6400 Zeilen Diff) und schreibt KiCad-10-Defaults in `.kicad_pro`.
+  Feldabgleich stattdessen textbasiert (389 Zeilen Diff).
+- DRC meldet `footprint_symbol_field_mismatch` nur für das erste
+  abweichende Feld je Footprint — S2 fehlten tatsächlich 22 Felder.
+- **J1-Falle:** KiCad 10 nummeriert im Standardsymbol den Schirm-Pin
+  `S1` → `SH`; der Footprint hat 4 Pads `S1`. Bibliotheks-Update hätte den
+  Schirm von GND getrennt. Lösung: Symbol-Kopie mit `S1` in `shbs_power`.
+  Netze vorher/nachher byte-identisch, `J1.S1` an GND.
+- Endstand: ERC 0/0, DRC 0 Verstöße, 0 Paritätsabweichungen; mit
+  `--severity-all` nur hinterlegte Ausnahmen (ERC 1, DRC 14; vorher 17).

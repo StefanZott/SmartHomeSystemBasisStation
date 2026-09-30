@@ -578,21 +578,42 @@ Netzliste und Stückliste genutzt.
 Nach einem Update des Dockerfiles muss der Container neu gebaut werden
 (*Rebuild Container*), sonst fehlt das Binary weiterhin.
 
-### Umstieg auf KiCad 10: neue Befunde (SHBS-30)
+### Umstieg auf KiCad 10: Befunde und Behebung (SHBS-30, SHBS-35)
 
-Vorab-Lauf von `kicad-cli` 10.0.6 gegen den unveränderten KiCad-9-Stand
-(2026-09-30), mit KiCad 9 waren ERC und DRC ohne Befund:
+Mit KiCad 9 waren ERC und DRC ohne Befund. `kicad-cli` 10.0.6 meldete gegen
+den unveränderten Stand neue Befunde; alle sind behoben, ERC und DRC stehen
+wieder auf **0 Fehlern und 0 Warnungen**. Die Platine liegt seitdem im
+KiCad-10-Format (`version 20260206`) und lässt sich mit KiCad 9 nicht mehr
+öffnen.
 
-| Prüfung | Befund unter KiCad 10 |
-|---------|-----------------------|
-| ERC | 1 Warnung `lib_symbol_mismatch` an J1 — das Standardsymbol `USB_C_Receptacle_USB2.0_16P` hat sich in der KiCad-10-Bibliothek geändert |
-| DRC | 2 Fehler `copper_edge_clearance`: NPTH-Loch von J1 zur GND-Zone (F.Cu und B.Cu) 0,25 mm statt 0,5 mm |
-| DRC | 57 Warnungen `footprint_symbol_field_mismatch`, fast alle `Datasheet` (`~` im Board, leer im Schaltplan) |
+| Befund unter KiCad 10 | Ursache | Behebung |
+|-----------------------|---------|----------|
+| 2× `copper_edge_clearance`: NPTH-Loch von J1 zur GND-Zone 0,25 mm statt 0,5 mm | KiCad 10 wertet NPTH-Bohrungen als Platinenkante; die Zonen waren noch mit KiCad 9 gefüllt | Zonen mit KiCad 10 neu gefüllt (`pcb drc --refill-zones --save-board`) |
+| 56× `footprint_symbol_field_mismatch` `Datasheet` | Board `~`, Schaltplan leer | Board-Feld auf den Schaltplanwert gesetzt |
+| 1× `footprint_symbol_field_mismatch` an S2 | Footprint trug keines der SnapEDA-Felder des Symbols | Felder aus dem Schaltplan übernommen (verborgen, F.Fab) |
+| 1× `lib_symbol_mismatch` an J1 | Siehe unten | J1 auf projekteigenes Symbol umgestellt |
 
-KiCad 10 wertet NPTH-Bohrungen offenbar als Platinenkante. Die Zonen wurden
-noch mit KiCad 9 gefüllt; erst nach *Zonen neu füllen* und *Leiterplatte aus
-Schaltplan aktualisieren* in KiCad 10 lässt sich beurteilen, was davon übrig
-bleibt.
+Die DRC meldet `footprint_symbol_field_mismatch` **nur für das erste
+abweichende Feld** eines Bauteils. Nach jeder Korrektur erneut prüfen, bis
+0 Abweichungen übrig sind.
+
+#### J1: Schirm-Pin in KiCad 10 umnummeriert
+
+KiCad 10 hat im Standardsymbol `Connector:USB_C_Receptacle_USB2.0_16P` den
+Schirm-Pin von `S1` auf `SH` umnummeriert. Der Footprint
+`shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` hat vier Schirm-Pads
+`S1`. *Symbol aus Bibliothek aktualisieren* hätte den Schirm von J1
+stillschweigend von GND getrennt.
+
+J1 verweist deshalb auf `shbs_power:USB_C_Receptacle_USB2.0_16P` — eine Kopie
+des bisherigen Symbols mit Pin `S1` in
+[`power.kicad_sym`](../../pcb/Bauteile/Power/power.kicad_sym). Netzliste vorher
+und nachher identisch, `J1.S1` an GND.
+
+**Regel:** Vor *Symbole aus Bibliothek aktualisieren* nach einem
+KiCad-Update die Pinnummern von Standardsymbolen gegen die Footprints
+prüfen. Ein Symbol, das eng an einen eigenen Footprint gebunden ist, gehört
+in die Projektbibliothek.
 
 ## Dokumentations-PDF mit 3D-Modell (SHBS-30)
 
