@@ -10,7 +10,7 @@
 		(rev "0.0.1")
 	)
 	(lib_symbols
-		(symbol "Connector:USB_C_Receptacle_USB2.0_16P"
+		(symbol "shbs_power:USB_C_Receptacle_USB2.0_16P"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2422,7 +2422,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:USB_C_Receptacle_USB2.0_16P")
+		(lib_id "shbs_power:USB_C_Receptacle_USB2.0_16P")
 		(at 33.02 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
