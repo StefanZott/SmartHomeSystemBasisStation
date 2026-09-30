@@ -59,9 +59,9 @@ Beide Teile sind im Schaltplan `BasisStation_Layout.kicad_sch` als **mechanische
 | Thema | Empfehlung |
 |-------|------------|
 | **SMA-Bohrung** | Ca. **6,5 mm** Durchmesser für RP-SMA-Bulkhead (exakter Wert im Datenblatt CAB.6061 prüfen). |
-| **Bulkhead-Position** | Gehäuserand, möglichst weit weg von Metallflächen und anderen HF-Quellen; Kabelweg vom Modul zur Buchse kurz halten. |
+| **Bulkhead-Position** | **Rechte Gehäusewand**, auf Höhe des U.FL-Steckers (Platine y ≈ 96, seit SHBS-52). Der Kabelweg ist dann ca. 18 mm lang und gerade. Weit weg von Metallflächen und anderen HF-Quellen |
 | **Abstand U6** | Kein dichtes Metall/Kupfer direkt am IPEX-Anschluss; Kabel nicht über USB-, Ethernet- oder Magnetics-Bereiche führen. |
-| **PCB-Layout** | Kein RF-Routing auf der Platine nötig. Freiraum um U6 für Pigtail-Montage einplanen. |
+| **PCB-Layout** | Kein RF-Routing auf der Platine nötig. U6 sitzt seit SHBS-52 rechts auf halber Höhe, der U.FL-Stecker zeigt zur rechten Wand. Zwischen Stecker und Wand liegt kein Bauteil, J6 sitzt 6 mm tiefer |
 
 ### BOM / Beschaffung
 
@@ -105,8 +105,9 @@ Schaltplan: `pcb/BasisStation/BasisStation_Debugging.kicad_sch`.
   (89,5 / 33,8) auf B.Cu zum USB−-Via (88,5 / 38,0). VBUS_J1: B4→A9 und
   B9→A4. Die Gruppe A4/B9 ist von CC1 eingeschlossen und geht über ein Via
   (90,85 / 37,6) auf B.Cu zu einem Via unter U1-Pin 4 (87,8 / 44,0).
-- USB D+/D− haben je 4 Vias und ca. 77 mm Länge bis U6. Für USB
-  Full-Speed (12 Mbit/s) ist das unkritisch.
+- USB D+/D− sind seit der Verlegung von U6 (SHBS-52) 138 bzw. 124 mm lang,
+  mit je 3 Vias. Für USB Full-Speed (12 Mbit/s, Anstiegszeit einige ns) sind
+  Länge und Längenunterschied (14 mm, ca. 0,1 ns) unkritisch.
 
 ## Stromversorgung (SHBS-4)
 
@@ -235,17 +236,17 @@ Kante und wird bei der Fertigung abgeschnitten.
 
 | Bereich | Lage | Begründung |
 |---------|------|------------|
-| **U6** (ESP32-S3) | rechts oben, U.FL zur Ecke | Kurzer Pigtail zur Gehäuseantenne, weg von USB und Ethernet |
+| **U6** (ESP32-S3) | rechts, halbe Höhe (185 / 90), um 90° gedreht | U.FL zur rechten Wand, SPI-Pins nach links zum W5500, USB/EN nach oben. Verlegt mit SHBS-52 |
 | **U7** (W5500) | rechts neben T1 | TX/RX-Pins zeigen zu T1, SPI und Quarz zu U6 |
 | Y1, C25/C26 | rechts an U7 | Kurze XI/XO-Leitungen |
 | Abblock-C, FB1 | unter U7 | Zwei Reihen, Spalten 4 mm, Reihen 5,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
 | Pull-ups R28–R32 | Reihe über U7 | Raster 4 mm |
 | S2 | obere Kante zwischen T1 und U6, liegend | Reset von außen durch die Gehäusewand (SHBS-25, siehe unten) |
-| R9 | links neben C7, Mitte rechts | Pull-up EN, seit SHBS-42 0805 statt THT |
+| R9 | links neben C7 über U6 | Pull-up EN, seit SHBS-42 0805 statt THT |
 | J6 | rechter Rand, untere Hälfte (203 / 110) | Programmierstecker, von außen gut erreichbar; Leitungen zu U6 auf B.Cu |
-| C8 | direkt an U6 | Lokaler Puffer am 3V3-Pin des Moduls, bleibt deshalb oben |
-| C10, C12 | Mitte rechts (184 / 84 und 97) | Puffer für +3V3, entlang der +3V3-Hauptleitung zum Wandler |
-| C7 (EN-Kondensator) | Mitte rechts (160 / 97) | RC-Glied mit R9, zeitunkritisch |
+| C8 | über U6 am 3V3-Pin | Lokaler Puffer am 3V3-Pin des Moduls |
+| C10, C12 | unter U6 (178 / 108 und 118,5) | Puffer für +3V3 |
+| C7 (EN-Kondensator) | über U6 am EN-Pin (178 / 74) | RC-Glied mit R9, Filter direkt am Pin. Die EN-Leitung zu S2 an der Oberkante ist dadurch lang, aber am Pin gefiltert |
 | Buck-Wandler | linke Hälfte (PS1 bei 68 / 87,5) | Weg von den Buchsen, siehe [power_supply.md](power_supply.md) |
 | R13–R16 | direkt über der LED-Anode | Vorwiderstände, seit SHBS-42 ohne Transistorstufe |
 | D7–D10 | Unterkante, liegend | Schauen durch die Gehäusewand, siehe „Status-LEDs“ |
@@ -279,7 +280,10 @@ Bauteilpaare lagen enger als 1 mm, mehrere berührten sich. Jetzt:
 - Die Blöcke sind über die Platine verteilt. Der Buck-Wandler sitzt in der
   linken Hälfte, C7/C10/C12, R9 und J6 in der rechten Hälfte darunter.
 - Oben bleibt nur, was an Buchsen oder ICs gebunden ist: T1, J1, J_PWR1, S2,
-  U6 mit C8, U7 mit Abblock-Cs, Quarz und Pull-ups.
+  U7 mit Abblock-Cs, Quarz und Pull-ups. U6 sitzt seit SHBS-52 rechts auf
+  halber Höhe (siehe Tabelle). Die SPI-Leitungen zum W5500 sind dadurch
+  61–66 mm lang. Den SPI-Takt in der Firmware zunächst auf 20 MHz setzen und
+  höhere Takte am Prototyp prüfen.
 - Zwischen den Bestückungsflächen sind überall mindestens 1 mm frei, meist
   1,5 mm und mehr. Die einzige Ausnahme außerhalb der MDI-Gruppe ist C16 an
   Y1 (1,03 mm): Er ist Abblock-C am W5500 und bleibt am Pin.

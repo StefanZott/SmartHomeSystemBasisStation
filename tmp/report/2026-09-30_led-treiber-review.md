@@ -83,6 +83,17 @@ sonst leer. Die Enge ist also eine Frage der Verteilung, nicht der Fläche.
   Stückliste neu erzeugt.
 - `pcb/export/BasisStation.pdf` neu erzeugt (nicht versioniert).
 
+## Nachtrag SHBS-52: U6 in die rechte Hälfte
+
+- U6 sitzt jetzt bei 185 / 90 und ist um 90° gedreht. Der U.FL-Stecker zeigt
+  zur rechten Wand (Kabelweg ca. 18 mm).
+- C8 und C7/R9 sitzen über U6, C10/C12 darunter.
+- USB 124–138 mm, SPI 61–66 mm. Für USB Full-Speed ist das unkritisch, den
+  SPI-Takt zunächst auf 20 MHz setzen.
+- Neu entstandene GND-Inseln an U1 (USB+ auf B.Cu) sind behoben, J6-Pad 4
+  ist über ein Via angebunden. DRC 0/0/0, 17 Ausschlüsse (unverändert).
+- Draufsicht: [2026-09-30_layout-top-shbs52.png](2026-09-30_layout-top-shbs52.png)
+
 ## Offen
 
 - Firmware `main/LED.h` nutzt noch GPIO46/3/45/21 (eigenes Ticket, vom
@@ -91,3 +102,4 @@ sonst leer. Die Enge ist also eine Frage der Verteilung, nicht der Fläche.
   Flussspannung).
 - Biegemaß und Länge der liegenden Würth-LEDs am Muster prüfen (Annahme:
   5,3 mm vom Kragen bis zur Linsenspitze).
+- Gehäuse: RP-SMA-Buchse an die rechte Wand, auf Höhe des U.FL-Steckers.
