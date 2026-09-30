@@ -380,7 +380,7 @@
 		(uuid "4069a00f-1d48-4310-917f-c2fe6ab87551")
 	)
 	(embedded_fonts no)
-	(model "${KICAD9_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_Amphenol_12401610E4-2A.step"
+	(model "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_Amphenol_12401610E4-2A.step"
 		(offset
 			(xyz 0 0 0)
 		)
