@@ -23,3 +23,6 @@ __pycache__/
 .~lock.*
 ~$*
 tmp/bom/digikey_cache.json
+
+# Generated documentation PDF (pcb/export_pdf.sh)
+/pcb/export/
