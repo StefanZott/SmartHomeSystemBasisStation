@@ -13,3 +13,10 @@
 *.png  binary
 *.ico  binary
 *.xlsx binary
+
+# CAD-Daten Gehaeuse (enclosure/): kein Textdiff, keine EOL-Konvertierung.
+# STEP ist zwar ASCII, aber generiert und mehrere MB gross.
+*.FCStd binary
+*.step  binary
+*.stl   binary
+*.3mf   binary
