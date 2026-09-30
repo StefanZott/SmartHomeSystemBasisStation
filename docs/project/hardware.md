@@ -118,20 +118,25 @@ Ausführliche Dokumentation (Schaltplan, BOM, Pinbelegung, Verdrahtung): **[powe
 
 ## Status-LEDs (SHBS-9)
 
-Vier Status-LEDs, je über einen NPN-Transistor als **Low-Side-Schalter** gegen GND geschaltet. Die LED-Anoden liegen gemeinsam auf +3V3, die Emitter aller Transistoren auf GND. Ein GPIO auf **High** schaltet die zugehörige LED **ein**.
+Vier Status-LEDs, **direkt vom GPIO getrieben**: GPIO → Vorwiderstand →
+LED-Anode, Kathoden gemeinsam auf GND. Ein GPIO auf **High** schaltet die
+zugehörige LED **ein**.
 
-| LED | Farbe | Transistor | GPIO (Modul-Pad) | Basiswiderstand | Vorwiderstand |
-|-----|-------|------------|------------------|-----------------|---------------|
-| `D7` | Gelb | `Q4` | GPIO21 (23) | `R23`, 4,7 kΩ | `R13`, 220 Ω |
-| `D9` | Rot | `Q3` | GPIO38 (31) | `R24`, 4,7 kΩ | `R15`, 220 Ω |
-| `D10` | Grün | `Q2` | GPIO47 (24) | `R25`, 4,7 kΩ | `R16`, 220 Ω |
-| `D8` | Blau | `Q1` | GPIO48 (25) | `R26`, 4,7 kΩ | `R14`, 220 Ω |
+| LED | Farbe | GPIO (Modul-Pad) | Vorwiderstand (0805) |
+|-----|-------|------------------|----------------------|
+| `D7` | Gelb | GPIO21 (23) | `R13`, 220 Ω |
+| `D9` | Rot | GPIO38 (31) | `R15`, 220 Ω |
+| `D10` | Grün | GPIO47 (24) | `R16`, 220 Ω |
+| `D8` | Blau | GPIO48 (25) | `R14`, 100 Ω |
 
-Transistoren: **BC337-40** (NPN, TO-92, Pinbelegung 1=C, 2=B, 3=E), bestellt
-als onsemi **`BC33740BU`** mit **geraden** Anschlussbeinen. Der Footprint
-`TO-92_Inline` hat 1,27 mm Raster; die Gurt-Variante `BC33740TA` hat auf
-2,54 mm aufgebogene Beine und passt nicht (so bis 2026-09-24 in der
-Stückliste, beim Footprint-Abgleich aufgefallen).
+**Warum ohne Transistoren (SHBS-40, 2026-09-30):** Bis dahin schaltete je
+ein NPN-Transistor BC337 (Q1–Q4, Basiswiderstände R23–R26) die LED gegen
+GND, Vor- und Basiswiderstände waren 2-W-THT-Typen (DIN0617, 17 mm). Ein
+Hardware-Review hat beides als überdimensioniert bewertet. Ein GPIO des
+ESP32-S3 liefert bei der Standard-Treiberstufe rund 20 mA, bei der höchsten
+rund 40 mA. Eine LED braucht hier etwa 5 mA, alle vier zusammen 20 mA. Der
+Treiber entfällt damit ersatzlos; an den Widerständen fallen nur einige mW
+ab, 0805 reicht mit großer Reserve.
 
 **Symbol und Polarität (SHBS-16, 2026-09-23):** Alle vier LEDs nutzen
 `Device:LED` (Pin 1 = Kathode, Pin 2 = Anode). Die beiden Würth-Footprints
@@ -141,17 +146,48 @@ Das war nicht immer so — `WL-TMRC_3MM` kam vom Hersteller mit vertauschter
 Nummerierung (Pad 1 = Anode). Zusammen mit `Device:LED` war **D10 dadurch
 verpolt** und hätte nie geleuchtet; D7 war nur deshalb richtig, weil es das
 Würth-eigene Symbol nutzte. Der Footprint ist jetzt umnummeriert, das
-Würth-Symbol `WL-TMRC_3MM` entsprechend mitgezogen. **Beim nächsten
-PCB-Abgleich** den Footprint von D7/D10 aus der Bibliothek aktualisieren — die
-Platinendatei enthält noch die alte Nummerierung.
+Würth-Symbol `WL-TMRC_3MM` entsprechend mitgezogen. Die Platine nutzt die
+korrigierte Nummerierung (beim PCB-Abgleich SHBS-42 geprüft).
 
-**Dimensionierung:** Der Vorwiderstand stellt bei ca. 2 V Flussspannung rund 5 mA LED-Strom ein. Der Basiswiderstand begrenzt den Basisstrom auf ca. 0,55 mA — ausreichend für sichere Sättigung und unkritisch für den GPIO-Treiber. Ohne diesen Widerstand wirkt die Basis-Emitter-Strecke als Diode gegen GND und der Pin-Strom wäre nur durch die Treiberimpedanz begrenzt.
+**Dimensionierung:** Am GPIO liegen bei High und rund 5 mA Last etwa 3,2 V.
+Rot, Gelb und Grün haben ca. 2,0–2,2 V Flussspannung, 220 Ω ergeben rund
+5 mA. Die blaue LED `151033BS03000` hat typ. 2,8 V (max. 3,6 V). Mit 220 Ω
+blieben nur etwa 1–2 mA, sie leuchtete kaum (das galt schon mit Transistor
+an +3V3). Mit 100 Ω fließen typ. 3–5 mA. Die blaue LED ist mit 3,8 cd
+trotzdem deutlich heller als die anderen. Helligkeit per PWM (LEDC) in der
+Firmware angleichen. Liegt ein Exemplar nahe an der maximalen
+Flussspannung, bleibt es dunkel. Am Prototyp prüfen.
 
-**Pinwahl:** Bewusst auf GPIOs **ohne** Strapping-, ADC- oder Touch-Funktion gelegt. Die Strapping-Pins GPIO3, GPIO45 und GPIO46 waren zuvor belegt und sind jetzt frei — ein an der Basis hängender Pegel hätte beim Reset die Boot-Konfiguration beeinflussen können (GPIO45 = VDD_SPI-Spannung, GPIO46 = ROM-Log, GPIO3 = JTAG-Quellenwahl). GPIO3 bleibt auch nach dem Wegfall von `J5` unbelegt: Das Strapping wählt zwischen internem USB-Serial-JTAG und externen JTAG-Pins und darf beim Reset nicht verzogen werden.
+**Pinwahl:** Bewusst auf GPIOs **ohne** Strapping-, ADC- oder Touch-Funktion gelegt. Die Strapping-Pins GPIO3, GPIO45 und GPIO46 waren zuvor belegt und sind jetzt frei — ein an der LED hängender Pegel hätte beim Reset die Boot-Konfiguration beeinflussen können (GPIO45 = VDD_SPI-Spannung, GPIO46 = ROM-Log, GPIO3 = JTAG-Quellenwahl). GPIO3 bleibt auch nach dem Wegfall von `J5` unbelegt: Das Strapping wählt zwischen internem USB-Serial-JTAG und externen JTAG-Pins und darf beim Reset nicht verzogen werden.
 
 **Nicht verwenden:** GPIO35, GPIO36 und GPIO37 erscheinen in der Netzliste als frei, sind beim Modul **N16R8** aber intern vom Octal-PSRAM belegt.
 
-Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`. Layout: gemeinsame +3V3-Sammelleitung unter den LEDs, gespeist rechts an U6 vorbei (SHBS-21).
+**Firmware:** Die Pinzuordnung in `main/LED.h` entspricht noch der alten
+Belegung (GPIO46/3/45/21) und muss nachgezogen werden. Die Logik (High = an)
+bleibt gleich.
+
+**Liegende Montage (SHBS-42, 2026-09-30):** Die LEDs schauen durch die
+Gehäusewand an der Unterkante heraus. Dazu werden die Beine um 90° gebogen,
+die LED liegt parallel zur Platine. Footprint:
+`LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm` aus der KiCad-Bibliothek, mit
+3D-Modell.
+
+| Maß | Wert |
+|-----|------|
+| Biegung | 1,27 mm hinter der Pad-Reihe (Abstand Pad – Kragen) |
+| LED-Mitte über Platine | 2,0 mm |
+| Pad-Reihe | y 155,43, Kathode (Pad 1, eckig) links |
+| Linsenspitze | y 162,0 = 2,0 mm vor der Kante, bündig mit der Außenseite der 2 mm dicken Wand |
+| Lichtaustritt (x) | 112,0 / 123,73 / 134,73 / 144,73 (unverändert) |
+| Gehäusebohrung | je LED ca. 3,2 mm, Mitte 2,0 mm über der Platinenoberseite |
+
+Die Würth-LEDs bleiben, nur die Beine werden gebogen. Die Maße gehen von
+der üblichen Bauform aus (5,3 mm vom Kragen bis zur Linsenspitze). Am
+Muster prüfen und die Pad-Reihe notfalls verschieben.
+
+Schaltplan: `pcb/BasisStation/BasisStation_Layout.kicad_sch`. Layout: die
+Vorwiderstände (0805) sitzen direkt über der jeweiligen LED-Anode, die
+Kathoden hängen an der GND-Fläche (SHBS-42).
 
 ## Ethernet (SHBS-5)
 
@@ -181,7 +217,7 @@ verbunden über eine Ferritperle.
 
 Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethernet.md)**.
 
-## Gesamt-Layout (SHBS-23, SHBS-10 — Stand 2026-09-29)
+## Gesamt-Layout (SHBS-23, SHBS-10, SHBS-42 — Stand 2026-09-30)
 
 Platine **160 × 132,55 mm** (Kontur x 50–210, y 27,45–160), 2 Lagen, 1,6 mm.
 Fest vorgegeben waren T1, J1, J_PWR1 und D7–D10.
@@ -202,14 +238,17 @@ Kante und wird bei der Fertigung abgeschnitten.
 | **U6** (ESP32-S3) | rechts oben, U.FL zur Ecke | Kurzer Pigtail zur Gehäuseantenne, weg von USB und Ethernet |
 | **U7** (W5500) | rechts neben T1 | TX/RX-Pins zeigen zu T1, SPI und Quarz zu U6 |
 | Y1, C25/C26 | rechts an U7 | Kurze XI/XO-Leitungen |
-| Abblock-C, FB1 | unter U7 | Zwei Reihen im Raster 3,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
-| Pull-ups R28–R32 | Reihe über U7 | Raster 3,5 mm |
+| Abblock-C, FB1 | unter U7 | Zwei Reihen, Spalten 4 mm, Reihen 5,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
+| Pull-ups R28–R32 | Reihe über U7 | Raster 4 mm |
 | S2 | obere Kante zwischen T1 und U6, liegend | Reset von außen durch die Gehäusewand (SHBS-25, siehe unten) |
-| R9 | oben zwischen T1 und U6 | Pull-up EN |
-| J6 | rechter Rand unter U6 | Nahe an UART0/GPIO0 |
-| C8, C10, C12 | unter dem SPI-Bündel | Puffer für +3V3 |
-| C7 (EN-Kondensator) | unter C10/C12 | Oben kein Platz neben der Pull-up-Reihe |
-| LED-Treiber | unverändert über den LEDs | Passten bereits |
+| R9 | links neben C7, Mitte rechts | Pull-up EN, seit SHBS-42 0805 statt THT |
+| J6 | rechter Rand, untere Hälfte (203 / 110) | Programmierstecker, von außen gut erreichbar; Leitungen zu U6 auf B.Cu |
+| C8 | direkt an U6 | Lokaler Puffer am 3V3-Pin des Moduls, bleibt deshalb oben |
+| C10, C12 | Mitte rechts (184 / 84 und 97) | Puffer für +3V3, entlang der +3V3-Hauptleitung zum Wandler |
+| C7 (EN-Kondensator) | Mitte rechts (160 / 97) | RC-Glied mit R9, zeitunkritisch |
+| Buck-Wandler | linke Hälfte (PS1 bei 68 / 87,5) | Weg von den Buchsen, siehe [power_supply.md](power_supply.md) |
+| R13–R16 | direkt über der LED-Anode | Vorwiderstände, seit SHBS-42 ohne Transistorstufe |
+| D7–D10 | Unterkante, liegend | Schauen durch die Gehäusewand, siehe „Status-LEDs“ |
 
 **Ethernet-Paare:** TX± und RX± sind von Hand geroutet und gesperrt. RX
 verlässt T1 durch den Kanal zwischen den beiden Pad-Reihen, die
@@ -233,22 +272,53 @@ durchgehenden Rückseitenmasse angebunden. Unter U7 verbindet eine
 Sammelleitung die +3V3A-Pins. DRC: **keine offenen Verbindungen**, keine
 Abstandsfehler außer den footprint-bedingten an U1/J1.
 
+**Verteilung (SHBS-42, 2026-09-30):** Nach einem Hardware-Review war die
+Bestückung zu gedrängt: Fast alles saß in der oberen Hälfte, 22
+Bauteilpaare lagen enger als 1 mm, mehrere berührten sich. Jetzt:
+
+- Die Blöcke sind über die Platine verteilt. Der Buck-Wandler sitzt in der
+  linken Hälfte, C7/C10/C12, R9 und J6 in der rechten Hälfte darunter.
+- Oben bleibt nur, was an Buchsen oder ICs gebunden ist: T1, J1, J_PWR1, S2,
+  U6 mit C8, U7 mit Abblock-Cs, Quarz und Pull-ups.
+- Zwischen den Bestückungsflächen sind überall mindestens 1 mm frei, meist
+  1,5 mm und mehr. Die einzige Ausnahme außerhalb der MDI-Gruppe ist C16 an
+  Y1 (1,03 mm): Er ist Abblock-C am W5500 und bleibt am Pin.
+- Transistorstufe der LEDs entfallen, R9 und R13–R16 als 0805.
+
+**Bewusst unverändert:** die Ethernet-MDI-Gruppe an T1 (R35–R40, C28–C30).
+Dort liegen die von Hand gerouteten, gesperrten Paare. R36/R37 (0,2 mm) und
+C29/C30 (0,45 mm) bleiben enger als 1 mm. Ein Verschieben hätte die
+Paarführung aufgebrochen.
+
+**Neu-Routing:** Die getrennten Netze (u. a. +3V3, +5V, SW, LED, EN, Quarz,
+SPI zum W5500) hat Freerouting 2.4.1 neu geroutet. Die übrigen Leitungen des
+alten Stands blieben erhalten, weil sie an unveränderten Bauteilen hängen.
+Die GND-Stiche an U7 und J1/U1 sowie die +3V3A-Sammelleitung unter U7 sind
+aus dem alten Stand übernommen. Unter U7 schloss die +3V3-Hauptleitung auf
+B.Cu zusammen mit der XO-Leitung eine GND-Insel ein, in der Pin 29 und C16
+hingen. Die Hauptleitung läuft deshalb dort auf y 53, das +3V3-Via für C16
+und Pin 28 sitzt direkt unter C16. Pin 29 geht auf F.Cu an C16.2. Freerouting läuft im Dev-Container ohne
+Installation: JRE 25 und das JAR in einem temporären Verzeichnis. Beim
+Einlesen der SES-Datei ersetzt KiCad **alle** Leiterbahnen und verliert dabei
+Handrouten. Deshalb wurden nur die neuen Leiterbahnen übernommen.
+
 Montagelöcher heißen im PCB **H1–H4** (vorher alle `REF**`). Der
 Specctra-Export braucht eindeutige Referenzen. Sie sind als
 „nur Platine" markiert (kein Schaltplan-Symbol nötig).
 
-### DRC: Regeln und Ausschlüsse (Stand 2026-09-29)
+### DRC: Regeln und Ausschlüsse (Stand 2026-09-30)
 
 `kicad-cli pcb drc --schematic-parity`: **0 offene Verbindungen, 0
-Schaltplan-Abweichungen, 0 offene Fehler.** Übrig sind 15 bewusst
+Schaltplan-Abweichungen, 0 offene Fehler.** Übrig sind 17 bewusst
 ausgeschlossene Meldungen. Die Begründung steht jeweils als Kommentar in
 `BasisStation.kicad_pro`:
 
 | Meldung | Anzahl | Grund |
 |---------|-------:|-------|
 | `copper_edge_clearance` J_PWR1, J1 | 4 | Hersteller-Landepattern Amphenol: A12/S1 liegen 0,30 mm am ovalen NPTH, KiCad behandelt NPTH als Kante |
-| `starved_thermal` | 9 | Pad hat nur einen Thermal-Steg, ist aber zusätzlich per Leiterbahn oder Via an GND angebunden |
+| `starved_thermal` J1, J_PWR1 | 3 | Pad hat nur einen Thermal-Steg, ist aber zusätzlich per Leiterbahn oder Via an GND angebunden. Sechs weitere Ausschlüsse sind mit SHBS-42 entfallen, weil die Bauteile verschoben oder anders angebunden sind |
 | `silk_edge_clearance` T1 | 2 | Silkscreen-Umriss ragt mit der Buchse über die Kante, wird bei der Fertigung abgeschnitten |
+| `silk_edge_clearance` D7–D10 | 8 | Liegende LEDs ragen mit der Linse 2 mm über die Kante in die Gehäusewand, die Kontur wird abgeschnitten |
 
 **Regeln statt Ausschluss:** Die Thermal-Stege an S2 siehe „Reset-Taster S2". Die fünf Padabstände von 0,15 mm am ESD-Array U1
 sind eine Eigenschaft seines Landepatterns. `BasisStation.kicad_dru` erlaubt

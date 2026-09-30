@@ -425,10 +425,9 @@ def _open_points_sheet(workbook, groups, technology, stamp) -> None:
             f"Mischbestückung THT / SMD ({len(through_hole)} bedrahtete Teile)",
             "Bedrahtet: " + ", ".join(through_hole) + ".",
             "Bedrahtete Teile erzwingen einen zweiten Bestückungsdurchlauf und verteuern die "
-            "Fertigung spürbar. R13–R16 und R23–R26 sitzen zudem im Footprint DIN0617 "
-            "(17 mm, 2-W-Klasse) — für 220 Ω und 4,7 kΩ in einer Signalfunktion "
-            "überdimensioniert. Bei den LEDs und Steckverbindern ist THT bewusst gewählt; "
-            "zu prüfen ist vor allem, ob Q1–Q4 und die Widerstände SMD werden können.",
+            "Fertigung spürbar. Die LED-Treiberstufe (Q1–Q4, R23–R26) ist seit SHBS-40 "
+            "entfallen, R9 und R13–R16 sind 0805. Bei den LEDs, Elkos und Steckverbindern "
+            "ist THT bewusst gewählt.",
             "Bediener",
         ),
         (

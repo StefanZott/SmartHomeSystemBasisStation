@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-26
+last_updated: 2026-09-30
 type: project-doc
 jira: SHBS-4
 ---
@@ -539,27 +539,32 @@ DRC-Minimum.
 ### Platzierung Buck-Wandler (Layout)
 
 Seit 2026-09-26 (SHBS-21) sind die Bauteile des Wandlers eng um PS1
-(66 / 53,5) angeordnet. Leitgedanke: Die Schleife mit den schnellen
+angeordnet. Leitgedanke: Die Schleife mit den schnellen
 Stromflanken, C13 → IN → SW → D11 → GND → C13, bleibt möglichst klein. Dazu
 sitzt C13 direkt über IN/EN, D11 links oben mit der Kathode auf Höhe von SW,
 C15 zwischen D11 und PS1. L1 und C14 stehen darunter, der FB-Teiler R17/R18
-rechts unten, abgewandt von SW und L1. Die Schaltknoten-Leitung ist rund
-9 mm lang (vorher 40,7 mm). GND-Vias (0,8/0,4) sitzen an C13, D11, PS1.2,
-C14 und R18. R17 greift die Spannung für die Regelung am Ausgangskondensator
-C14 ab. Die Koordinaten stehen in der
+rechts unten, abgewandt von SW und L1. R17 greift die Spannung für die
+Regelung am Ausgangskondensator C14 ab.
+
+**Entzerrt (SHBS-42, 2026-09-30):** In der ersten Fassung berührten sich die
+Bestückungsflächen von PS1, C15, L1, C14, R17 und R18 praktisch (Abstand
+0–0,2 mm). Das ist von Hand kaum zu löten und nicht nachzuarbeiten. Die
+Gruppe ist deshalb um den Faktor 1,5 um PS1 gestreckt und in die freie
+linke Platinenhälfte verlegt (PS1 jetzt bei 68 / 87,5, rund 34 mm unter der
+alten Lage). Die Anordnung und damit die Schleife bleiben gleich, alle
+Abstände liegen bei mindestens 1 mm. +5V kommt über eine Leitung von F1/D12
+an der Buchse, +3V3 läuft über eine Hauptleitung zu U6, U7 und den Puffern
+C10/C12. PS1-Pad 2 (GND) hat nur einen Thermal-Steg und ist zusätzlich über
+ein Via direkt unter dem Pad angebunden. Die Schleife wird
+dadurch etwas länger. Bei den geringen Strömen der Basisstation ist das
+unkritisch. Die Koordinaten stehen in der
 [`.kicad_pcb`](../../pcb/BasisStation/BasisStation.kicad_pcb).
 
-**+3V3-Verteilung:** Vom Wandler führt eine 0,6-mm-Leitung auf F.Cu
-waagerecht zu U6 Pin 2. Die Versorgung der LED-Anoden D7–D10 zweigt davon
-ab, läuft **über U6 hinweg und rechts am Modul vorbei** und endet in einer
-Sammelleitung unter den LEDs. Warum nicht links an U6 vorbei: Dort müssen
-USB D+/D− (zu U1), EN (zu S2) und die SPI-Leitungen zum W5500 auf F.Cu nach
-links heraus. Eine Leitung auf der linken Seite hätte für alle diese Signale
-Vias erzwungen. Nachteil der gewählten Führung: Die Leitungen von U6 Pin 27,
-36 und 37 zu J6 können nicht über das Modul hinweg, bei ungünstiger Lage von
-J6 brauchen sie Vias. Seit 2026-09-29 sind U6 (rechts oben), U7 und J6
-platziert und geroutet (SHBS-23/SHBS-10, siehe [hardware.md](hardware.md)
-„Gesamt-Layout").
+**+3V3-Verteilung:** Seit SHBS-42 hängen die LEDs nicht mehr an +3V3,
+sondern werden direkt vom GPIO getrieben (siehe [hardware.md](hardware.md),
+„Status-LEDs“). Die frühere Sammelleitung über U6 hinweg zu den LED-Anoden
+ist entfallen. +3V3 ist zusammen mit den übrigen ungesperrten Netzen mit
+Freerouting neu geroutet.
 
 Im Layout-Sheet: **`+3V3`** als globales Label oder `power:+3V3`-Symbol plus **PWR_FLAG** am Buck-Ausgang.
 
