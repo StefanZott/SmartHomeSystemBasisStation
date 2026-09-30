@@ -23,23 +23,27 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
   && rm -rf /var/lib/apt/lists/* \
   && npm install -g @anthropic-ai/claude-code
 
-# KiCad 9 (kicad-cli) - required to run ERC, DRC, netlist and BOM exports
-# headlessly against pcb/BasisStation/*. The schematic files use format version
-# 20250114, so KiCad 9 is mandatory; noble only ships KiCad 8, hence the PPA.
-# Symbols and footprints are needed to resolve the project libraries; the
-# metapackage kicad-libraries is avoided because it drags in kicad-packages3d
-# (3.2 GB), which only matters for STEP/VRML exports. Add that package here if
-# 3D output ever becomes relevant. xvfb covers the export subcommands that
-# still expect an X display.
+# KiCad 10 (kicad-cli) - required to run ERC, DRC, netlist and BOM exports
+# headlessly against pcb/BasisStation/*, and for the combined documentation PDF
+# (SHBS-30): only KiCad 10 can export a PDF with an embedded interactive 3D
+# model (pcb export 3dpdf). Must match the KiCad version on the workstations,
+# because a file saved by a newer KiCad cannot be read by an older one; noble
+# only ships KiCad 8, hence the PPA. Symbols and footprints resolve the project
+# libraries, kicad-packages3d (3.2 GB) provides the stock 3D models referenced
+# via KICAD10_3DMODEL_DIR - without it every stock part is missing from 3D
+# exports. qpdf merges the individual PDFs without dropping the 3D annotation.
+# xvfb covers the export subcommands that still expect an X display.
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
   software-properties-common \
-  && DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:kicad/kicad-9.0-releases \
+  && DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:kicad/kicad-10.0-releases \
   && DEBIAN_FRONTEND=noninteractive apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
   kicad \
   kicad-symbols \
   kicad-footprints \
+  kicad-packages3d \
+  qpdf \
   xvfb \
   && rm -rf /var/lib/apt/lists/*
 
@@ -112,9 +116,9 @@ RUN mkdir -p ~/.claude
 # fp-lib-table by itself on first run, but not sym-lib-table - without it every
 # stock library (power, Device, Connector, ...) is reported missing and ERC
 # drowns in lib_symbol_issues violations.
-RUN mkdir -p ~/.config/kicad/9.0 \
-  && cp /usr/share/kicad/template/sym-lib-table ~/.config/kicad/9.0/sym-lib-table \
-  && cp /usr/share/kicad/template/fp-lib-table ~/.config/kicad/9.0/fp-lib-table
+RUN mkdir -p ~/.config/kicad/10.0 \
+  && cp /usr/share/kicad/template/sym-lib-table ~/.config/kicad/10.0/sym-lib-table \
+  && cp /usr/share/kicad/template/fp-lib-table ~/.config/kicad/10.0/fp-lib-table
 
 ENTRYPOINT [ "/opt/esp/entrypoint.sh" ]
 
