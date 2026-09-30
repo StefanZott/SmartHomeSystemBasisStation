@@ -1,82 +1,20 @@
 ** Drc report for BasisStation.kicad_pcb **
-** Created on 2026-09-29T10:27:01+0000 **
-** Report includes: Errors, Warnings, Exclusions **
+** Created on 2026-09-30T11:41:05 **
+** Report includes: Errors, Warnings **
 
-** Found 15 DRC violations **
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(91.7500 mm, 36.5200 mm): Pad A1 [GND] of J1 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(86.2500 mm, 36.5200 mm): Pad A12 [GND] of J1 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(154.3000 mm, 56.9500 mm): Pad 1 [GND] of C25 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(137.5000 mm, 58.5500 mm): Pad 2 [GND] of C17 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(154.8500 mm, 51.9000 mm): Pad 2 [GND] of Y1 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(141.0000 mm, 58.5500 mm): Pad 2 [GND] of C18 on F.Cu
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(75.2500 mm, 36.5200 mm): Pad A1 [GND] of J_PWR1 on F.Cu
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(76.6300 mm, 34.6100 mm): PTH pad S1 [GND] of J_PWR1
-[starved_thermal]: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1)
-    Local override; error (excluded)
-    @(209.5000 mm, 27.9500 mm): Zone [GND] on F.Cu, priority 0
-    @(171.2500 mm, 44.0000 mm): PTH pad 2 [GND] of C8
-    Pad zusätzlich per Leiterbahn/Via an GND angebunden (SHBS-23)
-[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.3063 mm)
-    Rule: board setup constraints edge; error (excluded)
-    @(85.4000 mm, 35.8600 mm): NPTH pad of J1
-    @(86.2500 mm, 36.5200 mm): Pad A12 [GND] of J1 on F.Cu
-    Hersteller-Landepattern Amphenol 12401598E4#2A (wie J_PWR1)
-[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.2982 mm)
-    Rule: board setup constraints edge; error (excluded)
-    @(85.4000 mm, 35.8600 mm): NPTH pad of J1
-    @(84.8700 mm, 34.6100 mm): PTH pad S1 [GND] of J1
-    Hersteller-Landepattern Amphenol 12401598E4#2A (wie J_PWR1)
-[silk_edge_clearance]: Silkscreen clipped by board edge
-    Rule: board setup constraints silk; warning (excluded)
-    @(50.0000 mm, 27.4500 mm): Segment on Edge.Cuts
-    @(111.8400 mm, 38.4800 mm): Segment of T1 on F.Silkscreen
-    T1-Umriss ragt mit der Buchse über die Kante, wird bei Fertigung abgeschnitten
-[silk_edge_clearance]: Silkscreen clipped by board edge
-    Rule: board setup constraints silk; warning (excluded)
-    @(50.0000 mm, 27.4500 mm): Segment on Edge.Cuts
-    @(128.0400 mm, 38.4800 mm): Segment of T1 on F.Silkscreen
-    T1-Umriss ragt mit der Buchse über die Kante, wird bei Fertigung abgeschnitten
-[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.3063 mm)
-    Rule: board setup constraints edge; error (excluded)
-    @(68.9000 mm, 35.8600 mm): NPTH pad of J_PWR1
-    @(69.7500 mm, 36.5200 mm): Pad A12 [GND] of J_PWR1 on F.Cu
-[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.2982 mm)
-    Rule: board setup constraints edge; error (excluded)
-    @(68.9000 mm, 35.8600 mm): NPTH pad of J_PWR1
-    @(68.3700 mm, 34.6100 mm): PTH pad S1 [GND] of J_PWR1
+** Found 0 DRC violations **
 
 ** Found 0 unconnected pads **
 
 ** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - PTH inside courtyard
+    - NPTH inside courtyard
+    - Footprint component type doesn't match footprint pads
 
 ** End of Report **
