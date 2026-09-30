@@ -1707,229 +1707,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:BC337"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "BC337"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-				(at 5.08 -1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(italic yes)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, TO-92"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "NPN"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=C 2=B 3=E"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "NPN Transistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO?92*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "BC337_0_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy 0.635 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 1.905) (xy 0.635 -1.905)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 1.27 0)
-					(radius 2.8194)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "BC337_1_1"
-				(polyline
-					(pts
-						(xy 0.635 0.635) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 -0.635) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "WCAP-FTXX_P10:WCAP-FTXX_P10"
 			(pin_names
 				(offset 1.016)
@@ -3057,6 +2834,106 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 104.14) (xy 250.19 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea8c7e7b-1023-42e0-912e-3e9738320204")
+	)
+	(wire
+		(pts
+			(xy 250.19 104.14) (xy 250.19 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57f01271-9257-4158-8129-5828c39c2f0a")
+	)
+	(wire
+		(pts
+			(xy 250.19 107.95) (xy 259.08 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90ae6b25-1a47-4a5a-b635-a3b700b7de5a")
+	)
+	(wire
+		(pts
+			(xy 210.82 118.11) (xy 259.08 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f705df6-d063-4667-ab35-05d830c1985f")
+	)
+	(wire
+		(pts
+			(xy 218.44 133.35) (xy 250.19 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc96af40-7274-4868-8ce9-d38b54dde007")
+	)
+	(wire
+		(pts
+			(xy 250.19 133.35) (xy 250.19 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f7cef77-a44a-4c9e-b714-e70c8f7d0d1f")
+	)
+	(wire
+		(pts
+			(xy 250.19 128.27) (xy 259.08 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92986fa4-370d-4996-a99e-5b915f45060c")
+	)
+	(wire
+		(pts
+			(xy 218.44 148.59) (xy 250.19 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "484a8320-30d6-444a-b65e-6ea9c67f0c5b")
+	)
+	(wire
+		(pts
+			(xy 250.19 148.59) (xy 250.19 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b00fe9e3-d684-48d4-a4d0-945a344b7210")
+	)
+	(wire
+		(pts
+			(xy 250.19 138.43) (xy 259.08 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a9272f4-dfcf-4d16-86c7-8cd26e1da6e4")
+	)
+	(wire
+		(pts
 			(xy 52.07 55.88) (xy 52.07 63.5)
 		)
 		(stroke
@@ -3167,16 +3044,6 @@
 	)
 	(wire
 		(pts
-			(xy 242.57 102.87) (xy 245.11 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24d17c14-1059-48b6-a679-dd763616af90")
-	)
-	(wire
-		(pts
 			(xy 52.07 44.45) (xy 52.07 40.64)
 		)
 		(stroke
@@ -3184,26 +3051,6 @@
 			(type default)
 		)
 		(uuid "2509f1c2-4d67-43d2-838b-6f8a74da5120")
-	)
-	(wire
-		(pts
-			(xy 234.95 102.87) (xy 229.87 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a6ab5b2-acbd-424d-a969-fbec5f6c49b5")
-	)
-	(wire
-		(pts
-			(xy 245.11 113.03) (xy 252.73 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2bd2ad8c-fa98-4117-a9fc-e03b7d238388")
 	)
 	(wire
 		(pts
@@ -3224,16 +3071,6 @@
 			(type default)
 		)
 		(uuid "2dacc6f9-52fc-439a-b80c-f4767cf4840c")
-	)
-	(wire
-		(pts
-			(xy 210.82 118.11) (xy 223.52 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3043c83d-0228-4a55-8848-14e9dd0ffa05")
 	)
 	(wire
 		(pts
@@ -3307,26 +3144,6 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 133.35) (xy 233.68 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4a4a1caa-7267-43fc-ad0b-416ada7b6775")
-	)
-	(wire
-		(pts
-			(xy 210.82 104.14) (xy 214.63 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c222e4e-e382-46be-88f4-b37c915d3e25")
-	)
-	(wire
-		(pts
 			(xy 179.07 22.86) (xy 187.96 22.86)
 		)
 		(stroke
@@ -3344,16 +3161,6 @@
 			(type default)
 		)
 		(uuid "4cd3789e-8e15-4bbc-9f09-a4d7657fbef6")
-	)
-	(wire
-		(pts
-			(xy 252.73 128.27) (xy 259.08 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e4f6a27-33c7-4c1f-ae0e-8e34f7d73f0a")
 	)
 	(wire
 		(pts
@@ -3377,16 +3184,6 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 102.87) (xy 229.87 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "532e89ca-1950-4a31-b509-f4a6223cc581")
-	)
-	(wire
-		(pts
 			(xy 105.41 44.45) (xy 110.49 44.45)
 		)
 		(stroke
@@ -3394,16 +3191,6 @@
 			(type default)
 		)
 		(uuid "561ac6b2-6d6b-4889-a3fa-2a8863790b6f")
-	)
-	(wire
-		(pts
-			(xy 248.92 153.67) (xy 248.92 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "597b5a39-0e7e-40f7-91f7-88b61f92527a")
 	)
 	(wire
 		(pts
@@ -3447,16 +3234,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 113.03) (xy 237.49 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "71ef8e26-f5a3-4bb7-9218-672c780c2efb")
-	)
-	(wire
-		(pts
 			(xy 105.41 139.7) (xy 105.41 144.78)
 		)
 		(stroke
@@ -3474,16 +3251,6 @@
 			(type default)
 		)
 		(uuid "72c8871c-860a-4707-beb7-c35406cfe571")
-	)
-	(wire
-		(pts
-			(xy 222.25 99.06) (xy 229.87 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "75699049-1c6c-40e9-8051-4a5670f0065f")
 	)
 	(wire
 		(pts
@@ -3514,16 +3281,6 @@
 			(type default)
 		)
 		(uuid "7ec84ae0-2138-4fb9-8e8b-ad409d75d045")
-	)
-	(wire
-		(pts
-			(xy 248.92 138.43) (xy 248.92 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f4a7dd6-ab30-4dae-aeee-3ea97d0838dd")
 	)
 	(wire
 		(pts
@@ -3597,16 +3354,6 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 109.22) (xy 222.25 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "954db0c9-20f6-4e01-ab04-9ca0ab17c4a4")
-	)
-	(wire
-		(pts
 			(xy 52.07 52.07) (xy 52.07 55.88)
 		)
 		(stroke
@@ -3637,16 +3384,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 123.19) (xy 231.14 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3013ec7-1822-4d96-8853-5f78e9b5dab7")
-	)
-	(wire
-		(pts
 			(xy 279.4 99.06) (xy 279.4 107.95)
 		)
 		(stroke
@@ -3654,16 +3391,6 @@
 			(type default)
 		)
 		(uuid "a4bf409c-4f4d-4f0b-96fa-11a04fdb2301")
-	)
-	(wire
-		(pts
-			(xy 252.73 113.03) (xy 252.73 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a50c83e8-e053-4ba5-bd14-465533f19078")
 	)
 	(wire
 		(pts
@@ -3687,16 +3414,6 @@
 	)
 	(wire
 		(pts
-			(xy 245.11 102.87) (xy 245.11 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "abba6830-b8fd-47d3-bb3f-b2480f695b0a")
-	)
-	(wire
-		(pts
 			(xy 151.13 71.12) (xy 158.75 71.12)
 		)
 		(stroke
@@ -3704,16 +3421,6 @@
 			(type default)
 		)
 		(uuid "ac628f3d-611a-4336-901d-f86ae5380934")
-	)
-	(wire
-		(pts
-			(xy 245.11 107.95) (xy 259.08 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "adcd7c71-14ea-4499-8cd1-f90614f42108")
 	)
 	(wire
 		(pts
@@ -3734,16 +3441,6 @@
 			(type default)
 		)
 		(uuid "b6095b85-eb90-4b4b-a6ee-30023ddfa321")
-	)
-	(wire
-		(pts
-			(xy 256.54 138.43) (xy 259.08 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b62548ec-7c2a-4d6c-8920-af867305ba32")
 	)
 	(wire
 		(pts
@@ -3817,26 +3514,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 128.27) (xy 245.11 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d527bc17-ccbf-4d74-b969-5c9aea035dff")
-	)
-	(wire
-		(pts
-			(xy 218.44 148.59) (xy 241.3 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df45e723-a7a9-4eab-b0fe-c77241f42f54")
-	)
-	(wire
-		(pts
 			(xy 279.4 138.43) (xy 279.4 128.27)
 		)
 		(stroke
@@ -3877,16 +3554,6 @@
 	)
 	(wire
 		(pts
-			(xy 252.73 118.11) (xy 259.08 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec00c7b6-fa14-40fa-84a4-7d0f3deafc5c")
-	)
-	(wire
-		(pts
 			(xy 151.13 66.04) (xy 160.02 66.04)
 		)
 		(stroke
@@ -3924,16 +3591,6 @@
 			(type default)
 		)
 		(uuid "f2e78a53-48f6-42dc-8d3b-ee43ef171f3d")
-	)
-	(wire
-		(pts
-			(xy 241.3 138.43) (xy 241.3 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f371aa97-b3ca-442b-a6f2-90128cd15f3a")
 	)
 	(wire
 		(pts
@@ -4142,163 +3799,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:BC337")
-		(at 246.38 148.59 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "00e1f3f3-9df0-4d49-a562-436a6dc0b17f")
-		(property "Reference" "Q1"
-			(at 251.46 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BC337"
-			(at 251.46 149.8599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 251.46 150.495 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, TO-92"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "NPN"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=C 2=B 3=E"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "onsemi"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "BC33740BU"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "512-BC33740BU"
-			(at 246.38 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f6b1634a-8b96-4c78-82c4-bde506c0b87a")
-		)
-		(pin "2"
-			(uuid "aee75b02-20ae-468a-9089-8a36eb4a729f")
-		)
-		(pin "3"
-			(uuid "46323fe1-1504-4b84-9822-ce4ee1f531dc")
-		)
-		(instances
-			(project ""
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "Q1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "mechanical:WLAN_Antenna")
 		(at 135.89 146.05 0)
 		(unit 1)
@@ -4435,74 +3935,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 241.3 139.7 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "068d81a8-d18b-43e7-93c9-a0de3c251502")
-		(property "Reference" "#PWR04"
-			(at 241.3 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 241.3 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 241.3 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 241.3 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9468f463-929a-4600-b3d1-1cc29d4358b3")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "#PWR04")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED")
-		(at 262.89 118.11 0)
+		(at 262.89 118.11 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4525,7 +3959,7 @@
 				)
 			)
 		)
-		(property "Footprint" "WL-TMRW_3MM:WL-TMRW_3MM"
+		(property "Footprint" "LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm"
 			(at 262.89 118.11 0)
 			(effects
 				(font
@@ -5036,74 +4470,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 231.14 125.73 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2408d28d-e062-49c7-b246-5dc690709ef9")
-		(property "Reference" "#PWR05"
-			(at 231.14 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 231.14 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 231.14 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 231.14 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 231.14 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2e1c9284-fcac-4fbe-b905-833d15e06de2")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED")
-		(at 262.89 107.95 0)
+		(at 262.89 107.95 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5126,7 +4494,7 @@
 				)
 			)
 		)
-		(property "Footprint" "WL-TMRC_3MM:WL-TMRC_3MM"
+		(property "Footprint" "LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm"
 			(at 261.62 107.95 0)
 			(effects
 				(font
@@ -5297,7 +4665,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 252.73 138.43 270)
+		(at 214.63 148.59 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5305,23 +4673,23 @@
 		(dnp no)
 		(uuid "3756c516-14ba-4347-a875-c3cac85a911f")
 		(property "Reference" "R14"
-			(at 252.73 136.398 90)
+			(at 214.63 146.558 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "220"
-			(at 252.73 138.43 90)
+		(property "Value" "100Ω"
+			(at 214.63 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 252.73 136.652 90)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 214.63 146.812 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5329,8 +4697,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 252.73 138.43 0)
+		(property "Datasheet" "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+			(at 214.63 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5339,7 +4707,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 252.73 138.43 0)
+			(at 214.63 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5348,7 +4716,7 @@
 			)
 		)
 		(property "MANUFACTURER" ""
-			(at 252.73 138.43 90)
+			(at 214.63 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5357,7 +4725,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 252.73 138.43 90)
+			(at 214.63 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5366,7 +4734,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 252.73 138.43 90)
+			(at 214.63 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5375,7 +4743,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 252.73 138.43 90)
+			(at 214.63 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5383,8 +4751,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 252.73 138.43 0)
+		(property "Manufacturer" "YAGEO"
+			(at 214.63 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5392,8 +4760,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "PR02000202200JR500"
-			(at 252.73 138.43 0)
+		(property "Manufacturer_Part_Number" "RC0805FR-07100RL"
+			(at 214.63 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5401,8 +4769,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "594-5083NW220R0J"
-			(at 252.73 138.43 0)
+		(property "Mouser Part Number" "603-RC0805FR-07100RL"
+			(at 214.63 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5426,231 +4794,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 222.25 111.76 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "401617cc-65f1-4c15-9423-9212768a9dcb")
-		(property "Reference" "#PWR06"
-			(at 222.25 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 222.25 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 222.25 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 222.25 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 222.25 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b0c4c90b-ca4f-41b4-ab6e-a12ca21470d0")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:BC337")
-		(at 219.71 104.14 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "43f00cfc-d2fa-4c42-ba18-caed72e1b079")
-		(property "Reference" "Q4"
-			(at 224.79 102.8699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BC337"
-			(at 224.79 105.4099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 224.79 106.045 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, TO-92"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "NPN"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=C 2=B 3=E"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "onsemi"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "BC33740BU"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "512-BC33740BU"
-			(at 219.71 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d066d19a-3896-473f-bcb5-e76e88ffb9be")
-		)
-		(pin "2"
-			(uuid "842dd49a-47ab-403a-8598-d367c87884d2")
-		)
-		(pin "3"
-			(uuid "e6438cff-a0dd-4349-9e2e-1aa6d0d9bc4c")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "Q4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
-		(at 241.3 113.03 90)
+		(at 207.01 118.11 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5658,23 +4803,23 @@
 		(dnp no)
 		(uuid "4b5fabe3-1211-4631-bf9a-b74b5a2819dd")
 		(property "Reference" "R15"
-			(at 241.554 110.998 90)
+			(at 207.264 116.078 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "220"
-			(at 241.554 113.03 90)
+		(property "Value" "220Ω"
+			(at 207.264 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 241.3 114.808 90)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 207.01 119.888 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5682,8 +4827,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 241.3 113.03 0)
+		(property "Datasheet" "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+			(at 207.01 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5692,7 +4837,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 241.3 113.03 0)
+			(at 207.01 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5701,7 +4846,7 @@
 			)
 		)
 		(property "MANUFACTURER" ""
-			(at 241.3 113.03 90)
+			(at 207.01 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5710,7 +4855,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 241.3 113.03 90)
+			(at 207.01 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5719,7 +4864,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 241.3 113.03 90)
+			(at 207.01 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5728,7 +4873,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 241.3 113.03 90)
+			(at 207.01 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5736,8 +4881,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 241.3 113.03 0)
+		(property "Manufacturer" "YAGEO"
+			(at 207.01 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5745,8 +4890,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "PR02000202200JR500"
-			(at 241.3 113.03 0)
+		(property "Manufacturer_Part_Number" "RC0805FR-07220RL"
+			(at 207.01 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5754,8 +4899,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "594-5083NW220R0J"
-			(at 241.3 113.03 0)
+		(property "Mouser Part Number" "603-RC0805FR-07220RL"
+			(at 207.01 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5977,7 +5122,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 238.76 102.87 90)
+		(at 207.01 104.14 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5985,23 +5130,23 @@
 		(dnp no)
 		(uuid "560c6048-3130-4305-8d39-62dd6e8ed475")
 		(property "Reference" "R13"
-			(at 238.76 100.838 90)
+			(at 207.01 102.108 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "220"
-			(at 238.76 102.87 90)
+		(property "Value" "220Ω"
+			(at 207.01 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 238.76 104.648 90)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 207.01 105.918 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6009,8 +5154,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 238.76 102.87 0)
+		(property "Datasheet" "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+			(at 207.01 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6019,7 +5164,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 238.76 102.87 0)
+			(at 207.01 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6028,7 +5173,7 @@
 			)
 		)
 		(property "MANUFACTURER" ""
-			(at 238.76 102.87 90)
+			(at 207.01 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6037,7 +5182,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 238.76 102.87 90)
+			(at 207.01 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6046,7 +5191,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 238.76 102.87 90)
+			(at 207.01 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6055,7 +5200,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 238.76 102.87 90)
+			(at 207.01 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6063,8 +5208,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 238.76 102.87 0)
+		(property "Manufacturer" "YAGEO"
+			(at 207.01 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6072,8 +5217,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "PR02000202200JR500"
-			(at 238.76 102.87 0)
+		(property "Manufacturer_Part_Number" "RC0805FR-07220RL"
+			(at 207.01 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6081,8 +5226,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "594-5083NW220R0J"
-			(at 238.76 102.87 0)
+		(property "Mouser Part Number" "603-RC0805FR-07220RL"
+			(at 207.01 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6107,136 +5252,6 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 214.63 148.59 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5758dd2a-0030-46bb-a183-ec82eab4853b")
-		(property "Reference" "R26"
-			(at 214.63 146.558 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "4,7k"
-			(at 214.63 148.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 214.63 150.368 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 214.63 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 214.63 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 214.63 148.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 214.63 148.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 214.63 148.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 214.63 148.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 214.63 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "PR02000204701JR500"
-			(at 214.63 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "594-5083NW4K700J"
-			(at 214.63 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b5a56728-f2aa-497f-a998-1306cf83df9e")
-		)
-		(pin "2"
-			(uuid "fc229227-6090-458c-9202-a5e7a23e31d0")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "R26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
 		(at 52.07 48.26 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6252,7 +5267,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "10kΩ"
 			(at 52.07 48.26 90)
 			(effects
 				(font
@@ -6260,7 +5275,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 50.292 48.26 90)
 			(effects
 				(font
@@ -6269,7 +5284,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
 			(at 52.07 48.26 0)
 			(effects
 				(font
@@ -6332,7 +5347,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "MFR-25FBF52-10K"
+		(property "Manufacturer_Part_Number" "RC0805FR-0710KL"
 			(at 52.07 48.26 0)
 			(effects
 				(font
@@ -6341,7 +5356,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "603-MFR-25FBF52-10K"
+		(property "Mouser Part Number" "603-RC0805FR-0710KL"
 			(at 52.07 48.26 0)
 			(effects
 				(font
@@ -6433,138 +5448,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 207.01 104.14 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66098a3b-42fa-4a7e-9c0b-9bce3ef4f6ee")
-		(property "Reference" "R23"
-			(at 207.01 102.108 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "4,7k"
-			(at 207.01 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 207.01 105.918 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 207.01 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 207.01 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 207.01 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 207.01 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 207.01 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 207.01 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 207.01 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "PR02000204701JR500"
-			(at 207.01 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "594-5083NW4K700J"
-			(at 207.01 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a1074a6e-5fe2-49d5-9ef4-751661744696")
-		)
-		(pin "2"
-			(uuid "51432419-ddc9-4dad-b9f5-722e37a0ab92")
-		)
-		(instances
-			(project ""
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "R23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED")
-		(at 262.89 138.43 0)
+		(at 262.89 138.43 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6587,7 +5472,7 @@
 				)
 			)
 		)
-		(property "Footprint" "WL-TMRW_3MM:WL-TMRW_3MM"
+		(property "Footprint" "LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm"
 			(at 262.89 138.43 0)
 			(effects
 				(font
@@ -6897,7 +5782,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 262.89 128.27 0)
+		(at 262.89 128.27 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6920,7 +5805,7 @@
 				)
 			)
 		)
-		(property "Footprint" "WL-TMRC_3MM:WL-TMRC_3MM"
+		(property "Footprint" "LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm"
 			(at 262.89 128.27 0)
 			(effects
 				(font
@@ -7029,163 +5914,6 @@
 			(project "BasisStation"
 				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
 					(reference "D10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:BC337")
-		(at 228.6 118.11 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "95fbb236-f3b2-4123-b873-da14beb142b3")
-		(property "Reference" "Q3"
-			(at 233.68 116.8399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BC337"
-			(at 233.68 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 233.68 120.015 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, TO-92"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "NPN"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=C 2=B 3=E"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "onsemi"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "BC33740BU"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "512-BC33740BU"
-			(at 228.6 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "01522640-1172-4bcf-8e10-43c5a4aa2412")
-		)
-		(pin "2"
-			(uuid "b6d9927c-bb07-4d4b-a76f-875c977f3eab")
-		)
-		(pin "3"
-			(uuid "089530bb-0949-471b-92c7-cdf8a4c68ad9")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "Q3")
 					(unit 1)
 				)
 			)
@@ -7604,7 +6332,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 248.92 158.75 0)
+		(at 280.67 99.06 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7613,7 +6341,7 @@
 		(fields_autoplaced yes)
 		(uuid "c3e2eedd-6f2d-4c9d-8ee0-5fb2b00b6d75")
 		(property "Reference" "#PWR03"
-			(at 248.92 165.1 0)
+			(at 287.02 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7622,15 +6350,16 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 248.92 163.83 0)
+			(at 284.48 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 158.75 0)
+			(at 280.67 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7639,7 +6368,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 158.75 0)
+			(at 280.67 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7648,7 +6377,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 248.92 158.75 0)
+			(at 280.67 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7936,136 +6665,6 @@
 			(project "BasisStation"
 				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
 					(reference "U6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 207.01 118.11 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d2789629-864b-48e9-9f53-9383e67f2da5")
-		(property "Reference" "R24"
-			(at 207.01 116.078 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "4,7k"
-			(at 207.01 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 207.01 119.888 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 207.01 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 207.01 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 207.01 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 207.01 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 207.01 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 207.01 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 207.01 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "PR02000204701JR500"
-			(at 207.01 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "594-5083NW4K700J"
-			(at 207.01 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "22d1ac05-8c19-4d65-bab1-8fc66b5d4ce3")
-		)
-		(pin "2"
-			(uuid "53454e2a-c4c2-4a32-8b01-50ef2ea2c440")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -8409,359 +7008,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 280.67 99.06 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "eb6ff8dc-9bb8-48d5-96aa-08b63b175d8c")
-		(property "Reference" "#PWR101"
-			(at 280.67 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 280.67 95.504 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 280.67 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 280.67 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 280.67 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "44937368-126e-488a-a7ba-dd1e276ebb30")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "#PWR101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 214.63 133.35 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f63cb3f6-ae26-4170-9a05-0e2767dc70b7")
-		(property "Reference" "R25"
-			(at 214.63 131.318 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "4,7k"
-			(at 214.63 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 214.63 135.128 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 214.63 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 214.63 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 214.63 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 214.63 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 214.63 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 214.63 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 214.63 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "PR02000204701JR500"
-			(at 214.63 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "594-5083NW4K700J"
-			(at 214.63 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d6b12825-471e-41df-8ff9-cfa37566a26d")
-		)
-		(pin "2"
-			(uuid "7e5414f2-0c20-4f94-a4ea-f476b382831d")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "R25")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:BC337")
-		(at 238.76 133.35 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f7c03835-7933-4b83-8900-3a6badd2b378")
-		(property "Reference" "Q2"
-			(at 243.84 132.0799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BC337"
-			(at 243.84 134.6199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 243.84 135.255 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, TO-92"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "NPN"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=C 2=B 3=E"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" ""
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" ""
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" ""
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "onsemi"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "BC33740BU"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "512-BC33740BU"
-			(at 238.76 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0334246d-635a-4fd5-9059-4fca21f5432e")
-		)
-		(pin "2"
-			(uuid "81011369-b5a4-478a-84f6-725eeabe643c")
-		)
-		(pin "3"
-			(uuid "9a16c802-5111-4ea5-af64-e35f30021299")
-		)
-		(instances
-			(project "BasisStation"
-				(path "/498c7092-55c1-4229-9f4b-13c6a8e7da47/1af2eb5e-14cd-443f-ae96-dbfda52b298f"
-					(reference "Q2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 105.41 144.78 0)
 		(unit 1)
@@ -8829,7 +7075,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 248.92 128.27 90)
+		(at 214.63 133.35 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8837,23 +7083,23 @@
 		(dnp no)
 		(uuid "fb8fc801-3bef-405d-a28f-c7780e94491d")
 		(property "Reference" "R16"
-			(at 248.92 126.238 90)
+			(at 214.63 131.318 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "220"
-			(at 248.92 128.27 90)
+		(property "Value" "220Ω"
+			(at 214.63 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal"
-			(at 248.92 130.048 90)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 214.63 135.128 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8861,8 +7107,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 248.92 128.27 0)
+		(property "Datasheet" "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf"
+			(at 214.63 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8871,7 +7117,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 248.92 128.27 0)
+			(at 214.63 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8880,7 +7126,7 @@
 			)
 		)
 		(property "MANUFACTURER" ""
-			(at 248.92 128.27 90)
+			(at 214.63 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8889,7 +7135,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 248.92 128.27 90)
+			(at 214.63 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8898,7 +7144,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 248.92 128.27 90)
+			(at 214.63 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8907,7 +7153,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 248.92 128.27 90)
+			(at 214.63 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8915,8 +7161,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Vishay BC Components"
-			(at 248.92 128.27 0)
+		(property "Manufacturer" "YAGEO"
+			(at 214.63 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8924,8 +7170,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "PR02000202200JR500"
-			(at 248.92 128.27 0)
+		(property "Manufacturer_Part_Number" "RC0805FR-07220RL"
+			(at 214.63 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8933,8 +7179,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "594-5083NW220R0J"
-			(at 248.92 128.27 0)
+		(property "Mouser Part Number" "603-RC0805FR-07220RL"
+			(at 214.63 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
