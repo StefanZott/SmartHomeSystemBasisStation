@@ -17,6 +17,8 @@
 # CAD-Daten Gehaeuse (enclosure/): kein Textdiff, keine EOL-Konvertierung.
 # STEP ist zwar ASCII, aber generiert und mehrere MB gross.
 *.FCStd binary
+*.f3d   binary
+*.f3z   binary
 *.step  binary
 *.stl   binary
 *.3mf   binary
