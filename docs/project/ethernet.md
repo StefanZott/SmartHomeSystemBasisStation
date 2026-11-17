@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-18
+last_updated: 2026-11-17
 type: project-doc
 jira: SHBS-5
 ---
@@ -77,7 +77,10 @@ Drei Bauteile im Schaltplan erklären sich aus der Funktion des PHY:
 **Wichtig für das Layout:** Die sechs GPIOs zum ESP32 sind *keine*
 Ethernet-Signale, sondern gewöhnliches SPI plus zwei Steuerleitungen — im
 Layout unkritisch. Impedanzkontrolliert (100 Ω differenziell) müssen nur
-`TX±` und `RX±` zwischen W5500 und Buchse geführt werden.
+`TX±` und `RX±` zwischen W5500 und Buchse geführt werden. Umgesetzt mit
+SHBS-57 als gekoppelte, längenabgeglichene Paare (0,30 / 0,15 mm, ca.
+100 Ω auf 2 Lagen). Details: [hardware.md](hardware.md), Abschnitte
+„Ethernet-Paare" und „Design-Regeln und Impedanz".
 
 ## GPIO-Belegung (SHBS-5)
 
@@ -222,7 +225,7 @@ machen, ohne die Platine zu ändern.
 | Thema | Ticket | Stand |
 |-------|--------|-------|
 | Schaltplan und BOM | **SHBS-5** | Schaltplan fertig, ERC 0 Fehler |
-| PCB-Layout | **SHBS-10** | fertig (2026-09-29), Details in [hardware.md](hardware.md) „Gesamt-Layout" |
+| PCB-Layout | **SHBS-10**, **SHBS-57** | fertig (2026-09-29), MDI-Paare als Differenzpaare und Quarz kompakt seit 2026-11-17 (SHBS-57/58), Details in [hardware.md](hardware.md) „Gesamt-Layout" |
 | Firmware-Anbindung | **SHBS-11** | offen — in `main/` keine Ethernet-Nutzung |
 
 Datenblätter unter `pcb/Datasheets/`: W5500 Rev. 1.0.5, Würth 7499011121A,

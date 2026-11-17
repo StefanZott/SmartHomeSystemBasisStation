@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-30
+last_updated: 2026-11-17
 type: project-doc
 ---
 
@@ -83,7 +83,7 @@ Symbol-Bibliothek: `pcb/Bauteile/Mechanical/mechanical.kicad_sym` (`WLAN_Pigtail
 
 | Eigenschaft | Umsetzung |
 |-------------|-----------|
-| Datenpfad | `J1` → ESD-Array `U1` (D3V3XA4B10LP-7) → `U6.14`/`U6.13` (GPIO20/GPIO19, USB_D+/USB_D−) |
+| Datenpfad | `J1` → ESD-Array `U1` (D3V3XA4B10LP-7; D+ auf Kanal 1 = Pin 1/10, D− auf Kanal 2 = Pin 2/9) → `U6.14`/`U6.13` (GPIO20/GPIO19, USB_D+/USB_D−) |
 | Steckrichtung | Beide Datenpaare gebrückt (`A6`+`B6` = D+, `A7`+`B7` = D−) — Stecker funktioniert in beiden Orientierungen |
 | Rolle | **Sink/UFP**: je 5,1 kΩ **Rd** von `CC1` (`R21`) und `CC2` (`R22`) gegen GND |
 | VBUS | Netz `VBUS_J1`, endet am ESD-Array. **Keine Versorgung über diesen Port** |
@@ -96,18 +96,39 @@ Schaltplan: `pcb/BasisStation/BasisStation_Debugging.kicad_sch`.
 **Layout (SHBS-22, 2026-09-27):**
 
 - **U1 als Durchgangs-Bauteil:** Jede Leitung läuft gerade unter dem
-  Gehäuse durch, von Pad 10→1 (USB−), 9→2 (USB+) und 7→4 (VBUS_J1). Neben
-  den breiten GND-Pads 3/8 sind die Durchgänge für USB+ und VBUS_J1 nur
-  0,15 mm breit. Der Footprint selbst hat nur 0,15 mm Padabstand; die
-  5 DRC-Meldungen dazu sind footprint-bedingt und werden ausgeschlossen.
+  Gehäuse durch, von Pad 10→1 (USB+), 9→2 (USB−) und 7→4 (VBUS_J1). Die
+  Durchgänge sind 0,15 mm breit. Der Footprint selbst hat nur 0,15 mm
+  Padabstand, `BasisStation.kicad_dru` erlaubt das ausschließlich innerhalb
+  von U1.
+- **Kanaltausch an U1 (SHBS-56):** Bis SHBS-55 lag D− auf Kanal 1 und D+ auf
+  Kanal 2. An U6 liegt D+ (Pad 14) aber links von D− (Pad 13), das Paar
+  hätte sich unterwegs kreuzen müssen. Die vier Kanäle des ESD-Arrays sind
+  gleichwertig, deshalb sind D+ und D− im Schaltplan getauscht. Das Paar
+  läuft so ohne Lagenwechsel.
 - **Brücken im Pad-Feld von J1:** D+ B6→A6 auf F.Cu. D− B7→A7 kreuzt D+
   geometrisch und läuft daher über ein Via oberhalb der B-Reihe
-  (89,5 / 33,8) auf B.Cu zum USB−-Via (88,5 / 38,0). VBUS_J1: B4→A9 und
-  B9→A4. Die Gruppe A4/B9 ist von CC1 eingeschlossen und geht über ein Via
-  (90,85 / 37,6) auf B.Cu zu einem Via unter U1-Pin 4 (87,8 / 44,0).
-- USB D+/D− sind seit der Verlegung von U6 (SHBS-52) 138 bzw. 124 mm lang,
-  mit je 3 Vias. Für USB Full-Speed (12 Mbit/s, Anstiegszeit einige ns) sind
-  Länge und Längenunterschied (14 mm, ca. 0,1 ns) unkritisch.
+  (89,5 / 33,8) auf B.Cu zum Via (88,5 / 38,0) und weiter zum Via
+  (86,0 / 38,0), von dort auf F.Cu zu U1-Pad 9. D+ geht vom Via (89,0 / 39,0)
+  auf B.Cu unter D− hindurch zum Via (85,5 / 39,0) und auf F.Cu zu
+  U1-Pad 10. VBUS_J1: B4→A9 und B9→A4. Die Gruppe A4/B9 ist von CC1
+  eingeschlossen und geht über ein Via (90,85 / 37,6) auf B.Cu zu einem Via
+  unter U1-Pin 4 (87,8 / 44,0).
+- **Differenzpaar U1 → U6 (SHBS-56):** 0,45 / 0,15 mm (Netzklasse `USB`, ca.
+  90 Ω, siehe „Design-Regeln und Impedanz"), durchgehend gekoppelt auf F.Cu,
+  ohne Vias. Vom U1-Pad geht es 1 mm mit 0,15 mm Breite (GND-Pad 3 und
+  GND-Via sind dort eng), dann diagonal nach rechts unten, waagerecht bei
+  y 78,2 unter C7 hindurch und von oben in U6-Pad 14/13. Länge des Paars
+  111,3 mm, Längenunterschied 0,04 mm. Über alles 123,2 / 126,0 mm, die
+  Differenz entsteht nur in den Brücken der Buchse.
+- **Rückstrom:** Unter dem Paar kreuzen auf B.Cu die +3V3-Hauptleitung und
+  die SPI-Leitungen zu U6 im rechten Winkel. Das ist mit der Lage von J1, U7
+  und U6 nicht vermeidbar. Die GND-Fläche auf F.Cu begleitet das Paar mit
+  0,5 mm Abstand. 35 GND-Vias beidseits (Abstand ca. 6 mm, an den
+  Kreuzungen dichter) verbinden sie mit der Rückseite.
+- **DRC-Regel** `USB differential pair` in `BasisStation.kicad_dru`: Sie
+  sichert Paarabstand, ungekoppelte Länge (Buchse, Auffächerung, zusammen
+  ca. 19 mm) und Skew ab. KiCad rechnet beim Skew die Via-Länge mit
+  (4,4 mm, D− hat ein Via mehr).
 
 ## Stromversorgung (SHBS-4)
 
@@ -218,7 +239,7 @@ verbunden über eine Ferritperle.
 
 Architektur, Bauteilliste, Beschaltung und Begründungen: **[ethernet.md](ethernet.md)**.
 
-## Gesamt-Layout (SHBS-23, SHBS-10, SHBS-42 — Stand 2026-09-30)
+## Gesamt-Layout (SHBS-23, SHBS-10, SHBS-42, SHBS-53 — Stand 2026-11-17)
 
 Platine **160 × 132,55 mm** (Kontur x 50–210, y 27,45–160), 2 Lagen, 1,6 mm.
 Fest vorgegeben waren T1, J1, J_PWR1 und D7–D10.
@@ -238,7 +259,8 @@ Kante und wird bei der Fertigung abgeschnitten.
 |---------|------|------------|
 | **U6** (ESP32-S3) | rechts, halbe Höhe (185 / 90), um 90° gedreht | U.FL zur rechten Wand, SPI-Pins nach links zum W5500, USB/EN nach oben. Verlegt mit SHBS-52 |
 | **U7** (W5500) | rechts neben T1 | TX/RX-Pins zeigen zu T1, SPI und Quarz zu U6 |
-| Y1, C25/C26 | rechts an U7 | Kurze XI/XO-Leitungen |
+| Y1, C25/C26, C16 | direkt rechts an U7 (Y1 bei 154,5 / 47,9, um 90° gedreht) | Kurze XI/XO-Leitungen ohne Vias, Lastkondensatoren an den Quarzpads, C16 direkt an VDD/GND (Pin 28/29). Details: „Quarz Y1 (SHBS-58)" |
+| C29/C30, R36–R40 | zwischen T1 und U7 | Koppel-Cs nebeneinander im Raster 2 mm, Abschlüsse mit dem Pad auf der Leitung. Details: „Ethernet-Paare (SHBS-57)" |
 | Abblock-C, FB1 | unter U7 | Zwei Reihen, Spalten 4 mm, Reihen 5,5 mm (Handlötung), TOCAP/1V2O am nächsten an den Pins |
 | Pull-ups R28–R32 | Reihe über U7 | Raster 4 mm |
 | S2 | obere Kante zwischen T1 und U6, liegend | Reset von außen durch die Gehäusewand (SHBS-25, siehe unten) |
@@ -251,14 +273,30 @@ Kante und wird bei der Fertigung abgeschnitten.
 | R13–R16 | direkt über der LED-Anode | Vorwiderstände, seit SHBS-42 ohne Transistorstufe |
 | D7–D10 | Unterkante, liegend | Schauen durch die Gehäusewand, siehe „Status-LEDs“ |
 
-**Ethernet-Paare:** TX± und RX± sind von Hand geroutet und gesperrt. RX
-verlässt T1 durch den Kanal zwischen den beiden Pad-Reihen, die
-Koppel-Kondensatoren C30/C29 sitzen versetzt hintereinander. So kreuzen sich
-die Paare nicht. Länge unter 20 mm. **Keine definierte Impedanz:** 100 Ω
-differenziell ist auf 2 Lagen mit 1,6 mm Dielektrikum nicht einstellbar. Bei
-diesen kurzen Wegen ist das für 100BASE-TX unkritisch, bei Problemen am
-Prototyp wäre ein 4-Lagen-Aufbau die Abhilfe. Der Abschluss R36 (TD+) ist
-über ein Via-Paar angebunden, weil TD− darüber liegt.
+**Ethernet-Paare (SHBS-57):** TX± und RX± sind gekoppelte Paare mit
+0,30 / 0,15 mm (Netzklasse `ETH`, ca. 100 Ω, siehe „Design-Regeln und
+Impedanz"). Die Geometrie ist gesperrt.
+
+- **TX:** gerade von U7 Pin 1/2 (TXN/TXP) nach Westen. TD+ endet in T1 Pin 1,
+  TD− läuft nördlich um Pin 1 herum zu Pin 3. Die versetzten Pin-Reihen der
+  RJ45-Buchse erzwingen das. Zwei Ausgleichsschleifen auf TD+ gleichen die
+  Weglänge ab: 18,72 / 18,70 mm.
+- **RX:** aus dem Kanal zwischen den Pin-Reihen von T1 (RD− Pin 6, RD+ Pin 4)
+  sofort schräg nach Süden, damit es nicht parallel zum TX-Paar läuft. Dann
+  durch die nebeneinander liegenden Koppel-Cs C30/C29 und schräg hoch zu U7
+  Pin 5/6. Eine Ausgleichsschleife auf RXP gleicht den Kanalumweg von RD−
+  aus. Weglänge T1 → U7: 23,78 / 23,77 mm.
+- **Abschlüsse:** R37 (TD−), R40 (RXN) und R39 (RXP) sitzen mit dem Pad
+  direkt auf der Leitung, also ohne Stich. R36 (TD+) liegt nördlich, der
+  Stich geht über ein Via-Paar unter TD− hindurch.
+- **Hilfsnetze von Hand, nicht unter den Paaren:** RCT von T1 Pin 5 auf B.Cu
+  senkrecht zwischen den Pin-Reihen zu C31. R40 ↔ R39 kreuzen das RX-Paar im
+  rechten Winkel. EXRES1 läuft über B.Cu südlich um R39 zu R27. +3V3A der
+  TX-Abschlüsse geht über ein Via an U7 Pin 4. Unter den Paaren gibt es nur
+  Kreuzungen (90° bzw. 45°), keine Parallelführung.
+- **Skew in der KiCad-DRC:** KiCad summiert alle Leiterbahnen eines Netzes.
+  Beim TX-Paar zählt so der Stich zu R36 mit (3,5 mm). Maßgeblich ist die
+  Weglänge oben.
 
 **Chassis-Fläche:** Zone `CHASSIS_RJ45` (beide Lagen, Priorität 5) unter der
 Buchsenfront, x 104–130 / y 25,5–41,5. GND-Flächen halten 0,5 mm Abstand.
@@ -266,8 +304,7 @@ Die Kopplung erfolgt nur über R35 ‖ C28 links unter T1.
 
 **Routing:** Die übrigen Netze hat Freerouting 2.4.1 geroutet, vorhandene
 Leitungen waren gesperrt. Ein zweiter Durchgang (alles andere gesperrt)
-hat USB− ergänzt. RXN → R40 ist von Hand über ein Via-Paar auf B.Cu
-angebunden, weil R40.1 auf F.Cu von RCT eingeschlossen ist. Isolierte GND-Pads und Flächeninseln (vor allem die
+hat USB− ergänzt. Isolierte GND-Pads und Flächeninseln (vor allem die
 inneren GND-Pins des W5500) sind über kurze Stiche auf GND-Vias zur
 durchgehenden Rückseitenmasse angebunden. Unter U7 verbindet eine
 Sammelleitung die +3V3A-Pins. DRC: **keine offenen Verbindungen**, keine
@@ -284,15 +321,14 @@ Bauteilpaare lagen enger als 1 mm, mehrere berührten sich. Jetzt:
   halber Höhe (siehe Tabelle). Die SPI-Leitungen zum W5500 sind dadurch
   61–66 mm lang. Den SPI-Takt in der Firmware zunächst auf 20 MHz setzen und
   höhere Takte am Prototyp prüfen.
-- Zwischen den Bestückungsflächen sind überall mindestens 1 mm frei, meist
-  1,5 mm und mehr. Die einzige Ausnahme außerhalb der MDI-Gruppe ist C16 an
-  Y1 (1,03 mm): Er ist Abblock-C am W5500 und bleibt am Pin.
+- Zwischen den Bestückungsflächen sind mindestens 1 mm frei, meist 1,5 mm
+  und mehr. Ausnahmen sind seit SHBS-53 bewusst zwei kompakte Blöcke, in
+  denen die Flächen aneinanderstoßen (ohne Überlappung): der MDI-Block
+  (C29/C30/R39/R40 am RX-Paar) und der Quarzblock (Y1/C16/C25/C26).
 - Transistorstufe der LEDs entfallen, R9 und R13–R16 als 0805.
 
-**Bewusst unverändert:** die Ethernet-MDI-Gruppe an T1 (R35–R40, C28–C30).
-Dort liegen die von Hand gerouteten, gesperrten Paare. R36/R37 (0,2 mm) und
-C29/C30 (0,45 mm) bleiben enger als 1 mm. Ein Verschieben hätte die
-Paarführung aufgebrochen.
+Die Ethernet-MDI-Gruppe an T1 blieb in SHBS-42 zunächst unverändert. Mit
+SHBS-57 ist sie für die Paarführung neu angeordnet (siehe „Ethernet-Paare").
 
 **Neu-Routing:** Die getrennten Netze (u. a. +3V3, +5V, SW, LED, EN, Quarz,
 SPI zum W5500) hat Freerouting 2.4.1 neu geroutet. Die übrigen Leitungen des
@@ -310,7 +346,69 @@ Montagelöcher heißen im PCB **H1–H4** (vorher alle `REF**`). Der
 Specctra-Export braucht eindeutige Referenzen. Sie sind als
 „nur Platine" markiert (kein Schaltplan-Symbol nötig).
 
-### DRC: Regeln und Ausschlüsse (Stand 2026-09-30)
+### Design-Regeln und Impedanz (SHBS-55)
+
+**Fertigungsgrenzen** (`BasisStation.kicad_pro`, Board-Regeln): Mindestbreite
+**0,15 mm**, Mindestabstand **0,15 mm**. Bis SHBS-55 standen beide auf 0, die
+DRC prüfte also nicht gegen Fertigungsgrenzen. Beim Hardware-Review fiel das
+auf. Die zwei 0,12-mm-Stücke unter U7 sind auf 0,15 mm verbreitert.
+0,15 / 0,15 mm schafft jeder übliche Leiterplattenfertiger ohne Aufpreis. Die
+Werte sind beim ersten Auftrag mit dem gewählten Fertiger abzugleichen.
+
+| Netzklasse | Breite | Abstand | Paarabstand | Netze |
+|------------|-------:|--------:|------------:|-------|
+| Default | 0,20 mm | 0,20 mm | – | Signale |
+| Power | 0,60 mm | 0,20 mm | – | VBUS, +5V, SW, +3V3, GND |
+| USB | 0,45 mm | 0,15 mm | 0,15 mm | USB+, USB− |
+| ETH | 0,30 mm | 0,15 mm | 0,15 mm | T1-TD±, T1-RD±, U7-RXP/RXN |
+
+An Fine-Pitch-Pads (USB-C, U1, W5500) laufen die Leitungen auf kurzen
+Stücken mit 0,15–0,2 mm.
+
+**Impedanz auf 2 Lagen:** Aufbau 1,6 mm FR4 (1,51 mm Dielektrikum), 35 µm
+Kupfer, Massefläche auf B.Cu, GND-Fläche auf F.Cu mit 0,5 mm Abstand. Die
+Werte stammen aus einem 2D-Feldlöser
+([`tmp/impedance/`](../../tmp/impedance/pairs.py)). Er ist an der klassischen
+50-Ω-Microstrip auf ca. 1 % validiert (49,5 Ω gegenüber 50,3 Ω nach
+Hammerstad).
+
+| Paar | Breite / Abstand | Z diff (εr 4,2–4,7, mit/ohne F.Cu-Fläche) | Soll |
+|------|------------------|------------------------------------------:|------|
+| USB | 0,45 / 0,15 mm | 90–97 Ω | 90 Ω ± 15 % |
+| Ethernet | 0,30 / 0,15 mm | 100–107 Ω | 100 Ω ± 15 % |
+
+Eng gekoppelte Paare (0,15 mm Abstand) erreichen die Sollimpedanz also auch
+auf 2 Lagen. Ein 4-Lagen-Aufbau ist dafür nicht nötig. Die einfache
+Formelabschätzung nach IPC-2141 hatte für 0,2/0,2 mm noch ca. 160 Ω ergeben.
+Die Feldrechnung liefert 127 Ω, die Formel überschätzt bei so dickem
+Dielektrikum. Lötstopplack senkt die Werte typisch um 2–4 Ω. Exakte Werte
+liefert der Impedanzrechner des Fertigers.
+
+### Quarz Y1 (SHBS-58)
+
+Y1 (25 MHz, CL 18 pF) sitzt um 90° gedreht direkt rechts von U7. Lage der
+Pads: GND oben links, XI unten links, XO oben rechts, GND unten rechts.
+
+- **XI** (U7 Pin 30) läuft oberhalb an C16 vorbei und von links auf das XI-Pad
+  (ca. 6,2 mm bis zum Pad). C25 liegt waagerecht direkt darunter.
+- **XO** (U7 Pin 31) läuft über die obere Pad-Reihe zum XO-Pad (ca. 8,5 mm bis zum
+  Pad). C26 liegt direkt daneben.
+- Beide nur auf F.Cu, ohne Vias. Vorher waren es 17,7 / 27,7 mm mit 2 Vias,
+  die Kondensatoren saßen 6–9 mm entfernt.
+- **GND:** Die GND-Pads von Y1, C25 und C26 sind über eine Leitung durch die
+  Quarzmitte verbunden, mit 3 Vias zur Rückseite. Die Sperrfläche
+  `XTAL_BCU_KEEPOUT` hält B.Cu unter dem Quarz frei von Leiterbahnen.
+- **C16** (100 nF an VDD Pin 28 / GND Pin 29) sitzt direkt an den Pins
+  zwischen U7 und Quarz. Pin 29 hat zusätzlich ein GND-Via innen am Pin.
+  Das ist der Grund, warum XO nicht kürzer ist: Ein kürzeres XO hätte C16
+  von den Pins weggedrängt.
+- Die Streukapazität der Leitungen (ca. 0,3–0,4 pF) ist gegenüber 27 pF
+  vernachlässigbar, die Lastrechnung (2 × (18 pF − ca. 4–5 pF)) bleibt
+  gültig.
+- Die SPI-Leitungen und ETH_INT sind seitdem außen um den Quarzblock herum
+  geroutet.
+
+### DRC: Regeln und Ausschlüsse (Stand 2026-11-17)
 
 `kicad-cli pcb drc --schematic-parity`: **0 offene Verbindungen, 0
 Schaltplan-Abweichungen, 0 offene Fehler.** Übrig sind 17 bewusst
@@ -326,7 +424,11 @@ ausgeschlossene Meldungen. Die Begründung steht jeweils als Kommentar in
 
 **Regeln statt Ausschluss:** Die Thermal-Stege an S2 siehe „Reset-Taster S2". Die fünf Padabstände von 0,15 mm am ESD-Array U1
 sind eine Eigenschaft seines Landepatterns. `BasisStation.kicad_dru` erlaubt
-sie ausschließlich innerhalb von U1.
+sie ausschließlich innerhalb von U1. Dazu kommen seit SHBS-53:
+
+- die Regel `USB differential pair` (siehe „Debug-/Datenanschluss J1"),
+- die Sperrfläche `XTAL_BCU_KEEPOUT`: keine Leiterbahnen auf B.Cu unter dem
+  Quarz, Vias und GND-Fläche erlaubt (siehe „Quarz Y1").
 
 **Hinweis für Skripte:** Ausschlüsse greifen nur bei exakter Marker-Position.
 Diese liegt nicht immer auf einer Pad-Position, bei `starved_thermal` aber

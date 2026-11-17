@@ -1,6 +1,6 @@
 ---
 status: active
-last_updated: 2026-09-30
+last_updated: 2026-11-17
 type: project-doc
 jira: SHBS-4
 ---
@@ -50,9 +50,9 @@ USB-Netzteil / Kabel (5 V)
 └───────────────────┘
         │
         ▼ +5V
-      [ F1 ]  Polyfuse 1,1 A
+      [ F1 ]  Polyfuse 0,75 A / 16 V
         │
-      [ D12 ] TVS SMAJ5.0A (→ GND)
+      [ D12 ] TVS SMAJ5.0A (Kathode an +5V, Anode an GND)
         │
       [ C13 ] 10 µF (→ GND, nahe PS1 VIN)
         │
@@ -304,6 +304,33 @@ Footprint-Feld. Ohne Zuweisung übernimmt der PCB-Abgleich (F8) sie nicht.
 
 ---
 
+## Eingangsschutz F1 / D12 (SHBS-54, 2026-11-17)
+
+F1 (Polyfuse) und D12 (TVS SMAJ5.0A) bilden zusammen eine
+Crowbar-Schutzschaltung. Bei Überspannung leitet D12, der Strom steigt und
+F1 trennt. Ohne F1 brennt bei einer fehlerhaften Quelle D12 oder die
+Leiterbahn ab. Bei einem Kurzschluss auf der Platine begrenzt F1 unabhängig
+vom Netzteil.
+
+- **D12 war verpolt.** Beim Footprint `Diode_SMD:D_SMA` ist Pad 1 die
+  Kathode, das Symbol `Diode:SMAJ5.0A` hat neutrale Pins (A1/A2). Pad 1 lag
+  auf GND. Der TVS hätte +5V in Durchlassrichtung kurzgeschlossen und F1
+  sofort ausgelöst. Der Hardware-Review hat das gefunden. Der Bediener hat D12
+  im Schaltplan gedreht, in der Platine ist D12 um 180° gedreht. Jetzt liegt
+  die Kathode an +5V und die Anode an GND.
+- **F1 war zu groß.** Mit 1,1 A Haltestrom und 2,2 A Auslösestrom lag F1 beim
+  Fünffachen der Last (ca. 400 mA). Neu ist die Littelfuse 1206L075/16WR
+  (0,75 A / 1,5 A) in derselben Bauform. Der Haltestrom sinkt bei 50 °C auf
+  ca. 0,6 A, das bleibt über der Spitzenlast.
+- **16 V statt 6 V.** Im Überspannungsfall liegt an der ausgelösten
+  Polyfuse die volle Quellspannung. Die bisherige Bourns MF-NSMF110-2 und
+  auch deren 0,75-A-Variante MF-NSMF075-2 sind nur für 6 V spezifiziert.
+  Damit wäre der Schutz schon bei einer 9-V-Quelle überlastet.
+- **PWR_FLAG überbrückt F1 nicht.** PWR_FLAG ist ein reines ERC-Symbol ohne
+  elektrische Verbindung. VBUS (vor F1) und +5V (hinter F1) sind getrennte
+  Netze. Die zwei Flags (siehe „PWR_FLAG") sind nötig, weil KiCad Leistung
+  nicht durch passive Bauteile verfolgt.
+
 ## Lastbudget (Stand 18.09.2026)
 
 Nach Hinzunahme der Ethernet-Sektion (SHBS-5).
@@ -320,7 +347,7 @@ Bei rund 85 % Wandlerwirkungsgrad entspricht das etwa **400 mA am 5-V-Eingang**.
 
 | Grenze | Wert | Auslastung |
 |--------|------|------------|
-| Polyfuse `F1` | 1,1 A | ~36 % |
+| Polyfuse `F1` | 0,75 A Haltestrom (ca. 0,6 A bei 50 °C) | ~53 % (~67 % warm) |
 | Wandler `PS1` AP3211 | 1,5 A | ~34 % |
 
 **Kein Redesign nötig.** Die Ethernet-Sektion erhöht die Last um rund 145 mA;
@@ -339,8 +366,8 @@ das Layout aber nicht (siehe [ethernet.md](ethernet.md)).
 | Ref | Funktion | Teil / Wert | KiCad-Symbol | Footprint (Vorschlag) |
 |-----|----------|-------------|--------------|----------------------|
 | **J_PWR** | USB-C Buchse | Amphenol **12401598E4#2A** | `shbs_power:USB_C_Receptacle_Power` | `shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A` |
-| **F1** | Überstrom | Polyfuse **1,1 A** (MF-NSMF110-2) | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
-| **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS) | `Device:D` | `Diode_SMD:D_SMA` |
+| **F1** | Überstrom | Polyfuse **0,75 A / 16 V** (Littelfuse 1206L075/16WR) | `Device:Fuse` | `Fuse:Fuse_1206_3216Metric` |
+| **D12** | VBUS-Schutz | **SMAJ5.0A** (TVS, Kathode = Pad 1 an +5V) | `Diode:SMAJ5.0A` | `Diode_SMD:D_SMA` |
 | **D11** | Flyback | **SS34** (Schottky) | `Device:D` | `Diode_SMD:D_SMA` |
 | **PS1** | Buck | **AP3211KTR-G1** | `shbs_power:AP3211` | `shbs_power:MP2359DJ` (SOT-23-6-Landmuster, passt unverändert) |
 | **L1** | Induktivität | **4,7 µH** (empf.) oder 10 µH | `Device:L` | `Inductor_SMD:L_5.7x5.7` oder `L_Bourns_SRN6045TA` |
@@ -363,7 +390,7 @@ bestellfähige Stückliste ([hardware.md](hardware.md), Abschnitt
 |-----|------|-----------|
 | PS1 | Diodes **AP3211KTR-G1** | siehe Abschnitt PS1 |
 | J_PWR1 | Amphenol **12401598E4#2A** | siehe Abschnitt Buchsenwechsel |
-| F1 | Bourns **MF-NSMF110-2** | Polyfuse 1206, 1,1 A Halte-, 2,2 A Auslösestrom, 6 V |
+| F1 | Littelfuse **1206L075/16WR** | Polyfuse 1206, 0,75 A Halte-, 1,5 A Auslösestrom, 16 V (bis SHBS-54: Bourns MF-NSMF110-2, 1,1 A / 6 V) |
 | C13 | Samsung **CL21B106KOQNNNE** | 10 µF, 16 V, X7R — die frühere Angabe Murata GRM21BR61C106KE15 ist bei Mouser und DigiKey ohne Lager |
 | C14 | Samsung **CL21A226MOQNNNE** | 22 µF, 16 V, X5R — Kapazität sinkt unter DC-Vorspannung |
 | C15 | YAGEO **CC0805KRX7R9BB104** | 100 nF, 50 V, X7R |
