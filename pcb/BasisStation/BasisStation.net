@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/workspaces/SmartHomeSystemBasisStation/pcb/BasisStation/BasisStation.kicad_sch")
-		(date "2026-09-30T11:41:11")
+		(date "2026-11-17T10:08:59")
 		(tool "Eeschema 10.0.6-10.0.6~ubuntu24.04.1")
 		(sheet
 			(number "1")
@@ -3198,9 +3198,10 @@
 		)
 		(comp
 			(ref "F1")
-			(value "1.1A")
+			(value "0.75A")
 			(footprint "Fuse:Fuse_1206_3216Metric")
-			(description "Fuse")
+			(datasheet "https://www.littelfuse.com/assetdocs/resettable-ptcs-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5")
+			(description "PTC resettable fuse, 0.75 A hold, 1.5 A trip, 16 V, 1206")
 			(fields
 				(field
 					(name "MANUFACTURER")
@@ -3215,18 +3216,17 @@
 					(name "STANDARD")
 				)
 				(field
-					(name "Manufacturer") "Bourns")
+					(name "Manufacturer") "Littelfuse")
 				(field
-					(name "Manufacturer_Part_Number") "MF-NSMF110-2")
+					(name "Manufacturer_Part_Number") "1206L075/16WR")
 				(field
-					(name "Mouser Part Number") "652-MF-NSMF110-2")
+					(name "Mouser Part Number") "576-1206L075/16WR")
 				(field
 					(name "Footprint") "Fuse:Fuse_1206_3216Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.littelfuse.com/assetdocs/resettable-ptcs-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5")
 				(field
-					(name "Description") "Fuse")
+					(name "Description") "PTC resettable fuse, 0.75 A hold, 1.5 A trip, 16 V, 1206")
 			)
 			(libsource
 				(lib "Device")
@@ -3251,15 +3251,15 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Bourns")
+				(value "Littelfuse")
 			)
 			(property
 				(name "Manufacturer_Part_Number")
-				(value "MF-NSMF110-2")
+				(value "1206L075/16WR")
 			)
 			(property
 				(name "Mouser Part Number")
-				(value "652-MF-NSMF110-2")
+				(value "576-1206L075/16WR")
 			)
 			(property
 				(name "Sheetname")
@@ -9885,8 +9885,8 @@
 			)
 			(node
 				(ref "D12")
-				(pin "2")
-				(pinfunction "A2_2")
+				(pin "1")
+				(pinfunction "A1_1")
 				(pintype "passive")
 			)
 			(node
@@ -10204,8 +10204,8 @@
 			)
 			(node
 				(ref "D12")
-				(pin "1")
-				(pinfunction "A1_1")
+				(pin "2")
+				(pinfunction "A2_2")
 				(pintype "passive")
 			)
 			(node

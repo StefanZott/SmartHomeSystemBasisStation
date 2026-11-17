@@ -87,7 +87,7 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
 			(outputdirectory "")
 		)
@@ -1837,7 +1837,7 @@
 				)
 			)
 		)
-		(property "Value" "1.1A"
+		(property "Value" "0.75A"
 			(at 0 1.83 90)
 			(layer "F.Fab")
 			(uuid "e3a764ea-1736-446f-bf6e-57f8157f2d2d")
@@ -1848,7 +1848,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.littelfuse.com/assetdocs/resettable-ptcs-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -1860,7 +1860,7 @@
 				)
 			)
 		)
-		(property "Description" "Fuse"
+		(property "Description" "PTC resettable fuse, 0.75 A hold, 1.5 A trip, 16 V, 1206"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -1924,7 +1924,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Bourns"
+		(property "Manufacturer" "Littelfuse"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1937,7 +1937,7 @@
 				)
 			)
 		)
-		(property "Manufacturer_Part_Number" "MF-NSMF110-2"
+		(property "Manufacturer_Part_Number" "1206L075/16WR"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1950,7 +1950,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "652-MF-NSMF110-2"
+		(property "Mouser Part Number" "576-1206L075/16WR"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17229,11 +17229,11 @@
 	(footprint "Diode_SMD:D_SMA"
 		(layer "F.Cu")
 		(uuid "b314b7bc-4a3e-4c72-9673-0cc4155229eb")
-		(at 58 42 -90)
+		(at 58 42 90)
 		(descr "Diode SMA (DO-214AC)")
 		(tags "Diode SMA (DO-214AC)")
 		(property "Reference" "D12"
-			(at 0 -2.5 90)
+			(at 0 -2.5 270)
 			(layer "F.SilkS")
 			(uuid "45eafb50-766d-4d62-beab-94acf1ea0bc7")
 			(effects
@@ -17244,7 +17244,7 @@
 			)
 		)
 		(property "Value" "SMAJ5.0A"
-			(at 0 2.6 90)
+			(at 0 2.6 270)
 			(layer "F.Fab")
 			(uuid "4b055f6f-f6f5-4dd1-9889-4e2a7701c4ac")
 			(effects
@@ -17255,7 +17255,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet"
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17268,7 +17268,7 @@
 			)
 		)
 		(property "Description" "400W unidirectional Transient Voltage Suppressor, 5.0Vr, SMA(DO-214AC)"
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17281,7 +17281,7 @@
 			)
 		)
 		(property "MANUFACTURER" ""
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17294,7 +17294,7 @@
 			)
 		)
 		(property "MAXIMUM_PACKAGE_HEIGHT" ""
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17307,7 +17307,7 @@
 			)
 		)
 		(property "PARTREV" ""
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17320,7 +17320,7 @@
 			)
 		)
 		(property "STANDARD" ""
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17333,7 +17333,7 @@
 			)
 		)
 		(property "Manufacturer" "Littelfuse"
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17346,7 +17346,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "SMAJ5.0A"
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17359,7 +17359,7 @@
 			)
 		)
 		(property "Mouser Part Number" "576-SMAJ5.0A"
-			(at 0 0 270)
+			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -17378,14 +17378,14 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -3.51 1.65)
-			(end 2 1.65)
+			(start -3.51 -1.65)
+			(end 2 -1.65)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "4a61dc94-5b98-4257-829f-269b45a9abd7")
+			(uuid "70785e6c-3e20-4482-beba-9886546f661a")
 		)
 		(fp_line
 			(start -3.51 -1.65)
@@ -17398,44 +17398,14 @@
 			(uuid "4965f7d3-2083-49e8-92bb-25dcfc46af04")
 		)
 		(fp_line
-			(start -3.51 -1.65)
-			(end 2 -1.65)
+			(start -3.51 1.65)
+			(end 2 1.65)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "70785e6c-3e20-4482-beba-9886546f661a")
-		)
-		(fp_line
-			(start -3.5 1.75)
-			(end -3.5 -1.75)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "8c2ca1ee-7eec-4e90-b90a-fd00e44ac762")
-		)
-		(fp_line
-			(start 3.5 1.75)
-			(end -3.5 1.75)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "bdcd8d56-e9b2-4801-9fab-1b0170696de8")
-		)
-		(fp_line
-			(start -3.5 -1.75)
-			(end 3.5 -1.75)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "6032a917-1576-4f35-8b02-70eef8dab2a8")
+			(uuid "4a61dc94-5b98-4257-829f-269b45a9abd7")
 		)
 		(fp_line
 			(start 3.5 -1.75)
@@ -17448,44 +17418,84 @@
 			(uuid "4308ead1-6da1-457a-84e8-a642c97e49eb")
 		)
 		(fp_line
-			(start -2.3 1.5)
+			(start -3.5 -1.75)
+			(end 3.5 -1.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "6032a917-1576-4f35-8b02-70eef8dab2a8")
+		)
+		(fp_line
+			(start 3.5 1.75)
+			(end -3.5 1.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "bdcd8d56-e9b2-4801-9fab-1b0170696de8")
+		)
+		(fp_line
+			(start -3.5 1.75)
+			(end -3.5 -1.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "8c2ca1ee-7eec-4e90-b90a-fd00e44ac762")
+		)
+		(fp_line
+			(start 2.3 -1.5)
 			(end -2.3 -1.5)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "9448d31f-b033-4a06-87a7-d2abb89374a4")
+			(uuid "14c30e64-d444-4575-bb62-c8218bb73bb8")
 		)
 		(fp_line
-			(start 2.3 1.5)
-			(end -2.3 1.5)
+			(start 2.3 -1.5)
+			(end 2.3 1.5)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "e05e8a45-5055-46fb-a29b-9b3c4a02522c")
+			(uuid "96e0cde4-2aed-484f-898d-2d39b2d408ab")
 		)
 		(fp_line
-			(start 0.50118 0.75032)
+			(start -0.64944 -0.79908)
+			(end -0.64944 0.80112)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "26a39c70-1859-4f81-943a-78071cc29480")
+		)
+		(fp_line
+			(start 0.50118 0.00102)
+			(end 1.4994 0.00102)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "b3198359-fd2b-49dc-94e1-2286b324cb3e")
+		)
+		(fp_line
+			(start -0.64944 0.00102)
 			(end 0.50118 -0.79908)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "e2e89bb0-7ec3-4296-af1c-dbf9759bdf02")
-		)
-		(fp_line
-			(start -0.64944 0.00102)
-			(end 0.50118 0.75032)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "a97c99ae-0096-4cf0-a0fa-7a7e6545e07d")
+			(uuid "4e19f1e7-a586-441f-a586-636bf6c9d047")
 		)
 		(fp_line
 			(start -0.64944 0.00102)
@@ -17499,56 +17509,46 @@
 		)
 		(fp_line
 			(start -0.64944 0.00102)
+			(end 0.50118 0.75032)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "a97c99ae-0096-4cf0-a0fa-7a7e6545e07d")
+		)
+		(fp_line
+			(start 0.50118 0.75032)
 			(end 0.50118 -0.79908)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "4e19f1e7-a586-441f-a586-636bf6c9d047")
+			(uuid "e2e89bb0-7ec3-4296-af1c-dbf9759bdf02")
 		)
 		(fp_line
-			(start 0.50118 0.00102)
-			(end 1.4994 0.00102)
+			(start 2.3 1.5)
+			(end -2.3 1.5)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "b3198359-fd2b-49dc-94e1-2286b324cb3e")
+			(uuid "e05e8a45-5055-46fb-a29b-9b3c4a02522c")
 		)
 		(fp_line
-			(start -0.64944 -0.79908)
-			(end -0.64944 0.80112)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "26a39c70-1859-4f81-943a-78071cc29480")
-		)
-		(fp_line
-			(start 2.3 -1.5)
-			(end 2.3 1.5)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "96e0cde4-2aed-484f-898d-2d39b2d408ab")
-		)
-		(fp_line
-			(start 2.3 -1.5)
+			(start -2.3 1.5)
 			(end -2.3 -1.5)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "14c30e64-d444-4575-bb62-c8218bb73bb8")
+			(uuid "9448d31f-b033-4a06-87a7-d2abb89374a4")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 -2.5 90)
+			(at 0 -2.5 270)
 			(layer "F.Fab")
 			(uuid "bc5947da-06aa-4903-9208-90c9789b22cb")
 			(effects
@@ -17559,21 +17559,21 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -2 0 270)
+			(at -2 0 90)
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net "GND")
+			(net "/Stromversorgung/+5V")
 			(pinfunction "A1")
 			(pintype "passive")
 			(uuid "6e375ff5-6802-4887-9a50-bff730bdb7b9")
 		)
 		(pad "2" smd roundrect
-			(at 2 0 270)
+			(at 2 0 90)
 			(size 2.5 1.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1388888889)
-			(net "/Stromversorgung/+5V")
+			(net "GND")
 			(pinfunction "A2")
 			(pintype "passive")
 			(uuid "658e15c5-fd10-47a5-8d31-71637989127a")

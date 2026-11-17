@@ -20,7 +20,7 @@
 "D10","GREEN","","LED_THT:LED_D3.0mm_Horizontal_O1.27mm_Z2.0mm","1",""
 "D11","SS34","https://www.vishay.com/docs/88751/ss32.pdf","Diode_SMD:D_SMA","1",""
 "D12","SMAJ5.0A","https://www.littelfuse.com/media?resourcetype=datasheets&itemid=75e32973-b177-4ee3-a0ff-cedaf1abdb93&filename=smaj-datasheet","Diode_SMD:D_SMA","1",""
-"F1","1.1A","","Fuse:Fuse_1206_3216Metric","1",""
+"F1","0.75A","https://www.littelfuse.com/assetdocs/resettable-ptcs-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5","Fuse:Fuse_1206_3216Metric","1",""
 "FB1","Ferrit 600R@100MHz","","Inductor_SMD:L_0805_2012Metric","1",""
 "J1,J_PWR1","12401598E4-2A","https://www.amphenol-cs.com/products/usb/type-c,https://www.usb.org/sites/default/files/documents/usb_type-c.zip","shbs_power:USB_C_Receptacle_Amphenol_12401598E4-2A","2",""
 "J6","61200621621","","wuerth_6120XX21621:61200621621","1",""

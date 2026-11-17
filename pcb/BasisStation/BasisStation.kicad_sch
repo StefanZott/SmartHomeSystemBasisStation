@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "498c7092-55c1-4229-9f4b-13c6a8e7da47")
 	(paper "A4")
 	(title_block
@@ -4513,11 +4513,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "1af2eb5e-14cd-443f-ae96-dbfda52b298f")
 		(property "Sheetname" "Layout"
 			(at 302.26 -0.7116 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4527,6 +4529,8 @@
 		)
 		(property "Sheetfile" "BasisStation_Layout.kicad_sch"
 			(at 302.26 211.4046 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4555,11 +4559,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "1c58143b-a7ac-41ca-9e87-95c7289c5970")
 		(property "Sheetname" "Debugging"
 			(at 1.27 224.0784 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4569,6 +4575,8 @@
 		)
 		(property "Sheetfile" "BasisStation_Debugging.kicad_sch"
 			(at 1.27 377.7746 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4597,11 +4605,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "351e3242-3ef6-4484-be75-fa36abbf06d6")
 		(property "Sheetname" "Ethernet"
 			(at 2.54 392.9884 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4611,6 +4621,8 @@
 		)
 		(property "Sheetfile" "ethernet.kicad_sch"
 			(at 2.54 540.3346 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4639,11 +4651,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "5fd3b213-b7bb-4f0b-b520-d744bf60efa7")
 		(property "Sheetname" "Stromversorgung"
 			(at 302.26 224.0784 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4653,6 +4667,8 @@
 		)
 		(property "Sheetfile" "Stromversorgung.kicad_sch"
 			(at 302.26 377.7746 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
