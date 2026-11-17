@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/workspaces/SmartHomeSystemBasisStation/pcb/BasisStation/BasisStation.kicad_sch")
-		(date "2026-11-17T10:08:59")
+		(date "2026-11-17T10:32:23")
 		(tool "Eeschema 10.0.6-10.0.6~ubuntu24.04.1")
 		(sheet
 			(number "1")
@@ -10715,7 +10715,7 @@
 		(net
 			(code "35")
 			(name "Net-(T1-RD+)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "C29")
 				(pin "1")
@@ -10731,7 +10731,7 @@
 		(net
 			(code "36")
 			(name "Net-(T1-RD-)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "C30")
 				(pin "1")
@@ -10747,7 +10747,7 @@
 		(net
 			(code "37")
 			(name "Net-(T1-TD+)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "R36")
 				(pin "1")
@@ -10769,7 +10769,7 @@
 		(net
 			(code "38")
 			(name "Net-(T1-TD-)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "R37")
 				(pin "1")
@@ -10935,7 +10935,7 @@
 		(net
 			(code "48")
 			(name "Net-(U7-RXN)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "C30")
 				(pin "2")
@@ -10956,7 +10956,7 @@
 		(net
 			(code "49")
 			(name "Net-(U7-RXP)")
-			(class "Default")
+			(class "ETH")
 			(node
 				(ref "C29")
 				(pin "2")
@@ -11037,7 +11037,7 @@
 		(net
 			(code "53")
 			(name "USB+")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J1")
 				(pin "A6")
@@ -11052,13 +11052,13 @@
 			)
 			(node
 				(ref "U1")
-				(pin "2")
+				(pin "1")
 				(pintype "passive")
 			)
 			(node
 				(ref "U1")
-				(pin "9")
-				(pinfunction "NC_9")
+				(pin "10")
+				(pinfunction "NC_10")
 				(pintype "free")
 			)
 			(node
@@ -11071,7 +11071,7 @@
 		(net
 			(code "54")
 			(name "USB-")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J1")
 				(pin "A7")
@@ -11086,13 +11086,13 @@
 			)
 			(node
 				(ref "U1")
-				(pin "1")
+				(pin "2")
 				(pintype "passive")
 			)
 			(node
 				(ref "U1")
-				(pin "10")
-				(pinfunction "NC_10")
+				(pin "9")
+				(pinfunction "NC_9")
 				(pintype "free")
 			)
 			(node

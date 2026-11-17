@@ -1739,18 +1739,6 @@
 		(uuid "2fdfd555-f132-4caf-8433-d24116749afa")
 	)
 	(junction
-		(at 68.58 90.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "406c7fd7-656d-40c0-9fe3-5176d3f2ebd4")
-	)
-	(junction
-		(at 66.04 87.63)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "46882afd-77ba-49bc-a976-4e4587c2e2be")
-	)
-	(junction
 		(at 76.2 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1783,6 +1771,74 @@
 	(no_connect
 		(at 48.26 66.04)
 		(uuid "cb045932-cec1-48ee-b08f-dc34f1577b7d")
+	)
+	(wire
+		(pts
+			(xy 76.2 106.68) (xy 71.12 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8bb08982-fa25-4a19-8cda-dc577a284ad3")
+	)
+	(wire
+		(pts
+			(xy 76.2 111.76) (xy 71.12 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1076f0f9-bc6e-4478-9dba-2b0c836924e5")
+	)
+	(global_label "USB+"
+		(shape output)
+		(at 71.12 106.68 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ba1a4b7a-32f3-43ad-94cd-3481008c9530")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 62.7524 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "USB-"
+		(shape output)
+		(at 71.12 111.76 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0a2dfaab-0815-47dd-aa6e-d13d6834a623")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 62.7524 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 	)
 	(wire
 		(pts
@@ -2036,16 +2092,6 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 111.76) (xy 66.04 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aa5a5194-8057-46be-aa2a-7b3c7ec8a900")
-	)
-	(wire
-		(pts
 			(xy 113.03 35.56) (xy 113.03 106.68)
 		)
 		(stroke
@@ -2076,16 +2122,6 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 106.68) (xy 68.58 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bf1fa1c5-8d64-4544-86fb-bb96b2e31a51")
-	)
-	(wire
-		(pts
 			(xy 90.17 43.18) (xy 90.17 49.53)
 		)
 		(stroke
@@ -2093,16 +2129,6 @@
 			(type default)
 		)
 		(uuid "c41f7acd-2f1c-4fe1-ac01-5cd64ca53015")
-	)
-	(wire
-		(pts
-			(xy 66.04 111.76) (xy 66.04 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9df06be-ea1f-4454-808c-ebe212cc10f2")
 	)
 	(wire
 		(pts
@@ -2153,16 +2179,6 @@
 			(type default)
 		)
 		(uuid "e7c06262-b35e-4d48-805c-41797a2eee8e")
-	)
-	(wire
-		(pts
-			(xy 76.2 106.68) (xy 68.58 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eb280019-4665-4ee3-9d54-a87d5692a279")
 	)
 	(label "VBUS_J1"
 		(at 72.39 35.56 0)

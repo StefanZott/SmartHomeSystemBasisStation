@@ -11,3 +11,15 @@
 (rule "S2 GND pin thermal spokes"
 	(condition "A.Parent == 'S2'")
 	(constraint min_resolved_spokes 1))
+
+# USB D+/D- (SHBS-56): coupled pair 0.45 / 0.15 mm, about 90 Ohm differential
+# on 1.6 mm FR4 (tmp/impedance/pairs.py). Uncoupled stretches exist only in
+# the USB-C pad field (row bridges), the fan-in at U1 and the fan-out at U6
+# (about 19 mm in total). Skew 4.4 mm is caused by the J1 row bridges and one
+# extra via on D- (about 27 ps) - irrelevant at 12 Mbit/s. The limits guard
+# this state against regressions.
+(rule "USB differential pair"
+	(condition "A.inDiffPair('USB')")
+	(constraint diff_pair_gap (min 0.14mm) (opt 0.15mm))
+	(constraint diff_pair_uncoupled (max 20mm))
+	(constraint skew (max 5mm)))
